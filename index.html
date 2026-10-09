@@ -1,0 +1,2602 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f8f3f1" />
+  <title>EUROPA SALE</title>
+  <meta name="description" content="EUROPA SALE — покупки из Германии, Италии и других стран Европы." />
+  <meta name="europa-sale-version" content="Index30.2.3_DATE_DESC" />
+  <style>
+    :root{
+      --bg:#f8f3f1;
+      --paper:#fffaf8;
+      --paper-2:#f4eeeb;
+      --text:#24211f;
+      --muted:#756e69;
+      --muted-2:#9d948f;
+      --line:#d9cfca;
+      --line-soft:#ebe2de;
+      --rose:#b34858;
+      --rose-dark:#9f394a;
+      --black:#24211f;
+      --green:#35634b;
+      --shadow:0 18px 55px rgba(55,43,38,.055);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text)}
+    body{font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+    button,input{font:inherit}
+    button,a{touch-action:manipulation}
+    a{color:inherit}
+    .shell{min-height:100vh;display:flex;flex-direction:column}
+    .main{flex:1}
+    .view{display:none}
+    .view.active{display:block}
+    .container{max-width:1680px;margin:0 auto;padding:0 clamp(22px,4.2vw,78px)}
+
+    /* Header */
+    .topbar{position:sticky;top:0;z-index:60;background:rgba(248,243,241,.95);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+    .topbar-inner{max-width:1680px;margin:0 auto;min-height:98px;padding:0 clamp(22px,4.2vw,78px);display:flex;align-items:center;justify-content:space-between;gap:34px}
+    .brand{font-size:29px;line-height:1;letter-spacing:.16em;font-weight:500;text-decoration:none;white-space:nowrap}
+    .brand-sale{color:var(--rose)}
+    .nav{display:flex;align-items:center;gap:28px}
+    .nav a,.nav button{border:0;background:transparent;text-decoration:none;color:var(--text);padding:8px 0;cursor:pointer;font-size:15px;font-weight:500;white-space:nowrap}
+    .nav a:hover,.nav button:hover{color:var(--rose)}
+    .nav .primary{background:var(--black);color:#fff;padding:17px 22px;min-width:128px;text-align:center}
+    .nav .primary:hover{background:#000;color:#fff}
+    #logout-btn{padding-left:10px!important;color:var(--muted)!important}
+
+    /* Home */
+    .home-hero{min-height:calc(100vh - 99px);display:flex;align-items:center;justify-content:center;text-align:center;padding:80px 0 36px}
+    .home-hero-inner{width:100%;max-width:1180px;margin:0 auto}
+    .hero-kicker{font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--rose);font-weight:600;margin-bottom:48px}
+    .hero-title{margin:0;color:var(--text);font-size:clamp(62px,6.1vw,110px);line-height:.98;letter-spacing:-.055em;font-weight:400}
+    .hero-title em{display:block;color:var(--rose);font-family:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;font-size:1.08em;font-weight:400;line-height:.95;letter-spacing:-.045em;margin-top:20px}
+    .hero-copy{max-width:700px;margin:48px auto 0;font-size:clamp(18px,1.5vw,22px);line-height:1.65;color:#655e59}
+    .hero-actions{display:flex;justify-content:center;align-items:center;gap:16px;margin-top:34px;flex-wrap:wrap}
+    .btn{appearance:none;min-height:64px;padding:0 28px;border:1px solid var(--line);background:transparent;color:var(--text);text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:14px;cursor:pointer;font-weight:600;font-size:16px;transition:.18s ease;border-radius:0}
+    .btn:hover{background:#fff}
+    .btn.dark{background:var(--black);border-color:var(--black);color:#fff}
+    .btn.dark:hover{background:#000}
+    .btn.rose{background:var(--rose);border-color:var(--rose);color:#fff;min-width:290px}
+    .btn.rose:hover{background:var(--rose-dark);border-color:var(--rose-dark)}
+    .btn.soft{background:transparent;border-color:var(--line)}
+    .hero-countries{display:flex;justify-content:center;align-items:center;gap:22px;margin-top:45px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#4f4945}
+    .hero-countries .dot{color:var(--rose);font-size:18px;line-height:1}
+    .hero-countries .arrow{font-size:12px;letter-spacing:0;text-transform:none;color:var(--muted)}
+
+    .home-section{border-top:1px solid var(--line);padding:110px 0}
+    .home-section-grid{display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);gap:9vw;align-items:start}
+    .section-eyebrow{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);font-weight:600;margin-bottom:24px}
+    .home-section h2{font-size:clamp(48px,5vw,82px);line-height:1.02;letter-spacing:-.055em;font-weight:400;margin:0}
+    .home-section h2 em{display:block;color:var(--rose);font-family:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;font-weight:400;margin-top:8px}
+    .home-copy{font-size:18px;line-height:1.72;color:#655e59;max-width:760px}
+    .home-copy p{margin:0 0 22px}
+    .steps{display:grid;border-top:1px solid var(--line)}
+    .step{display:grid;grid-template-columns:76px 1fr;gap:26px;padding:26px 0;border-bottom:1px solid var(--line)}
+    .step-num{font-size:13px;letter-spacing:.14em;color:var(--rose)}
+    .step strong{display:block;font-size:21px;font-weight:500;margin-bottom:7px}
+    .step span{font-size:15px;color:var(--muted);line-height:1.55}
+
+    /* Auth */
+    .login-wrap{min-height:calc(100vh - 99px);display:grid;place-items:center;padding:72px 22px}
+    .login-card{width:min(600px,100%);background:transparent;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:48px 0}
+    .login-card.register-card{width:min(680px,100%)}
+    .eyebrow{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);font-weight:600;margin-bottom:22px}
+    .login-card h2{font-size:clamp(48px,6vw,78px);font-weight:400;letter-spacing:-.055em;line-height:1;margin:0 0 20px}
+    .login-card .lead{color:var(--muted);line-height:1.62;margin-bottom:36px;font-size:16px;max-width:540px}
+    .field{display:grid;gap:9px;margin-bottom:20px}
+    .field label{font-size:14px;color:var(--text);font-weight:500}
+    .field input{height:58px;border-radius:0;border:1px solid var(--line);background:rgba(255,255,255,.65);padding:0 16px;outline:none;color:var(--text)}
+    .field input:focus{border-color:var(--rose);box-shadow:0 0 0 1px var(--rose)}
+    .field-hint{font-size:12px;line-height:1.45;color:var(--muted);margin-top:-2px}
+    .login-actions{display:grid;grid-template-columns:1fr;gap:12px;margin-top:28px}
+    .login-actions .btn{width:100%}
+    .demo-note,.auth-switch{margin-top:20px;padding-top:20px;border-top:1px solid var(--line);font-size:13px;line-height:1.55;color:var(--muted)}
+    .auth-switch a{color:var(--rose);font-weight:600;text-underline-offset:3px}
+    .login-message{display:none;margin-top:18px;padding:14px 15px;font-size:13px;line-height:1.5;border-left:3px solid transparent}
+    .login-message.show{display:block}
+    .login-message.error{background:#f8eaea;color:#7f302f;border-left-color:#a84a48}
+    .login-message.info{background:#eaf2ed;color:#315c46;border-left-color:#4f7b64}
+    .btn[disabled]{opacity:.55;cursor:wait}
+    .turnstile-wrap{margin-top:7px;min-height:70px;display:flex;align-items:center}
+
+    /* Account */
+    .account{padding:64px 0 110px}
+    .account-top{display:grid;grid-template-columns:1fr auto;align-items:start;gap:36px;margin-bottom:34px}
+    .account h2{font-size:clamp(48px,5vw,82px);font-weight:400;letter-spacing:-.055em;line-height:1.02;margin:0 0 10px}
+    .hello{color:var(--muted);font-size:14px;line-height:1.5}
+    .balance{min-width:280px;border:1px solid var(--line);padding:23px 26px;background:rgba(255,255,255,.45)}
+    .balance span{display:block;color:var(--muted);font-size:12px;margin-bottom:8px;text-transform:uppercase;letter-spacing:.12em}
+    .balance strong{font-size:clamp(38px,4vw,54px);font-weight:500;color:var(--rose);letter-spacing:-.04em}
+    .toolbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:28px 0 15px;flex-wrap:wrap}
+    .search{flex:1;min-width:240px;max-width:620px;height:50px;border:1px solid var(--line);background:rgba(255,255,255,.55);border-radius:0;padding:0 17px;outline:none}
+    .search:focus{border-color:var(--rose)}
+    .small-meta{font-size:13px;color:var(--muted)}
+    .table-wrap{background:rgba(255,255,255,.45);border:1px solid var(--line);overflow:hidden}
+    table{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed}
+    thead th{position:static;background:#f1e9e5;text-align:left;font-size:12px;color:#5d5551;font-weight:650;padding:14px 10px;border-bottom:1px solid var(--line);border-right:1px solid var(--line);z-index:5}
+    tbody td{padding:13px 10px;border-bottom:1px solid var(--line-soft);border-right:1px solid var(--line-soft);font-size:14px;vertical-align:top;color:#4d4642;overflow-wrap:anywhere}
+    thead th:last-child,tbody td:last-child{border-right:0}
+    tbody tr:last-child td{border-bottom:0}
+    tbody tr:hover td{background:#fffaf8}
+    .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+    .total{font-weight:700;color:#2b2725;background:#fbf6f3}
+    .date,.parcel{white-space:nowrap}
+    .linkcell a{color:var(--rose);text-underline-offset:2px}
+    .cards{display:none}
+    .card-item{background:rgba(255,255,255,.62);border:1px solid var(--line);padding:17px;margin-bottom:12px}
+    .card-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;padding-bottom:13px;border-bottom:1px solid var(--line-soft)}
+    .card-model{font-size:17px;font-weight:650;line-height:1.3}
+    .card-size{font-size:13px;color:var(--muted);margin-top:4px}
+    .card-total{font-size:20px;font-weight:750;white-space:nowrap;color:var(--rose)}
+    .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:13px 0}
+    .metric span{display:block;font-size:11px;color:var(--muted);margin-bottom:4px}
+    .metric b{font-size:15px;font-weight:550}
+    .card-foot{display:flex;justify-content:space-between;gap:12px;align-items:center;padding-top:12px;border-top:1px solid var(--line-soft);font-size:13px;color:#605854}
+    .card-link{display:inline-flex;margin-top:12px;color:var(--rose);font-size:13px;text-decoration:underline;text-underline-offset:2px}
+    .pagination{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}
+    .page-pill{min-width:40px;height:40px;border:1px solid var(--line);display:grid;place-items:center;background:transparent;font-size:13px;color:#4f4945}
+    .page-pill.active{background:var(--black);color:#fff;border-color:var(--black)}
+
+    /* Mobile account — premium cards */
+    .mobile-account-head,.mobile-controls{display:none}
+    .mobile-account-menu{display:none}
+
+    @media(max-width:860px){
+      body.account-mode{background:#fbfaf7}
+      body.account-mode .topbar{display:none}
+      body.account-mode .footer{display:none}
+      #view-account.active{min-height:100vh;background:#fbfaf7}
+      #view-account .container{max-width:760px}
+      .account{padding:22px 14px 54px}
+      .mobile-account-head{display:flex;align-items:center;justify-content:flex-end;gap:18px;margin:0 0 14px}
+      .mobile-account-brand{font-size:11px;letter-spacing:.34em;color:#716b67;white-space:nowrap}
+      .mobile-menu-wrap{position:relative}
+      .mobile-menu-btn{width:42px;height:42px;border:0;border-radius:50%;background:#f2ebe6;color:#5f5853;display:grid;place-items:center;font-size:18px;line-height:1;cursor:pointer}
+      .mobile-account-menu{position:absolute;right:0;top:49px;z-index:40;min-width:156px;background:#fff;border:1px solid #e6ded8;box-shadow:0 14px 38px rgba(43,35,30,.10);padding:7px}
+      .mobile-account-menu.show{display:grid}
+      .mobile-account-menu a,.mobile-account-menu button{display:block;width:100%;border:0;background:transparent;text-align:left;text-decoration:none;padding:10px 11px;font:inherit;font-size:13px;color:#3d3936;cursor:pointer}
+      .mobile-account-menu a:hover,.mobile-account-menu button:hover{background:#faf6f3}
+
+      .account-top{display:block;margin:0 0 18px}
+      .account-top>div:first-child .eyebrow{display:none}
+      .account h2{font-size:clamp(42px,12vw,60px);line-height:.98;letter-spacing:-.06em;margin:0 0 24px;font-weight:400}
+      .account h2 br{display:none}
+      #account-name{display:block}
+      .hello{display:none}
+      .balance{min-width:0;max-width:none;border:0;background:transparent;padding:0;margin:0;box-shadow:none}
+      .balance span{font-size:15px;letter-spacing:0;text-transform:none;color:#596273;margin-bottom:3px}
+      .balance strong{display:block;font-size:clamp(44px,12vw,64px);font-weight:650;color:#101114;letter-spacing:-.055em;line-height:1}
+
+      .toolbar{display:none}
+      .mobile-controls{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:14px 0 16px}
+      .mobile-count{font-size:13px;color:#667082;line-height:1.35}
+      .mobile-pagination{display:flex;gap:7px;align-items:center;justify-content:flex-end;flex-wrap:wrap}
+      .mobile-page-btn{width:38px;height:38px;border-radius:50%;border:1px solid #ded8d3;background:#fff;color:#455066;display:grid;place-items:center;font:inherit;font-size:14px;cursor:pointer;padding:0}
+      .mobile-page-btn.active{background:#2f435f;border-color:#2f435f;color:#fff}
+      .mobile-page-btn:disabled{opacity:.35;cursor:default}
+
+      .table-wrap{display:none}
+      .cards{display:block}
+      .pagination{display:none!important}
+      .card-item{background:#fff;border:1px solid #e7e2de;border-radius:18px;padding:13px;margin-bottom:12px;box-shadow:0 3px 16px rgba(35,30,27,.025)}
+      .mobile-card-main{display:grid;grid-template-columns:72px minmax(0,1fr);gap:12px;align-items:stretch}
+      .mobile-thumb{width:72px;height:72px;border-radius:13px;background:#f4f1ee;display:grid;place-items:center;overflow:hidden;color:#596170}
+      .mobile-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+      .mobile-thumb svg{width:34px;height:34px;stroke:currentColor;fill:none;stroke-width:1.55}
+      .mobile-card-body{min-width:0;display:flex;flex-direction:column}
+      .mobile-title-row{display:flex;align-items:flex-start;gap:8px;justify-content:space-between}
+      .card-model{font-size:17px;font-weight:500;line-height:1.2;color:#16181c;overflow-wrap:anywhere}
+      .card-size{font-size:13px;color:#697487;margin-top:4px;line-height:1.3}
+      .mobile-chevron{font-size:27px;line-height:.8;color:#8f7f73;font-weight:300;flex:0 0 auto;padding-top:3px}
+      .mobile-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;row-gap:10px;margin-top:auto;padding-top:13px}
+      .mobile-metric{padding:0 9px;border-left:1px solid #ece7e3;min-width:0}
+      .mobile-metric:first-child{border-left:0;padding-left:0}
+      .mobile-metric span{display:block;font-size:11px;color:#7c8491;margin-bottom:3px;white-space:nowrap}
+      .mobile-metric b{display:block;font-size:15px;font-weight:500;color:#14161a;white-space:nowrap;overflow:visible;text-overflow:clip}
+      .mobile-metric.total{grid-column:1/-1;border-left:0;border-top:1px solid #ece7e3;padding:9px 0 0;display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+      .mobile-metric.total span{margin:0;font-size:11px}
+      .mobile-metric.total b{font-size:18px;font-weight:650;overflow:visible;text-overflow:clip;white-space:nowrap}
+      .mobile-card-meta{display:grid;grid-template-columns:1fr 1.1fr .9fr;align-items:center;margin-top:12px;padding-top:11px;border-top:1px solid #ece8e5;font-size:12px;color:#667082}
+      .mobile-meta-item{display:flex;align-items:center;gap:7px;min-width:0;padding:0 9px;border-left:1px solid #ece8e5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+      .mobile-meta-item:first-child{border-left:0;padding-left:0}
+      .mobile-meta-item svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.6;flex:0 0 auto}
+      .mobile-meta-link{color:#a94653;text-decoration:none;justify-content:flex-end}
+      .mobile-meta-link:hover{text-decoration:underline}
+      .mobile-empty{text-align:center;color:var(--muted);padding:38px 18px;border-radius:18px;background:#fff;border:1px solid #e7e2de}
+
+      .reconciliation-tabs{margin:2px 0 16px;display:grid;grid-template-columns:1fr 1fr;gap:7px}
+      .reconciliation-tab{min-height:40px;padding:0 10px;font-size:12px}
+      .card-head,.card-grid,.card-foot,.card-link{display:none!important}
+    }
+
+    @media(max-width:520px){
+      .account{padding-left:10px;padding-right:10px}
+      .mobile-account-head{margin-right:4px}
+      .mobile-card-main{grid-template-columns:72px minmax(0,1fr);gap:10px}
+      .mobile-thumb{width:72px;height:72px}
+      .mobile-metric{padding:0 6px}
+      .mobile-metric span{font-size:10px}
+      .mobile-metric b{font-size:14px;overflow:visible;text-overflow:clip}
+      .mobile-metric.total b{font-size:18px;overflow:visible;text-overflow:clip}
+      .mobile-card-meta{font-size:11px;grid-template-columns:1fr 1.1fr .75fr}
+      .mobile-meta-item{padding:0 6px;gap:5px}
+    }
+
+    /* Admin */
+    .section{padding:76px 0 110px}
+    .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;margin-bottom:32px}
+    .section-title{font-size:clamp(48px,5vw,80px);font-weight:400;letter-spacing:-.055em;margin:0}
+    .section-note{max-width:560px;color:var(--muted);line-height:1.55;font-size:14px}
+    .admin-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);gap:24px}
+    .panel{background:rgba(255,255,255,.4);border:1px solid var(--line);padding:28px}
+    .panel h3{font-size:24px;font-weight:500;letter-spacing:-.025em;margin-bottom:10px}
+    .panel p{font-size:14px;color:var(--muted);line-height:1.55}
+    .drop{border:1px dashed #b8aaa4;background:rgba(255,255,255,.38);min-height:210px;display:grid;place-items:center;text-align:center;padding:24px;margin-top:20px;cursor:pointer}
+    .drop strong{display:block;font-size:16px;margin-bottom:7px}
+    .drop span{font-size:13px;color:var(--muted)}
+    .file-status{margin-top:14px;padding:13px 14px;background:#efe7e3;font-size:13px;display:none}
+    .file-status.show{display:block}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}
+    .stat{border:1px solid var(--line-soft);padding:16px;background:rgba(255,255,255,.55)}
+    .stat span{display:block;font-size:11px;color:var(--muted);margin-bottom:6px}
+    .stat strong{font-size:24px;font-weight:560;letter-spacing:-.035em}
+    .checklist{display:grid;gap:10px;margin-top:18px}
+    .check{display:flex;gap:10px;align-items:flex-start;padding:12px 0;border-top:1px solid var(--line-soft);font-size:13px;color:#56504c}
+    .check .dot{width:18px;height:18px;border-radius:50%;display:grid;place-items:center;background:#e8f0ea;color:var(--green);font-size:11px;flex:0 0 auto}
+    .warning{margin-top:18px;padding:13px 14px;background:#f3e8dc;color:#755e3d;font-size:12px;line-height:1.5}
+
+    .reconciliation-tabs{display:flex;gap:8px;margin:10px 0 28px;flex-wrap:wrap}
+    .reconciliation-tab{appearance:none;border:1px solid var(--line);background:rgba(255,255,255,.48);color:var(--text);min-height:44px;padding:0 18px;cursor:pointer;font-weight:600;font-size:13px}
+    .reconciliation-tab.active{background:var(--black);border-color:var(--black);color:#fff}
+    .admin-import-section{margin-top:26px}
+    .admin-import-section:first-of-type{margin-top:0}
+    .admin-import-title{display:flex;align-items:baseline;justify-content:space-between;gap:18px;margin-bottom:14px}
+    .admin-import-title h3{font-size:26px;font-weight:500;letter-spacing:-.03em;margin:0}
+    .admin-import-title span{font-size:13px;color:var(--muted)}
+    .admin-result-grid{display:grid;grid-template-columns:170px 1fr;gap:18px;padding:18px 0;border-bottom:1px solid var(--line-soft);align-items:baseline}
+    .admin-result-grid span{font-size:13px;color:var(--muted)}
+    .admin-result-grid strong{font-size:30px;font-weight:500;letter-spacing:-.035em;overflow-wrap:anywhere}
+
+    .admin-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 32px;border-bottom:1px solid var(--line);padding-bottom:12px}
+    .admin-tab{appearance:none;border:1px solid var(--line);background:rgba(255,255,255,.42);color:var(--text);min-height:44px;padding:0 18px;font:inherit;font-size:13px;font-weight:650;cursor:pointer}
+    .admin-tab.active{background:var(--black);border-color:var(--black);color:#fff}
+    .admin-tab-view{display:none}
+    .admin-tab-view.active{display:block}
+    .admin-kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-bottom:22px}
+    .admin-kpis-four{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .admin-kpi{border:1px solid var(--line);background:rgba(255,255,255,.48);padding:20px}
+    .admin-kpi span{display:block;color:var(--muted);font-size:12px;margin-bottom:8px}
+    .admin-kpi strong{font-size:32px;font-weight:500;letter-spacing:-.04em}
+    .admin-toolbar{display:flex;gap:10px;align-items:center;margin:0 0 16px;flex-wrap:wrap}
+    .admin-search{height:50px;border:1px solid var(--line);background:rgba(255,255,255,.58);padding:0 15px;min-width:260px;flex:1;outline:none}
+    .admin-search:focus{border-color:var(--rose)}
+    .admin-small-btn{min-height:50px;padding:0 18px;width:auto}
+    .admin-table-scroll{overflow:auto;border:1px solid var(--line);background:rgba(255,255,255,.42)}
+    .admin-table{min-width:1020px;table-layout:auto}
+    .admin-table th,.admin-table td{font-size:13px}
+    .admin-table th{white-space:nowrap}
+    .admin-table td{vertical-align:middle}
+    .admin-table .admin-check-col{width:44px;text-align:center}
+    .admin-table input[type=checkbox]{width:16px;height:16px;accent-color:var(--rose)}
+    .admin-empty{text-align:center!important;color:var(--muted)!important;padding:28px!important}
+    .admin-message{display:none;margin:12px 0;padding:12px 14px;font-size:13px;line-height:1.45;border-left:3px solid transparent}
+    .admin-message.show{display:block}
+    .admin-message.info{background:#eaf2ed;color:#315c46;border-left-color:#4f7b64}
+    .admin-message.error{background:#f8eaea;color:#7f302f;border-left-color:#a84a48}
+    .admin-message.warn{background:#f3e8dc;color:#755e3d;border-left-color:#9b7751}
+    .channel-tags{display:flex;gap:5px;flex-wrap:wrap}
+    .channel-tag{display:inline-flex;align-items:center;min-height:24px;padding:0 7px;border:1px solid var(--line);font-size:10px;letter-spacing:.03em;background:#fff}
+    .channel-tag.on{border-color:#d9c5c8;color:var(--rose);background:#fff7f8}
+    .channel-tag.off{color:#a49a95;background:#f4efec}
+    .admin-select{height:50px;border:1px solid var(--line);background:rgba(255,255,255,.68);padding:0 14px;color:var(--text);outline:none;width:100%}
+    .mailing-summary{display:flex;align-items:baseline;justify-content:space-between;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);padding:16px 0;margin-top:18px}
+    .mailing-summary span{font-size:13px;color:var(--muted)}
+    .mailing-summary strong{font-size:28px;font-weight:500}
+    .mailing-preview-label{font-size:13px;color:var(--muted);margin:18px 0 8px}
+    .mailing-preview{white-space:pre-wrap;border:1px solid var(--line);background:#fffaf8;padding:18px;min-height:230px;font:14px/1.65 Arial,Helvetica,sans-serif;color:var(--text)}
+    .admin-panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px}
+    .admin-panel-head h3{margin:0 0 6px}
+    .mailing-log{display:grid;gap:8px;max-height:570px;overflow:auto;margin-top:18px}
+    .mailing-log-row{border-top:1px solid var(--line-soft);padding:12px 0;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px}
+    .mailing-log-row:first-child{border-top:0}
+    .mailing-log-row strong{font-size:13px;font-weight:600}
+    .mailing-log-row small{display:block;color:var(--muted);font-size:11px;line-height:1.45;margin-top:4px}
+    .mailing-status{font-size:11px;text-transform:uppercase;letter-spacing:.05em}
+    .mailing-status.sent{color:var(--green)}
+    .mailing-status.error{color:#a84a48}
+    .mailing-status.queued{color:#755e3d}
+    .user-editor{margin-bottom:18px}
+    .user-form-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px 16px;margin-top:18px}
+    .user-form-grid .field{margin-bottom:0}
+    .admin-checkbox-line{display:flex;align-items:center;gap:9px;font-size:13px;color:#4f4945;margin-top:16px}
+    .admin-checkbox-line input{width:17px;height:17px;accent-color:var(--rose)}
+    .user-editor-actions{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+    .admin-icon-btn{width:38px;height:38px;border:1px solid var(--line);background:transparent;font-size:23px;line-height:1;cursor:pointer}
+    .user-actions{display:flex;gap:6px;flex-wrap:wrap;min-width:300px}
+    .mini-action{border:1px solid var(--line);background:#fff;padding:7px 9px;font:inherit;font-size:11px;cursor:pointer;color:var(--text)}
+    .mini-action:hover{border-color:#bcaea8}
+    .mini-action.danger{color:#943c46;border-color:#d9b8bd;background:#fff8f8}
+    .status-pill{display:inline-flex;align-items:center;padding:5px 8px;border:1px solid var(--line);font-size:11px;white-space:nowrap}
+    .status-pill.registered{color:var(--green);background:#f2f8f4}
+    .status-pill.pending{color:#7b6546;background:#faf4eb}
+    .status-pill.disabled{color:#8f3d45;background:#fff1f2}
+
+    @media(max-width:1100px){
+      .admin-kpis-four{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .user-form-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+    @media(max-width:700px){
+      .admin-tabs{display:grid;grid-template-columns:1fr 1fr}
+      .admin-tab{width:100%}
+      .admin-kpis,.admin-kpis-four{grid-template-columns:1fr}
+      .admin-toolbar{display:grid;grid-template-columns:1fr}
+      .admin-search,.admin-small-btn{width:100%;min-width:0}
+      .user-form-grid{grid-template-columns:1fr}
+      .section{padding-top:44px}
+      .section-title{font-size:48px}
+    }
+
+    .footer{border-top:1px solid var(--line);padding:25px 0 34px;color:var(--muted);font-size:12px}
+    .footer-inner{display:flex;justify-content:space-between;gap:20px;align-items:center}
+    .footer a{text-decoration:none;color:var(--muted)}
+
+    @media(max-width:1100px){
+      .nav{gap:17px}
+      .nav a,.nav button{font-size:14px}
+      .home-section-grid{grid-template-columns:1fr;gap:44px}
+      .admin-grid{grid-template-columns:1fr}
+      .account-top{grid-template-columns:1fr}
+      .balance{max-width:430px}
+    }
+    @media(max-width:860px){
+      .topbar-inner{min-height:74px;padding:0 18px}
+      .brand{font-size:20px}
+      .nav a:not(.primary),.nav button:not(.primary){display:none}
+      .nav .primary{padding:13px 16px;min-width:112px;font-size:13px}
+      .home-hero{min-height:calc(100vh - 75px);padding:62px 0 34px}
+      .hero-kicker{font-size:12px;margin-bottom:36px}
+      .hero-title{font-size:clamp(54px,13vw,88px)}
+      .hero-title em{margin-top:14px}
+      .hero-copy{font-size:18px;margin-top:36px}
+      .home-section{padding:78px 0}
+      .account{padding:38px 0 80px}
+      .account h2{font-size:46px}
+      .table-wrap{display:none}
+      .cards{display:block}
+      .search{max-width:none;width:100%}
+      .pagination{justify-content:center}
+      .stats{grid-template-columns:1fr}
+      .footer-inner{flex-direction:column;align-items:flex-start}
+    }
+    @media(max-width:560px){
+      .container{padding:0 16px}
+      .home-hero{padding-top:46px}
+      .hero-kicker{letter-spacing:.12em}
+      .hero-title{font-size:clamp(48px,14vw,74px)}
+      .hero-title em{font-size:1.03em}
+      .hero-actions{display:grid;width:100%;gap:10px;margin-top:30px}
+      .hero-actions .btn{width:100%;min-width:0}
+      .hero-countries{gap:12px;flex-wrap:wrap;font-size:11px;margin-top:34px}
+      .home-section h2{font-size:44px}
+      .step{grid-template-columns:52px 1fr;gap:14px}
+      .login-wrap{padding:48px 16px}
+      .login-card{padding:38px 0}
+      .login-card h2{font-size:48px}
+      .btn{width:100%}
+      .card-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+      .card-foot{align-items:flex-start;flex-direction:column}
+      .balance strong{font-size:40px}
+      .section-head{align-items:flex-start;flex-direction:column}
+    }
+  
+    /* Profile */
+    .profile-page{padding:64px 0 100px}
+    .profile-head{display:flex;justify-content:space-between;gap:30px;align-items:flex-end;margin-bottom:34px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+    .profile-head h2{font-family:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;font-size:52px;font-weight:400;letter-spacing:-.04em;margin:5px 0 0}
+    .profile-head p{max-width:520px;color:var(--muted);line-height:1.6;margin:0;font-size:14px}
+    .profile-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:start}
+    .profile-card{border:1px solid var(--line);background:#fffaf8;padding:28px}
+    .profile-card.wide{grid-column:1/-1}
+    .profile-card h3{margin:0 0 6px;font-size:22px;font-weight:500;letter-spacing:-.02em}
+    .profile-card-intro{margin:0 0 22px;color:var(--muted);font-size:13px;line-height:1.55}
+    .profile-fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .profile-field-full{grid-column:1/-1}
+    .profile-readonly{background:#f3eeeb!important;color:#7c746f!important;cursor:not-allowed}
+    .profile-actions{display:flex;gap:12px;align-items:center;margin-top:20px;flex-wrap:wrap}
+    .profile-message{font-size:12px;color:var(--muted);line-height:1.5}
+    .profile-message.error{color:#a33b48}
+    .profile-message.ok{color:#35634b}
+    .profile-notify-row{display:flex;gap:12px;align-items:flex-start;padding:15px 0;border-top:1px solid var(--line-soft)}
+    .profile-notify-row:first-of-type{border-top:0}
+    .profile-notify-row input{width:18px;height:18px;margin-top:2px;accent-color:#9f4e5a}
+    .profile-notify-row strong{display:block;font-size:14px;margin-bottom:4px}
+    .profile-notify-row small{display:block;color:var(--muted);font-size:12px;line-height:1.5}
+    .messenger-choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:16px}
+    .messenger-choice{border:1px solid var(--line);background:#fff;padding:16px;display:flex;flex-direction:column;gap:12px;min-height:154px}
+    .messenger-choice-head{display:flex;align-items:center;gap:10px}
+    .messenger-choice-head input{width:18px;height:18px;accent-color:#9f4e5a}
+    .messenger-choice strong{font-size:15px}
+    .messenger-status{font-size:11px;color:var(--muted);line-height:1.45}
+    .messenger-status.connected{color:#35634b}
+    .messenger-link{display:inline-flex;margin-top:auto;width:max-content;text-decoration:none;border-bottom:1px solid currentColor;color:var(--rose);font-size:12px;padding-bottom:2px}
+    .messenger-choices.disabled{opacity:.48;pointer-events:none}
+    @media(max-width:900px){.profile-layout{grid-template-columns:1fr}.profile-card.wide{grid-column:auto}.messenger-choices{grid-template-columns:1fr}.profile-head{align-items:flex-start;flex-direction:column}.profile-fields{grid-template-columns:1fr}.profile-field-full{grid-column:auto}}
+    @media(max-width:560px){.profile-page{padding:34px 0 72px}.profile-head h2{font-size:44px}.profile-card{padding:20px 16px;border-radius:16px}.profile-actions .btn{width:100%}}
+
+    /* Notification preferences */
+    .notification-card{margin-top:28px;border:1px solid var(--line);background:#fffaf8;padding:24px 26px}
+    .notification-card-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:18px}
+    .notification-card-head h3{margin:0 0 6px;font-size:22px;font-weight:500;letter-spacing:-.02em}
+    .notification-card-head p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}
+    .notification-option{display:flex;gap:12px;align-items:flex-start;padding:15px 0;border-top:1px solid var(--line-soft);cursor:pointer}
+    .notification-option input{margin-top:3px;width:18px;height:18px;accent-color:#9f4e5a}
+    .notification-option strong{display:block;font-size:14px;font-weight:600;margin-bottom:4px}
+    .notification-option span{display:block;color:var(--muted);font-size:12px;line-height:1.45}
+    .notification-channel-row{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 18px 30px}
+    .notification-chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);padding:6px 9px;font-size:11px;color:var(--muted);background:#fff}
+    .notification-chip.on{color:#516551;border-color:#cfd8cf;background:#f7faf7}
+    .notification-chip.off{opacity:.65}
+    .notification-actions{display:flex;align-items:center;gap:14px;margin-top:4px}
+    .notification-message{font-size:12px;color:var(--muted)}
+    .mailing-type-options{display:grid;gap:10px;margin-top:16px}
+    .mailing-type-option{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);background:#fff;padding:13px 14px;cursor:pointer}
+    .mailing-type-option input{margin-top:3px;width:17px;height:17px;accent-color:#9f4e5a}
+    .mailing-type-option strong{display:block;font-size:13px}
+    .mailing-type-option span{display:block;margin-top:3px;color:var(--muted);font-size:11px;line-height:1.4}
+    @media(max-width:700px){
+      .notification-card{padding:20px 16px;margin-top:22px;border-radius:16px}
+      .notification-card-head{display:block}
+      .notification-actions{align-items:flex-start;flex-direction:column}
+      .notification-channel-row{margin-left:30px}
+    }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#home">EUROPA <span class="brand-sale">SALE</span></a>
+      <nav class="nav">
+        <a href="#home">Главная</a>
+        <a href="#home" onclick="setTimeout(()=>document.getElementById('about')?.scrollIntoView({behavior:'smooth'}),60)">О нас</a>
+        <a href="#home" onclick="setTimeout(()=>document.getElementById('how-to-order')?.scrollIntoView({behavior:'smooth'}),60)">Как заказать</a>
+        <a href="#login">Вход</a>
+        <a id="profile-nav-link" href="#profile" style="display:none;">Профиль</a>
+        <a id="admin-nav-link" href="#admin" style="display:none;">Админ</a>
+        <a class="primary" href="#login">Моя сверка</a>
+        <button id="logout-btn" style="display:none;">Выйти</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <section id="view-home" class="view active">
+      <div class="container home-hero">
+        <div class="home-hero-inner">
+          <div class="hero-kicker">БАЙЕР-СЕРВИС · С 2010 ГОДА</div>
+          <h1 class="hero-title">Европейский шопинг.<em>Ближе, чем кажется.</em></h1>
+          <p class="hero-copy">Любимые бренды, продуманный выбор и находки из Германии и Италии — с доставкой к вам.</p>
+          <div class="hero-actions">
+            <a class="btn rose" href="#login">Открыть мою сверку <span aria-hidden="true">↗</span></a>
+            <a class="btn" href="#home" onclick="setTimeout(()=>document.getElementById('how-to-order')?.scrollIntoView({behavior:'smooth'}),60)">Как сделать заказ</a>
+          </div>
+          <div class="hero-countries" aria-label="География покупок">
+            <span>Германия</span><span class="dot">•</span><span>Италия</span><span class="arrow">→ Россия</span>
+          </div>
+        </div>
+      </div>
+
+      <section class="home-section" id="about">
+        <div class="container home-section-grid">
+          <div>
+            <div class="section-eyebrow">О EUROPA SALE</div>
+            <h2>Персональный байер.<em>Без лишнего.</em></h2>
+          </div>
+          <div class="home-copy">
+            <p>EUROPA SALE помогает покупать одежду, обувь, аксессуары и другие товары в Германии, Италии и других странах Европы.</p>
+            <p>Мы собираем интересные предложения, выкупаем заказы и сопровождаем покупку до доставки. В личном кабинете доступна ваша сверка по позициям, суммам и посылкам.</p>
+            <div class="channels">
+              <a href="https://t.me/europa_sale" target="_blank" rel="noopener">Telegram</a>
+              <a href="https://chat.whatsapp.com/FPQN5EMbUf55pU4SSLnh6K?mode=gi_t" target="_blank" rel="noopener">WhatsApp</a>
+              <a href="https://max.ru/join/fP6-eaPP4ACeRRhY0_VcU4VeOe9TaUgKk7VjUJGHQQo" target="_blank" rel="noopener">MAX</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="home-section" id="how-to-order">
+        <div class="container home-section-grid">
+          <div>
+            <div class="section-eyebrow">Как заказать</div>
+            <h2>Просто.<em>Шаг за шагом.</em></h2>
+          </div>
+          <div class="steps">
+            <div class="step"><div class="step-num">01</div><div><strong>Выберите товар</strong><span>Отправьте ссылку или выбранную позицию в удобный канал EUROPA SALE.</span></div></div>
+            <div class="step"><div class="step-num">02</div><div><strong>Подтвердите выкуп</strong><span>Мы уточним стоимость, размер, цвет и условия покупки.</span></div></div>
+            <div class="step"><div class="step-num">03</div><div><strong>Следите за сверкой</strong><span>Все ваши позиции отображаются в личном кабинете и не объединяются между собой.</span></div></div>
+            <div class="step"><div class="step-num">04</div><div><strong>Получите заказ</strong><span>После доставки в Россию согласуем дальнейшую отправку.</span></div></div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section id="view-login" class="view">
+      <div class="login-wrap">
+        <div class="login-card">
+          <div class="eyebrow">EUROPA SALE · личный кабинет</div>
+          <h2>Моя сверка</h2>
+          <p class="lead">Клиенты входят по Нику или email и паролю. Администратор — под логином <b>admin</b>.</p>
+          <form id="login-form" novalidate>
+            <div class="field"><label for="login">Email или логин</label><input id="login" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="Ваш Ник, email или admin"></div>
+            <div class="field"><label for="password">Пароль</label><input id="password" type="password" autocomplete="current-password" placeholder="••••••••"></div>
+            <div class="login-actions">
+              <button class="btn rose" id="login-submit" type="submit">Войти</button>
+              <button class="btn soft" id="first-login-btn" type="button">Первый вход / установить пароль</button>
+            </div>
+          </form>
+          <div class="login-message" id="login-message" role="status" aria-live="polite"></div>
+          <div class="auth-switch">Нет кабинета? <a href="#register">Зарегистрироваться</a></div>
+          <div class="demo-note">Для первого входа используйте email, указанный в вашей клиентской базе EUROPA SALE.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-register" class="view">
+      <div class="login-wrap">
+        <div class="login-card register-card">
+          <div class="eyebrow">EUROPA SALE · личный кабинет</div>
+          <h2>Регистрация</h2>
+          <p class="lead">Создайте личный кабинет. Поля со звёздочкой обязательны.</p>
+
+          <form id="register-form" novalidate>
+            <div class="field">
+              <label for="register-login">Логин *</label>
+              <input id="register-login" type="text" autocomplete="username" placeholder="Ваш Ник" required>
+            </div>
+
+            <div class="field">
+              <label for="register-password">Пароль *</label>
+              <input id="register-password" type="password" autocomplete="new-password" minlength="4" placeholder="••••••••" required>
+              <div class="field-hint">Минимальная длина пароля — 4 символа.</div>
+            </div>
+
+            <div class="field">
+              <label for="register-password-repeat">Повторите пароль *</label>
+              <input id="register-password-repeat" type="password" autocomplete="new-password" minlength="4" placeholder="••••••••" required>
+            </div>
+
+            <div class="field">
+              <label for="register-email">Электронная почта *</label>
+              <input id="register-email" type="email" autocomplete="email" autocapitalize="none" spellcheck="false" placeholder="name@example.com" required>
+            </div>
+
+            <div class="field">
+              <label for="register-full-name">Имя и фамилия *</label>
+              <input id="register-full-name" type="text" autocomplete="name" placeholder="Имя Фамилия" required>
+            </div>
+
+            <div class="field">
+              <label for="register-phone">Телефон *</label>
+              <input id="register-phone" type="tel" autocomplete="tel" placeholder="+7 999 000-00-00" required>
+            </div>
+
+            <div class="field">
+              <label>Проверка *</label>
+              <div class="turnstile-wrap">
+                <div class="cf-turnstile" data-sitekey="0x4AAAAAAFE7YC14vDXy5Iqi" data-theme="light"></div>
+              </div>
+            </div>
+
+            <div class="login-message" id="register-message" role="status" aria-live="polite"></div>
+
+            <div class="login-actions">
+              <button class="btn rose" id="register-submit" type="submit">Зарегистрироваться</button>
+            </div>
+          </form>
+
+          <div class="auth-switch">Уже зарегистрированы? <a href="#login">Войти в личный кабинет</a></div>
+          <div class="demo-note">Логин — это ваш Ник EUROPA SALE, под которым оформлялись покупки. После регистрации система привяжет к кабинету все строки вашей сверки.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-reset-password" class="view">
+      <div class="login-wrap">
+        <div class="login-card">
+          <div class="eyebrow">EUROPA SALE · личный кабинет</div>
+          <h2>Создайте пароль</h2>
+          <p class="lead">Придумайте пароль для входа в личный кабинет EUROPA SALE.</p>
+          <form id="reset-password-form" novalidate>
+            <div class="field"><label for="new-password">Новый пароль</label><input id="new-password" type="password" autocomplete="new-password" placeholder="Минимум 4 символа"></div>
+            <div class="field"><label for="new-password-repeat">Повторите пароль</label><input id="new-password-repeat" type="password" autocomplete="new-password" placeholder="Повторите пароль"></div>
+            <div class="login-actions"><button class="btn rose" id="reset-password-submit" type="submit">Сохранить пароль</button></div>
+          </form>
+          <div class="login-message" id="reset-password-message" role="status" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-account" class="view">
+      <div class="container account">
+        <div class="mobile-account-head">
+          <div class="mobile-account-brand">EUROPA SALE</div>
+          <div class="mobile-menu-wrap">
+            <button class="mobile-menu-btn" id="mobile-menu-btn" type="button" aria-label="Меню">•••</button>
+            <div class="mobile-account-menu" id="mobile-account-menu">
+              <a href="#home">Главная</a>
+              <a id="mobile-profile-link" href="#profile" style="display:none;">Профиль</a>
+              <a id="mobile-admin-link" href="#admin" style="display:none;">Админ</a>
+              <button id="mobile-logout-btn" type="button">Выйти</button>
+            </div>
+          </div>
+        </div>
+        <div class="account-top">
+          <div>
+            <div class="eyebrow">Личный кабинет</div>
+            <h2>Сверка для<br><span id="account-name">клиента</span></h2>
+            <div class="hello" id="account-note">Загружаем персональную сверку…</div>
+          </div>
+          <div class="balance"><span>К оплате</span><strong id="balance-total">0 ₽</strong></div>
+        </div>
+
+        <div class="reconciliation-tabs" id="reconciliation-tabs" aria-label="Выбор сверки">
+          <button class="reconciliation-tab active" type="button" data-reconciliation="current">Актуальная сверка</button>
+          <button class="reconciliation-tab" type="button" data-reconciliation="old">Старая сверка</button>
+        </div>
+
+        <div class="mobile-controls">
+          <div class="mobile-count" id="mobile-count-label">Загрузка…</div>
+          <div class="mobile-pagination" id="mobile-pagination"></div>
+        </div>
+
+        <div class="toolbar">
+          <input class="search" id="search" type="search" placeholder="Поиск по товару, размеру или посылке">
+          <div class="small-meta" id="count-label">Загрузка…</div>
+        </div>
+
+        <div class="table-wrap">
+          <table aria-label="Сверка">
+            <colgroup>
+              <col style="width:9%"><col style="width:12%"><col style="width:25%"><col style="width:8%"><col style="width:7%"><col style="width:7%"><col style="width:10%"><col style="width:11%"><col style="width:11%">
+            </colgroup>
+            <thead><tr><th>Ссылка</th><th>Размер / цвет</th><th>Товар / модель</th><th class="num">Цена €</th><th class="num">Орг %</th><th class="num">Курс</th><th class="num">Итого, ₽</th><th>Дата выкупа</th><th>Номер посылки</th></tr></thead>
+            <tbody id="table-body"></tbody>
+          </table>
+        </div>
+        <div class="cards" id="cards"></div>
+        <div class="pagination" id="pagination" style="display:none"></div>
+
+      </div>
+    </section>
+
+
+    <section id="view-profile" class="view">
+      <div class="container profile-page">
+        <div class="profile-head">
+          <div>
+            <div class="eyebrow">EUROPA SALE · личный кабинет</div>
+            <h2>Профиль</h2>
+          </div>
+          <p>Здесь можно изменить контактные данные, пароль и выбрать каналы уведомлений EUROPA SALE.</p>
+        </div>
+
+        <div class="profile-layout">
+          <div class="profile-card">
+            <h3>Мои данные</h3>
+            <p class="profile-card-intro">Ник связан со сверкой и изменению в личном кабинете не подлежит.</p>
+            <div class="profile-fields">
+              <div class="field profile-field-full"><label for="profile-login">Ник</label><input id="profile-login" class="profile-readonly" type="text" readonly></div>
+              <div class="field profile-field-full"><label for="profile-name">Имя и фамилия</label><input id="profile-name" type="text" autocomplete="name"></div>
+              <div class="field"><label for="profile-phone">Телефон</label><input id="profile-phone" type="tel" autocomplete="tel"></div>
+              <div class="field"><label for="profile-email">Email</label><input id="profile-email" type="email" autocomplete="email" autocapitalize="none"></div>
+            </div>
+            <div class="profile-actions">
+              <button class="btn dark" id="profile-save" type="button">Сохранить изменения</button>
+              <span class="profile-message" id="profile-message"></span>
+            </div>
+          </div>
+
+          <div class="profile-card">
+            <h3>Безопасность</h3>
+            <p class="profile-card-intro">Измените пароль для входа в личный кабинет.</p>
+            <div class="profile-fields">
+              <div class="field profile-field-full"><label for="profile-password">Новый пароль</label><input id="profile-password" type="password" autocomplete="new-password" placeholder="Минимум 4 символа"></div>
+              <div class="field profile-field-full"><label for="profile-password-repeat">Повторите пароль</label><input id="profile-password-repeat" type="password" autocomplete="new-password"></div>
+            </div>
+            <div class="profile-actions">
+              <button class="btn soft" id="profile-password-save" type="button">Изменить пароль</button>
+              <span class="profile-message" id="profile-password-message"></span>
+            </div>
+          </div>
+
+          <div class="profile-card wide">
+            <h3>Уведомления EUROPA SALE</h3>
+            <p class="profile-card-intro">Выберите, куда получать сообщения по вашей сверке, оплатам и важным изменениям.</p>
+
+            <label class="profile-notify-row">
+              <input id="profile-notify-email" type="checkbox">
+              <span><strong>Получать уведомления на электронную почту</strong><small id="profile-notify-email-note">Email из профиля</small></span>
+            </label>
+            <label class="profile-notify-row">
+              <input id="profile-notify-social" type="checkbox">
+              <span><strong>Получать уведомления в соцсетях / мессенджерах</strong><small>Можно выбрать один или несколько каналов.</small></span>
+            </label>
+
+            <div class="messenger-choices" id="messenger-choices">
+              <label class="messenger-choice">
+                <span class="messenger-choice-head"><input id="profile-telegram" type="checkbox"><strong>Telegram</strong></span>
+                <span class="messenger-status" id="profile-telegram-status">Не подключено</span>
+                <a class="messenger-link" href="https://t.me/europa_sale" target="_blank" rel="noopener">Открыть Telegram ↗</a>
+              </label>
+              <label class="messenger-choice">
+                <span class="messenger-choice-head"><input id="profile-max" type="checkbox"><strong>MAX</strong></span>
+                <span class="messenger-status" id="profile-max-status">Не подключено</span>
+                <a class="messenger-link" href="https://max.ru/join/fP6-eaPP4ACeRRhY0_VcU4VeOe9TaUgKk7VjUJGHQQo" target="_blank" rel="noopener">Открыть MAX ↗</a>
+              </label>
+              <label class="messenger-choice">
+                <span class="messenger-choice-head"><input id="profile-whatsapp" type="checkbox"><strong>WhatsApp</strong></span>
+                <span class="messenger-status" id="profile-whatsapp-status">Используется телефон из профиля</span>
+                <a class="messenger-link" href="https://chat.whatsapp.com/FPQN5EMbUf55pU4SSLnh6K?mode=gi_t" target="_blank" rel="noopener">Открыть WhatsApp ↗</a>
+              </label>
+            </div>
+
+            <div class="profile-actions">
+              <button class="btn dark" id="profile-notifications-save" type="button">Сохранить уведомления</button>
+              <span class="profile-message" id="profile-notifications-message"></span>
+            </div>
+            <div class="warning" style="margin-top:18px"><b>Важно:</b> выбор Telegram или MAX сохраняет ваше предпочтение. Для персональной автоматической отправки этим каналам также требуется техническая привязка аккаунта к боту EUROPA SALE.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-admin" class="view">
+      <div class="container section">
+        <div class="section-head">
+          <div><div class="eyebrow">EUROPA SALE · администрирование</div><h2 class="section-title">Администрирование</h2></div>
+          <p class="section-note">Сверки, должники, рассылка и пользователи — в одном кабинете администратора.</p>
+        </div>
+
+        <div class="admin-tabs" id="admin-tabs">
+          <button type="button" class="admin-tab active" data-admin-tab="sverka">Сверки</button>
+          <button type="button" class="admin-tab" data-admin-tab="debtors">Должники</button>
+          <button type="button" class="admin-tab" data-admin-tab="mailing">Рассылка</button>
+          <button type="button" class="admin-tab" data-admin-tab="users">Пользователи</button>
+        </div>
+
+        <div class="admin-tab-view active" data-admin-view="sverka">
+          <div class="admin-import-section">
+            <div class="admin-import-title"><h3>Актуальная сверка</h3><span>sverka.xlsx</span></div>
+            <div class="admin-grid">
+              <div class="panel">
+                <h3>Загрузка актуальной сверки</h3>
+                <p>Выберите только файл <b>sverka.xlsx</b>.</p>
+                <label class="drop" id="xlsx-drop-current" for="xlsx-input-current"><div><strong>Выберите Excel-файл</strong><span>или перетащите sverka.xlsx сюда</span></div></label>
+                <input id="xlsx-input-current" type="file" accept=".xlsx,.xls" hidden>
+                <div class="file-status" id="file-status-current"></div>
+                <div style="margin-top:14px"><button class="btn dark" id="admin-import-btn-current" type="button">Загрузить актуальную сверку</button></div>
+                <div class="warning"><b>Важно:</b> одна строка Excel = одна отдельная позиция. Строки не объединяются и не схлопываются. Распределение выполняется только по полю «Ник».</div>
+              </div>
+              <div class="panel">
+                <h3>Результат загрузки</h3>
+                <p id="admin-result-help-current">После успешной загрузки здесь появится итог актуальной сверки.</p>
+                <div id="admin-import-result-current" style="display:none;margin-top:24px;border-top:1px solid var(--line);">
+                  <div class="admin-result-grid"><span>Файл</span><strong id="admin-result-file-current" style="font-size:20px;letter-spacing:0;">—</strong></div>
+                  <div class="admin-result-grid"><span>Строк загружено</span><strong id="admin-result-rows-current">—</strong></div>
+                  <div class="admin-result-grid"><span>Общий итог по сверке</span><strong id="admin-result-total-current">—</strong></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="admin-import-section" style="margin-top:46px;padding-top:38px;border-top:1px solid var(--line);">
+            <div class="admin-import-title"><h3>Старая сверка</h3><span>sverkaOld.xlsx</span></div>
+            <div class="admin-grid">
+              <div class="panel">
+                <h3>Загрузка старой сверки</h3>
+                <p>Выберите только файл <b>sverkaOld.xlsx</b>. Он хранится отдельно от актуальной сверки.</p>
+                <label class="drop" id="xlsx-drop-old" for="xlsx-input-old"><div><strong>Выберите Excel-файл</strong><span>или перетащите sverkaOld.xlsx сюда</span></div></label>
+                <input id="xlsx-input-old" type="file" accept=".xlsx,.xls" hidden>
+                <div class="file-status" id="file-status-old"></div>
+                <div style="margin-top:14px"><button class="btn dark" id="admin-import-btn-old" type="button">Загрузить старую сверку</button></div>
+                <div class="warning"><b>Важно:</b> старая сверка не заменяет актуальную. Клиент может переключаться между ними в личном кабинете.</div>
+              </div>
+              <div class="panel">
+                <h3>Результат загрузки</h3>
+                <p id="admin-result-help-old">После успешной загрузки здесь появится итог старой сверки.</p>
+                <div id="admin-import-result-old" style="display:none;margin-top:24px;border-top:1px solid var(--line);">
+                  <div class="admin-result-grid"><span>Файл</span><strong id="admin-result-file-old" style="font-size:20px;letter-spacing:0;">—</strong></div>
+                  <div class="admin-result-grid"><span>Строк загружено</span><strong id="admin-result-rows-old">—</strong></div>
+                  <div class="admin-result-grid"><span>Общий итог по сверке</span><strong id="admin-result-total-old">—</strong></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-tab-view" data-admin-view="debtors">
+          <div class="admin-kpis">
+            <div class="admin-kpi"><span>Должников по актуальной сверке</span><strong id="debtors-count">—</strong></div>
+            <div class="admin-kpi"><span>Общая задолженность</span><strong id="debtors-total">—</strong></div>
+          </div>
+          <div class="admin-toolbar">
+            <input class="admin-search" id="debtors-search" type="search" placeholder="Поиск по Нику, имени, телефону или email">
+            <button class="btn soft admin-small-btn" id="debtors-refresh" type="button">Обновить</button>
+            <button class="btn dark admin-small-btn" id="debtors-to-mailing" type="button">К рассылке</button>
+          </div>
+          <div class="admin-message" id="debtors-message"></div>
+          <div class="admin-table-scroll">
+            <table class="admin-table">
+              <thead><tr><th class="admin-check-col"><input id="debtors-select-all" type="checkbox" aria-label="Выбрать всех"></th><th>Ник</th><th>Имя</th><th>Телефон</th><th>Email</th><th>Каналы</th><th class="num">К оплате, ₽</th></tr></thead>
+              <tbody id="debtors-body"><tr><td colspan="7" class="admin-empty">Нажмите «Обновить», чтобы загрузить должников.</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="admin-tab-view" data-admin-view="mailing">
+          <div class="admin-grid">
+            <div class="panel">
+              <h3>Рассылка по должникам</h3>
+              <p>Рассылка формируется только по актуальной сверке. Сумма долга повторно проверяется на сервере непосредственно перед отправкой.</p>
+              <div class="mailing-summary"><span>Выбрано клиентов</span><strong id="mailing-selected-count">0</strong></div>
+              <div class="mailing-type-options">
+                <label class="mailing-type-option">
+                  <input id="mailing-email" type="checkbox" checked>
+                  <span><strong>Электронная почта</strong><span>Отправлять только клиентам, которые разрешили email-уведомления.</span></span>
+                </label>
+                <label class="mailing-type-option">
+                  <input id="mailing-social" type="checkbox" checked>
+                  <span><strong>Соцсети / мессенджеры</strong><span>Отправлять во все подключённые клиентом каналы: Telegram, MAX и WhatsApp.</span></span>
+                </label>
+              </div>
+              <div class="mailing-preview-label">Текст сообщения</div>
+              <pre class="mailing-preview" id="mailing-preview"></pre>
+              <button class="btn dark" id="mailing-send" type="button">Отправить выбранным</button>
+              <div class="admin-message" id="mailing-message"></div>
+              <div class="warning"><b>Защита от повторов:</b> одинаковое напоминание тому же клиенту по тому же каналу не отправляется повторно в течение 30 минут.</div>
+            </div>
+            <div class="panel">
+              <div class="admin-panel-head"><div><h3>Журнал рассылки</h3><p>Последние 200 попыток отправки.</p></div><button class="btn soft admin-small-btn" id="mailing-log-refresh" type="button">Обновить</button></div>
+              <div class="mailing-log" id="mailing-log"><div class="admin-empty">Журнал ещё не загружен.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-tab-view" data-admin-view="users">
+          <div class="admin-kpis admin-kpis-four">
+            <div class="admin-kpi"><span>Всего пользователей</span><strong id="users-total">—</strong></div>
+            <div class="admin-kpi"><span>Зарегистрированы</span><strong id="users-registered">—</strong></div>
+            <div class="admin-kpi"><span>Ожидают регистрации</span><strong id="users-pending">—</strong></div>
+            <div class="admin-kpi"><span>Отключены</span><strong id="users-disabled">—</strong></div>
+          </div>
+          <div class="admin-toolbar">
+            <input class="admin-search" id="users-search" type="search" placeholder="Поиск по Нику, имени, телефону или email">
+            <button class="btn soft admin-small-btn" id="users-refresh" type="button">Обновить</button>
+            <button class="btn dark admin-small-btn" id="user-add" type="button">+ Добавить пользователя</button>
+          </div>
+          <div class="admin-message" id="users-message"></div>
+
+          <div class="panel user-editor" id="user-editor" style="display:none;">
+            <div class="admin-panel-head"><div><h3 id="user-editor-title">Пользователь</h3><p>Ник — главный ключ для привязки сверки.</p></div><button type="button" class="admin-icon-btn" id="user-editor-close">×</button></div>
+            <input type="hidden" id="user-client-id">
+            <div class="user-form-grid">
+              <div class="field"><label for="user-login">Ник *</label><input id="user-login" type="text"></div>
+              <div class="field"><label for="user-name">Имя и фамилия</label><input id="user-name" type="text"></div>
+              <div class="field"><label for="user-phone">Телефон</label><input id="user-phone" type="text"></div>
+              <div class="field"><label for="user-email">Email</label><input id="user-email" type="email"></div>
+              <div class="field"><label for="user-telegram">Telegram chat_id</label><input id="user-telegram" type="text" placeholder="Например 123456789"></div>
+              <div class="field"><label for="user-max">MAX user_id</label><input id="user-max" type="text"></div>
+              <div class="field"><label for="user-whatsapp">WhatsApp</label><input id="user-whatsapp" type="text" placeholder="79991234567"></div>
+            </div>
+            <label class="admin-checkbox-line"><input id="user-email-notifications" type="checkbox"> Получать уведомления EUROPA SALE на электронную почту</label>
+            <label class="admin-checkbox-line"><input id="user-social-notifications" type="checkbox"> Получать уведомления EUROPA SALE в соцсетях / мессенджерах</label>
+            <label class="admin-checkbox-line"><input id="user-telegram-notifications" type="checkbox"> Telegram выбран для уведомлений</label>
+            <label class="admin-checkbox-line"><input id="user-max-notifications" type="checkbox"> MAX выбран для уведомлений</label>
+            <label class="admin-checkbox-line"><input id="user-whatsapp-notifications" type="checkbox"> WhatsApp выбран для уведомлений</label>
+            <label class="admin-checkbox-line"><input id="user-whatsapp-optin" type="checkbox"> Клиент дал согласие на сообщения WhatsApp</label>
+            <div class="user-editor-actions"><button class="btn dark admin-small-btn" id="user-save" type="button">Сохранить</button><button class="btn soft admin-small-btn" id="user-editor-cancel" type="button">Отмена</button></div>
+          </div>
+
+          <div class="admin-table-scroll">
+            <table class="admin-table users-table">
+              <thead><tr><th>Ник</th><th>Имя</th><th>Телефон</th><th>Email</th><th>Статус</th><th>Каналы</th><th>Действия</th></tr></thead>
+              <tbody id="users-body"><tr><td colspan="7" class="admin-empty">Нажмите «Обновить», чтобы загрузить пользователей.</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>europa-sale.com · EUROPA SALE</span>
+      <span><a href="#home">Главная</a> · <a href="#login">Моя сверка</a></span>
+    </div>
+  </footer>
+</div>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = 'https://lxjwemduphbwzghrufvq.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_g_Cqw1P1TGV2GH__DRkgTQ_Why8CEqX';
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+  auth: {
+    persistSession: true,
+    autoRefreshToken: true,
+    detectSessionInUrl: true,
+    storageKey: 'europa-sale-auth'
+  }
+});
+let currentSession = null;
+let authReady = false;
+let isAdminSession = false;
+let adminCheckedUserId = null;
+
+let rows = [];
+let accountLoadedForUserId = null;
+let accountLoading = false;
+let currentReconciliationKind = 'current';
+let mobilePage = 1;
+const MOBILE_PAGE_SIZE = 10;
+const productImageCache = new Map();
+
+function escapeHtml(value){
+  return String(value ?? '')
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#039;');
+}
+
+function numberValue(value){
+  const n=Number(value ?? 0);
+  return Number.isFinite(n) ? n : 0;
+}
+
+function formatNumber(value,digits=2){
+  const n=numberValue(value);
+  return new Intl.NumberFormat('ru-RU',{
+    minimumFractionDigits:digits,
+    maximumFractionDigits:digits
+  }).format(n);
+}
+
+function formatRub(value){
+  return new Intl.NumberFormat('ru-RU',{
+    minimumFractionDigits:0,
+    maximumFractionDigits:2
+  }).format(numberValue(value));
+}
+
+function formatDate(value){
+  if(!value) return '—';
+  const s=String(value);
+  const m=s.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  return m ? `${m[3]}.${m[2]}.${m[1]}` : s;
+}
+
+// Sort by operation date, not by the date the Excel file was uploaded.
+// Dates without a valid value are shown last; equal dates keep their source order.
+function reconciliationDateKey(value){
+  if(value === null || value === undefined || value === '') return -Infinity;
+  if(typeof value === 'number' && Number.isFinite(value)){
+    // Excel serial date, if supplied by an importer.
+    return value > 20000 && value < 100000 ? Math.round((value - 25569) * 86400000) : -Infinity;
+  }
+  const s=String(value).trim();
+  let m=s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})(?:[T\s].*)?$/);
+  if(m) return Date.UTC(+m[1],+m[2]-1,+m[3]);
+  m=s.match(/^(\d{1,2})[.\/](\d{1,2})[.\/](\d{4})(?:\s.*)?$/);
+  if(m) return Date.UTC(+m[3],+m[2]-1,+m[1]);
+  const parsed=Date.parse(s);
+  return Number.isFinite(parsed) ? parsed : -Infinity;
+}
+
+function sortReconciliationNewestFirst(items){
+  return items.map((item,index)=>({item,index}))
+    .sort((a,b)=>reconciliationDateKey(b.item.date)-reconciliationDateKey(a.item.date) || a.index-b.index)
+    .map(entry=>entry.item);
+}
+
+function positionWord(n){
+  const mod100=n%100;
+  const mod10=n%10;
+  if(mod100>=11 && mod100<=14) return 'позиций';
+  if(mod10===1) return 'позиция';
+  if(mod10>=2 && mod10<=4) return 'позиции';
+  return 'позиций';
+}
+
+function normalizeOrder(order){
+  const link=String(order.link || '').trim();
+  const linkIsUrl=/^https?:\/\//i.test(link);
+  const model=String(order.product_model || order.site_model || order.article || (!linkIsUrl ? link : '') || '').trim();
+  const searchable=`${model} ${link}`.trim().toLowerCase();
+
+  let kind='product';
+  if(/(^|\s)тр([\s.:_-]|$)/iu.test(searchable) || searchable.includes('транспорт') || searchable.includes('доставка')){
+    kind='transport';
+  }else if(searchable.includes('оплата') || searchable.includes('оплат') || searchable.includes('остаток') || searchable.includes('доплата') || searchable.includes('предоплата') || searchable.includes('баланс') || searchable.includes('возврат')){
+    kind='payment';
+  }
+
+  return {
+    id:order.id,
+    link,
+    size:String(order.size_color || '').trim(),
+    model,
+    price:numberValue(order.price_eur),
+    org:numberValue(order.org_percent),
+    rate:numberValue(order.exchange_rate),
+    total:numberValue(order.total_rub),
+    date:order.purchase_date || '',
+    parcel:String(order.parcel_number || '').trim(),
+    kind
+  };
+}
+
+function iconSvg(kind){
+  if(kind==='transport'){
+    return `<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 13h23v20H6z"/><path d="M29 20h7l6 7v6H29z"/><circle cx="14" cy="35" r="3"/><circle cx="35" cy="35" r="3"/></svg>`;
+  }
+  if(kind==='payment'){
+    return `<svg viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="11" width="36" height="26" rx="3"/><circle cx="24" cy="24" r="7"/><path d="M11 17h4M33 31h4M24 19v10M20.5 21.5c1.1-2.1 6.2-2.1 6.2 1.1 0 3.1-6.2 1-6.2 4.1 0 3.1 5.4 3.2 7 1.1"/></svg>`;
+  }
+  return `<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 17h28l-2 23H12z"/><path d="M17 19v-5a7 7 0 0 1 14 0v5"/></svg>`;
+}
+
+function metaIcon(type){
+  if(type==='date') return `<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/></svg>`;
+  if(type==='parcel') return `<svg viewBox="0 0 24 24"><path d="M4 7l8-4 8 4-8 4z"/><path d="M4 7v10l8 4 8-4V7M12 11v10"/></svg>`;
+  return `<svg viewBox="0 0 24 24"><path d="M10.5 13.5l3-3"/><path d="M7.8 16.2l-1.4 1.4a4 4 0 0 1-5.7-5.7l4.2-4.2a4 4 0 0 1 5.7 0"/><path d="M16.2 7.8l1.4-1.4a4 4 0 0 1 5.7 5.7l-4.2 4.2a4 4 0 0 1-5.7 0"/></svg>`;
+}
+
+function directImageUrl(url){
+  return /^https?:\/\/[^\s]+\.(?:jpg|jpeg|png|webp|gif|avif)(?:[?#].*)?$/i.test(url || '') ? url : null;
+}
+
+async function resolveProductImage(order){
+  if(order.kind!=='product' || !/^https?:\/\//i.test(order.link)) return null;
+  if(productImageCache.has(order.link)) return productImageCache.get(order.link);
+
+  const direct=directImageUrl(order.link);
+  if(direct){
+    productImageCache.set(order.link,direct);
+    return direct;
+  }
+
+  try{
+    const {data,error}=await supabaseClient.functions.invoke('resolve-product-image',{
+      body:{url:order.link}
+    });
+    if(error) throw error;
+    const imageUrl=data?.image_url || null;
+    productImageCache.set(order.link,imageUrl);
+    return imageUrl;
+  }catch(err){
+    console.debug('Image resolve skipped:',err);
+    productImageCache.set(order.link,null);
+    return null;
+  }
+}
+
+async function hydrateVisibleProductImages(data){
+  if(!window.matchMedia('(max-width:860px)').matches) return;
+  const productRows=data.filter(r=>r.kind==='product' && /^https?:\/\//i.test(r.link));
+  const workers=productRows.slice(0,10).map(async order=>{
+    const imageUrl=await resolveProductImage(order);
+    if(!imageUrl) return;
+    const holder=document.querySelector(`.mobile-thumb[data-order-id="${CSS.escape(String(order.id))}"]`);
+    if(!holder) return;
+    const img=document.createElement('img');
+    img.alt=order.model || 'Товар';
+    img.loading='lazy';
+    img.referrerPolicy='no-referrer';
+    img.src=imageUrl;
+    img.onerror=()=>{ holder.innerHTML=iconSvg('product'); };
+    holder.innerHTML='';
+    holder.appendChild(img);
+  });
+  await Promise.allSettled(workers);
+}
+
+function renderMobilePagination(totalItems){
+  const el=document.getElementById('mobile-pagination');
+  if(!el) return;
+  const totalPages=Math.max(1,Math.ceil(totalItems/MOBILE_PAGE_SIZE));
+  if(totalItems<=MOBILE_PAGE_SIZE){ el.innerHTML=''; return; }
+  mobilePage=Math.min(Math.max(1,mobilePage),totalPages);
+
+  const pages=[];
+  const from=Math.max(1,mobilePage-1);
+  const to=Math.min(totalPages,from+2);
+  for(let p=from;p<=to;p++) pages.push(p);
+
+  el.innerHTML=`
+    <button class="mobile-page-btn" type="button" data-mobile-page="${mobilePage-1}" ${mobilePage===1?'disabled':''} aria-label="Предыдущая страница">←</button>
+    ${pages.map(p=>`<button class="mobile-page-btn ${p===mobilePage?'active':''}" type="button" data-mobile-page="${p}">${p}</button>`).join('')}
+    <button class="mobile-page-btn" type="button" data-mobile-page="${mobilePage+1}" ${mobilePage===totalPages?'disabled':''} aria-label="Следующая страница">→</button>`;
+
+  el.querySelectorAll('[data-mobile-page]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const next=Number(btn.dataset.mobilePage);
+      if(!Number.isFinite(next) || next<1 || next>totalPages || next===mobilePage) return;
+      mobilePage=next;
+      render(document.getElementById('search')?.value || '');
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  });
+}
+
+function render(filter=''){
+  const q=String(filter || '').trim().toLowerCase();
+  const filtered=rows.filter(r=>[
+    r.link,r.size,r.model,r.price,r.org,r.rate,r.total,r.date,r.parcel
+  ].join(' ').toLowerCase().includes(q));
+
+  const isMobile=window.matchMedia('(max-width:860px)').matches;
+  const totalPages=Math.max(1,Math.ceil(filtered.length/MOBILE_PAGE_SIZE));
+  mobilePage=Math.min(Math.max(1,mobilePage),totalPages);
+  const start=isMobile ? (mobilePage-1)*MOBILE_PAGE_SIZE : 0;
+  const end=isMobile ? Math.min(start+MOBILE_PAGE_SIZE,filtered.length) : filtered.length;
+  const data=isMobile ? filtered.slice(start,end) : filtered;
+
+  const tbody=document.getElementById('table-body');
+  const cards=document.getElementById('cards');
+
+  if(!data.length){
+    const message=rows.length
+      ? 'По вашему запросу ничего не найдено.'
+      : 'Пока в сверке нет позиций.';
+
+    tbody.innerHTML=`<tr><td colspan="9" style="padding:34px 18px;text-align:center;color:var(--muted)">${escapeHtml(message)}</td></tr>`;
+    cards.innerHTML=`<div class="mobile-empty">${escapeHtml(message)}</div>`;
+  }else{
+    tbody.innerHTML=data.map(r=>{
+      const linkHtml=/^https?:\/\//i.test(r.link)
+        ? `<a href="${escapeHtml(r.link)}" target="_blank" rel="noopener">Ссылка</a>`
+        : (r.link ? escapeHtml(r.link) : '');
+
+      return `<tr>
+        <td class="linkcell">${linkHtml}</td>
+        <td>${escapeHtml(r.size)}</td>
+        <td>${escapeHtml(r.model)}</td>
+        <td class="num">${formatNumber(r.price,2)}</td>
+        <td class="num">${formatNumber(r.org,0)}</td>
+        <td class="num">${formatNumber(r.rate,2)}</td>
+        <td class="num total">${formatRub(r.total)}</td>
+        <td class="date">${escapeHtml(formatDate(r.date))}</td>
+        <td class="parcel">${escapeHtml(r.parcel || '—')}</td>
+      </tr>`;
+    }).join('');
+
+    cards.innerHTML=data.map(r=>{
+      const link=/^https?:\/\//i.test(r.link)
+        ? `<a class="mobile-meta-item mobile-meta-link" href="${escapeHtml(r.link)}" target="_blank" rel="noopener">${metaIcon('link')}<span>Ссылка</span></a>`
+        : `<span class="mobile-meta-item"></span>`;
+
+      return `<article class="card-item">
+        <div class="mobile-card-main">
+          <div class="mobile-thumb" data-order-id="${escapeHtml(r.id)}">${iconSvg(r.kind)}</div>
+          <div class="mobile-card-body">
+            <div class="mobile-title-row">
+              <div>
+                <div class="card-model">${escapeHtml(r.model || (r.kind==='payment'?'Оплата':'Позиция'))}</div>
+                ${r.size ? `<div class="card-size">${escapeHtml(r.size)}</div>` : ''}
+              </div>
+              <div class="mobile-chevron">›</div>
+            </div>
+            <div class="mobile-metrics">
+              <div class="mobile-metric"><span>Цена €</span><b>${formatNumber(r.price,2)}</b></div>
+              <div class="mobile-metric"><span>Орг %</span><b>${formatNumber(r.org,0)}</b></div>
+              <div class="mobile-metric"><span>Курс</span><b>${formatNumber(r.rate,2)}</b></div>
+              <div class="mobile-metric total"><span>Итого</span><b>${formatRub(r.total)} ₽</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="mobile-card-meta">
+          <span class="mobile-meta-item">${metaIcon('date')}<span>${escapeHtml(formatDate(r.date))}</span></span>
+          <span class="mobile-meta-item">${metaIcon('parcel')}<span>Посылка: ${escapeHtml(r.parcel || '—')}</span></span>
+          ${link}
+        </div>
+      </article>`;
+    }).join('');
+  }
+
+  const count=document.getElementById('count-label');
+  if(count) count.textContent=`Показано ${filtered.length} ${positionWord(filtered.length)}`;
+
+  const mobileCount=document.getElementById('mobile-count-label');
+  if(mobileCount){
+    mobileCount.textContent=filtered.length
+      ? `Показано ${start+1}–${end} из ${filtered.length}`
+      : 'Показано 0 позиций';
+  }
+  renderMobilePagination(filtered.length);
+  if(isMobile && data.length) hydrateVisibleProductImages(data);
+}
+
+async function loadMyOrders(force=false){
+  const session=currentSession;
+  const userId=session?.user?.id;
+  if(!session || !userId) return;
+
+  const loadKey=`${userId}:${currentReconciliationKind}`;
+  if(!force && accountLoadedForUserId===loadKey){
+    render(document.getElementById('search')?.value || '');
+    return;
+  }
+
+  if(accountLoading) return;
+  accountLoading=true;
+
+  const note=document.getElementById('account-note');
+  const count=document.getElementById('count-label');
+  const balance=document.getElementById('balance-total');
+
+  if(note) note.textContent='Загружаем персональную сверку…';
+  if(count) count.textContent='Загрузка…';
+  if(balance) balance.textContent='—';
+
+  try{
+    const {data,error}=await supabaseClient.functions.invoke(
+      'get-my-orders',
+      {
+        body:{reconciliation_kind:currentReconciliationKind},
+        headers:{
+          Authorization:`Bearer ${session.access_token}`
+        }
+      }
+    );
+
+    if(error){
+      throw new Error(await readFunctionError(error));
+    }
+    if(!data?.success){
+      throw new Error(data?.error || 'Не удалось загрузить сверку.');
+    }
+
+    rows=sortReconciliationNewestFirst((data.orders || []).map(normalizeOrder));
+    mobilePage=1;
+    accountLoadedForUserId=loadKey;
+
+    const client=data.client || {};
+    const displayName=client.login || client.name || session.user.email || 'клиента';
+    const nameEl=document.getElementById('account-name');
+    if(nameEl) nameEl.textContent=displayName;
+
+    if(balance) balance.textContent=`${formatRub(data.total_rub || 0)} ₽`;
+
+    if(note){
+      if(currentReconciliationKind==='old') {
+        note.textContent=rows.length
+          ? 'Ваша старая сверка EUROPA SALE.'
+          : 'В старой сверке нет позиций.';
+      } else {
+        note.textContent=rows.length
+          ? 'Ваша актуальная сверка EUROPA SALE.'
+          : 'Кабинет создан. После первой покупки здесь появится ваша сверка.';
+      }
+    }
+
+    render(document.getElementById('search')?.value || '');
+
+  }catch(err){
+    console.error('Load my orders error:',err);
+    rows=[];
+    accountLoadedForUserId=null;
+    if(balance) balance.textContent='0 ₽';
+    if(note) note.textContent=err?.message || 'Не удалось загрузить персональную сверку.';
+    render('');
+  }finally{
+    accountLoading=false;
+  }
+}
+
+function updateReconciliationTabs(){
+  document.querySelectorAll('[data-reconciliation]').forEach(btn=>{
+    btn.classList.toggle('active',btn.dataset.reconciliation===currentReconciliationKind);
+  });
+}
+
+document.querySelectorAll('[data-reconciliation]').forEach(btn=>{
+  btn.addEventListener('click',async()=>{
+    const kind=btn.dataset.reconciliation==='old' ? 'old' : 'current';
+    if(kind===currentReconciliationKind) return;
+    currentReconciliationKind=kind;
+    accountLoadedForUserId=null;
+    rows=[];
+    mobilePage=1;
+    const search=document.getElementById('search');
+    if(search) search.value='';
+    updateReconciliationTabs();
+    await loadMyOrders(true);
+  });
+});
+updateReconciliationTabs();
+
+let profileClientCache=null;
+
+function setProfileMessage(id,text='',type=''){
+  const el=document.getElementById(id);
+  if(!el) return;
+  el.textContent=text;
+  el.className=`profile-message${type?` ${type}`:''}`;
+}
+
+function updateMessengerChoicesState(){
+  const enabled=document.getElementById('profile-notify-social')?.checked===true;
+  const box=document.getElementById('messenger-choices');
+  if(box) box.classList.toggle('disabled',!enabled);
+}
+
+document.getElementById('profile-notify-social')?.addEventListener('change',updateMessengerChoicesState);
+
+function renderProfile(client={}){
+  profileClientCache=client;
+  const prefs=client.messenger_preferences||{};
+  const connected=client.connected||{};
+  const set=(id,value)=>{const el=document.getElementById(id);if(el) el.value=value??'';};
+  set('profile-login',client.login||'');
+  set('profile-name',client.name||'');
+  set('profile-phone',client.phone||'');
+  set('profile-email',client.email||'');
+  const emailToggle=document.getElementById('profile-notify-email');
+  const socialToggle=document.getElementById('profile-notify-social');
+  const tg=document.getElementById('profile-telegram');
+  const mx=document.getElementById('profile-max');
+  const wa=document.getElementById('profile-whatsapp');
+  if(emailToggle) emailToggle.checked=client.email_notifications!==false;
+  if(socialToggle) socialToggle.checked=client.social_notifications===true;
+  if(tg) tg.checked=prefs.telegram===true;
+  if(mx) mx.checked=prefs.max===true;
+  if(wa) wa.checked=prefs.whatsapp===true;
+  const note=document.getElementById('profile-notify-email-note');
+  if(note) note.textContent=client.email||'Email в профиле не указан';
+  const status=(id,isConnected,selected,unconnectedText)=>{
+    const el=document.getElementById(id); if(!el) return;
+    el.textContent=isConnected?'✓ Подключено':(selected?unconnectedText:'Не выбрано');
+    el.classList.toggle('connected',isConnected);
+  };
+  status('profile-telegram-status',connected.telegram===true,prefs.telegram===true,'Выбрано · требуется привязка к боту');
+  status('profile-max-status',connected.max===true,prefs.max===true,'Выбрано · требуется привязка к боту');
+  status('profile-whatsapp-status',connected.whatsapp===true,prefs.whatsapp===true,'Выбрано · проверьте телефон в профиле');
+  updateMessengerChoicesState();
+}
+
+async function loadProfile(force=false){
+  if(!currentSession?.access_token) return;
+  if(profileClientCache&&!force){renderProfile(profileClientCache);return;}
+  setProfileMessage('profile-message','Загружаем профиль…');
+  try{
+    const {data,error}=await supabaseClient.functions.invoke('get-my-orders',{
+      body:{reconciliation_kind:'current'},
+      headers:{Authorization:`Bearer ${currentSession.access_token}`}
+    });
+    if(error) throw new Error(await readFunctionError(error));
+    if(!data?.success) throw new Error(data?.error||'Не удалось загрузить профиль.');
+    renderProfile(data.client||{});
+    setProfileMessage('profile-message','');
+  }catch(err){
+    setProfileMessage('profile-message',err?.message||'Не удалось загрузить профиль.','error');
+  }
+}
+
+document.getElementById('profile-save')?.addEventListener('click',async()=>{
+  if(!currentSession?.access_token) return;
+  const btn=document.getElementById('profile-save'); const old=btn.textContent;
+  btn.disabled=true; btn.textContent='Сохраняем…'; setProfileMessage('profile-message','');
+  try{
+    const email=normalizeEmail(document.getElementById('profile-email')?.value||'');
+    if(!email) throw new Error('Введите корректный email.');
+    const {data,error}=await supabaseClient.functions.invoke('profile-settings',{
+      body:{action:'save_profile',name:document.getElementById('profile-name')?.value||'',phone:document.getElementById('profile-phone')?.value||'',email},
+      headers:{Authorization:`Bearer ${currentSession.access_token}`}
+    });
+    if(error) throw new Error(await readFunctionError(error));
+    if(!data?.success) throw new Error(data?.error||'Не удалось сохранить профиль.');
+    profileClientCache={...(profileClientCache||{}),...(data.client||{})};
+    renderProfile(profileClientCache);
+    accountLoadedForUserId=null;
+    setProfileMessage('profile-message',data.email_changed?'Данные сохранены. Для следующего входа используйте новый email.':'Данные профиля сохранены.','ok');
+  }catch(err){ setProfileMessage('profile-message',err?.message||'Не удалось сохранить профиль.','error'); }
+  finally{btn.disabled=false;btn.textContent=old;}
+});
+
+document.getElementById('profile-password-save')?.addEventListener('click',async()=>{
+  if(!currentSession?.access_token) return;
+  const password=document.getElementById('profile-password')?.value||'';
+  const repeat=document.getElementById('profile-password-repeat')?.value||'';
+  const btn=document.getElementById('profile-password-save'); const old=btn.textContent;
+  btn.disabled=true;btn.textContent='Сохраняем…';setProfileMessage('profile-password-message','');
+  try{
+    const {data,error}=await supabaseClient.functions.invoke('profile-settings',{
+      body:{action:'change_password',password,repeat_password:repeat},
+      headers:{Authorization:`Bearer ${currentSession.access_token}`}
+    });
+    if(error) throw new Error(await readFunctionError(error));
+    if(!data?.success) throw new Error(data?.error||'Не удалось изменить пароль.');
+    document.getElementById('profile-password').value='';
+    document.getElementById('profile-password-repeat').value='';
+    setProfileMessage('profile-password-message','Пароль изменён.','ok');
+  }catch(err){setProfileMessage('profile-password-message',err?.message||'Не удалось изменить пароль.','error');}
+  finally{btn.disabled=false;btn.textContent=old;}
+});
+
+document.getElementById('profile-notifications-save')?.addEventListener('click',async()=>{
+  if(!currentSession?.access_token) return;
+  const btn=document.getElementById('profile-notifications-save');const old=btn.textContent;
+  btn.disabled=true;btn.textContent='Сохраняем…';setProfileMessage('profile-notifications-message','');
+  try{
+    const {data,error}=await supabaseClient.functions.invoke('notification-settings',{
+      body:{
+        email_notifications:document.getElementById('profile-notify-email')?.checked===true,
+        social_notifications:document.getElementById('profile-notify-social')?.checked===true,
+        telegram_notifications:document.getElementById('profile-telegram')?.checked===true,
+        max_notifications:document.getElementById('profile-max')?.checked===true,
+        whatsapp_notifications:document.getElementById('profile-whatsapp')?.checked===true
+      },
+      headers:{Authorization:`Bearer ${currentSession.access_token}`}
+    });
+    if(error) throw new Error(await readFunctionError(error));
+    if(!data?.success) throw new Error(data?.error||'Не удалось сохранить уведомления.');
+    if(profileClientCache){
+      profileClientCache.email_notifications=data.email_notifications;
+      profileClientCache.social_notifications=data.social_notifications;
+      profileClientCache.messenger_preferences=data.messenger_preferences||{};
+      profileClientCache.connected=data.connected||profileClientCache.connected||{};
+      renderProfile(profileClientCache);
+    }
+    accountLoadedForUserId=null;
+    setProfileMessage('profile-notifications-message','Настройки уведомлений сохранены.','ok');
+  }catch(err){setProfileMessage('profile-notifications-message',err?.message||'Не удалось сохранить уведомления.','error');}
+  finally{btn.disabled=false;btn.textContent=old;}
+});
+
+async function sendWelcomeEmailOnce(){
+  if(!currentSession?.access_token) return;
+  try{
+    const {data,error}=await supabaseClient.functions.invoke('welcome-email',{
+      body:{},headers:{Authorization:`Bearer ${currentSession.access_token}`}
+    });
+    if(error) console.warn('Welcome email:',await readFunctionError(error));
+    else if(data?.success===false) console.warn('Welcome email:',data?.error);
+  }catch(err){console.warn('Welcome email:',err);}
+}
+
+function normalizeEmail(value){
+  const email=String(value || '').trim().toLowerCase();
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? email : null;
+}
+
+function showView(view){
+  document.body.classList.toggle('account-mode',view==='account'||view==='profile');
+  document.querySelectorAll('.view').forEach(el=>el.classList.remove('active'));
+  const target=document.getElementById('view-'+view);
+  if(target) target.classList.add('active');
+  window.scrollTo({top:0,behavior:'instant'});
+}
+
+function setLoginMessage(text='',type='error'){
+  const el=document.getElementById('login-message');
+  el.textContent=text;
+  el.className=`login-message${text ? ` show ${type}` : ''}`;
+}
+
+function setRegisterMessage(text='',type='error'){
+  const el=document.getElementById('register-message');
+  if(!el) return;
+  el.textContent=text;
+  el.className=`login-message${text ? ` show ${type}` : ''}`;
+}
+
+function setRegisterBusy(busy){
+  const btn=document.getElementById('register-submit');
+  if(!btn) return;
+  btn.disabled=busy;
+  btn.textContent=busy?'Регистрируем…':'Зарегистрироваться';
+}
+
+async function readFunctionError(error){
+  try{
+    if(error?.context){
+      const cloned=error.context.clone ? error.context.clone() : error.context;
+      const payload=await cloned.json();
+      return payload?.error || payload?.message || error.message || 'Ошибка запроса.';
+    }
+  }catch(_){}
+  return error?.message || 'Ошибка запроса.';
+}
+
+function setResetMessage(text='',type='error'){
+  const el=document.getElementById('reset-password-message');
+  el.textContent=text;
+  el.className=`login-message${text ? ` show ${type}` : ''}`;
+}
+
+function setLoginBusy(busy){
+  const btn=document.getElementById('login-submit');
+  btn.disabled=busy;
+  btn.textContent=busy?'Входим…':'Войти';
+}
+
+function updateAccountHeader(){
+  const user=currentSession?.user;
+  const meta=user?.user_metadata || {};
+  const name=meta.login || meta.name || meta.full_name || user?.email || 'клиента';
+  const el=document.getElementById('account-name');
+  if(el) el.textContent=name;
+}
+
+function updateAdminNavigation(){
+  const adminLink=document.getElementById('admin-nav-link');
+  const mobileAdminLink=document.getElementById('mobile-admin-link');
+  const profileLink=document.getElementById('profile-nav-link');
+  const mobileProfileLink=document.getElementById('mobile-profile-link');
+  const adminDisplay=isAdminSession ? '' : 'none';
+  const profileDisplay=(currentSession && !isAdminSession) ? '' : 'none';
+  if(adminLink) adminLink.style.display=adminDisplay;
+  if(mobileAdminLink) mobileAdminLink.style.display=adminDisplay;
+  if(profileLink) profileLink.style.display=profileDisplay;
+  if(mobileProfileLink) mobileProfileLink.style.display=profileDisplay;
+}
+
+function clearAdminState(){
+  isAdminSession=false;
+  adminCheckedUserId=null;
+  updateAdminNavigation();
+}
+
+async function ensureAdminState(force=false){
+  const userId=currentSession?.user?.id || null;
+  if(!userId){
+    clearAdminState();
+    return false;
+  }
+
+  if(!force && adminCheckedUserId===userId){
+    updateAdminNavigation();
+    return isAdminSession;
+  }
+
+  try{
+    const {data,error}=await supabaseClient.functions.invoke('admin-auth',{
+      body:{action:'status'}
+    });
+    if(error) throw error;
+    isAdminSession=data?.is_admin===true;
+  }catch(err){
+    console.error('Admin status error:',err);
+    isAdminSession=false;
+  }
+
+  adminCheckedUserId=userId;
+  updateAdminNavigation();
+  return isAdminSession;
+}
+
+async function route(){
+  let key=(location.hash||'#home').slice(1);
+  const allowed=['home','login','register','account','profile','admin','reset-password'];
+  if(!allowed.includes(key)) key='home';
+
+  if(!authReady){
+    showView(key==='reset-password'?'reset-password':'home');
+    return;
+  }
+
+  if(currentSession){
+    await ensureAdminState();
+  }else{
+    clearAdminState();
+  }
+
+  if(key==='admin'){
+    if(!currentSession){
+      location.hash='login';
+      return;
+    }
+    if(!isAdminSession){
+      location.hash='account';
+      return;
+    }
+    showView('admin');
+    await loadAdminDashboard();
+    return;
+  }
+
+  if((key==='account' || key==='profile') && !currentSession){
+    location.hash='login';
+    return;
+  }
+
+  if(key==='profile'){
+    if(isAdminSession){ location.hash='admin'; return; }
+    showView('profile');
+    await loadProfile();
+    return;
+  }
+
+  if((key==='login' || key==='register') && currentSession){
+    location.hash=isAdminSession ? 'admin' : 'account';
+    return;
+  }
+
+  if(key==='account'){
+    updateAccountHeader();
+    showView(key);
+    await loadMyOrders();
+    return;
+  }
+
+  showView(key);
+}
+
+window.addEventListener('hashchange',()=>{ route(); });
+
+document.getElementById('login-form').addEventListener('submit',async e=>{
+  e.preventDefault();
+  setLoginMessage('');
+
+  const identifier=String(document.getElementById('login').value || '').trim();
+  const identifierNormalized=identifier.toLowerCase();
+  const password=document.getElementById('password').value;
+
+  if(!identifier){
+    setLoginMessage('Введите email или логин.','error');
+    return;
+  }
+  if(!password){
+    setLoginMessage('Введите пароль.','error');
+    return;
+  }
+
+  setLoginBusy(true);
+
+  try{
+    if(identifierNormalized==='admin'){
+      const {data,error}=await supabaseClient.functions.invoke('admin-auth',{
+        body:{
+          action:'login',
+          login:'admin',
+          password
+        }
+      });
+
+      if(error) throw new Error(await readFunctionError(error));
+      if(!data?.success || !data?.access_token || !data?.refresh_token){
+        throw new Error(data?.error || 'Неверный логин или пароль.');
+      }
+
+      const {data:sessionData,error:sessionError}=await supabaseClient.auth.setSession({
+        access_token:data.access_token,
+        refresh_token:data.refresh_token
+      });
+
+      if(sessionError || !sessionData?.session){
+        throw sessionError || new Error('Не удалось создать сессию администратора.');
+      }
+
+      currentSession=sessionData.session;
+      isAdminSession=true;
+      adminCheckedUserId=currentSession.user.id;
+      updateAdminNavigation();
+      location.hash='admin';
+      return;
+    }
+
+    const {data,error}=await supabaseClient.functions.invoke(
+      'login-client',
+      {
+        body:{
+          login: identifier,
+          password
+        }
+      }
+    );
+
+    if(error) throw new Error(await readFunctionError(error));
+
+    if(!data?.success || !data?.access_token || !data?.refresh_token){
+      throw new Error(data?.error || 'Неверный логин или пароль.');
+    }
+
+    const {data:sessionData,error:sessionError}=await supabaseClient.auth.setSession({
+      access_token:data.access_token,
+      refresh_token:data.refresh_token
+    });
+
+    if(sessionError || !sessionData?.session){
+      throw sessionError || new Error('Не удалось создать сессию.');
+    }
+
+    currentSession=sessionData.session;
+    adminCheckedUserId=null;
+    await ensureAdminState(true);
+
+    if(isAdminSession){
+      location.hash='admin';
+    }else{
+      updateAccountHeader();
+      location.hash='account';
+    }
+  }catch(err){
+    console.error('Login error:',err);
+    clearAdminState();
+    setLoginMessage(err?.message || 'Не удалось войти. Проверьте логин и пароль.','error');
+  }finally{
+    setLoginBusy(false);
+  }
+});
+
+document.getElementById('first-login-btn').addEventListener('click',async()=>{
+  setLoginMessage('');
+  const rawIdentifier=String(document.getElementById('login').value || '').trim();
+  if(rawIdentifier.toLowerCase()==='admin'){
+    setLoginMessage('Для восстановления пароля администратора используйте email администратора.','info');
+    return;
+  }
+  const email=normalizeEmail(rawIdentifier);
+  if(!email){
+    setLoginMessage('Сначала введите email, указанный в вашей клиентской базе.','error');
+    document.getElementById('login').focus();
+    return;
+  }
+  const btn=document.getElementById('first-login-btn');
+  const old=btn.textContent;
+  btn.disabled=true;
+  btn.textContent='Отправляем письмо…';
+  try{
+    const {error}=await supabaseClient.auth.resetPasswordForEmail(email,{redirectTo:'https://europa-sale.com'});
+    if(error) throw error;
+    setLoginMessage('Если этот email есть в базе EUROPA SALE, письмо со ссылкой для установки пароля отправлено.','info');
+  }catch(err){
+    console.error('First login error:',err);
+    setLoginMessage('Не удалось отправить письмо. Попробуйте позже или напишите EUROPA SALE.','error');
+  }finally{
+    btn.disabled=false;
+    btn.textContent=old;
+  }
+});
+
+document.getElementById('register-form').addEventListener('submit',async e=>{
+  e.preventDefault();
+  setRegisterMessage('');
+
+  const nick=String(document.getElementById('register-login').value || '').trim();
+  const password=document.getElementById('register-password').value;
+  const repeat=document.getElementById('register-password-repeat').value;
+  const email=normalizeEmail(document.getElementById('register-email').value);
+  const fullName=String(document.getElementById('register-full-name').value || '').trim();
+  const phone=String(document.getElementById('register-phone').value || '').trim();
+  const turnstileToken=(window.turnstile && typeof window.turnstile.getResponse==='function')
+    ? window.turnstile.getResponse()
+    : '';
+
+  if(!nick){
+    setRegisterMessage('Введите логин.','error');
+    document.getElementById('register-login').focus();
+    return;
+  }
+  if(password.length<4){
+    setRegisterMessage('Минимальная длина пароля — 4 символа.','error');
+    document.getElementById('register-password').focus();
+    return;
+  }
+  if(password!==repeat){
+    setRegisterMessage('Пароли не совпадают.','error');
+    document.getElementById('register-password-repeat').focus();
+    return;
+  }
+  if(!email){
+    setRegisterMessage('Введите корректный email.','error');
+    document.getElementById('register-email').focus();
+    return;
+  }
+  if(!fullName){
+    setRegisterMessage('Введите имя и фамилию.','error');
+    document.getElementById('register-full-name').focus();
+    return;
+  }
+  if(!phone){
+    setRegisterMessage('Введите телефон.','error');
+    document.getElementById('register-phone').focus();
+    return;
+  }
+  if(!turnstileToken){
+    setRegisterMessage('Подтвердите, что вы не робот.','error');
+    return;
+  }
+
+  setRegisterBusy(true);
+
+  try{
+    const {data,error}=await supabaseClient.functions.invoke(
+      'register-client',
+      {
+        body:{
+          nick,
+          password,
+          repeat_password:repeat,
+          email,
+          full_name:fullName,
+          phone,
+          turnstile_token:turnstileToken
+        }
+      }
+    );
+
+    if(error){
+      throw new Error(await readFunctionError(error));
+    }
+
+    if(!data?.success){
+      throw new Error(data?.error || 'Не удалось зарегистрироваться.');
+    }
+
+    const {data:loginData,error:loginError}=await supabaseClient.functions.invoke(
+      'login-client',
+      {
+        body:{
+          login:nick,
+          password
+        }
+      }
+    );
+
+    if(loginError) throw new Error(await readFunctionError(loginError));
+
+    if(!loginData?.success || !loginData?.access_token || !loginData?.refresh_token){
+      setRegisterMessage(
+        'Регистрация завершена. Теперь войдите по Нику или email и паролю.',
+        'info'
+      );
+      document.getElementById('login').value=nick;
+      setTimeout(()=>{ location.hash='login'; },900);
+      return;
+    }
+
+    const {data:sessionData,error:sessionError}=await supabaseClient.auth.setSession({
+      access_token:loginData.access_token,
+      refresh_token:loginData.refresh_token
+    });
+
+    if(sessionError || !sessionData?.session){
+      throw sessionError || new Error('Регистрация завершена, но не удалось открыть личный кабинет.');
+    }
+
+    currentSession=sessionData.session;
+    profileClientCache=null;
+    updateAccountHeader();
+    location.hash='account';
+
+  }catch(err){
+    console.error('Register error:',err);
+    setRegisterMessage(err?.message || 'Не удалось зарегистрироваться.','error');
+
+    if(window.turnstile && typeof window.turnstile.reset==='function'){
+      try{ window.turnstile.reset(); }catch(_){}
+    }
+
+  }finally{
+    setRegisterBusy(false);
+  }
+});
+
+document.getElementById('reset-password-form').addEventListener('submit',async e=>{
+  e.preventDefault();
+  setResetMessage('');
+  const password=document.getElementById('new-password').value;
+  const repeat=document.getElementById('new-password-repeat').value;
+  if(password.length<4){
+    setResetMessage('Пароль должен содержать минимум 4 символа.','error');
+    return;
+  }
+  if(password!==repeat){
+    setResetMessage('Пароли не совпадают.','error');
+    return;
+  }
+  const btn=document.getElementById('reset-password-submit');
+  const old=btn.textContent;
+  btn.disabled=true;
+  btn.textContent='Сохраняем…';
+  try{
+    const {error}=await supabaseClient.auth.updateUser({password});
+    if(error) throw error;
+    setResetMessage('Пароль установлен. Сейчас откроется страница входа.','info');
+    setTimeout(async()=>{
+      await supabaseClient.auth.signOut();
+      currentSession=null;
+      document.getElementById('password').value='';
+      document.getElementById('new-password').value='';
+      document.getElementById('new-password-repeat').value='';
+      location.hash='login';
+      setLoginMessage('Пароль установлен. Теперь войдите по email и новому паролю.','info');
+    },1000);
+  }catch(err){
+    console.error('Password update error:',err);
+    setResetMessage('Не удалось установить пароль. Возможно, ссылка устарела — запросите новую.','error');
+  }finally{
+    btn.disabled=false;
+    btn.textContent=old;
+  }
+});
+
+supabaseClient.auth.onAuthStateChange((event,session)=>{
+  currentSession=session;
+  if(event==='PASSWORD_RECOVERY'){
+    authReady=true;
+    history.replaceState(null,'',location.pathname+'#reset-password');
+    showView('reset-password');
+    return;
+  }
+  if(event==='SIGNED_OUT'){
+    currentSession=null;
+    rows=[];
+    accountLoadedForUserId=null;
+    profileClientCache=null;
+    currentReconciliationKind='current';
+    updateReconciliationTabs();
+    clearAdminState();
+  }
+  if(event==='SIGNED_IN' || event==='TOKEN_REFRESHED'){
+    adminCheckedUserId=null;
+  }
+});
+
+async function initAuth(){
+  const {data}=await supabaseClient.auth.getSession();
+  currentSession=data.session;
+  authReady=true;
+  await route();
+}
+
+initAuth();
+document.getElementById('search').addEventListener('input',e=>{ mobilePage=1; render(e.target.value); });
+const adminImporters = [
+  {
+    kind:'current',
+    expectedName:'sverka.xlsx',
+    inputId:'xlsx-input-current',
+    dropId:'xlsx-drop-current',
+    buttonId:'admin-import-btn-current',
+    statusId:'file-status-current',
+    resultId:'admin-import-result-current',
+    resultFileId:'admin-result-file-current',
+    resultRowsId:'admin-result-rows-current',
+    resultTotalId:'admin-result-total-current',
+    resultHelpId:'admin-result-help-current'
+  },
+  {
+    kind:'old',
+    expectedName:'sverkaOld.xlsx',
+    inputId:'xlsx-input-old',
+    dropId:'xlsx-drop-old',
+    buttonId:'admin-import-btn-old',
+    statusId:'file-status-old',
+    resultId:'admin-import-result-old',
+    resultFileId:'admin-result-file-old',
+    resultRowsId:'admin-result-rows-old',
+    resultTotalId:'admin-result-total-old',
+    resultHelpId:'admin-result-help-old'
+  }
+];
+
+function setAdminFileStatus(statusId,text,type='info'){
+  const el=document.getElementById(statusId);
+  if(!el) return;
+  el.textContent=text;
+  el.classList.add('show');
+  el.style.background=type==='error' ? '#f8eaea' : (type==='success' ? '#eaf2ed' : (type==='warning' ? '#f3e8dc' : '#efe7e3'));
+  el.style.color=type==='error' ? '#7f302f' : (type==='success' ? '#315c46' : (type==='warning' ? '#755e3d' : '#56504c'));
+}
+
+function validateAdminFile(file,expectedName){
+  if(!file) return 'Сначала выберите Excel-файл.';
+  if(!/\.(xlsx|xls)$/i.test(file.name || '')) return 'Нужен Excel-файл .xlsx или .xls.';
+  if(file.size<=0) return 'Выбранный файл пустой.';
+  if(String(file.name||'').toLowerCase()!==String(expectedName||'').toLowerCase()){
+    return `Для этого блока нужен файл ${expectedName}.`;
+  }
+  return '';
+}
+
+async function readBalanceGrandTotal(file){
+  if(!file) return {value:null,error:'Файл не выбран.'};
+  if(typeof XLSX==='undefined') return {value:null,error:'Модуль чтения Excel не загрузился.'};
+
+  try{
+    const buffer=await file.arrayBuffer();
+    const workbook=XLSX.read(buffer,{type:'array',cellDates:true,cellFormula:true,cellNF:true});
+    const balanceSheetName=workbook.SheetNames.find(name=>String(name).trim().toLowerCase()==='баланс');
+    if(!balanceSheetName) return {value:null,error:'Лист «Баланс» не найден.'};
+
+    const sheet=workbook.Sheets[balanceSheetName];
+    const matrix=XLSX.utils.sheet_to_json(sheet,{header:1,defval:null,raw:true});
+
+    const norm=value=>String(value??'').replace(/\s+/g,' ').trim().toLowerCase();
+    const toNumber=value=>{
+      if(typeof value==='number' && Number.isFinite(value)) return value;
+      if(typeof value!=='string') return null;
+      const cleaned=value
+        .replace(/\u00a0/g,' ')
+        .replace(/₽|руб\.?/gi,'')
+        .replace(/\s+/g,'')
+        .replace(',','.');
+      if(!cleaned || !/^-?\d+(?:\.\d+)?$/.test(cleaned)) return null;
+      const n=Number(cleaned);
+      return Number.isFinite(n)?n:null;
+    };
+
+    for(let r=0;r<matrix.length;r++){
+      const row=Array.isArray(matrix[r])?matrix[r]:[];
+      for(let c=0;c<row.length;c++){
+        if(norm(row[c])!=='общий итог') continue;
+        const candidates=[];
+        for(let j=c+1;j<row.length;j++){
+          const n=toNumber(row[j]);
+          if(n!==null) candidates.push(n);
+        }
+        if(candidates.length) return {value:candidates[candidates.length-1],error:null};
+
+        for(let rr=r+1;rr<Math.min(matrix.length,r+3);rr++){
+          const nextRow=Array.isArray(matrix[rr])?matrix[rr]:[];
+          for(let j=c+1;j<nextRow.length;j++){
+            const n=toNumber(nextRow[j]);
+            if(n!==null) return {value:n,error:null};
+          }
+        }
+        return {value:null,error:'Надпись «Общий итог» найдена, но сумма рядом не определена.'};
+      }
+    }
+    return {value:null,error:'На листе «Баланс» не найдено поле «Общий итог».'};
+  }catch(err){
+    return {value:null,error:err instanceof Error?err.message:String(err)};
+  }
+}
+
+function formatAdminRub(value){
+  return new Intl.NumberFormat('ru-RU',{
+    minimumFractionDigits:Number.isInteger(value)?0:2,
+    maximumFractionDigits:2
+  }).format(value)+' ₽';
+}
+
+function setupAdminImporter(cfg){
+  const input=document.getElementById(cfg.inputId);
+  const drop=document.getElementById(cfg.dropId);
+  const button=document.getElementById(cfg.buttonId);
+  const result=document.getElementById(cfg.resultId);
+  const resultFile=document.getElementById(cfg.resultFileId);
+  const resultRows=document.getElementById(cfg.resultRowsId);
+  const resultTotal=document.getElementById(cfg.resultTotalId);
+  const resultHelp=document.getElementById(cfg.resultHelpId);
+
+  const showSelected=()=>{
+    const file=input?.files?.[0];
+    if(!file) return;
+    const err=validateAdminFile(file,cfg.expectedName);
+    if(err){ setAdminFileStatus(cfg.statusId,err,'error'); return; }
+    setAdminFileStatus(cfg.statusId,'Выбран файл: '+file.name);
+  };
+
+  if(input) input.addEventListener('change',showSelected);
+
+  if(drop && input){
+    ['dragenter','dragover'].forEach(evt=>drop.addEventListener(evt,e=>{
+      e.preventDefault();
+      e.stopPropagation();
+      drop.style.background='rgba(255,255,255,.72)';
+      drop.style.borderColor='var(--rose)';
+    }));
+    ['dragleave','drop'].forEach(evt=>drop.addEventListener(evt,e=>{
+      e.preventDefault();
+      e.stopPropagation();
+      drop.style.background='rgba(255,255,255,.38)';
+      drop.style.borderColor='#b8aaa4';
+    }));
+    drop.addEventListener('drop',e=>{
+      const files=e.dataTransfer?.files;
+      if(!files || !files[0]) return;
+      const dt=new DataTransfer();
+      dt.items.add(files[0]);
+      input.files=dt.files;
+      showSelected();
+    });
+  }
+
+  if(button){
+    button.addEventListener('click',async()=>{
+      const file=input?.files?.[0];
+      const validationError=validateAdminFile(file,cfg.expectedName);
+      if(validationError){
+        setAdminFileStatus(cfg.statusId,validationError,'error');
+        return;
+      }
+
+      const balanceTotal=await readBalanceGrandTotal(file);
+      const allowed=await ensureAdminState(true);
+      if(!allowed){
+        setAdminFileStatus(cfg.statusId,'Сессия администратора не подтверждена. Войдите снова под логином admin.','error');
+        return;
+      }
+
+      const oldText=button.textContent;
+      button.disabled=true;
+      button.textContent='Загрузка…';
+      setAdminFileStatus(cfg.statusId,'Загружаем сверку. Не закрывайте страницу…');
+
+      try{
+        const formData=new FormData();
+        formData.append('file',file,file.name);
+
+        const {data,error}=await supabaseClient.functions.invoke('import-sverka-final',{body:formData});
+        if(error){
+          let message=error.message || 'Ошибка вызова import-sverka-final.';
+          try{
+            const details=await error.context?.json?.();
+            if(details?.error) message=details.error;
+            else if(details?.message) message=details.message;
+          }catch(_){ }
+          throw new Error(message);
+        }
+        if(data?.success===false) throw new Error(data?.error || data?.message || 'Импорт завершился с ошибкой.');
+
+        const returnedKind=String(data?.reconciliation_kind || data?.kind || '').trim().toLowerCase();
+        if(returnedKind && returnedKind!==cfg.kind){
+          throw new Error(`Сервер определил тип сверки как ${returnedKind}, ожидался ${cfg.kind}.`);
+        }
+
+        const check=String(data?.check ?? '').trim().toUpperCase();
+        if(check && check!=='OK') throw new Error('Проверка импорта не пройдена: '+String(data?.check));
+
+        const rowsLoaded=Number(data?.rows_loaded ?? data?.rows_saved ?? data?.processed ?? data?.total_rows ?? NaN);
+        if(!Number.isFinite(rowsLoaded)) throw new Error('Сверка обработана, но сервер не вернул количество загруженных строк.');
+
+        const serverBalance=Number(data?.balance_total ?? data?.grand_total ?? NaN);
+        const displayBalance=Number.isFinite(serverBalance) ? serverBalance : balanceTotal.value;
+
+        if(resultFile) resultFile.textContent=file.name;
+        if(resultRows) resultRows.textContent=new Intl.NumberFormat('ru-RU').format(rowsLoaded);
+        if(resultTotal) resultTotal.textContent=displayBalance!==null && Number.isFinite(Number(displayBalance)) ? formatAdminRub(Number(displayBalance)) : '—';
+        if(result) result.style.display='block';
+        if(resultHelp) resultHelp.textContent=displayBalance!==null && Number.isFinite(Number(displayBalance))
+          ? `${cfg.kind==='old'?'Старая':'Актуальная'} сверка успешно обновлена. Общий итог взят с листа «Баланс».`
+          : `${cfg.kind==='old'?'Старая':'Актуальная'} сверка успешно обновлена. Общий итог определить не удалось.`;
+
+        setAdminFileStatus(
+          cfg.statusId,
+          displayBalance!==null && Number.isFinite(Number(displayBalance))
+            ? 'Готово. Сверка загружена успешно.'
+            : 'Готово. Сверка загружена, но общий итог не найден: '+(balanceTotal.error||'неизвестная причина'),
+          displayBalance!==null && Number.isFinite(Number(displayBalance))?'success':'warning'
+        );
+
+        rows=[];
+        accountLoadedForUserId=null;
+        mobilePage=1;
+      }catch(err){
+        console.error('Sverka import error:',err);
+        setAdminFileStatus(cfg.statusId,err?.message || 'Не удалось загрузить сверку.','error');
+      }finally{
+        button.disabled=false;
+        button.textContent=oldText;
+      }
+    });
+  }
+}
+
+adminImporters.forEach(setupAdminImporter);
+
+// ===== Admin: должники / рассылка / пользователи =====
+let currentAdminTab='sverka';
+let adminDebtors=[];
+let adminUsers=[];
+const selectedDebtorIds=new Set();
+let adminLoaded={debtors:false,users:false,mailing:false};
+
+function setAdminMessage(id,text='',type='info'){
+  const el=document.getElementById(id);
+  if(!el) return;
+  el.textContent=text;
+  el.className=`admin-message${text?` show ${type}`:''}`;
+}
+
+async function invokeAdminData(action,payload={}){
+  if(!currentSession?.access_token) throw new Error('Сессия администратора отсутствует.');
+  const {data,error}=await supabaseClient.functions.invoke('admin-data',{
+    body:{action,...payload},
+    headers:{Authorization:`Bearer ${currentSession.access_token}`}
+  });
+  if(error) throw new Error(await readFunctionError(error));
+  if(!data?.success) throw new Error(data?.error || 'Ошибка admin-data.');
+  return data;
+}
+
+function adminChannelsHtml(row){
+  const c=row?.channels || {};
+  return `<div class="channel-tags">
+    <span class="channel-tag ${c.email?'on':'off'}">EMAIL</span>
+    <span class="channel-tag ${c.telegram?'on':'off'}">TG</span>
+    <span class="channel-tag ${c.max?'on':'off'}">MAX</span>
+    <span class="channel-tag ${c.whatsapp?'on':'off'}">WA</span>
+  </div>`;
+}
+
+function adminStatusLabel(status){
+  if(status==='registered') return '<span class="status-pill registered">Зарегистрирован</span>';
+  if(status==='disabled') return '<span class="status-pill disabled">Отключён</span>';
+  return '<span class="status-pill pending">Ожидает регистрации</span>';
+}
+
+function setAdminTab(tab){
+  const allowed=['sverka','debtors','mailing','users'];
+  currentAdminTab=allowed.includes(tab)?tab:'sverka';
+  document.querySelectorAll('[data-admin-tab]').forEach(btn=>btn.classList.toggle('active',btn.dataset.adminTab===currentAdminTab));
+  document.querySelectorAll('[data-admin-view]').forEach(el=>el.classList.toggle('active',el.dataset.adminView===currentAdminTab));
+  if(currentAdminTab==='debtors') loadAdminDebtors(!adminLoaded.debtors);
+  if(currentAdminTab==='users') loadAdminUsers(!adminLoaded.users);
+  if(currentAdminTab==='mailing'){
+    refreshMailingPreview();
+    loadMailingLog(!adminLoaded.mailing);
+  }
+}
+
+document.querySelectorAll('[data-admin-tab]').forEach(btn=>btn.addEventListener('click',()=>setAdminTab(btn.dataset.adminTab)));
+
+async function loadAdminDashboard(){
+  if(!isAdminSession) return;
+  setAdminTab(currentAdminTab || 'sverka');
+}
+
+function renderDebtors(){
+  const body=document.getElementById('debtors-body');
+  if(!body) return;
+  const q=String(document.getElementById('debtors-search')?.value||'').trim().toLowerCase();
+  const list=adminDebtors.filter(d=>[d.login,d.name,d.phone,d.email].join(' ').toLowerCase().includes(q));
+  if(!list.length){
+    body.innerHTML='<tr><td colspan="7" class="admin-empty">Должники не найдены.</td></tr>';
+    return;
+  }
+  body.innerHTML=list.map(d=>{
+    const id=d.client_id==null?'':String(d.client_id);
+    const disabled=d.client_id==null?'disabled':'';
+    const checked=d.client_id!=null && selectedDebtorIds.has(Number(d.client_id))?'checked':'';
+    return `<tr>
+      <td class="admin-check-col"><input type="checkbox" data-debtor-id="${escapeHtml(id)}" ${checked} ${disabled}></td>
+      <td><strong>${escapeHtml(d.login||'—')}</strong></td>
+      <td>${escapeHtml(d.name||'—')}</td>
+      <td>${escapeHtml(d.phone||'—')}</td>
+      <td>${escapeHtml(d.email||'—')}</td>
+      <td>${adminChannelsHtml(d)}</td>
+      <td class="num"><strong>${formatRub(d.balance||0)}</strong></td>
+    </tr>`;
+  }).join('');
+  body.querySelectorAll('[data-debtor-id]').forEach(cb=>cb.addEventListener('change',()=>{
+    const id=Number(cb.dataset.debtorId);
+    if(!Number.isFinite(id)) return;
+    if(cb.checked) selectedDebtorIds.add(id); else selectedDebtorIds.delete(id);
+    updateSelectedDebtorsUI();
+  }));
+}
+
+function updateSelectedDebtorsUI(){
+  const count=document.getElementById('mailing-selected-count');
+  if(count) count.textContent=String(selectedDebtorIds.size);
+  refreshMailingPreview();
+  const selectAll=document.getElementById('debtors-select-all');
+  if(selectAll){
+    const selectable=adminDebtors.filter(d=>d.client_id!=null);
+    selectAll.checked=selectable.length>0 && selectable.every(d=>selectedDebtorIds.has(Number(d.client_id)));
+    selectAll.indeterminate=!selectAll.checked && selectable.some(d=>selectedDebtorIds.has(Number(d.client_id)));
+  }
+}
+
+async function loadAdminDebtors(force=false){
+  if(adminLoaded.debtors && !force){ renderDebtors(); updateSelectedDebtorsUI(); return; }
+  setAdminMessage('debtors-message','Загружаем список должников…','info');
+  try{
+    const data=await invokeAdminData('debtors');
+    adminDebtors=Array.isArray(data.debtors)?data.debtors:[];
+    document.getElementById('debtors-count').textContent=new Intl.NumberFormat('ru-RU').format(Number(data.debtors_count||0));
+    document.getElementById('debtors-total').textContent=`${formatRub(data.total_debt||0)} ₽`;
+    adminLoaded.debtors=true;
+    renderDebtors();
+    updateSelectedDebtorsUI();
+    setAdminMessage('debtors-message','');
+  }catch(err){
+    console.error(err);
+    setAdminMessage('debtors-message',err?.message||'Не удалось загрузить должников.','error');
+  }
+}
+
+document.getElementById('debtors-refresh')?.addEventListener('click',()=>loadAdminDebtors(true));
+document.getElementById('debtors-search')?.addEventListener('input',renderDebtors);
+document.getElementById('debtors-select-all')?.addEventListener('change',e=>{
+  const on=e.target.checked;
+  adminDebtors.forEach(d=>{ if(d.client_id!=null){ const id=Number(d.client_id); if(on) selectedDebtorIds.add(id); else selectedDebtorIds.delete(id); }});
+  renderDebtors();
+  updateSelectedDebtorsUI();
+});
+document.getElementById('debtors-to-mailing')?.addEventListener('click',()=>{
+  if(!selectedDebtorIds.size){ setAdminMessage('debtors-message','Выберите хотя бы одного клиента.','warn'); return; }
+  setAdminTab('mailing');
+});
+
+function mailingTemplate(nick='{nick}',balance='{balance}'){
+  return `Добрый день!\n\nСверка для ${nick}\nК оплате ${balance} руб.\n\n📋 Подробные расчёты уже доступны на сайте:\neuropa-sale.com\n\nПосле оплаты отправьте, пожалуйста, подтверждение платежа в ЛС.\nСпасибо, что выбираете EUROPA SALE! 🤍`;
+}
+
+function refreshMailingPreview(){
+  const preview=document.getElementById('mailing-preview');
+  if(!preview) return;
+  const selected=[...selectedDebtorIds];
+  if(selected.length===1){
+    const row=adminDebtors.find(d=>Number(d.client_id)===selected[0]);
+    preview.textContent=row?mailingTemplate(row.login||'{nick}',formatRub(row.balance||0)):mailingTemplate();
+  }else{
+    preview.textContent=mailingTemplate();
+  }
+  const count=document.getElementById('mailing-selected-count');
+  if(count) count.textContent=String(selected.length);
+}
+
+function renderMailingLog(log){
+  const el=document.getElementById('mailing-log');
+  if(!el) return;
+  if(!Array.isArray(log)||!log.length){ el.innerHTML='<div class="admin-empty">Отправок пока нет.</div>'; return; }
+  el.innerHTML=log.map(r=>{
+    const date=r.sent_at||r.created_at;
+    const when=date?new Date(date).toLocaleString('ru-RU'):'—';
+    return `<div class="mailing-log-row"><div><strong>${escapeHtml(r.nick||'—')} · ${formatRub(r.balance||0)} ₽ · ${escapeHtml(String(r.channel||'').toUpperCase())}</strong><small>${escapeHtml(when)}${r.error_text?` · ${escapeHtml(r.error_text)}`:''}</small></div><span class="mailing-status ${escapeHtml(r.status||'queued')}">${escapeHtml(r.status||'queued')}</span></div>`;
+  }).join('');
+}
+
+async function loadMailingLog(force=false){
+  if(adminLoaded.mailing&&!force) return;
+  try{
+    const data=await invokeAdminData('mailing_log');
+    renderMailingLog(data.log||[]);
+    adminLoaded.mailing=true;
+  }catch(err){
+    const el=document.getElementById('mailing-log');
+    if(el) el.innerHTML=`<div class="admin-empty">${escapeHtml(err?.message||'Не удалось загрузить журнал.')}</div>`;
+  }
+}
+
+document.getElementById('mailing-log-refresh')?.addEventListener('click',()=>loadMailingLog(true));
+document.getElementById('mailing-send')?.addEventListener('click',async()=>{
+  const ids=[...selectedDebtorIds];
+  if(!ids.length){ setAdminMessage('mailing-message','Сначала выберите должников в разделе «Должники».','warn'); return; }
+  const sendEmail=document.getElementById('mailing-email')?.checked===true;
+  const sendSocial=document.getElementById('mailing-social')?.checked===true;
+  if(!sendEmail&&!sendSocial){ setAdminMessage('mailing-message','Выберите email и/или соцсети.','warn'); return; }
+  const channelsLabel=[sendEmail?'email':null,sendSocial?'соцсети':null].filter(Boolean).join(' + ');
+  if(!confirm(`Отправить напоминание ${ids.length} клиентам через ${channelsLabel}?`)) return;
+  const btn=document.getElementById('mailing-send');
+  const old=btn.textContent; btn.disabled=true; btn.textContent='Отправляем…';
+  setAdminMessage('mailing-message','Идёт отправка. Не закрывайте страницу…','info');
+  try{
+    const {data,error}=await supabaseClient.functions.invoke('admin-mailing',{
+      body:{client_ids:ids,send_email:sendEmail,send_social:sendSocial},
+      headers:{Authorization:`Bearer ${currentSession.access_token}`}
+    });
+    if(error) throw new Error(await readFunctionError(error));
+    if(!data?.success) throw new Error(data?.error||'Ошибка рассылки.');
+    setAdminMessage('mailing-message',`Готово. Отправлено: ${data.sent||0}. Ошибок: ${data.failed||0}. Пропущено: ${data.skipped||0}.`,data.failed?'warn':'info');
+    adminLoaded.mailing=false;
+    await loadMailingLog(true);
+  }catch(err){
+    console.error(err);
+    setAdminMessage('mailing-message',err?.message||'Не удалось выполнить рассылку.','error');
+  }finally{ btn.disabled=false; btn.textContent=old; }
+});
+
+function renderUsers(){
+  const body=document.getElementById('users-body');
+  if(!body) return;
+  const q=String(document.getElementById('users-search')?.value||'').trim().toLowerCase();
+  const list=adminUsers.filter(u=>[u.login,u.name,u.phone,u.email].join(' ').toLowerCase().includes(q));
+  if(!list.length){ body.innerHTML='<tr><td colspan="7" class="admin-empty">Пользователи не найдены.</td></tr>'; return; }
+  body.innerHTML=list.map(u=>`<tr>
+    <td><strong>${escapeHtml(u.login||'—')}</strong></td>
+    <td>${escapeHtml(u.name||'—')}</td>
+    <td>${escapeHtml(u.phone||'—')}</td>
+    <td>${escapeHtml(u.email||'—')}</td>
+    <td>${adminStatusLabel(u.status)}</td>
+    <td>${adminChannelsHtml(u)}</td>
+    <td><div class="user-actions">
+      <button class="mini-action" data-user-edit="${u.client_id}">Изменить</button>
+      <button class="mini-action" data-user-toggle="${u.client_id}" data-disabled="${u.is_disabled?'1':'0'}">${u.is_disabled?'Включить':'Отключить'}</button>
+      ${u.auth_user_id&&u.email?`<button class="mini-action" data-user-reset="${u.client_id}">Сбросить пароль</button>`:''}
+      <button class="mini-action danger" data-user-delete="${u.client_id}">Удалить окончательно</button>
+    </div></td>
+  </tr>`).join('');
+
+  body.querySelectorAll('[data-user-edit]').forEach(btn=>btn.addEventListener('click',()=>openUserEditor(Number(btn.dataset.userEdit))));
+  body.querySelectorAll('[data-user-toggle]').forEach(btn=>btn.addEventListener('click',()=>toggleUserDisabled(Number(btn.dataset.userToggle),btn.dataset.disabled!=='1')));
+  body.querySelectorAll('[data-user-reset]').forEach(btn=>btn.addEventListener('click',()=>sendUserReset(Number(btn.dataset.userReset))));
+  body.querySelectorAll('[data-user-delete]').forEach(btn=>btn.addEventListener('click',()=>deleteUserPermanently(Number(btn.dataset.userDelete))));
+}
+
+async function loadAdminUsers(force=false){
+  if(adminLoaded.users&&!force){renderUsers();return;}
+  setAdminMessage('users-message','Загружаем пользователей…','info');
+  try{
+    const data=await invokeAdminData('users');
+    adminUsers=Array.isArray(data.users)?data.users:[];
+    document.getElementById('users-total').textContent=String(data.total||0);
+    document.getElementById('users-registered').textContent=String(data.registered||0);
+    document.getElementById('users-pending').textContent=String(data.pending||0);
+    document.getElementById('users-disabled').textContent=String(data.disabled||0);
+    adminLoaded.users=true;
+    renderUsers();
+    setAdminMessage('users-message','');
+  }catch(err){
+    console.error(err);
+    setAdminMessage('users-message',err?.message||'Не удалось загрузить пользователей.','error');
+  }
+}
+
+document.getElementById('users-refresh')?.addEventListener('click',()=>loadAdminUsers(true));
+document.getElementById('users-search')?.addEventListener('input',renderUsers);
+
+function resetUserEditor(){
+  ['user-client-id','user-login','user-name','user-phone','user-email','user-telegram','user-max','user-whatsapp'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
+  document.getElementById('user-email-notifications').checked=true;
+  document.getElementById('user-social-notifications').checked=false;
+  document.getElementById('user-telegram-notifications').checked=false;
+  document.getElementById('user-max-notifications').checked=false;
+  document.getElementById('user-whatsapp-notifications').checked=false;
+  document.getElementById('user-whatsapp-optin').checked=false;
+}
+function closeUserEditor(){ document.getElementById('user-editor').style.display='none'; resetUserEditor(); }
+function openUserEditor(clientId=null){
+  resetUserEditor();
+  const editor=document.getElementById('user-editor');
+  editor.style.display='block';
+  if(clientId){
+    const u=adminUsers.find(x=>Number(x.client_id)===Number(clientId));
+    if(!u) return;
+    document.getElementById('user-editor-title').textContent=`Пользователь · ${u.login||''}`;
+    document.getElementById('user-client-id').value=String(u.client_id);
+    document.getElementById('user-login').value=u.login||'';
+    document.getElementById('user-name').value=u.name||'';
+    document.getElementById('user-phone').value=u.phone||'';
+    document.getElementById('user-email').value=u.email||'';
+    document.getElementById('user-telegram').value=u.telegram_chat_id||'';
+    document.getElementById('user-max').value=u.max_user_id||'';
+    document.getElementById('user-whatsapp').value=u.whatsapp_phone||'';
+    document.getElementById('user-email-notifications').checked=u.email_notifications!==false;
+    document.getElementById('user-social-notifications').checked=u.social_notifications===true;
+    document.getElementById('user-telegram-notifications').checked=u.telegram_notifications===true;
+    document.getElementById('user-max-notifications').checked=u.max_notifications===true;
+    document.getElementById('user-whatsapp-notifications').checked=u.whatsapp_notifications===true;
+    document.getElementById('user-whatsapp-optin').checked=u.whatsapp_opt_in===true;
+  }else{
+    document.getElementById('user-editor-title').textContent='Добавить пользователя';
+  }
+  editor.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+document.getElementById('user-add')?.addEventListener('click',()=>openUserEditor());
+document.getElementById('user-editor-close')?.addEventListener('click',closeUserEditor);
+document.getElementById('user-editor-cancel')?.addEventListener('click',closeUserEditor);
+document.getElementById('user-save')?.addEventListener('click',async()=>{
+  const btn=document.getElementById('user-save'); const old=btn.textContent; btn.disabled=true; btn.textContent='Сохраняем…';
+  try{
+    const payload={
+      client_id:Number(document.getElementById('user-client-id').value||0)||null,
+      login:document.getElementById('user-login').value,
+      name:document.getElementById('user-name').value,
+      phone:document.getElementById('user-phone').value,
+      email:document.getElementById('user-email').value,
+      telegram_chat_id:document.getElementById('user-telegram').value,
+      max_user_id:document.getElementById('user-max').value,
+      whatsapp_phone:document.getElementById('user-whatsapp').value,
+      whatsapp_opt_in:document.getElementById('user-whatsapp-optin').checked,
+      email_notifications:document.getElementById('user-email-notifications').checked,
+      social_notifications:document.getElementById('user-social-notifications').checked,
+      telegram_notifications:document.getElementById('user-telegram-notifications').checked,
+      max_notifications:document.getElementById('user-max-notifications').checked,
+      whatsapp_notifications:document.getElementById('user-whatsapp-notifications').checked
+    };
+    await invokeAdminData('save_user',payload);
+    setAdminMessage('users-message','Данные пользователя сохранены.','info');
+    closeUserEditor();
+    adminLoaded.users=false; adminLoaded.debtors=false;
+    await loadAdminUsers(true);
+  }catch(err){ setAdminMessage('users-message',err?.message||'Не удалось сохранить пользователя.','error'); }
+  finally{ btn.disabled=false; btn.textContent=old; }
+});
+
+async function toggleUserDisabled(clientId,next){
+  const u=adminUsers.find(x=>Number(x.client_id)===clientId);
+  if(!confirm(`${next?'Отключить':'Включить'} пользователя ${u?.login||clientId}?`)) return;
+  try{ await invokeAdminData('toggle_disabled',{client_id:clientId,is_disabled:next}); adminLoaded.users=false; adminLoaded.debtors=false; await loadAdminUsers(true); }
+  catch(err){ setAdminMessage('users-message',err?.message||'Операция не выполнена.','error'); }
+}
+
+async function sendUserReset(clientId){
+  const u=adminUsers.find(x=>Number(x.client_id)===clientId);
+  if(!confirm(`Отправить письмо для сброса пароля пользователю ${u?.login||clientId}?`)) return;
+  try{ await invokeAdminData('send_reset',{client_id:clientId}); setAdminMessage('users-message','Письмо для восстановления пароля отправлено.','info'); }
+  catch(err){ setAdminMessage('users-message',err?.message||'Не удалось отправить письмо.','error'); }
+}
+
+async function deleteUserPermanently(clientId){
+  const u=adminUsers.find(x=>Number(x.client_id)===clientId);
+  if(!u) return;
+  if(!confirm(`Окончательно удалить пользователя ${u.login}? Аккаунт и контактные данные будут удалены.`)) return;
+  const typed=prompt(`Для подтверждения введите Ник пользователя:\n${u.login}`);
+  if(String(typed||'').trim()!==String(u.login||'').trim()){ setAdminMessage('users-message','Удаление отменено: Ник не совпал.','warn'); return; }
+  try{
+    const data=await invokeAdminData('delete_permanent',{client_id:clientId});
+    setAdminMessage('users-message',`Пользователь удалён окончательно. Позиции сверок сохранены: ${data.preserved_orders||0}.`,'info');
+    selectedDebtorIds.delete(clientId);
+    adminLoaded.users=false; adminLoaded.debtors=false;
+    await loadAdminUsers(true);
+  }catch(err){ setAdminMessage('users-message',err?.message||'Не удалось удалить пользователя.','error'); }
+}
+
+// EUROPA SALE logout
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const mobileAccountMenu = document.getElementById('mobile-account-menu');
+const mobileLogoutBtn = document.getElementById('mobile-logout-btn');
+
+if(mobileMenuBtn && mobileAccountMenu){
+  mobileMenuBtn.addEventListener('click',()=>mobileAccountMenu.classList.toggle('show'));
+  document.addEventListener('click',e=>{
+    if(!e.target.closest('.mobile-menu-wrap')) mobileAccountMenu.classList.remove('show');
+  });
+}
+
+if(mobileLogoutBtn){
+  mobileLogoutBtn.addEventListener('click',async()=>{
+    await supabaseClient.auth.signOut();
+    currentSession=null;
+    accountLoadedForUserId=null;
+    rows=[];
+    clearAdminState();
+    location.hash='login';
+  });
+}
+
+const logoutBtn = document.getElementById('logout-btn');
+
+function updateLogoutButton(session){
+  if(logoutBtn){ logoutBtn.style.display = session ? 'block' : 'none'; }
+  updateAdminNavigation();
+}
+
+if(logoutBtn){
+  logoutBtn.addEventListener('click', async()=>{
+    await supabaseClient.auth.signOut();
+    currentSession = null;
+    rows = [];
+    accountLoadedForUserId = null;
+    profileClientCache = null;
+    clearAdminState();
+    location.hash = 'login';
+    route();
+  });
+}
+
+supabaseClient.auth.getSession().then(({data})=>{
+  updateLogoutButton(data.session);
+});
+
+supabaseClient.auth.onAuthStateChange((event, session)=>{
+  updateLogoutButton(session);
+});
+</script>
+</body>
+</html>
