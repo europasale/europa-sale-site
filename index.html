@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#f8f3f1" />
   <title>EUROPA SALE</title>
   <meta name="description" content="EUROPA SALE — покупки из Германии, Италии и других стран Европы." />
-  <meta name="europa-sale-version" content="Index30.2.3_DATE_DESC" />
+  <meta name="europa-sale-version" content="EUROPA_SALE_20261012_CLIENT_CATALOGUES_DATE_DESC" />
   <style>
     :root{
       --bg:#f8f3f1;
@@ -453,6 +453,131 @@
       .notification-actions{align-items:flex-start;flex-direction:column}
       .notification-channel-row{margin-left:30px}
     }
+    /* EUROPA SALE · Editorial order section · six steps · 2026-10-08 */
+    #view-home #about,#view-home #how-to-order{scroll-margin-top:122px}
+    #how-to-order .es-order-heading{max-width:900px;margin-bottom:62px}
+    #how-to-order .es-order-heading h2{font-size:clamp(40px,4.6vw,72px);line-height:1.08;letter-spacing:-.045em;font-weight:400;margin:0}
+    #how-to-order .es-order-intro{max-width:800px;margin:24px 0 0;color:var(--muted);font-size:clamp(17px,1.65vw,22px);line-height:1.6}
+    #how-to-order .es-order-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:clamp(28px,4vw,64px);row-gap:48px;list-style:none;margin:0;padding:0}
+    #how-to-order .es-order-step{min-width:0;border-top:1px solid var(--line);padding-top:25px}
+    #how-to-order .es-order-number{display:block;margin-bottom:24px;color:#d7d1cd;font-size:clamp(56px,5.1vw,80px);line-height:1;letter-spacing:-.055em;font-weight:400;font-variant-numeric:tabular-nums}
+    #how-to-order .es-order-step h3{margin:0 0 14px;color:var(--text);font-size:22px;font-weight:500;letter-spacing:-.025em;line-height:1.3}
+    #how-to-order .es-order-step p{margin:0;color:var(--muted);font-size:16px;line-height:1.7}
+    #how-to-order .es-order-actions{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:58px}
+    #how-to-order .es-order-action{display:inline-flex;align-items:center;justify-content:center;gap:30px;min-height:58px;padding:17px 25px;border:1px solid var(--line);background:transparent;color:var(--text);font-size:13px;font-weight:500;line-height:1.3;letter-spacing:.07em;text-decoration:none;transition:background .18s ease,border-color .18s ease}
+    #how-to-order .es-order-action:hover{background:var(--paper);border-color:var(--muted)}
+    #how-to-order .es-order-action:focus-visible{outline:2px solid var(--text);outline-offset:5px}
+    #how-to-order .es-order-note{max-width:840px;margin:28px auto 0;color:var(--muted);font-size:13px;line-height:1.75;text-align:center}
+    #how-to-order .es-order-note strong{color:var(--text);font-weight:500}
+    @media(max-width:1100px){
+      #how-to-order .es-order-heading{margin-bottom:46px}
+      #how-to-order .es-order-grid{column-gap:30px;row-gap:40px}
+      #how-to-order .es-order-step h3{font-size:20px}
+      #how-to-order .es-order-step p{font-size:15px}
+    }
+    @media(max-width:860px){
+      #view-home #about,#view-home #how-to-order{scroll-margin-top:96px}
+    }
+    @media(max-width:700px){
+      #how-to-order .es-order-heading{margin-bottom:38px}
+      #how-to-order .es-order-heading h2{font-size:clamp(38px,10vw,52px)}
+      #how-to-order .es-order-intro{margin-top:20px;font-size:17px}
+      #how-to-order .es-order-grid{grid-template-columns:minmax(0,1fr);gap:0}
+      #how-to-order .es-order-step{padding:25px 0 28px}
+      #how-to-order .es-order-number{font-size:58px;margin-bottom:17px}
+      #how-to-order .es-order-step h3{font-size:21px;margin-bottom:10px}
+      #how-to-order .es-order-step p{font-size:15px;max-width:520px}
+      #how-to-order .es-order-step:last-child{border-bottom:1px solid var(--line)}
+      #how-to-order .es-order-actions{display:grid;grid-template-columns:1fr;gap:12px;margin-top:32px}
+      #how-to-order .es-order-action{width:100%;min-height:54px;justify-content:space-between;padding:17px 20px}
+      #how-to-order .es-order-note{margin-top:22px;text-align:left;font-size:12px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      #how-to-order .es-order-action{transition:none}
+    }
+
+    /* EUROPA SALE · Buyout request form · 2026-10-12 */
+    #how-to-order .es-order-request-link{display:inline-flex;align-items:center;gap:12px;border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent;color:var(--text);padding:0 0 6px;margin-top:22px;font-size:11px;font-weight:500;line-height:1.5;letter-spacing:.055em;cursor:pointer}
+    #how-to-order .es-order-request-link:hover{border-color:var(--text)}
+    #how-to-order .es-order-request-link:focus-visible{outline:2px solid var(--text);outline-offset:5px}
+    #how-to-order button.es-order-action{cursor:pointer;border-radius:0;font-family:inherit}
+    body.es-buyout-modal-open{overflow:hidden}
+    #es-buyout-dialog{display:none;width:min(620px,calc(100% - 32px));max-height:calc(100vh - 48px);max-height:calc(100dvh - 48px);overflow:auto;margin:auto;padding:40px;border:1px solid var(--line);border-radius:0;background:var(--paper);color:var(--text);box-shadow:0 24px 80px rgba(36,33,31,.12);font-family:inherit}
+    #es-buyout-dialog[open]{display:block}
+    #es-buyout-dialog::backdrop{background:rgba(36,33,31,.32)}
+    #es-buyout-dialog.es-buyout-fallback{position:fixed;inset:50% auto auto 50%;transform:translate(-50%,-50%);margin:0;z-index:100}
+    #es-buyout-overlay{position:fixed;inset:0;z-index:99;background:rgba(36,33,31,.32)}
+    #es-buyout-overlay[hidden]{display:none}
+    #es-buyout-dialog .es-buyout-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:22px;margin-bottom:12px}
+    #es-buyout-dialog .es-buyout-kicker{margin:0 0 12px;color:var(--muted);font-size:10px;letter-spacing:.16em;text-transform:uppercase}
+    #es-buyout-dialog h2{font-size:clamp(29px,3vw,38px);font-weight:400;letter-spacing:-.04em;line-height:1.15;margin:0}
+    #es-buyout-dialog .es-buyout-close{display:grid;place-items:center;flex:0 0 34px;width:34px;height:34px;border:1px solid var(--line);border-radius:0;background:transparent;color:var(--text);font-size:25px;font-weight:300;line-height:1;cursor:pointer}
+    #es-buyout-dialog .es-buyout-close:hover{background:var(--paper-2)}
+    #es-buyout-dialog .es-buyout-intro{margin:0 0 27px;color:var(--muted);font-size:14px;line-height:1.6;max-width:450px}
+    #es-buyout-dialog .es-buyout-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 20px}
+    #es-buyout-dialog .es-buyout-field{display:grid;gap:8px;align-content:start;min-width:0}
+    #es-buyout-dialog .es-buyout-full{grid-column:1/-1}
+    #es-buyout-dialog label{font-size:13px;font-weight:500;line-height:1.4}
+    #es-buyout-dialog .es-buyout-field input,#es-buyout-dialog .es-buyout-field textarea{width:100%;min-width:0;height:48px;border:1px solid var(--line);border-radius:0;background:#fff;color:var(--text);padding:12px 13px;font:inherit;font-size:14px;line-height:1.5;outline:none}
+    #es-buyout-dialog .es-buyout-field textarea{height:88px;min-height:88px;resize:vertical}
+    #es-buyout-dialog input:focus,#es-buyout-dialog textarea:focus{border-color:var(--text);box-shadow:0 0 0 1px var(--text)}
+    #es-buyout-dialog [aria-invalid="true"]{border-color:var(--rose)!important}
+    #es-buyout-dialog .es-buyout-help{margin:0;color:var(--muted);font-size:11px;line-height:1.5}
+    #es-buyout-dialog .es-buyout-error{margin:0;color:var(--rose-dark);font-size:12px;line-height:1.5}
+    #es-buyout-dialog .es-buyout-error:empty{display:none}
+    #es-buyout-dialog .es-buyout-submit{display:flex;width:100%;align-items:center;justify-content:space-between;gap:20px;margin-top:26px;min-height:54px;border:1px solid var(--text);border-radius:0;background:var(--text);color:#fff;padding:17px 20px;font:inherit;font-size:12px;font-weight:500;line-height:1.4;letter-spacing:.07em;cursor:pointer}
+    #es-buyout-dialog .es-buyout-submit:hover{background:#000}
+    #es-buyout-dialog .es-buyout-submit:disabled{opacity:.6;cursor:wait}
+    #es-buyout-dialog .es-buyout-send-note{margin:13px 0 0;color:var(--muted);font-size:11px;line-height:1.6}
+    #es-buyout-dialog .es-buyout-status{margin:20px 0 0;color:var(--text);font-size:13px;line-height:1.6}
+    #es-buyout-dialog .es-buyout-status:empty{display:none}
+    #es-buyout-dialog .es-buyout-output{padding-top:22px;margin-top:20px;border-top:1px solid var(--line)}
+    #es-buyout-dialog .es-buyout-output[hidden]{display:none}
+    #es-buyout-dialog .es-buyout-output label{display:block;margin-bottom:9px}
+    #es-buyout-dialog .es-buyout-preview{display:block;width:100%;height:190px;min-height:120px;resize:vertical;border:1px solid var(--line);border-radius:0;background:#fff;color:var(--text);padding:14px;font-family:inherit;font-size:13px;line-height:1.7}
+    #es-buyout-dialog .es-buyout-output-actions{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:14px}
+    #es-buyout-dialog .es-buyout-copy,#es-buyout-dialog .es-buyout-chat{display:inline-flex;align-items:center;gap:12px;padding:9px 0;border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent;color:var(--text);font:inherit;font-size:11px;letter-spacing:.045em;line-height:1.5;text-decoration:none;cursor:pointer}
+    #es-buyout-dialog .es-buyout-copy:hover,#es-buyout-dialog .es-buyout-chat:hover{border-color:var(--text)}
+    #es-buyout-dialog button:focus-visible,#es-buyout-dialog a:focus-visible{outline:2px solid var(--text);outline-offset:4px}
+    @media(max-width:560px){
+      #es-buyout-dialog{width:calc(100% - 24px);padding:26px 20px;max-height:calc(100vh - 24px);max-height:calc(100dvh - 24px)}
+      #es-buyout-dialog .es-buyout-fields{gap:16px 12px}
+      #es-buyout-dialog .es-buyout-field input,#es-buyout-dialog .es-buyout-field textarea{font-size:16px}
+      #es-buyout-dialog .es-buyout-intro{font-size:13px;margin-bottom:23px}
+      #es-buyout-dialog .es-buyout-close{flex-basis:30px;width:30px;height:30px}
+      #es-buyout-dialog .es-buyout-submit{font-size:11px}
+    }
+    @media(max-width:350px){
+      #es-buyout-dialog .es-buyout-fields{grid-template-columns:minmax(0,1fr)}
+    }
+
+    /* EUROPA SALE · Catalogue access and membership requests · 2026-10-12 */
+    #about .es-catalogue-panel{border-top:1px solid var(--line);margin-top:30px;padding-top:28px}
+    #about .es-catalogue-panel h3{margin:0 0 15px;font-size:clamp(23px,2.2vw,30px);font-weight:400;line-height:1.25;letter-spacing:-.035em;color:var(--text)}
+    #about .es-catalogue-description{font-size:15px;line-height:1.7;margin:0 0 22px}
+    #about .es-catalogue-guest{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+    #about .es-catalogue-action{display:inline-flex;align-items:center;justify-content:space-between;gap:18px;min-height:48px;padding:14px 16px;border:1px solid var(--line);text-decoration:none;color:var(--text);font-size:11px;font-weight:500;line-height:1.4;letter-spacing:.055em}
+    #about .es-catalogue-action:hover{background:var(--paper);border-color:var(--muted)}
+    #about .es-catalogue-member-note{margin:0 0 16px;font-size:13px;line-height:1.65;color:var(--muted)}
+    #about .es-catalogue-channels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    #about .es-catalogue-channel{display:flex;flex-direction:column;align-items:flex-start;gap:16px;min-width:0;min-height:106px;padding:20px 16px;border:1px solid var(--line);border-radius:0;background:transparent;color:var(--text);font-family:inherit;cursor:pointer;text-align:left}
+    #about .es-catalogue-channel strong{font-size:16px;font-weight:500}
+    #about .es-catalogue-channel span{font-size:9px;font-weight:500;letter-spacing:.045em;line-height:1.5}
+    #about .es-catalogue-channel:hover:not(:disabled){border-color:var(--muted);background:var(--paper)}
+    #about .es-catalogue-channel:disabled{opacity:.55;cursor:wait}
+    #about .es-catalogue-confirmation{margin:16px 0 0;font-size:12px}
+    #about .es-catalogue-status{margin:18px 0 0;font-size:13px;line-height:1.65;color:var(--muted)}
+    #about .es-catalogue-status:empty{display:none}
+    #about .es-catalogue-retry,#about .es-catalogue-chat{display:inline-flex;align-items:center;margin-top:16px;padding:0 0 6px;border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent;color:var(--text);font:inherit;font-size:11px;letter-spacing:.045em;line-height:1.6;text-decoration:none;cursor:pointer}
+    #about .es-catalogue-panel [hidden]{display:none!important}
+    #about .es-catalogue-panel a:focus-visible,#about .es-catalogue-panel button:focus-visible{outline:2px solid var(--text);outline-offset:5px}
+    @media(max-width:560px){
+      #about .es-catalogue-guest{display:grid;grid-template-columns:1fr;gap:10px}
+      #about .es-catalogue-channels{grid-template-columns:1fr;gap:10px}
+      #about .es-catalogue-channel{min-height:64px;flex-direction:row;align-items:center;justify-content:space-between;padding:17px 16px;gap:14px}
+      #about .es-catalogue-channel span{font-size:10px}
+    }
   </style>
 </head>
 <body>
@@ -460,10 +585,10 @@
   <header class="topbar">
     <div class="topbar-inner">
       <a class="brand" href="#home">EUROPA <span class="brand-sale">SALE</span></a>
-      <nav class="nav">
+      <nav class="nav" aria-label="Основная навигация">
         <a href="#home">Главная</a>
-        <a href="#home" onclick="setTimeout(()=>document.getElementById('about')?.scrollIntoView({behavior:'smooth'}),60)">О нас</a>
-        <a href="#home" onclick="setTimeout(()=>document.getElementById('how-to-order')?.scrollIntoView({behavior:'smooth'}),60)">Как заказать</a>
+        <a href="#about">О нас</a>
+        <a href="#how-to-order">Как заказать</a>
         <a href="#login">Вход</a>
         <a id="profile-nav-link" href="#profile" style="display:none;">Профиль</a>
         <a id="admin-nav-link" href="#admin" style="display:none;">Админ</a>
@@ -482,7 +607,7 @@
           <p class="hero-copy">Любимые бренды, продуманный выбор и находки из Германии и Италии — с доставкой к вам.</p>
           <div class="hero-actions">
             <a class="btn rose" href="#login">Открыть мою сверку <span aria-hidden="true">↗</span></a>
-            <a class="btn" href="#home" onclick="setTimeout(()=>document.getElementById('how-to-order')?.scrollIntoView({behavior:'smooth'}),60)">Как сделать заказ</a>
+            <a class="btn" href="#how-to-order">Как сделать заказ</a>
           </div>
           <div class="hero-countries" aria-label="География покупок">
             <span>Германия</span><span class="dot">•</span><span>Италия</span><span class="arrow">→ Россия</span>
@@ -498,28 +623,75 @@
           </div>
           <div class="home-copy">
             <p>EUROPA SALE помогает покупать одежду, обувь, аксессуары и другие товары в Германии, Италии и других странах Европы.</p>
-            <p>Мы собираем интересные предложения, выкупаем заказы и сопровождаем покупку до доставки. В личном кабинете доступна ваша сверка по позициям, суммам и посылкам.</p>
-            <div class="channels">
-              <a href="https://t.me/europa_sale" target="_blank" rel="noopener">Telegram</a>
-              <a href="https://chat.whatsapp.com/FPQN5EMbUf55pU4SSLnh6K?mode=gi_t" target="_blank" rel="noopener">WhatsApp</a>
-              <a href="https://max.ru/join/fP6-eaPP4ACeRRhY0_VcU4VeOe9TaUgKk7VjUJGHQQo" target="_blank" rel="noopener">MAX</a>
+            <p>Мы находим выгодные предложения, выкупаем покупки и сопровождаем их до доставки. В личном кабинете — ваша сверка по позициям, суммам и посылкам.</p>
+            <div class="es-catalogue-panel" id="es-catalogue-panel">
+              <h3>Каталоги скидок для клиентов</h3>
+              <p class="es-catalogue-description">После регистрации на сайте можно подать заявку на вступление в группы с каталогами скидок в Telegram, WhatsApp и MAX. Доступ в группы подтверждаем после рассмотрения заявки.</p>
+              <div class="es-catalogue-guest" data-catalogue-guest>
+                <a class="es-catalogue-action" href="#register">ЗАРЕГИСТРИРОВАТЬСЯ <span aria-hidden="true">→</span></a>
+                <a class="es-catalogue-action" href="#login">ВОЙТИ В КАБИНЕТ <span aria-hidden="true">→</span></a>
+              </div>
+              <div class="es-catalogue-member" data-catalogue-member hidden>
+                <p class="es-catalogue-member-note">Выберите группу, в которую хотите вступить. В заявку подставим Ник из вашего клиентского кабинета.</p>
+                <div class="es-catalogue-channels">
+                  <button class="es-catalogue-channel" type="button" data-catalogue-request="telegram" disabled><strong>Telegram</strong><span>ПОДАТЬ ЗАЯВКУ →</span></button>
+                  <button class="es-catalogue-channel" type="button" data-catalogue-request="whatsapp" disabled><strong>WhatsApp</strong><span>ПОДАТЬ ЗАЯВКУ →</span></button>
+                  <button class="es-catalogue-channel" type="button" data-catalogue-request="max" disabled><strong>MAX</strong><span>ПОДАТЬ ЗАЯВКУ →</span></button>
+                </div>
+                <p class="es-catalogue-member-note es-catalogue-confirmation">Заявка откроется в личном WhatsApp EUROPA SALE. Подтвердите отправку сообщения — мы проверим регистрацию и сообщим, как вступить в группу.</p>
+              </div>
+              <p class="es-catalogue-status" id="es-catalogue-status" role="status" aria-live="polite"></p>
+              <button class="es-catalogue-retry" id="es-catalogue-retry" type="button" hidden>ПОВТОРИТЬ ПРОВЕРКУ →</button>
+              <a class="es-catalogue-chat" id="es-catalogue-chat" target="_blank" rel="noopener noreferrer" hidden>ОТКРЫТЬ WHATSAPP С ЗАЯВКОЙ →</a>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="home-section" id="how-to-order">
-        <div class="container home-section-grid">
-          <div>
-            <div class="section-eyebrow">Как заказать</div>
-            <h2>Просто.<em>Шаг за шагом.</em></h2>
+      <section class="home-section es-order" id="how-to-order" aria-labelledby="es-order-title">
+        <div class="container">
+          <div class="es-order-heading">
+            <h2 id="es-order-title">Как заказать</h2>
+            <p class="es-order-intro">Покупки из Германии, Италии и других стран Европы — просто и прозрачно.</p>
           </div>
-          <div class="steps">
-            <div class="step"><div class="step-num">01</div><div><strong>Выберите товар</strong><span>Отправьте ссылку или выбранную позицию в удобный канал EUROPA SALE.</span></div></div>
-            <div class="step"><div class="step-num">02</div><div><strong>Подтвердите выкуп</strong><span>Мы уточним стоимость, размер, цвет и условия покупки.</span></div></div>
-            <div class="step"><div class="step-num">03</div><div><strong>Следите за сверкой</strong><span>Все ваши позиции отображаются в личном кабинете и не объединяются между собой.</span></div></div>
-            <div class="step"><div class="step-num">04</div><div><strong>Получите заказ</strong><span>После доставки в Россию согласуем дальнейшую отправку.</span></div></div>
+          <ol class="es-order-grid" aria-label="Шесть шагов заказа">
+            <li class="es-order-step">
+              <span class="es-order-number" aria-hidden="true">01</span>
+              <h3>Выберите товар</h3>
+              <p>Найдите нужную вещь в европейском интернет-магазине.</p>
+            </li>
+            <li class="es-order-step">
+              <span class="es-order-number" aria-hidden="true">02</span>
+              <h3>Отправьте нам ссылку</h3>
+              <p>Укажите ссылку на товар, размер и цвет. Для заказа используйте свой постоянный Ник EUROPA SALE.</p>
+              <button class="es-order-request-link" type="button" data-buyout-open aria-controls="es-buyout-dialog" aria-haspopup="dialog">ЗАПРОСИТЬ ВЫКУП <span aria-hidden="true">→</span></button>
+            </li>
+            <li class="es-order-step">
+              <span class="es-order-number" aria-hidden="true">03</span>
+              <h3>Подтверждаем выкуп</h3>
+              <p>Мы проверяем товар и сообщаем актуальную информацию по заказу.</p>
+            </li>
+            <li class="es-order-step">
+              <span class="es-order-number" aria-hidden="true">04</span>
+              <h3>Выкупаем в Европе</h3>
+              <p>После подтверждения заказ оформляется в европейском магазине.</p>
+            </li>
+            <li class="es-order-step">
+              <span class="es-order-number" aria-hidden="true">05</span>
+              <h3>Доставка</h3>
+              <p>Покупка поступает в обработку и далее отправляется в Россию.</p>
+            </li>
+            <li class="es-order-step">
+              <span class="es-order-number" aria-hidden="true">06</span>
+              <h3>Следите в личном кабинете</h3>
+              <p>Ваши покупки, суммы и информация по посылкам отображаются в личном кабинете EUROPA SALE.</p>
+            </li>
+          </ol>
+          <div class="es-order-actions">
+            <button class="es-order-action" type="button" data-buyout-open aria-controls="es-buyout-dialog" aria-haspopup="dialog">ОТПРАВИТЬ ССЫЛКУ <span aria-hidden="true">→</span></button>
+            <a class="es-order-action" href="#login">МОЙ КАБИНЕТ <span aria-hidden="true">→</span></a>
           </div>
+          <p class="es-order-note"><strong>Важно:</strong> при регистрации используйте тот же Ник, под которым оформляете покупки в EUROPA SALE. Так заказы автоматически появятся в вашем личном кабинете.</p>
         </div>
       </section>
     </section>
@@ -730,17 +902,17 @@
               <label class="messenger-choice">
                 <span class="messenger-choice-head"><input id="profile-telegram" type="checkbox"><strong>Telegram</strong></span>
                 <span class="messenger-status" id="profile-telegram-status">Не подключено</span>
-                <a class="messenger-link" href="https://t.me/europa_sale" target="_blank" rel="noopener">Открыть Telegram ↗</a>
+                <a class="messenger-link" href="#about">Каталоги · подать заявку →</a>
               </label>
               <label class="messenger-choice">
                 <span class="messenger-choice-head"><input id="profile-max" type="checkbox"><strong>MAX</strong></span>
                 <span class="messenger-status" id="profile-max-status">Не подключено</span>
-                <a class="messenger-link" href="https://max.ru/join/fP6-eaPP4ACeRRhY0_VcU4VeOe9TaUgKk7VjUJGHQQo" target="_blank" rel="noopener">Открыть MAX ↗</a>
+                <a class="messenger-link" href="#about">Каталоги · подать заявку →</a>
               </label>
               <label class="messenger-choice">
                 <span class="messenger-choice-head"><input id="profile-whatsapp" type="checkbox"><strong>WhatsApp</strong></span>
                 <span class="messenger-status" id="profile-whatsapp-status">Используется телефон из профиля</span>
-                <a class="messenger-link" href="https://chat.whatsapp.com/FPQN5EMbUf55pU4SSLnh6K?mode=gi_t" target="_blank" rel="noopener">Открыть WhatsApp ↗</a>
+                <a class="messenger-link" href="#about">Каталоги · подать заявку →</a>
               </label>
             </div>
 
@@ -915,10 +1087,61 @@
   <footer class="footer">
     <div class="container footer-inner">
       <span>europa-sale.com · EUROPA SALE</span>
-      <span><a href="#home">Главная</a> · <a href="#login">Моя сверка</a></span>
+      <span><a href="#home">Главная</a> · <a href="#how-to-order">Как заказать</a> · <a href="#login">Моя сверка</a></span>
     </div>
   </footer>
 </div>
+
+
+<div id="es-buyout-overlay" hidden aria-hidden="true"></div>
+<dialog id="es-buyout-dialog" aria-labelledby="es-buyout-title" aria-describedby="es-buyout-intro" aria-modal="true" data-whatsapp-url="https://wa.me/79039114172">
+  <div class="es-buyout-heading">
+    <div>
+      <p class="es-buyout-kicker">EUROPA SALE · ваш запрос</p>
+      <h2 id="es-buyout-title">Запросить выкуп</h2>
+    </div>
+    <button class="es-buyout-close" id="es-buyout-close" type="button" aria-label="Закрыть форму">×</button>
+  </div>
+  <p class="es-buyout-intro" id="es-buyout-intro">Расскажите, какую вещь хотите заказать. Подготовим сообщение для вашего байера.</p>
+  <form id="es-buyout-form" novalidate>
+    <div class="es-buyout-fields">
+      <div class="es-buyout-field es-buyout-full">
+        <label for="es-buyout-url">Ссылка на товар *</label>
+        <input id="es-buyout-url" name="product_url" type="url" inputmode="url" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="2048" placeholder="https://…" required aria-describedby="es-buyout-url-error" autofocus>
+        <p class="es-buyout-error" id="es-buyout-url-error"></p>
+      </div>
+      <div class="es-buyout-field">
+        <label for="es-buyout-size">Размер</label>
+        <input id="es-buyout-size" name="size" type="text" autocomplete="off" maxlength="80" placeholder="Например, M или 38">
+      </div>
+      <div class="es-buyout-field">
+        <label for="es-buyout-color">Цвет</label>
+        <input id="es-buyout-color" name="color" type="text" autocomplete="off" maxlength="80" placeholder="Название цвета">
+      </div>
+      <div class="es-buyout-field es-buyout-full">
+        <label for="es-buyout-comment">Комментарий</label>
+        <textarea id="es-buyout-comment" name="comment" maxlength="1000" placeholder="Детали или вопрос по товару"></textarea>
+      </div>
+      <div class="es-buyout-field es-buyout-full">
+        <label for="es-buyout-nick">Ваш Ник EUROPA SALE *</label>
+        <input id="es-buyout-nick" name="nick" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="100" placeholder="Ваш постоянный Ник" required aria-describedby="es-buyout-nick-help es-buyout-nick-error">
+        <p class="es-buyout-help" id="es-buyout-nick-help">Тот же Ник, который используете для покупок и личного кабинета.</p>
+        <p class="es-buyout-error" id="es-buyout-nick-error"></p>
+      </div>
+    </div>
+    <button class="es-buyout-submit" id="es-buyout-submit" type="submit">ОТПРАВИТЬ ЗАПРОС <span aria-hidden="true">→</span></button>
+    <p class="es-buyout-send-note">Откроем личный чат WhatsApp EUROPA SALE с готовым запросом. Проверьте сообщение и нажмите «Отправить».</p>
+  </form>
+  <p class="es-buyout-status" id="es-buyout-status" role="status" aria-live="polite"></p>
+  <div class="es-buyout-output" id="es-buyout-output" hidden>
+    <label for="es-buyout-preview">Ваш запрос</label>
+    <textarea class="es-buyout-preview" id="es-buyout-preview" readonly spellcheck="false"></textarea>
+    <div class="es-buyout-output-actions">
+      <button class="es-buyout-copy" id="es-buyout-copy" type="button">СКОПИРОВАТЬ <span aria-hidden="true">→</span></button>
+      <a class="es-buyout-chat" id="es-buyout-chat" href="https://wa.me/79039114172" target="_blank" rel="noopener noreferrer">ОТКРЫТЬ WHATSAPP <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</dialog>
 
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -1483,6 +1706,14 @@ function showView(view){
   const target=document.getElementById('view-'+view);
   if(target) target.classList.add('active');
   window.scrollTo({top:0,behavior:'instant'});
+  const homeSectionId=(location.hash||'').slice(1);
+  if(view==='home' && ['about','how-to-order'].includes(homeSectionId)){
+    window.requestAnimationFrame(()=>{
+      if(location.hash!=='#'+homeSectionId || !target?.classList.contains('active')) return;
+      const reducedMotion=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches===true;
+      document.getElementById(homeSectionId)?.scrollIntoView({behavior:reducedMotion?'instant':'smooth',block:'start'});
+    });
+  }
 }
 
 function setLoginMessage(text='',type='error'){
@@ -2597,6 +2828,328 @@ supabaseClient.auth.getSession().then(({data})=>{
 supabaseClient.auth.onAuthStateChange((event, session)=>{
   updateLogoutButton(session);
 });
+</script>
+
+<script id="es-buyout-interactions">
+(()=>{
+  const dialog=document.getElementById('es-buyout-dialog');
+  const form=document.getElementById('es-buyout-form');
+  const overlay=document.getElementById('es-buyout-overlay');
+  const status=document.getElementById('es-buyout-status');
+  const output=document.getElementById('es-buyout-output');
+  const preview=document.getElementById('es-buyout-preview');
+  const chat=document.getElementById('es-buyout-chat');
+  const submit=document.getElementById('es-buyout-submit');
+  const fields={
+    url:document.getElementById('es-buyout-url'),
+    size:document.getElementById('es-buyout-size'),
+    color:document.getElementById('es-buyout-color'),
+    comment:document.getElementById('es-buyout-comment'),
+    nick:document.getElementById('es-buyout-nick')
+  };
+  if(!dialog || !form || !overlay || !status || !output || !preview || !chat || !submit || Object.values(fields).some(el=>!el)) return;
+  const whatsappUrl=dialog.dataset.whatsappUrl;
+  let opener=null;
+  let busy=false;
+  let autofilledNick='';
+  const isOpen=()=>dialog.hasAttribute('open');
+
+  function clearError(key){
+    fields[key].removeAttribute('aria-invalid');
+    const error=document.getElementById('es-buyout-'+key+'-error');
+    if(error) error.textContent='';
+  }
+  function setError(key,message){
+    fields[key].setAttribute('aria-invalid','true');
+    document.getElementById('es-buyout-'+key+'-error').textContent=message;
+  }
+  function sessionNick(){
+    try{
+      if(typeof currentSession==='undefined' || !currentSession?.user) return '';
+      return String(currentSession.user.user_metadata?.login || '').trim();
+    }catch(_){return '';}
+  }
+  function restorePage(){
+    overlay.hidden=true;
+    dialog.classList.remove('es-buyout-fallback');
+    document.body.classList.remove('es-buyout-modal-open');
+    if(opener?.isConnected) opener.focus({preventScroll:true});
+  }
+  function closeDialog(){
+    if(!isOpen()) return;
+    if(typeof dialog.close==='function') dialog.close();
+    else{dialog.removeAttribute('open');restorePage();}
+  }
+  function openDialog(button){
+    if(isOpen()) return;
+    opener=button;
+    if(!fields.nick.value.trim() || fields.nick.value===autofilledNick){
+      fields.nick.value=sessionNick();
+      autofilledNick=fields.nick.value;
+    }
+    if(typeof dialog.showModal==='function') dialog.showModal();
+    else{
+      dialog.setAttribute('open','');
+      dialog.classList.add('es-buyout-fallback');
+      overlay.hidden=false;
+    }
+    document.body.classList.add('es-buyout-modal-open');
+    fields.url.focus({preventScroll:true});
+  }
+  document.querySelectorAll('[data-buyout-open]').forEach(button=>button.addEventListener('click',()=>openDialog(button)));
+  document.getElementById('es-buyout-close').addEventListener('click',closeDialog);
+  overlay.addEventListener('click',closeDialog);
+  dialog.addEventListener('close',restorePage);
+  dialog.addEventListener('click',event=>{
+    if(event.target!==dialog) return;
+    const box=dialog.getBoundingClientRect();
+    if(event.clientX<box.left || event.clientX>box.right || event.clientY<box.top || event.clientY>box.bottom) closeDialog();
+  });
+  dialog.addEventListener('keydown',event=>{
+    if(event.key==='Escape' && dialog.classList.contains('es-buyout-fallback')){
+      event.preventDefault();closeDialog();return;
+    }
+    if(event.key!=='Tab') return;
+    const controls=Array.from(dialog.querySelectorAll('button:not([disabled]),a[href],input,textarea')).filter(el=>el.getClientRects().length);
+    if(!controls.length) return;
+    const first=controls[0],last=controls[controls.length-1];
+    if(event.shiftKey && document.activeElement===first){event.preventDefault();last.focus();}
+    else if(!event.shiftKey && document.activeElement===last){event.preventDefault();first.focus();}
+  });
+  window.addEventListener('hashchange',closeDialog);
+  ['url','nick'].forEach(key=>fields[key].addEventListener('input',()=>clearError(key)));
+  form.addEventListener('input',()=>{
+    if(busy) return;
+    output.hidden=true;
+    chat.href=whatsappUrl;
+    status.textContent='';
+  });
+
+  function validate(){
+    clearError('url');clearError('nick');
+    const url=fields.url.value.trim();
+    const nick=fields.nick.value.trim();
+    let firstInvalid=null;
+    if(!url){
+      setError('url','Добавьте ссылку на товар.');firstInvalid=fields.url;
+    }else{
+      try{
+        const parsed=new URL(url);
+        if(!['http:','https:'].includes(parsed.protocol) || !parsed.hostname || url.length>2048 || /[\s\u0000-\u001f\u007f]/u.test(url)) throw new Error('Invalid URL');
+      }catch(_){setError('url','Укажите полную ссылку на товар, начиная с https:// или http://.');firstInvalid=fields.url;}
+    }
+    if(!nick || nick.length>100 || /[\u0000-\u001f\u007f]/u.test(nick)){
+      setError('nick','Укажите ваш постоянный Ник EUROPA SALE.');
+      firstInvalid=firstInvalid || fields.nick;
+    }
+    if(firstInvalid){firstInvalid.focus({preventScroll:true});return null;}
+    return {url,nick,size:fields.size.value.trim().slice(0,80),color:fields.color.value.trim().slice(0,80),comment:fields.comment.value.trim().slice(0,1000)};
+  }
+  function messageFor(data){
+    return [
+      'Здравствуйте! Хочу запросить выкуп в EUROPA SALE.',
+      '',
+      'Мой Ник: '+data.nick,
+      'Ссылка на товар: '+data.url,
+      'Размер: '+(data.size || 'не указан'),
+      'Цвет: '+(data.color || 'не указан'),
+      ...(data.comment ? ['', 'Комментарий: '+data.comment] : [])
+    ].join('\n');
+  }
+  async function copyRequest(){
+    if(navigator.clipboard?.writeText){
+      try{await navigator.clipboard.writeText(preview.value);return true;}catch(_){}
+    }
+    preview.focus({preventScroll:true});
+    preview.select();
+    preview.setSelectionRange(0,preview.value.length);
+    try{return document.execCommand('copy')===true;}catch(_){return false;}
+  }
+  function reportCopy(copied){
+    status.textContent=copied
+      ? 'Текст запроса скопирован. В личном чате WhatsApp проверьте сообщение и нажмите «Отправить».'
+      : 'Текст запроса выделен ниже. Его можно скопировать вручную. По кнопке «Открыть WhatsApp» запрос уже добавлен в личный чат.';
+  }
+  form.addEventListener('submit',event=>{
+    event.preventDefault();
+    if(busy) return;
+    const data=validate();
+    if(!data) return;
+    busy=true;submit.disabled=true;
+    try{
+      preview.value=messageFor(data);
+      const destination=new URL(whatsappUrl);
+      destination.searchParams.set('text',preview.value);
+      chat.href=destination.href;
+      output.hidden=false;
+      status.textContent='Запрос подготовлен для личного WhatsApp EUROPA SALE. В чате проверьте сообщение и нажмите «Отправить».';
+      // Open within the submit gesture, independently of clipboard permissions.
+      try{window.open(chat.href,'_blank','noopener,noreferrer');}catch(_){}
+      // The same prefilled link remains visible if the browser blocks a new tab.
+    }finally{busy=false;submit.disabled=false;}
+  });
+  document.getElementById('es-buyout-copy').addEventListener('click',async()=>{
+    if(!preview.value || busy) return;
+    busy=true;
+    try{reportCopy(await copyRequest());}finally{busy=false;}
+  });
+})();
+</script>
+
+<script id="es-catalogue-access">
+(()=>{
+  const panel=document.getElementById('es-catalogue-panel');
+  const status=document.getElementById('es-catalogue-status');
+  const retry=document.getElementById('es-catalogue-retry');
+  const chat=document.getElementById('es-catalogue-chat');
+  if(!panel || !status || !retry || !chat) return;
+  const guest=panel.querySelector('[data-catalogue-guest]');
+  const member=panel.querySelector('[data-catalogue-member]');
+  const buttons=Array.from(panel.querySelectorAll('[data-catalogue-request]'));
+  const channels={telegram:'Telegram',whatsapp:'WhatsApp',max:'MAX'};
+  const contact='https://wa.me/79039114172';
+  let api=null;
+  let state='guest';
+  let revision=0;
+  let sessionKey=null;
+  let pending=false;
+  try{if(typeof supabaseClient!=='undefined') api=supabaseClient;}catch(_){}
+
+  const tokenOf=session=>typeof session?.access_token==='string' ? session.access_token : '';
+  function render(){
+    guest.hidden=state==='client' || state==='checking';
+    member.hidden=state!=='client';
+    retry.hidden=state!=='error';
+    buttons.forEach(button=>{button.disabled=state!=='client' || pending;});
+  }
+  function clearPrepared(){
+    chat.hidden=true;
+    chat.removeAttribute('href');
+  }
+  function showState(next,message=''){
+    state=next;
+    status.textContent=message;
+    if(next!=='client') clearPrepared();
+    render();
+  }
+  function accessError(message,needsLogin=false){
+    const error=new Error(message);error.needsLogin=needsLogin;return error;
+  }
+  async function verifyClient(session){
+    const token=tokenOf(session);
+    if(!api || !token) throw accessError('Войдите в клиентский кабинет, чтобы подать заявку.',true);
+    // Validate the token with Auth; do not authorize from local session metadata.
+    const auth=await api.auth.getUser(token);
+    const user=auth.data?.user;
+    if(auth.error || !user?.id) throw accessError('Войдите в клиентский кабинет, чтобы подать заявку.',true);
+    const response=await api.functions.invoke('get-my-orders',{
+      body:{reconciliation_kind:'current'},
+      headers:{Authorization:'Bearer '+token}
+    });
+    if(response.error || response.data?.success!==true){
+      throw accessError('Не удалось подтвердить клиентский кабинет. Повторите проверку или войдите заново.');
+    }
+    const client=response.data.client;
+    const nick=typeof client?.login==='string' ? client.login.trim() : '';
+    if(!nick || client.is_disabled===true || client.is_blocked===true || (client.auth_user_id && client.auth_user_id!==user.id)){
+      throw accessError('Заявки доступны только клиентам с активным зарегистрированным кабинетом.');
+    }
+    return {nick,userId:user.id};
+  }
+  async function verifyForDisplay(session,run){
+    try{
+      await verifyClient(session);
+      if(run!==revision) return;
+      const latest=await api.auth.getSession();
+      if(run!==revision) return;
+      if(latest.error) throw accessError('Не удалось проверить вход. Повторите проверку.');
+      if(tokenOf(latest.data?.session)!==tokenOf(session)){
+        applySession(latest.data?.session || null);return;
+      }
+      showState('client');
+    }catch(error){
+      if(run!==revision) return;
+      showState(error.needsLogin?'guest':'error',error.message || 'Не удалось проверить доступ к каталогам.');
+    }
+  }
+  function applySession(session,force=false){
+    const key=tokenOf(session);
+    if(!force && key===sessionKey){render();return;}
+    sessionKey=key;
+    const run=++revision;
+    clearPrepared();
+    if(!key){showState('guest');return;}
+    showState('checking','Проверяем клиентский кабинет…');
+    // Run network calls outside the synchronous Auth event callback.
+    setTimeout(()=>{verifyForDisplay(session,run);},0);
+  }
+  async function refresh(){
+    if(!api){showState('error','Сервис входа недоступен. Обновите страницу и войдите в кабинет.');return;}
+    try{
+      const session=await api.auth.getSession();
+      if(session.error) throw new Error('Не удалось проверить вход. Повторите попытку.');
+      applySession(session.data?.session || null,true);
+    }catch(error){showState('error',error.message || 'Не удалось проверить вход.');}
+  }
+  async function request(channel){
+    if(pending || !Object.hasOwn(channels,channel)) return;
+    if(!api){showState('error','Сервис входа недоступен. Обновите страницу.');return;}
+    pending=true;render();
+    let run=revision;
+    try{
+      const initial=await api.auth.getSession();
+      if(initial.error) throw accessError('Не удалось проверить вход. Повторите попытку.');
+      const session=initial.data?.session;
+      const token=tokenOf(session);
+      if(!token){
+        applySession(null,true);
+        status.textContent='Сначала войдите или зарегистрируйтесь, затем выберите каталог.';
+        location.hash='login';return;
+      }
+      if(token!==sessionKey){sessionKey=token;run=++revision;}
+      else run=revision;
+      clearPrepared();
+      showState('checking','Проверяем регистрацию перед подготовкой заявки…');
+      const client=await verifyClient(session);
+      if(run!==revision) return;
+      const latest=await api.auth.getSession();
+      if(run!==revision) return;
+      if(latest.error) throw accessError('Не удалось проверить вход. Повторите попытку.');
+      if(tokenOf(latest.data?.session)!==token){applySession(latest.data?.session || null,true);return;}
+      const message=[
+        'Здравствуйте! Хочу подать заявку на вступление в группу с каталогами скидок EUROPA SALE.',
+        '',
+        'Мой Ник EUROPA SALE: '+client.nick,
+        'Группа: '+channels[channel],
+        '',
+        'Клиентский кабинет зарегистрирован. Прошу рассмотреть заявку и подтвердить доступ.'
+      ].join('\n');
+      const destination=new URL(contact);
+      destination.searchParams.set('text',message);
+      showState('client','Заявка подготовлена. Подтвердите отправку в личном WhatsApp EUROPA SALE. После проверки мы сообщим, как вступить в группу.');
+      chat.href=destination.href;
+      chat.hidden=false;
+      try{window.open(destination.href,'_blank','noopener,noreferrer');}catch(_){}
+    }catch(error){
+      if(run!==revision) return;
+      showState(error.needsLogin?'guest':'error',error.message || 'Не удалось подготовить заявку.');
+      if(error.needsLogin) location.hash='login';
+    }finally{pending=false;render();}
+  }
+  buttons.forEach(button=>button.addEventListener('click',()=>{request(button.dataset.catalogueRequest);}));
+  retry.addEventListener('click',refresh);
+  render();
+  if(!api){showState('error','Сервис входа недоступен. Обновите страницу и войдите в кабинет.');return;}
+  api.auth.onAuthStateChange((_event,session)=>{applySession(session);});
+  const initialRevision=revision;
+  api.auth.getSession().then(result=>{
+    if(revision!==initialRevision) return;
+    if(result.error){showState('error','Не удалось проверить вход. Повторите проверку.');return;}
+    applySession(result.data?.session || null);
+  }).catch(()=>{
+    if(revision===initialRevision) showState('error','Не удалось проверить вход. Повторите проверку.');
+  });
+})();
 </script>
 </body>
 </html>
