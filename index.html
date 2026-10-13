@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#f8f3f1" />
   <title>EUROPA SALE</title>
   <meta name="description" content="EUROPA SALE — покупки из Германии, Италии и других стран Европы." />
-  <meta name="europa-sale-version" content="EUROPA_SALE_20261013_SINGLE_CLICK_NAV_BRANDS_15_SHOPS_SALES_CALCULATOR_CLIENT_CATALOGUES_DATE_DESC" />
+  <meta name="europa-sale-version" content="EUROPA_SALE_20261013_REGISTRATION_LINK_RETRY_SINGLE_CLICK_NAV_BRANDS_15_SHOPS_SALES_CALCULATOR_CLIENT_CATALOGUES_DATE_DESC" />
   <style>
     :root{
       --bg:#f8f3f1;
@@ -690,6 +690,12 @@
       #where-we-buy .es-store-description,#where-we-buy .es-sources-note{font-size:14px}
       #where-we-buy .es-sales-group{margin-top:46px;padding-top:44px}
     }
+
+    /* Personal reconciliation refresh */
+    #account-refresh{appearance:none;min-height:50px;padding:12px 18px;border:1px solid var(--line);border-radius:0;background:transparent;color:var(--text);font-size:13px;cursor:pointer}
+    #account-refresh:hover{background:var(--paper)}
+    #account-refresh:focus-visible{outline:2px solid var(--text);outline-offset:4px}
+    #account-refresh[disabled]{opacity:.55;cursor:wait}
   </style>
 </head>
 <body>
@@ -1115,6 +1121,7 @@
 
         <div class="toolbar">
           <input class="search" id="search" type="search" placeholder="Поиск по товару, размеру или посылке">
+          <button class="account-refresh" id="account-refresh" type="button">Обновить сверку</button>
           <div class="small-meta" id="count-label">Загрузка…</div>
         </div>
 
@@ -1453,6 +1460,10 @@ let adminCheckedUserId = null;
 let rows = [];
 let accountLoadedForUserId = null;
 let accountLoading = false;
+let accountLoadedAt = 0;
+let accountRequestRevision = 0;
+let accountActiveRequest = null;
+const ACCOUNT_CACHE_MS = 15000;
 let currentReconciliationKind = 'current';
 let mobilePage = 1;
 const MOBILE_PAGE_SIZE = 10;
@@ -1735,82 +1746,107 @@ function render(filter=''){
   if(isMobile && data.length) hydrateVisibleProductImages(data);
 }
 
+function setAccountOrdersBusy(busy){
+  const button=document.getElementById('account-refresh');
+  if(button){button.disabled=busy;button.textContent=busy?'Обновляем…':'Обновить сверку';}
+  document.getElementById('view-account')?.setAttribute('aria-busy',String(busy));
+}
+
+function resetAccountOrdersCache(){
+  ++accountRequestRevision;
+  accountActiveRequest=null;
+  accountLoading=false;
+  accountLoadedForUserId=null;
+  accountLoadedAt=0;
+  rows=[];
+  mobilePage=1;
+  setAccountOrdersBusy(false);
+}
+
 async function loadMyOrders(force=false){
   const session=currentSession;
   const userId=session?.user?.id;
   if(!session || !userId) return;
-
-  const loadKey=`${userId}:${currentReconciliationKind}`;
-  if(!force && accountLoadedForUserId===loadKey){
+  const kind=currentReconciliationKind;
+  const loadKey=`${userId}:${kind}`;
+  if(!force && rows.length>0 && accountLoadedForUserId===loadKey && Date.now()-accountLoadedAt<ACCOUNT_CACHE_MS){
     render(document.getElementById('search')?.value || '');
     return;
   }
+  if(!force && accountActiveRequest?.key===loadKey) return accountActiveRequest.promise;
 
-  if(accountLoading) return;
+  const request={key:loadKey,revision:++accountRequestRevision,promise:null};
+  accountActiveRequest=request;
   accountLoading=true;
-
+  const stillCurrent=()=>request.revision===accountRequestRevision && currentSession?.user?.id===userId && currentReconciliationKind===kind;
   const note=document.getElementById('account-note');
   const count=document.getElementById('count-label');
+  const mobileCount=document.getElementById('mobile-count-label');
   const balance=document.getElementById('balance-total');
-
+  rows=[];
+  render('');
   if(note) note.textContent='Загружаем персональную сверку…';
   if(count) count.textContent='Загрузка…';
+  if(mobileCount) mobileCount.textContent='Загрузка…';
   if(balance) balance.textContent='—';
+  setAccountOrdersBusy(true);
 
-  try{
-    const {data,error}=await supabaseClient.functions.invoke(
-      'get-my-orders',
-      {
-        body:{reconciliation_kind:currentReconciliationKind},
-        headers:{
-          Authorization:`Bearer ${session.access_token}`
-        }
+  request.promise=(async()=>{
+    try{
+      const {data,error}=await supabaseClient.functions.invoke('get-my-orders',{
+        body:{reconciliation_kind:kind},
+        headers:{Authorization:`Bearer ${session.access_token}`}
+      });
+      if(!stillCurrent()) return;
+      if(error) throw new Error(await readFunctionError(error));
+      if(!data?.success) throw new Error(data?.error || 'Не удалось загрузить сверку.');
+      if(!Array.isArray(data.orders)) throw new Error('Не удалось получить строки сверки. Попробуйте обновить её.');
+      if(!stillCurrent()) return;
+
+      rows=sortReconciliationNewestFirst(data.orders.map(normalizeOrder));
+      mobilePage=1;
+      // Empty replies are never cached as a completed reconciliation.
+      accountLoadedForUserId=rows.length?loadKey:null;
+      accountLoadedAt=rows.length?Date.now():0;
+      const client=data.client || {};
+      const displayName=client.login || client.name || session.user.email || 'клиента';
+      const nameEl=document.getElementById('account-name');
+      if(nameEl) nameEl.textContent=displayName;
+      if(balance) balance.textContent=`${formatRub(data.total_rub || 0)} ₽`;
+      if(note){
+        note.textContent=kind==='old'
+          ? (rows.length?'Ваша старая сверка EUROPA SALE.':'В старой сверке нет позиций.')
+          : (rows.length?'Ваша актуальная сверка EUROPA SALE.':'Для вашего Ника пока нет позиций в актуальной сверке. Если покупки уже были, обратитесь в EUROPA SALE.');
       }
-    );
-
-    if(error){
-      throw new Error(await readFunctionError(error));
-    }
-    if(!data?.success){
-      throw new Error(data?.error || 'Не удалось загрузить сверку.');
-    }
-
-    rows=sortReconciliationNewestFirst((data.orders || []).map(normalizeOrder));
-    mobilePage=1;
-    accountLoadedForUserId=loadKey;
-
-    const client=data.client || {};
-    const displayName=client.login || client.name || session.user.email || 'клиента';
-    const nameEl=document.getElementById('account-name');
-    if(nameEl) nameEl.textContent=displayName;
-
-    if(balance) balance.textContent=`${formatRub(data.total_rub || 0)} ₽`;
-
-    if(note){
-      if(currentReconciliationKind==='old') {
-        note.textContent=rows.length
-          ? 'Ваша старая сверка EUROPA SALE.'
-          : 'В старой сверке нет позиций.';
-      } else {
-        note.textContent=rows.length
-          ? 'Ваша актуальная сверка EUROPA SALE.'
-          : 'Кабинет создан. После первой покупки здесь появится ваша сверка.';
+      render(document.getElementById('search')?.value || '');
+    }catch(err){
+      if(!stillCurrent()) return;
+      console.error('Load my orders error:',err);
+      rows=[];
+      accountLoadedForUserId=null;
+      accountLoadedAt=0;
+      const message=err?.message || 'Не удалось загрузить персональную сверку.';
+      if(note) note.textContent=message;
+      if(balance) balance.textContent='—';
+      render('');
+      if(count) count.textContent='Сверка не загружена';
+      if(mobileCount) mobileCount.textContent='Сверка не загружена';
+      const body=document.getElementById('table-body');
+      const cards=document.getElementById('cards');
+      if(body) body.innerHTML=`<tr><td colspan="9" style="padding:34px 18px;text-align:center;color:var(--muted)">${escapeHtml(message)}</td></tr>`;
+      if(cards) cards.innerHTML=`<div class="mobile-empty">${escapeHtml(message)}</div>`;
+    }finally{
+      if(accountActiveRequest===request){
+        accountActiveRequest=null;
+        accountLoading=false;
+        setAccountOrdersBusy(false);
       }
     }
-
-    render(document.getElementById('search')?.value || '');
-
-  }catch(err){
-    console.error('Load my orders error:',err);
-    rows=[];
-    accountLoadedForUserId=null;
-    if(balance) balance.textContent='0 ₽';
-    if(note) note.textContent=err?.message || 'Не удалось загрузить персональную сверку.';
-    render('');
-  }finally{
-    accountLoading=false;
-  }
+  })();
+  return request.promise;
 }
+
+document.getElementById('account-refresh')?.addEventListener('click',()=>{loadMyOrders(true);});
 
 function updateReconciliationTabs(){
   document.querySelectorAll('[data-reconciliation]').forEach(btn=>{
@@ -2256,6 +2292,7 @@ document.getElementById('login-form').addEventListener('submit',async e=>{
       }
 
       currentSession=sessionData.session;
+    resetAccountOrdersCache();
       isAdminSession=true;
       adminCheckedUserId=currentSession.user.id;
       updateAdminNavigation();
@@ -2289,6 +2326,7 @@ document.getElementById('login-form').addEventListener('submit',async e=>{
     }
 
     currentSession=sessionData.session;
+    resetAccountOrdersCache();
     adminCheckedUserId=null;
     await ensureAdminState(true);
 
@@ -2444,6 +2482,7 @@ document.getElementById('register-form').addEventListener('submit',async e=>{
     }
 
     currentSession=sessionData.session;
+    resetAccountOrdersCache();
     profileClientCache=null;
     updateAccountHeader();
     location.hash='account';
@@ -2501,7 +2540,9 @@ document.getElementById('reset-password-form').addEventListener('submit',async e
 });
 
 supabaseClient.auth.onAuthStateChange((event,session)=>{
+  const previousUserId=currentSession?.user?.id || null;
   currentSession=session;
+  if((session?.user?.id || null)!==previousUserId) resetAccountOrdersCache();
   if(event==='PASSWORD_RECOVERY'){
     authReady=true;
     history.replaceState(null,'',location.pathname+'#reset-password');
@@ -2750,9 +2791,7 @@ function setupAdminImporter(cfg){
           displayBalance!==null && Number.isFinite(Number(displayBalance))?'success':'warning'
         );
 
-        rows=[];
-        accountLoadedForUserId=null;
-        mobilePage=1;
+        resetAccountOrdersCache();
       }catch(err){
         console.error('Sverka import error:',err);
         setAdminFileStatus(cfg.statusId,err?.message || 'Не удалось загрузить сверку.','error');
