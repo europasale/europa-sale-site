@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#f8f3f1" />
   <title>EUROPA SALE</title>
   <meta name="description" content="EUROPA SALE — покупки из Германии, Италии и других стран Европы." />
-  <meta name="europa-sale-version" content="EUROPA_SALE_20261012_CLIENT_CATALOGUES_DATE_DESC" />
+  <meta name="europa-sale-version" content="EUROPA_SALE_20261013_BRANDS_15_SHOPS_SALES_CALCULATOR_CLIENT_CATALOGUES_DATE_DESC" />
   <style>
     :root{
       --bg:#f8f3f1;
@@ -578,6 +578,118 @@
       #about .es-catalogue-channel{min-height:64px;flex-direction:row;align-items:center;justify-content:space-between;padding:17px 16px;gap:14px}
       #about .es-catalogue-channel span{font-size:10px}
     }
+  
+    /* EUROPA SALE · Purchase calculator · 2026-10-13 */
+    #view-home #calculator{scroll-margin-top:122px}
+    #calculator .es-calc-heading{max-width:920px;margin-bottom:52px}
+    #calculator .es-calc-heading h2{font-size:clamp(40px,4.6vw,72px);line-height:1.08;letter-spacing:-.045em}
+    #calculator .es-calc-intro{max-width:740px;margin:24px 0 0;color:var(--muted);font-size:clamp(17px,1.5vw,21px);line-height:1.65}
+    #calculator .es-calc-layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(32px,5vw,80px);align-items:start}
+    #calculator .es-calc-form{min-width:0}
+    #calculator .es-calc-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 22px}
+    #calculator .es-calc-field{min-width:0}
+    #calculator .es-calc-field label{display:block;margin-bottom:10px;font-size:14px;line-height:1.5}
+    #calculator .es-calc-input-wrap{display:flex;align-items:center;min-width:0;border:1px solid var(--line);background:rgba(255,255,255,.5)}
+    #calculator .es-calc-input-wrap:focus-within{border-color:var(--text);box-shadow:0 0 0 1px var(--text)}
+    #calculator .es-calc-input-wrap:has(input[aria-invalid="true"]){border-color:var(--rose)}
+    #calculator .es-calc-input-wrap input{width:100%;min-width:0;height:62px;border:0;border-radius:0;background:transparent;padding:0 16px;outline:none;color:var(--text);font-size:22px;font-variant-numeric:tabular-nums}
+    #calculator .es-calc-input-wrap input::placeholder{color:var(--muted-2);font-size:14px}
+    #calculator .es-calc-unit{flex:0 0 auto;padding-right:16px;color:var(--muted);font-size:15px;white-space:nowrap}
+    #calculator .es-calc-hint{margin:8px 0 0;color:var(--muted);font-size:12px;line-height:1.55}
+    #calculator .es-calc-error{margin:7px 0 0;color:var(--rose-dark);font-size:12px;line-height:1.5}
+    #calculator .es-calc-error:empty{display:none}
+    #calculator .es-calc-delivery{margin-top:30px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    #calculator .es-calc-delivery summary{padding:20px 0;cursor:pointer;font-size:14px;line-height:1.5;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    #calculator .es-calc-delivery summary::-webkit-details-marker{display:none}
+    #calculator .es-calc-delivery summary::after{content:'+';color:var(--muted);font-size:23px;line-height:1}
+    #calculator .es-calc-delivery[open] summary::after{content:'−'}
+    #calculator .es-calc-delivery .es-calc-fields{padding:2px 0 22px}
+    #calculator .es-calc-actions{display:flex;align-items:center;gap:22px;margin-top:26px;flex-wrap:wrap}
+    #calculator .es-calc-submit{appearance:none;display:inline-flex;align-items:center;justify-content:space-between;gap:40px;min-height:58px;padding:16px 24px;border:1px solid var(--text);border-radius:0;background:var(--text);color:var(--paper);cursor:pointer;font-size:12px;letter-spacing:.07em;font-weight:500}
+    #calculator .es-calc-submit:hover{background:#000}
+    #calculator .es-calc-reset{appearance:none;background:transparent;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:6px 0;font-size:11px;letter-spacing:.06em;color:var(--muted);cursor:pointer}
+    #calculator .es-calc-reset:hover{color:var(--text);border-color:var(--text)}
+    #calculator .es-calc-result{min-width:0;background:var(--paper);border:1px solid var(--line);padding:clamp(24px,3.1vw,48px)}
+    #calculator .es-calc-kicker{margin:0 0 20px;color:var(--muted);font-size:11px;line-height:1.55;letter-spacing:.1em;text-transform:uppercase}
+    #calculator .es-calc-total{display:block;font-size:clamp(34px,3.7vw,60px);line-height:1.12;letter-spacing:-.045em;font-weight:400;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+    #calculator .es-calc-euro-total{min-height:22px;margin:14px 0 0;color:var(--muted);font-size:14px;line-height:1.6}
+    #calculator .es-calc-breakdown{margin:28px 0 0;border-top:1px solid var(--line)}
+    #calculator .es-calc-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;padding:15px 0;border-bottom:1px solid var(--line-soft);align-items:start;font-size:14px;line-height:1.5}
+    #calculator .es-calc-row dt{color:var(--muted);min-width:0}
+    #calculator .es-calc-row dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}
+    #calculator .es-calc-row small{display:block;margin-top:3px;color:var(--muted-2);font-size:11px;line-height:1.5}
+    #calculator .es-calc-note{margin:20px 0 0;color:var(--muted);font-size:12px;line-height:1.7}
+    #calculator .es-calc-contact{display:inline-flex;align-items:center;justify-content:space-between;gap:20px;width:100%;min-height:54px;margin-top:24px;padding:15px 17px;border:1px solid var(--line);text-decoration:none;font-size:11px;line-height:1.5;letter-spacing:.05em}
+    #calculator .es-calc-contact:hover{background:var(--paper-2);border-color:var(--muted)}
+    #calculator .es-calc-confirmation{margin:10px 0 0;color:var(--muted-2);font-size:11px;line-height:1.6}
+    #calculator summary:focus-visible,#calculator button:focus-visible,#calculator a:focus-visible{outline:2px solid var(--text);outline-offset:5px}
+    @media(min-width:861px) and (max-width:1280px){
+      .topbar .nav{flex-wrap:wrap;justify-content:flex-end;row-gap:6px}
+    }
+    @media(max-width:1000px){
+      #calculator .es-calc-layout{grid-template-columns:minmax(0,1fr);gap:36px}
+      #calculator .es-calc-result{max-width:760px;width:100%}
+    }
+    @media(max-width:860px){#view-home #calculator{scroll-margin-top:96px}}
+    @media(max-width:700px){
+      #calculator .es-calc-heading{margin-bottom:34px}
+      #calculator .es-calc-heading h2{font-size:clamp(38px,10vw,52px)}
+      #calculator .es-calc-intro{margin-top:20px;font-size:17px}
+      #calculator .es-calc-total{font-size:clamp(32px,8vw,48px)}
+      #calculator .es-calc-result{padding:24px 20px}
+      #calculator .es-calc-submit{flex:1}
+    }
+    @media(max-width:540px){
+      #calculator .es-calc-fields{grid-template-columns:minmax(0,1fr);gap:22px}
+      #calculator .es-calc-row{gap:14px;font-size:13px}
+      #calculator .es-calc-row dd{max-width:180px;overflow-wrap:anywhere}
+    }
+
+
+    /* EUROPA SALE · Brands and European stores · revised 2026-10-13 */
+    #view-home #brands,#view-home #where-we-buy,#view-home #european-shops,#view-home #closed-sales{scroll-margin-top:122px}
+    #brands{background:var(--paper)}
+    #brands .es-brands-heading{max-width:1000px;margin-bottom:54px}
+    #brands .es-brands-heading h2,#where-we-buy .es-stores-heading h2{font-size:clamp(40px,4.6vw,72px);line-height:1.08;letter-spacing:-.045em;font-weight:400}
+    #brands .es-brands-grid{list-style:none;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));column-gap:clamp(16px,3vw,48px);margin:0;padding:0}
+    #brands .es-brand-name{min-width:0;margin:0;border-top:1px solid var(--line);padding:24px 0 30px;font-size:clamp(18px,2vw,30px);line-height:1.3;letter-spacing:.015em;font-weight:400;overflow-wrap:break-word}
+    #brands .es-brands-note{margin:32px 0 0;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:16px;line-height:1.65}
+    #where-we-buy .es-sources-eyebrow{margin-bottom:24px}
+    #where-we-buy .es-stores-heading{max-width:1100px;margin-bottom:52px}
+    #where-we-buy .es-stores-grid{list-style:none;display:grid;gap:22px;margin:0;padding:0}
+    #where-we-buy .es-shops-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+    #where-we-buy .es-sales-grid{grid-template-columns:repeat(6,minmax(0,1fr))}
+    #where-we-buy .es-store-card{min-width:0;display:flex;flex-direction:column;padding:30px 28px 28px;border:1px solid var(--line);background:var(--paper)}
+    #where-we-buy .es-shop-card{min-height:170px}
+    #where-we-buy .es-sale-card{grid-column:span 2;min-height:240px}
+    #where-we-buy .es-sale-card:nth-last-child(-n+2){grid-column:span 3}
+    #where-we-buy .es-store-card h3{margin:0;font-size:clamp(22px,2vw,30px);line-height:1.25;font-weight:400;letter-spacing:.015em;overflow-wrap:break-word}
+    #where-we-buy .es-store-country{margin:14px 0 0;color:var(--muted);font-size:13px;line-height:1.55}
+    #where-we-buy .es-sale-card .es-store-country{margin-bottom:36px}
+    #where-we-buy .es-store-description{margin:auto 0 0;padding-top:20px;border-top:1px solid var(--line-soft);color:var(--muted);font-size:15px;line-height:1.65}
+    #where-we-buy .es-sources-note{margin:26px 0 0;color:var(--muted);font-size:15px;line-height:1.65}
+    #where-we-buy .es-sales-group{margin-top:76px;padding-top:66px;border-top:1px solid var(--line)}
+    @media(max-width:1100px){
+      #where-we-buy .es-shops-grid,#where-we-buy .es-sales-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+      #where-we-buy .es-sale-card,#where-we-buy .es-sale-card:nth-last-child(-n+2){grid-column:auto}
+      #where-we-buy .es-sale-card:last-child{grid-column:1/-1}
+    }
+    @media(max-width:860px){#view-home #brands,#view-home #where-we-buy,#view-home #european-shops,#view-home #closed-sales{scroll-margin-top:96px}}
+    @media(max-width:700px){
+      #brands .es-brands-heading,#where-we-buy .es-stores-heading{margin-bottom:36px}
+      #brands .es-brands-heading h2,#where-we-buy .es-stores-heading h2{font-size:clamp(38px,10vw,52px)}
+      #brands .es-brands-grid{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:24px}
+      #brands .es-brand-name{padding:20px 0 24px;font-size:clamp(20px,5.5vw,28px)}
+      #brands .es-brands-note{margin-top:22px;padding-top:22px;font-size:14px}
+      #where-we-buy .es-shops-grid,#where-we-buy .es-sales-grid{grid-template-columns:minmax(0,1fr);gap:14px}
+      #where-we-buy .es-store-card{padding:26px 22px 24px}
+      #where-we-buy .es-shop-card{min-height:150px}
+      #where-we-buy .es-sale-card,#where-we-buy .es-sale-card:nth-last-child(-n+2),#where-we-buy .es-sale-card:last-child{grid-column:auto;min-height:210px}
+      #where-we-buy .es-store-card h3{font-size:26px}
+      #where-we-buy .es-sale-card .es-store-country{margin-bottom:30px}
+      #where-we-buy .es-store-description,#where-we-buy .es-sources-note{font-size:14px}
+      #where-we-buy .es-sales-group{margin-top:46px;padding-top:44px}
+    }
   </style>
 </head>
 <body>
@@ -589,6 +701,7 @@
         <a href="#home">Главная</a>
         <a href="#about">О нас</a>
         <a href="#how-to-order">Как заказать</a>
+        <a href="#calculator">Калькулятор</a>
         <a href="#login">Вход</a>
         <a id="profile-nav-link" href="#profile" style="display:none;">Профиль</a>
         <a id="admin-nav-link" href="#admin" style="display:none;">Админ</a>
@@ -692,6 +805,181 @@
             <a class="es-order-action" href="#login">МОЙ КАБИНЕТ <span aria-hidden="true">→</span></a>
           </div>
           <p class="es-order-note"><strong>Важно:</strong> при регистрации используйте тот же Ник, под которым оформляете покупки в EUROPA SALE. Так заказы автоматически появятся в вашем личном кабинете.</p>
+        </div>
+      </section>
+
+      <section class="home-section" id="calculator" aria-labelledby="es-calc-title">
+        <div class="container">
+          <div class="es-calc-heading">
+            <h2 id="es-calc-title">Калькулятор покупки</h2>
+            <p class="es-calc-intro">Оцените стоимость покупки в Европе. Для расчёта используйте курс и комиссию, согласованные с EUROPA SALE.</p>
+          </div>
+          <div class="es-calc-layout">
+            <form class="es-calc-form" id="es-calc-form" novalidate>
+              <div class="es-calc-fields">
+                <div class="es-calc-field">
+                  <label for="es-calc-price">Цена товара, € *</label>
+                  <div class="es-calc-input-wrap"><input id="es-calc-price" name="price" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" maxlength="24" placeholder="Цена из магазина" required aria-describedby="es-calc-price-hint es-calc-price-error"><span class="es-calc-unit" aria-hidden="true">€</span></div>
+                  <p class="es-calc-hint" id="es-calc-price-hint">Цена одной вещи в европейском магазине.</p>
+                  <p class="es-calc-error" id="es-calc-price-error"></p>
+                </div>
+                <div class="es-calc-field">
+                  <label for="es-calc-commission">Комиссия за выкуп, % *</label>
+                  <div class="es-calc-input-wrap"><input id="es-calc-commission" name="commission" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" maxlength="24" placeholder="Согласованный процент" required aria-describedby="es-calc-commission-hint es-calc-commission-error"><span class="es-calc-unit" aria-hidden="true">%</span></div>
+                  <p class="es-calc-hint" id="es-calc-commission-hint">Процент от указанной цены товара.</p>
+                  <p class="es-calc-error" id="es-calc-commission-error"></p>
+                </div>
+                <div class="es-calc-field">
+                  <label for="es-calc-minimum">Минимальная комиссия, € *</label>
+                  <div class="es-calc-input-wrap"><input id="es-calc-minimum" name="minimum" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" maxlength="24" placeholder="0, если нет минимума" required aria-describedby="es-calc-minimum-hint es-calc-minimum-error"><span class="es-calc-unit" aria-hidden="true">€</span></div>
+                  <p class="es-calc-hint" id="es-calc-minimum-hint">Введите 0, если минимальная комиссия не применяется.</p>
+                  <p class="es-calc-error" id="es-calc-minimum-error"></p>
+                </div>
+                <div class="es-calc-field">
+                  <label for="es-calc-rate">Курс для расчёта, ₽ за € *</label>
+                  <div class="es-calc-input-wrap"><input id="es-calc-rate" name="rate" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" maxlength="24" placeholder="Согласованный курс" required aria-describedby="es-calc-rate-hint es-calc-rate-error"><span class="es-calc-unit" aria-hidden="true">₽ / €</span></div>
+                  <p class="es-calc-hint" id="es-calc-rate-hint">Сколько рублей в расчёте за один евро.</p>
+                  <p class="es-calc-error" id="es-calc-rate-error"></p>
+                </div>
+              </div>
+              <details class="es-calc-delivery" id="es-calc-delivery">
+                <summary>Добавить известные расходы на доставку</summary>
+                <div class="es-calc-fields">
+                  <div class="es-calc-field">
+                    <label for="es-calc-europe">Доставка по Европе, €</label>
+                    <div class="es-calc-input-wrap"><input id="es-calc-europe" name="europe" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" maxlength="24" placeholder="Если стоимость известна" aria-describedby="es-calc-europe-hint es-calc-europe-error"><span class="es-calc-unit" aria-hidden="true">€</span></div>
+                    <p class="es-calc-hint" id="es-calc-europe-hint">Пустое поле — доставка не учтена. 0 — без доплаты.</p>
+                    <p class="es-calc-error" id="es-calc-europe-error"></p>
+                  </div>
+                  <div class="es-calc-field">
+                    <label for="es-calc-russia">Доставка в Россию и до вас, ₽</label>
+                    <div class="es-calc-input-wrap"><input id="es-calc-russia" name="russia" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" maxlength="24" placeholder="Общая известная сумма" aria-describedby="es-calc-russia-hint es-calc-russia-error"><span class="es-calc-unit" aria-hidden="true">₽</span></div>
+                    <p class="es-calc-hint" id="es-calc-russia-hint">Пустое поле — доставка не учтена. 0 — без доплаты.</p>
+                    <p class="es-calc-error" id="es-calc-russia-error"></p>
+                  </div>
+                </div>
+              </details>
+              <div class="es-calc-actions">
+                <button class="es-calc-submit" type="submit">РАССЧИТАТЬ <span aria-hidden="true">→</span></button>
+                <button class="es-calc-reset" type="reset">СБРОСИТЬ</button>
+              </div>
+              <p class="es-calc-hint">* Обязательные поля. Если условия пока неизвестны, уточните их у EUROPA SALE.</p>
+              <noscript><p class="es-calc-note">Для расчёта включите JavaScript или напишите в личный WhatsApp EUROPA SALE.</p></noscript>
+            </form>
+            <div class="es-calc-result" role="region" aria-labelledby="es-calc-result-title">
+              <h3 class="es-calc-kicker" id="es-calc-result-title">Предварительная сумма</h3>
+              <output class="es-calc-total" id="es-calc-total" for="es-calc-price es-calc-commission es-calc-minimum es-calc-rate es-calc-europe es-calc-russia" aria-live="polite" aria-atomic="true">— ₽</output>
+              <p class="es-calc-euro-total" id="es-calc-euro-total">Введите цену и условия расчёта.</p>
+              <dl class="es-calc-breakdown">
+                <div class="es-calc-row"><dt>Товар</dt><dd id="es-calc-price-result">—</dd></div>
+                <div class="es-calc-row"><dt>Комиссия <small id="es-calc-commission-rule">Процент или минимальная сумма</small></dt><dd id="es-calc-commission-result">—</dd></div>
+                <div class="es-calc-row"><dt>Доставка по Европе</dt><dd id="es-calc-europe-result">Не указана</dd></div>
+                <div class="es-calc-row"><dt>Доставка в Россию и до вас</dt><dd id="es-calc-russia-result">Не указана</dd></div>
+                <div class="es-calc-row"><dt>Курс расчёта</dt><dd id="es-calc-rate-result">—</dd></div>
+              </dl>
+              <p class="es-calc-note" id="es-calc-note">Расчёт ориентировочный. Окончательную стоимость подтверждаем перед выкупом.</p>
+              <a class="es-calc-contact" id="es-calc-contact" href="https://wa.me/79039114172" target="_blank" rel="noopener noreferrer"><span id="es-calc-contact-label">УТОЧНИТЬ УСЛОВИЯ</span><span aria-hidden="true">→</span></a>
+              <p class="es-calc-confirmation">Откроется личный WhatsApp EUROPA SALE. Подтвердите отправку сообщения в чате.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="home-section" id="brands" aria-labelledby="es-brands-title">
+        <div class="container">
+          <div class="es-brands-heading">
+            <h2 id="es-brands-title">Бренды, которые мы покупаем</h2>
+          </div>
+          <ul class="es-brands-grid" aria-labelledby="es-brands-title">
+            <li class="es-brand-name">MAX MARA</li>
+            <li class="es-brand-name">COS</li>
+            <li class="es-brand-name">Massimo Dutti</li>
+            <li class="es-brand-name">FURLA</li>
+            <li class="es-brand-name">PIQUADRO</li>
+            <li class="es-brand-name">UNIQLO</li>
+            <li class="es-brand-name">ZARA</li>
+            <li class="es-brand-name">MANGO</li>
+            <li class="es-brand-name">H&amp;M</li>
+            <li class="es-brand-name">C&amp;A</li>
+            <li class="es-brand-name">LIDL</li>
+            <li class="es-brand-name">NIKE</li>
+            <li class="es-brand-name">On Cloud</li>
+            <li class="es-brand-name">KIKO</li>
+            <li class="es-brand-name">Calvin Klein</li>
+          </ul>
+          <p class="es-brands-note">И сотни других европейских брендов.</p>
+        </div>
+      </section>
+
+      <section class="home-section" id="where-we-buy" aria-label="Где мы покупаем">
+        <div class="container">
+          <div class="section-eyebrow es-sources-eyebrow">Где мы покупаем</div>
+          <section class="es-stores-group" id="european-shops" aria-labelledby="es-stores-title">
+            <div class="es-stores-heading">
+              <h2 id="es-stores-title">Мультибрендовые и стоковые европейские магазины</h2>
+            </div>
+            <ul class="es-stores-grid es-shops-grid" aria-labelledby="es-stores-title">
+              <li class="es-store-card es-shop-card">
+                <h3>Intrend</h3>
+                <p class="es-store-country">Италия</p>
+              </li>
+              <li class="es-store-card es-shop-card">
+                <h3>Fashion market</h3>
+                <p class="es-store-country">Италия</p>
+              </li>
+              <li class="es-store-card es-shop-card">
+                <h3>YOOX</h3>
+                <p class="es-store-country">Германия</p>
+              </li>
+              <li class="es-store-card es-shop-card">
+                <h3>About you</h3>
+                <p class="es-store-country">Германия</p>
+              </li>
+              <li class="es-store-card es-shop-card">
+                <h3>Zalando</h3>
+                <p class="es-store-country">Германия</p>
+              </li>
+              <li class="es-store-card es-shop-card">
+                <h3>Douglas</h3>
+                <p class="es-store-country">Германия</p>
+              </li>
+            </ul>
+            <p class="es-sources-note">И другие сайты.</p>
+          </section>
+
+          <section class="es-stores-group es-sales-group" id="closed-sales" aria-labelledby="es-sales-title">
+            <div class="es-stores-heading">
+              <h2 id="es-sales-title">Закрытые распродажи</h2>
+            </div>
+            <ul class="es-stores-grid es-sales-grid" aria-labelledby="es-sales-title">
+              <li class="es-store-card es-sale-card">
+                <h3>ZALANDO LOUNGE</h3>
+                <p class="es-store-country">Германия</p>
+                <p class="es-store-description">Закрытые распродажи брендов</p>
+              </li>
+              <li class="es-store-card es-sale-card">
+                <h3>BESTSECRET</h3>
+                <p class="es-store-country">Германия</p>
+                <p class="es-store-description">Премиальные бренды</p>
+              </li>
+              <li class="es-store-card es-sale-card">
+                <h3>VEEPEE</h3>
+                <p class="es-store-country">Германия / Италия</p>
+                <p class="es-store-description">Закрытые продажи</p>
+              </li>
+              <li class="es-store-card es-sale-card">
+                <h3>SALDI</h3>
+                <p class="es-store-country">Италия</p>
+                <p class="es-store-description">Премиальные бренды</p>
+              </li>
+              <li class="es-store-card es-sale-card">
+                <h3>LIMANGO OUTLET</h3>
+                <p class="es-store-country">Германия</p>
+                <p class="es-store-description">Закрытые распродажи брендов</p>
+              </li>
+            </ul>
+            <p class="es-sources-note">И другие закрытые распродажи.</p>
+          </section>
         </div>
       </section>
     </section>
@@ -1087,7 +1375,7 @@
   <footer class="footer">
     <div class="container footer-inner">
       <span>europa-sale.com · EUROPA SALE</span>
-      <span><a href="#home">Главная</a> · <a href="#how-to-order">Как заказать</a> · <a href="#login">Моя сверка</a></span>
+      <span><a href="#home">Главная</a> · <a href="#how-to-order">Как заказать</a> · <a href="#calculator">Калькулятор</a> · <a href="#brands">Бренды</a> · <a href="#where-we-buy">Где мы покупаем</a> · <a href="#login">Моя сверка</a></span>
     </div>
   </footer>
 </div>
@@ -1707,7 +1995,7 @@ function showView(view){
   if(target) target.classList.add('active');
   window.scrollTo({top:0,behavior:'instant'});
   const homeSectionId=(location.hash||'').slice(1);
-  if(view==='home' && ['about','how-to-order'].includes(homeSectionId)){
+  if(view==='home' && ['about','how-to-order','calculator','brands','where-we-buy','european-shops','closed-sales'].includes(homeSectionId)){
     window.requestAnimationFrame(()=>{
       if(location.hash!=='#'+homeSectionId || !target?.classList.contains('active')) return;
       const reducedMotion=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches===true;
@@ -3151,5 +3439,168 @@ supabaseClient.auth.onAuthStateChange((event, session)=>{
   });
 })();
 </script>
+
+<script id="es-calculator-defaults" type="application/json">{"commission":null,"minimum":null,"rate":null,"europe":null,"russia":null}</script>
+
+<script id="es-purchase-calculator">
+(()=>{
+  'use strict';
+  const form=document.getElementById('es-calc-form');
+  if(!form) return;
+  const byId=id=>document.getElementById('es-calc-'+id);
+  const definitions={
+    price:{decimals:2,max:1000000,minPositive:true,required:true},
+    commission:{decimals:2,max:100,minPositive:false,required:true},
+    minimum:{decimals:2,max:1000000,minPositive:false,required:true},
+    rate:{decimals:4,max:100000,minPositive:true,required:true},
+    europe:{decimals:2,max:1000000,minPositive:false,required:false},
+    russia:{decimals:2,max:1000000,minPositive:false,required:false}
+  };
+  const inputs=Object.fromEntries(Object.keys(definitions).map(key=>[key,byId(key)]));
+  const results=Object.fromEntries(['total','euro-total','price-result','commission-result','commission-rule','europe-result','russia-result','rate-result','note','contact','contact-label','delivery'].map(key=>[key,byId(key)]));
+  if(Object.values(inputs).some(el=>!el)||Object.values(results).some(el=>!el)) return;
+  const touched=new Set();
+  const whatsapp='https://wa.me/79039114172';
+  const initialNote='Расчёт ориентировочный. Окончательную стоимость подтверждаем перед выкупом.';
+  let submitted=false;
+
+  // Decimal strings become integers before calculation: euro/ruble cents,
+  // hundredths of a percent and ten-thousandths of the exchange rate.
+  function parseDecimal(raw,definition){
+    const text=String(raw??'').trim();
+    if(!text) return {value:null,known:false,error:definition.required?'Заполните это поле.':''};
+    if(text.length>24) return {value:null,known:true,error:'Проверьте введённое число.'};
+    const parts=text.split(/[,.]/);
+    const integer=parts[0];
+    const fraction=parts[1]??'';
+    if(parts.length>2||!(/^(?:\d+|\d{1,3}(?:[ \u00a0\u202f]\d{3})+)$/).test(integer)||
+       (parts.length===2&&!/^\d+$/.test(fraction))||fraction.length>definition.decimals){
+      return {value:null,known:true,error:'Введите число с точкой или запятой, до '+definition.decimals+' знаков после неё.'};
+    }
+    const scale=10n**BigInt(definition.decimals);
+    const digits=integer.replace(/[ \u00a0\u202f]/g,'');
+    const value=BigInt(digits)*scale+BigInt((fraction+'0'.repeat(definition.decimals)).slice(0,definition.decimals));
+    if(value>BigInt(definition.max)*scale) return {value:null,known:true,error:'Слишком большое значение. Проверьте число.'};
+    if(definition.minPositive&&value===0n) return {value:null,known:true,error:'Введите значение больше нуля.'};
+    return {value,known:true,error:''};
+  }
+  function decimalText(value,decimals=2,minFraction=decimals){
+    const scale=10n**BigInt(decimals);
+    const whole=(value/scale).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'\u00a0');
+    let fraction=(value%scale).toString().padStart(decimals,'0');
+    while(fraction.length>minFraction&&fraction.endsWith('0')) fraction=fraction.slice(0,-1);
+    return whole+(fraction?','+fraction:'');
+  }
+  const money=(value,currency)=>decimalText(value)+' '+currency;
+  const roundRatio=(numerator,denominator)=>(numerator+denominator/2n)/denominator;
+  function compute(values){
+    const percentageFee=roundRatio(values.price*values.commission,10000n);
+    const minimumApplied=values.minimum>percentageFee;
+    const fee=minimumApplied?values.minimum:percentageFee;
+    const euro=values.price+fee+(values.europe??0n);
+    const ruble=roundRatio(euro*values.rate,10000n)+(values.russia??0n);
+    return {fee,percentageFee,minimumApplied,euro,ruble};
+  }
+  function chatUrl(message){
+    const url=new URL(whatsapp);
+    url.searchParams.set('text',message);
+    return url.toString();
+  }
+  function write(id,value){results[id].textContent=value;}
+  function resetResult(){
+    write('total','— ₽');
+    write('euro-total','Введите цену и условия расчёта.');
+    ['price-result','commission-result','rate-result'].forEach(id=>write(id,'—'));
+    ['europe-result','russia-result'].forEach(id=>write(id,'Не указана'));
+    write('commission-rule','Процент или минимальная сумма');
+    write('note',initialNote);
+    write('contact-label','УТОЧНИТЬ УСЛОВИЯ');
+    results.contact.href=chatUrl('Добрый день! Хочу рассчитать покупку через EUROPA SALE. Подскажите, пожалуйста, комиссию за выкуп, минимальную комиссию, курс евро и условия доставки.');
+  }
+  function render(){
+    const parsed=Object.fromEntries(Object.keys(definitions).map(key=>[key,parseDecimal(inputs[key].value,definitions[key])]));
+    for(const [key,result] of Object.entries(parsed)){
+      const showError=Boolean(result.error&&(submitted||touched.has(key)));
+      byId(key+'-error').textContent=showError?result.error:'';
+      if(showError) inputs[key].setAttribute('aria-invalid','true');
+      else inputs[key].removeAttribute('aria-invalid');
+    }
+    if(Object.values(parsed).some(result=>result.error)){
+      resetResult();
+      return {parsed,valid:false};
+    }
+    const values=Object.fromEntries(Object.entries(parsed).map(([key,result])=>[key,result.value]));
+    const totals=compute(values);
+    const missing=[];
+    if(!parsed.europe.known) missing.push('доставка по Европе');
+    if(!parsed.russia.known) missing.push('доставка в Россию и до вас');
+    const deliveryNote=missing.length===2?'Доставка по Европе, в Россию и до вас не включена в сумму.':missing.length?'В сумму не включена '+missing[0]+'.':'В сумму включены введённые расходы на доставку.';
+    write('total',money(totals.ruble,'₽'));
+    write('euro-total',money(totals.euro,'€')+' · выкуп в Европе');
+    write('price-result',money(values.price,'€'));
+    write('commission-result',money(totals.fee,'€'));
+    write('commission-rule',totals.minimumApplied?'Минимальная комиссия':decimalText(values.commission,2,0)+' % от цены товара');
+    write('europe-result',parsed.europe.known?money(values.europe,'€'):'Не включена');
+    write('russia-result',parsed.russia.known?money(values.russia,'₽'):'Не включена');
+    write('rate-result',decimalText(values.rate,4,2)+' ₽ / €');
+    write('note',deliveryNote+' '+initialNote);
+    write('contact-label','ОБСУДИТЬ РАСЧЁТ');
+    const message=[
+      'Добрый день! Хочу уточнить расчёт покупки через EUROPA SALE.',
+      '',
+      'Цена товара: '+money(values.price,'€'),
+      'Комиссия: '+decimalText(values.commission,2,0)+' %; минимум '+money(values.minimum,'€'),
+      'Комиссия в расчёте: '+money(totals.fee,'€'),
+      'Курс для расчёта: '+decimalText(values.rate,4,2)+' ₽ за €',
+      'Доставка по Европе: '+(parsed.europe.known?money(values.europe,'€'):'не указана, не включена в сумму'),
+      'Доставка в Россию и до меня: '+(parsed.russia.known?money(values.russia,'₽'):'не указана, не включена в сумму'),
+      'Выкуп в Европе: '+money(totals.euro,'€'),
+      'Предварительная сумма: '+money(totals.ruble,'₽'),
+      '',
+      'Расчёт по введённым мной условиям. Пожалуйста, подтвердите стоимость и тарифы.'
+    ].join('\n');
+    results.contact.href=chatUrl(message);
+    return {parsed,valid:true};
+  }
+
+  // Confirmed default terms are optional. Null leaves a field blank;
+  // never substitute zero for an unknown rate or commission.
+  let defaults={};
+  try{defaults=JSON.parse(document.getElementById('es-calculator-defaults')?.textContent||'{}');}catch(_error){}
+  if(defaults&&typeof defaults==='object'&&!Array.isArray(defaults)){
+    for(const [key,input] of Object.entries(inputs)){
+      if(defaults[key]===null||defaults[key]===undefined) continue;
+      const text=String(defaults[key]);
+      if(!parseDecimal(text,definitions[key]).error){input.defaultValue=text;input.value=text;}
+    }
+  }
+  for(const [key,input] of Object.entries(inputs)){
+    input.addEventListener('input',()=>{render();});
+    input.addEventListener('blur',()=>{touched.add(key);render();});
+  }
+  form.addEventListener('submit',event=>{
+    event.preventDefault();
+    submitted=true;
+    const state=render();
+    if(!state.valid){
+      const key=Object.keys(definitions).find(id=>state.parsed[id].error);
+      if(key==='europe'||key==='russia') results.delivery.open=true;
+      inputs[key]?.focus();
+    }
+  });
+  form.addEventListener('reset',()=>{
+    submitted=false;touched.clear();
+    // Clear the outgoing draft immediately; native form reset happens next.
+    resetResult();
+    window.setTimeout(()=>render(),0);
+  });
+  results.contact.addEventListener('click',()=>{
+    // Re-read the values on the gesture, including autofill/programmatic edits.
+    render();
+  });
+  render();
+})();
+</script>
+
 </body>
 </html>
