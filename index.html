@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#f8f3f1" />
   <title>EUROPA SALE</title>
   <meta name="description" content="EUROPA SALE — покупки из Германии, Италии и других стран Европы." />
-  <meta name="europa-sale-version" content="EUROPA_SALE_20261013_ABOUT_MESSENGERS_REGISTRATION_LINK_RETRY_SINGLE_CLICK_NAV_BRANDS_15_SHOPS_SALES_CALCULATOR_CLIENT_CATALOGUES_DATE_DESC" />
+  <meta name="europa-sale-version" content="EUROPA_SALE_20261013_EDITORIAL_SECTIONS_ABOUT_MESSENGERS_REGISTRATION_LINK_RETRY_SINGLE_CLICK_NAV_BRANDS_15_SHOPS_SALES_CALCULATOR_CLIENT_CATALOGUES_DATE_DESC" />
   <style>
     :root{
       --bg:#f8f3f1;
@@ -735,6 +735,71 @@
     #account-refresh:hover{background:var(--paper)}
     #account-refresh:focus-visible{outline:2px solid var(--text);outline-offset:4px}
     #account-refresh[disabled]{opacity:.55;cursor:wait}
+
+    /* EUROPA SALE · Shared section layout from the approved About reference · 2026-10-13 */
+    #view-home .es-section-layout{display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);column-gap:9vw;align-items:start}
+    #view-home .es-section-heading{min-width:0;max-width:none;margin:0}
+    #view-home .es-section-heading h2,#view-home .es-section-heading h3{font-size:clamp(38px,3.8vw,62px);line-height:1.08;letter-spacing:-.045em;font-weight:400;max-width:14ch;margin:0;color:var(--text);overflow-wrap:break-word}
+    #view-home .es-section-heading h2 em,#view-home .es-section-heading h3 em{display:block;margin-top:8px;color:var(--rose);font-family:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;font-weight:400}
+    #view-home .es-section-heading .es-section-title-long{font-size:clamp(30px,2.6vw,46px);line-height:1.18;max-width:18ch}
+    #view-home .es-section-content{min-width:0;max-width:760px;width:100%}
+    #view-home .es-section-heading .section-eyebrow{margin-bottom:24px}
+    #about .es-community-copy .es-catalogue-description{font-size:18px;line-height:1.72;margin:0 0 22px}
+    #about .es-about-messenger-grid,#about .es-catalogue-channels{gap:18px}
+    #about .es-about-messenger,#about .es-catalogue-channel{border:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0;background:transparent;min-height:106px}
+    #about .es-catalogue-action{border:0;border-bottom:1px solid var(--line);padding:9px 0;min-height:44px;gap:22px}
+    #about .es-about-community-actions{column-gap:28px}
+    #how-to-order .es-order-intro{font-size:18px;line-height:1.72;margin:0 0 34px}
+    #how-to-order .es-order-grid{column-gap:24px;row-gap:36px}
+    #how-to-order .es-order-number{font-size:clamp(48px,4vw,62px);margin-bottom:20px}
+    #how-to-order .es-order-step h3{font-size:clamp(18px,1.4vw,22px);line-height:1.35}
+    #how-to-order .es-order-actions{justify-content:flex-start;margin-top:36px;gap:22px 28px}
+    #how-to-order .es-order-action{border:0;border-bottom:1px solid var(--line);padding:9px 0;min-height:44px;gap:22px;font-size:11px}
+    #how-to-order .es-order-note{margin:24px 0 0;text-align:left}
+    #calculator .es-calc-intro{font-size:18px;line-height:1.72;margin:0 0 34px}
+    #calculator .es-calc-layout{grid-template-columns:minmax(0,1fr);gap:36px}
+    #calculator .es-calc-result{padding:28px;background:transparent;border:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    #brands .es-brands-grid{column-gap:clamp(10px,1.2vw,18px)}
+    #brands .es-brand-name{font-size:clamp(16px,1.05vw,20px);line-height:1.45;letter-spacing:0;padding:21px 0 24px;overflow-wrap:normal;word-break:normal}
+    #brands .es-brands-note{font-size:13px;line-height:1.72;margin-top:24px}
+    #where-we-buy .es-shops-grid,#where-we-buy .es-sales-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 28px}
+    #where-we-buy .es-store-card{border:0;border-top:1px solid var(--line);background:transparent;padding:22px 0 24px;min-height:130px}
+    #where-we-buy .es-sale-card,#where-we-buy .es-sale-card:nth-last-child(-n+2),#where-we-buy .es-sale-card:last-child{grid-column:auto;min-height:184px}
+    #where-we-buy .es-store-card h3{font-size:clamp(18px,1.4vw,22px);line-height:1.4;letter-spacing:0;overflow-wrap:normal}
+    #where-we-buy .es-sale-card .es-store-country{margin-bottom:24px}
+    #where-we-buy .es-store-description{font-size:15px;line-height:1.7;padding-top:18px}
+    #where-we-buy .es-sources-note{font-size:13px;line-height:1.72;margin-top:24px}
+    #where-we-buy .es-sales-group{margin-top:68px;padding-top:68px}
+    @media(max-width:1100px){
+      #view-home .es-section-layout{grid-template-columns:minmax(0,1fr);gap:44px}
+      #view-home .es-section-content{max-width:none}
+      #view-home .es-section-heading h2,#view-home .es-section-heading h3{max-width:20ch}
+      #view-home .es-section-heading .es-section-title-long{max-width:24ch}
+      #how-to-order .es-order-step h3{font-size:21px}
+      #calculator .es-calc-layout{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:30px}
+    }
+    @media(max-width:1000px){
+      #calculator .es-calc-layout{grid-template-columns:minmax(0,1fr)}
+    }
+    @media(max-width:700px){
+      #view-home .es-section-layout{gap:32px}
+      #view-home .es-section-heading h2,#view-home .es-section-heading h3{font-size:clamp(34px,9vw,44px);max-width:18ch}
+      #view-home .es-section-heading .es-section-title-long{font-size:clamp(30px,7.5vw,38px);max-width:20ch}
+      #how-to-order .es-order-grid{gap:0}
+      #how-to-order .es-order-step p{font-size:16px;line-height:1.7}
+      #brands .es-brand-name{font-size:clamp(18px,4.5vw,24px)}
+      #where-we-buy .es-shops-grid,#where-we-buy .es-sales-grid{grid-template-columns:minmax(0,1fr);gap:0}
+      #where-we-buy .es-store-card,#where-we-buy .es-sale-card,#where-we-buy .es-sale-card:nth-last-child(-n+2),#where-we-buy .es-sale-card:last-child{min-height:0;padding:24px 0}
+      #where-we-buy .es-sales-group{margin-top:44px;padding-top:44px}
+      #where-we-buy .es-store-card h3{font-size:21px}
+    }
+    @media(max-width:560px){
+      #about .es-community-copy .es-catalogue-description{font-size:17px}
+      #about .es-about-messenger-grid,#about .es-catalogue-channels{gap:0}
+      #about .es-about-messenger,#about .es-catalogue-channel{min-height:64px;padding:17px 0;border-bottom:0}
+      #about .es-about-messenger:last-child,#about .es-catalogue-channel:last-child{border-bottom:1px solid var(--line)}
+      #calculator .es-calc-result{padding:24px 0}
+    }
   </style>
 </head>
 <body>
@@ -801,12 +866,13 @@
               </div>
             </div>
           </div>
-          <div class="es-catalogue-panel" id="es-catalogue-panel" aria-labelledby="es-about-groups-title">
-            <h3 id="es-about-groups-title">Наши группы в мессенджерах</h3>
-            <p class="es-catalogue-description">Каталоги скидок, подборки товаров и предложения европейских магазинов — в наших группах.</p>
-            <p class="es-catalogue-description"><strong>Группы доступны только зарегистрированным клиентам.</strong> После регистрации на сайте можно подать заявки на вступление. Мы проверим регистрацию, рассмотрим заявки и сообщим, как присоединиться к выбранным группам.</p>
-            <p class="es-about-nick-note"><strong>Важно:</strong> при регистрации используйте свой постоянный Ник EUROPA SALE — тот же, под которым оформляете покупки.</p>
-            <div class="es-catalogue-guest" data-catalogue-guest>
+          <div class="es-catalogue-panel es-section-layout" id="es-catalogue-panel" aria-labelledby="es-about-groups-title">
+<div class="es-section-heading"><div class="section-eyebrow">Каталоги скидок</div><h3 id="es-about-groups-title">Наши группы <em>в мессенджерах</em></h3></div>
+<div class="es-section-content es-community-copy">
+<p class="es-catalogue-description">Каталоги скидок, подборки товаров и предложения европейских магазинов — в наших группах.</p>
+<p class="es-catalogue-description"><strong>Группы доступны только зарегистрированным клиентам.</strong> После регистрации на сайте можно подать заявки на вступление. Мы проверим регистрацию, рассмотрим заявки и сообщим, как присоединиться к выбранным группам.</p>
+<p class="es-about-nick-note"><strong>Важно:</strong> при регистрации используйте свой постоянный Ник EUROPA SALE — тот же, под которым оформляете покупки.</p>
+<div class="es-catalogue-guest" data-catalogue-guest>
               <div class="es-about-messenger-grid" aria-label="Группы EUROPA SALE">
                 <div class="es-about-messenger"><strong>Telegram</strong><span>Каталоги скидок</span></div>
                 <div class="es-about-messenger"><strong>WhatsApp</strong><span>Каталоги скидок</span></div>
@@ -817,7 +883,7 @@
                 <a class="es-catalogue-action" href="#login">ВОЙТИ В ЛИЧНЫЙ КАБИНЕТ <span aria-hidden="true">→</span></a>
               </div>
             </div>
-            <div class="es-catalogue-member" data-catalogue-member hidden>
+<div class="es-catalogue-member" data-catalogue-member hidden>
               <p class="es-catalogue-member-note">Выберите группу, в которую хотите вступить. В заявку подставим Ник из вашего клиентского кабинета.</p>
               <div class="es-catalogue-channels">
                 <button class="es-catalogue-channel" type="button" data-catalogue-request="telegram" disabled><strong>Telegram</strong><span>ПОДАТЬ ЗАЯВКУ →</span></button>
@@ -826,20 +892,20 @@
               </div>
               <p class="es-catalogue-member-note es-catalogue-confirmation">Заявка откроется в личном WhatsApp EUROPA SALE. Подтвердите отправку сообщения — мы проверим регистрацию и сообщим, как вступить в группу.</p>
             </div>
-            <p class="es-catalogue-status" id="es-catalogue-status" role="status" aria-live="polite"></p>
-            <button class="es-catalogue-retry" id="es-catalogue-retry" type="button" hidden>ПОВТОРИТЬ ПРОВЕРКУ →</button>
-            <a class="es-catalogue-chat" id="es-catalogue-chat" target="_blank" rel="noopener noreferrer" hidden>ОТКРЫТЬ WHATSAPP С ЗАЯВКОЙ →</a>
-          </div>
+<p class="es-catalogue-status" id="es-catalogue-status" role="status" aria-live="polite"></p>
+<button class="es-catalogue-retry" id="es-catalogue-retry" type="button" hidden>ПОВТОРИТЬ ПРОВЕРКУ →</button>
+<a class="es-catalogue-chat" id="es-catalogue-chat" target="_blank" rel="noopener noreferrer" hidden>ОТКРЫТЬ WHATSAPP С ЗАЯВКОЙ →</a>
+</div>
+</div>
         </div>
       </section>
 
       <section class="home-section es-order" id="how-to-order" aria-labelledby="es-order-title">
-        <div class="container">
-          <div class="es-order-heading">
-            <h2 id="es-order-title">Как заказать</h2>
-            <p class="es-order-intro">Покупки из Германии, Италии и других стран Европы — просто и прозрачно.</p>
-          </div>
-          <ol class="es-order-grid" aria-label="Шесть шагов заказа">
+        <div class="container es-section-layout">
+<div class="es-order-heading es-section-heading"><div class="section-eyebrow">01 — 06</div><h2 id="es-order-title">Как <em>заказать</em></h2></div>
+<div class="es-section-content">
+<p class="es-order-intro">Покупки из Германии, Италии и других стран Европы — просто и прозрачно.</p>
+<ol class="es-order-grid" aria-label="Шесть шагов заказа">
             <li class="es-order-step">
               <span class="es-order-number" aria-hidden="true">01</span>
               <h3>Выберите товар</h3>
@@ -872,21 +938,21 @@
               <p>Ваши покупки, суммы и информация по посылкам отображаются в личном кабинете EUROPA SALE.</p>
             </li>
           </ol>
-          <div class="es-order-actions">
+<div class="es-order-actions">
             <button class="es-order-action" type="button" data-buyout-open aria-controls="es-buyout-dialog" aria-haspopup="dialog">ОТПРАВИТЬ ССЫЛКУ <span aria-hidden="true">→</span></button>
             <a class="es-order-action" href="#login">МОЙ КАБИНЕТ <span aria-hidden="true">→</span></a>
           </div>
-          <p class="es-order-note"><strong>Важно:</strong> при регистрации используйте тот же Ник, под которым оформляете покупки в EUROPA SALE. Так заказы автоматически появятся в вашем личном кабинете.</p>
-        </div>
+<p class="es-order-note"><strong>Важно:</strong> при регистрации используйте тот же Ник, под которым оформляете покупки в EUROPA SALE. Так заказы автоматически появятся в вашем личном кабинете.</p>
+</div>
+</div>
       </section>
 
       <section class="home-section" id="calculator" aria-labelledby="es-calc-title">
-        <div class="container">
-          <div class="es-calc-heading">
-            <h2 id="es-calc-title">Калькулятор покупки</h2>
-            <p class="es-calc-intro">Оцените стоимость покупки в Европе. Для расчёта используйте курс и комиссию, согласованные с EUROPA SALE.</p>
-          </div>
-          <div class="es-calc-layout">
+        <div class="container es-section-layout">
+<div class="es-calc-heading es-section-heading"><div class="section-eyebrow">Предварительный расчёт</div><h2 id="es-calc-title">Калькулятор <em>покупки</em></h2></div>
+<div class="es-section-content">
+<p class="es-calc-intro">Оцените стоимость покупки в Европе. Для расчёта используйте курс и комиссию, согласованные с EUROPA SALE.</p>
+<div class="es-calc-layout">
             <form class="es-calc-form" id="es-calc-form" novalidate>
               <div class="es-calc-fields">
                 <div class="es-calc-field">
@@ -954,15 +1020,15 @@
               <p class="es-calc-confirmation">Откроется личный WhatsApp EUROPA SALE. Подтвердите отправку сообщения в чате.</p>
             </div>
           </div>
-        </div>
+</div>
+</div>
       </section>
 
       <section class="home-section" id="brands" aria-labelledby="es-brands-title">
-        <div class="container">
-          <div class="es-brands-heading">
-            <h2 id="es-brands-title">Бренды, которые мы покупаем</h2>
-          </div>
-          <ul class="es-brands-grid" aria-labelledby="es-brands-title">
+        <div class="container es-section-layout">
+<div class="es-brands-heading es-section-heading"><div class="section-eyebrow">Европейские бренды</div><h2 id="es-brands-title">Бренды, <em>которые мы покупаем</em></h2></div>
+<div class="es-section-content">
+<ul class="es-brands-grid" aria-labelledby="es-brands-title">
             <li class="es-brand-name">MAX MARA</li>
             <li class="es-brand-name">COS</li>
             <li class="es-brand-name">Massimo Dutti</li>
@@ -979,18 +1045,18 @@
             <li class="es-brand-name">KIKO</li>
             <li class="es-brand-name">Calvin Klein</li>
           </ul>
-          <p class="es-brands-note">И сотни других европейских брендов.</p>
-        </div>
+<p class="es-brands-note">И сотни других европейских брендов.</p>
+</div>
+</div>
       </section>
 
       <section class="home-section" id="where-we-buy" aria-label="Где мы покупаем">
         <div class="container">
-          <div class="section-eyebrow es-sources-eyebrow">Где мы покупаем</div>
-          <section class="es-stores-group" id="european-shops" aria-labelledby="es-stores-title">
-            <div class="es-stores-heading">
-              <h2 id="es-stores-title">Мультибрендовые и стоковые европейские магазины</h2>
-            </div>
-            <ul class="es-stores-grid es-shops-grid" aria-labelledby="es-stores-title">
+          
+          <section class="es-stores-group es-section-layout" id="european-shops" aria-labelledby="es-stores-title">
+<div class="es-stores-heading es-section-heading"><div class="section-eyebrow es-sources-eyebrow">Где мы покупаем</div><h2 id="es-stores-title" class="es-section-title-long">Мультибрендовые и стоковые <em>европейские магазины</em></h2></div>
+<div class="es-section-content">
+<ul class="es-stores-grid es-shops-grid" aria-labelledby="es-stores-title">
               <li class="es-store-card es-shop-card">
                 <h3>Intrend</h3>
                 <p class="es-store-country">Италия</p>
@@ -1016,14 +1082,14 @@
                 <p class="es-store-country">Германия</p>
               </li>
             </ul>
-            <p class="es-sources-note">И другие сайты.</p>
-          </section>
+<p class="es-sources-note">И другие сайты.</p>
+</div>
+</section>
 
-          <section class="es-stores-group es-sales-group" id="closed-sales" aria-labelledby="es-sales-title">
-            <div class="es-stores-heading">
-              <h2 id="es-sales-title">Закрытые распродажи</h2>
-            </div>
-            <ul class="es-stores-grid es-sales-grid" aria-labelledby="es-sales-title">
+          <section class="es-stores-group es-sales-group es-section-layout" id="closed-sales" aria-labelledby="es-sales-title">
+<div class="es-stores-heading es-section-heading"><div class="section-eyebrow">Закрытые продажи</div><h2 id="es-sales-title">Закрытые <em>распродажи</em></h2></div>
+<div class="es-section-content">
+<ul class="es-stores-grid es-sales-grid" aria-labelledby="es-sales-title">
               <li class="es-store-card es-sale-card">
                 <h3>ZALANDO LOUNGE</h3>
                 <p class="es-store-country">Германия</p>
@@ -1050,8 +1116,9 @@
                 <p class="es-store-description">Закрытые распродажи брендов</p>
               </li>
             </ul>
-            <p class="es-sources-note">И другие закрытые распродажи.</p>
-          </section>
+<p class="es-sources-note">И другие закрытые распродажи.</p>
+</div>
+</section>
         </div>
       </section>
     </section>
