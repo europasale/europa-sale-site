@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#f8f3f1" />
   <title>EUROPA SALE</title>
   <meta name="description" content="EUROPA SALE — покупки из Германии, Италии и других стран Европы." />
-  <meta name="europa-sale-version" content="EUROPA_SALE_20261016_FIVE_PUBLIC_TABS_EDITORIAL_SLOGANS_FAQ15_AUTH_PRESERVED" />
+  <meta name="europa-sale-version" content="EUROPA_SALE_20261016_EDITORIAL_CMS_ADMIN_SHARED_STORAGE_TABS_FAQ_AUTH_PRESERVED" />
   <style>
     :root{
       --bg:#f8f3f1;
@@ -927,6 +927,94 @@
       .es-header-cabinet>span{display:none}
     }
     @media(prefers-reduced-motion:reduce){.es-nav-toggle span{transition:none}}
+/* EUROPA SALE / EDITORIAL: public selection and administrator editor. */
+[data-editorial-nav][hidden],#es-ed-admin [hidden]{display:none!important}
+#view-home .es-editorial-section{padding:74px 0 84px;border-top:1px solid var(--line);scroll-margin-top:100px}
+#view-home #editorial.es-editorial-section{border:0;min-height:65vh}
+.es-editorial-heading{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:38px;align-items:end;margin-bottom:38px}
+#view-home .es-editorial-heading h2{font-size:clamp(36px,4.2vw,64px);font-weight:400;line-height:1.08;letter-spacing:-.045em;margin:0}
+#view-home .es-editorial-heading h2 em{display:block;color:var(--rose);font-family:Georgia,serif;font-weight:400;margin-top:6px}
+.es-editorial-heading .section-eyebrow{margin:0 0 18px}
+.es-editorial-lead{margin:0;color:var(--muted);font-size:17px;line-height:1.75;max-width:480px}
+.es-editorial-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:38px 26px;align-items:start}
+.es-editorial-card{min-width:0}
+.es-editorial-picture{position:relative;aspect-ratio:4/5;background:var(--paper-2)}
+.es-editorial-picture>img{display:block;width:100%;height:100%;object-fit:contain}
+.es-editorial-badge{position:absolute;left:14px;top:14px;max-width:calc(100% - 28px);padding:7px 11px;background:var(--paper);color:var(--rose-dark);font-size:12px;line-height:1.5;overflow-wrap:anywhere}
+.es-editorial-meta{margin:18px 0 9px;color:var(--muted);font-size:11px;line-height:1.7;letter-spacing:.06em;text-transform:uppercase}
+.es-editorial-card h3{margin:0 0 11px;font-size:23px;line-height:1.4;font-weight:400;letter-spacing:-.02em;overflow-wrap:anywhere}
+.es-editorial-summary{margin:0 0 16px;color:var(--muted);font-size:15px;line-height:1.75;overflow-wrap:anywhere;white-space:pre-line}
+.es-editorial-price{font-size:17px;line-height:1.5;margin:0 0 17px}
+.es-editorial-price small{display:block;font-size:12px;color:var(--muted);margin-top:3px}
+.es-editorial-details{border-top:1px solid var(--line)}
+.es-editorial-details>summary{display:flex;justify-content:space-between;gap:18px;align-items:center;list-style:none;min-height:48px;padding:12px 0;font-size:11px;line-height:1.6;letter-spacing:.04em;cursor:pointer}
+.es-editorial-details>summary::-webkit-details-marker{display:none}
+.es-editorial-details>summary::after{content:'+';font-size:23px;color:var(--rose)}
+.es-editorial-details[open]>summary::after{content:'−'}
+.es-editorial-body{color:var(--muted);font-size:15px;line-height:1.75;overflow-wrap:anywhere}
+.es-editorial-body p{margin:0 0 18px;white-space:pre-line}
+.es-editorial-gallery{display:grid;gap:14px;margin:0 0 18px}
+.es-editorial-gallery img{width:100%;height:auto;display:block}
+.es-editorial-action{display:inline-flex;align-items:center;gap:20px;min-height:44px;padding:10px 0;border:0;border-bottom:1px solid var(--line);background:transparent;font:inherit;font-size:11px;line-height:1.6;letter-spacing:.04em;text-decoration:none;color:var(--text);cursor:pointer;text-align:left}
+.es-editorial-action:hover{color:var(--rose)}
+.es-editorial-footer{border-top:1px solid var(--line);margin-top:36px;padding-top:20px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:center}
+.es-editorial-footnote,.es-editorial-state{font-size:13px;line-height:1.75;color:var(--muted);margin:0;max-width:720px}
+.es-editorial-state:not(:empty){margin:24px 0}
+.es-editorial-signature{color:var(--rose);font-size:11px;letter-spacing:.12em}
+#es-ed-admin{padding-top:22px}
+#es-ed-admin fieldset{border:0;padding:0;margin:0;min-width:0}
+#es-ed-admin .es-ed-hint{font-size:13px;line-height:1.7;color:var(--muted)}
+.es-ed-text-link{font-size:13px;line-height:1.7;min-height:44px;display:inline-flex;align-items:center;gap:8px;text-underline-offset:4px}
+.es-ed-settings{margin:26px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.es-ed-settings>summary{cursor:pointer;min-height:56px;padding:18px 0;font-size:17px;line-height:1.5}
+#es-ed-settings-form{padding:8px 0 26px;max-width:960px}
+.es-ed-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 22px}
+.es-ed-wide{grid-column:1/-1}
+#es-ed-admin textarea,#es-ed-admin select{font:inherit;font-size:16px;line-height:1.6;max-width:100%;width:100%;border:1px solid var(--line);background:var(--paper);padding:12px 15px;color:var(--text);border-radius:0}
+#es-ed-admin textarea{resize:vertical;min-height:92px}
+#es-ed-admin select{min-height:58px}
+#es-ed-admin .field input{width:100%;min-width:0}
+#es-ed-admin input[type=file]{height:auto;padding:15px}
+.es-ed-check{display:flex;align-items:center;gap:10px;min-height:44px;margin:6px 0;font-size:15px;line-height:1.6}
+.es-ed-check input{width:18px;height:18px;accent-color:var(--rose)}
+.es-ed-editor{margin-top:30px;max-width:1080px}
+.es-ed-editor>h3{font-size:27px;font-weight:400;margin:0 0 28px}
+.es-ed-photo-heading{display:flex;gap:14px 22px;flex-wrap:wrap;align-items:baseline;margin:12px 0 18px}
+.es-ed-photo-heading h4{font-size:20px;font-weight:400;margin:0}
+.es-ed-photo-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-bottom:26px}
+.es-ed-photo{min-width:0;padding:16px;border:1px solid var(--line)}
+.es-ed-photo img{display:block;width:100%;height:170px;object-fit:contain;background:var(--paper-2)}
+.es-ed-photo label{display:grid;gap:8px;margin:12px 0;font-size:12px;line-height:1.6}
+.es-ed-photo input{width:100%;max-width:100%;font:inherit;font-size:14px;min-height:42px;border:1px solid var(--line);padding:9px;background:var(--paper)}
+.es-ed-photo-caption{font-size:12px;line-height:1.6;color:var(--muted);margin:12px 0 6px}
+.es-ed-photo-actions,.es-ed-form-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.es-ed-photo-actions button{min-width:44px;min-height:44px;border:1px solid var(--line);background:transparent;font:inherit;font-size:13px;cursor:pointer}
+.es-ed-photo-actions button:disabled{opacity:.35;cursor:default}
+.es-ed-admin-list{display:grid;margin-bottom:22px}
+.es-ed-row{display:grid;grid-template-columns:78px minmax(0,1fr) auto;gap:18px;align-items:center;padding:20px 0;border-bottom:1px solid var(--line)}
+.es-ed-row img,.es-ed-thumb-empty{width:78px;height:98px;object-fit:contain;background:var(--paper-2)}
+.es-ed-row h4{font-size:18px;line-height:1.5;font-weight:400;margin:0 0 8px;overflow-wrap:anywhere}
+.es-ed-row p{font-size:12px;line-height:1.7;color:var(--muted);margin:0}
+.es-ed-row-actions{display:flex;gap:10px;flex-wrap:wrap}
+.es-ed-row-actions button{border:1px solid var(--line);padding:12px;min-height:44px;background:transparent;font:inherit;font-size:13px;color:var(--text);cursor:pointer}
+.es-ed-preview{margin-top:30px;grid-template-columns:minmax(0,1fr);max-width:420px}
+.es-editorial-action:focus-visible,.es-editorial-details>summary:focus-visible,#es-ed-admin button:focus-visible,#es-ed-admin input:focus-visible,#es-ed-admin textarea:focus-visible,#es-ed-admin select:focus-visible{outline:2px solid var(--rose);outline-offset:4px}
+@media(max-width:1250px){#view-home #editorial.es-editorial-section{scroll-margin-top:142px}}
+@media(max-width:900px){.es-ed-row{grid-template-columns:64px minmax(0,1fr)}.es-ed-row img,.es-ed-thumb-empty{width:64px;height:80px}.es-ed-row-actions{grid-column:2}.es-ed-photo-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){
+  #view-home .es-editorial-section{padding:48px 0 60px}
+  #view-home #editorial.es-editorial-section{scroll-margin-top:78px}
+  .es-editorial-heading{grid-template-columns:minmax(0,1fr);gap:22px;margin-bottom:30px}
+  #view-home .es-editorial-heading h2{font-size:clamp(34px,8vw,46px)}
+  .es-editorial-lead{font-size:16px}
+  .es-editorial-grid{grid-template-columns:minmax(0,1fr);gap:34px}
+  .es-editorial-card h3{font-size:23px}
+  .es-ed-form-grid{grid-template-columns:minmax(0,1fr)}
+  .es-ed-wide{grid-column:auto}
+  .es-ed-photo-list{grid-template-columns:minmax(0,1fr)}
+  .es-ed-photo img{height:210px}
+}
+
   </style>
 </head>
 <body>
@@ -937,6 +1025,7 @@
       <nav class="nav es-site-menu" id="es-site-menu" aria-label="Основная навигация" data-expanded="false">
         <div class="es-main-links">
           <a href="#home" data-es-main-nav="home" aria-current="page">Главная</a>
+          <a href="#editorial" data-es-main-nav="editorial" data-editorial-nav>EDITORIAL</a>
           <a href="#how-to-order" data-es-main-nav="order">Как заказать</a>
           <a href="#stores" data-es-main-nav="stores">Бренды и магазины</a>
           <a href="#about" data-es-main-nav="about">О нас</a>
@@ -971,8 +1060,33 @@
           <a href="#stores"><span class="es-shortcut-index">02 / ВЫБОР</span><span class="es-shortcut-title">Бренды и магазины <span aria-hidden="true">↗</span></span><span class="es-shortcut-copy">Любимые марки и европейские распродажи</span></a>
           <a href="#es-catalogue-panel"><span class="es-shortcut-index">03 / ВДОХНОВЕНИЕ</span><span class="es-shortcut-title">Каталоги скидок <span aria-hidden="true">↗</span></span><span class="es-shortcut-copy">Заявки в группы после регистрации</span></a>
         </nav>
+        <section class="es-editorial-section" id="es-editorial-teaser" aria-labelledby="es-editorial-teaser-title" hidden>
+          <div class="container"><div class="es-editorial-heading" data-editorial-heading>
+          <div><p class="section-eyebrow" data-ed-eyebrow>EDITORIAL</p><h2 id="es-editorial-teaser-title"><span data-ed-title>Нашли в Европе.</span><em data-ed-accent>Выбрали для вас.</em></h2></div>
+          <p class="es-editorial-lead" data-ed-description>Вещи, подборки и распродажи, на которые стоит обратить внимание.</p>
+        </div>
+            <div class="es-editorial-grid" id="es-editorial-teaser-grid"></div>
+            <div class="es-editorial-footer"><p class="es-editorial-footnote" data-editorial-footnote>Наличие и стоимость подтверждаем перед выкупом.</p><a class="es-editorial-action" href="#editorial">СМОТРЕТЬ ВСЕ ПУБЛИКАЦИИ <span aria-hidden="true">→</span></a></div>
+          </div>
+        </section>
+
       </div>
 
+      <div data-es-public-page="editorial" hidden>
+        <section class="es-editorial-section" id="editorial" aria-labelledby="es-editorial-title">
+          <div class="container"><div class="es-editorial-heading" data-editorial-heading>
+          <div><p class="section-eyebrow" data-ed-eyebrow>EDITORIAL</p><h2 id="es-editorial-title"><span data-ed-title>Нашли в Европе.</span><em data-ed-accent>Выбрали для вас.</em></h2></div>
+          <p class="es-editorial-lead" data-ed-description>Вещи, подборки и распродажи, на которые стоит обратить внимание.</p>
+        </div>
+            <p class="es-editorial-state" id="es-editorial-state" role="status" aria-live="polite">Загружаем подборку…</p>
+            <button class="es-editorial-action" id="es-editorial-retry" type="button" hidden>ПОВТОРИТЬ ЗАГРУЗКУ →</button>
+            <div class="es-editorial-grid" id="es-editorial-grid"></div>
+            <button class="es-editorial-action" id="es-editorial-more" type="button" hidden>ПОКАЗАТЬ ЕЩЁ →</button>
+            <div class="es-editorial-footer"><p class="es-editorial-footnote" data-editorial-footnote>Наличие и стоимость подтверждаем перед выкупом.</p><span class="es-editorial-signature">EUROPA SALE</span></div>
+            <noscript><p class="es-editorial-state">Включите JavaScript, чтобы посмотреть подборки EUROPA SALE.</p></noscript>
+          </div>
+        </section>
+      </div>
       <div data-es-public-page="order" hidden>
         <section class="home-section es-public-section es-order" id="how-to-order" aria-labelledby="es-order-title">
           <div class="container es-section-layout">
@@ -1594,7 +1708,7 @@
       <div class="container section">
         <div class="section-head">
           <div><div class="eyebrow">EUROPA SALE · администрирование</div><h2 class="section-title">Администрирование</h2></div>
-          <p class="section-note">Сверки, должники, рассылка и пользователи — в одном кабинете администратора.</p>
+          <p class="section-note">Сверки, должники, рассылка, пользователи и публикации сайта — в одном кабинете администратора.</p>
         </div>
 
         <div class="admin-tabs" id="admin-tabs">
@@ -1602,6 +1716,7 @@
           <button type="button" class="admin-tab" data-admin-tab="debtors">Должники</button>
           <button type="button" class="admin-tab" data-admin-tab="mailing">Рассылка</button>
           <button type="button" class="admin-tab" data-admin-tab="users">Пользователи</button>
+          <button type="button" class="admin-tab" data-admin-tab="editorial">EDITORIAL</button>
         </div>
 
         <div class="admin-tab-view active" data-admin-view="sverka">
@@ -1744,14 +1859,69 @@
             </table>
           </div>
         </div>
-      </div>
+              <div class="admin-tab-view" data-admin-view="editorial" id="es-ed-admin">
+          <div class="admin-toolbar">
+            <button class="btn dark admin-small-btn" id="es-ed-add" type="button">+ Добавить карточку</button>
+            <button class="btn soft admin-small-btn" id="es-ed-refresh" type="button">Обновить</button>
+            <a class="es-ed-text-link" href="#editorial">Посмотреть на сайте →</a>
+          </div>
+          <p class="es-ed-hint">Сохраняйте карточки как черновики или публикуйте сразу. Первая фотография — обложка. Меньшее число в поле «Порядок показа» поднимает карточку выше.</p>
+          <div class="admin-message" id="es-ed-message" role="status" aria-live="polite"></div>
+          <details class="es-ed-settings">
+            <summary>Заголовок и описание раздела</summary>
+            <form id="es-ed-settings-form">
+              <fieldset id="es-ed-settings-fields" disabled>
+                <label class="es-ed-check"><input id="es-ed-enabled" type="checkbox"> Показывать раздел на сайте</label>
+                <div class="es-ed-form-grid">
+                  <div class="field"><label for="es-ed-eyebrow">Название над заголовком *</label><input id="es-ed-eyebrow" maxlength="60" required></div>
+                  <div class="field"><label for="es-ed-title">Первая строка заголовка *</label><input id="es-ed-title" maxlength="120" required></div>
+                  <div class="field es-ed-wide"><label for="es-ed-accent">Строка бордовым курсивом</label><input id="es-ed-accent" maxlength="160"></div>
+                  <div class="field es-ed-wide"><label for="es-ed-description">Описание раздела</label><textarea id="es-ed-description" rows="3" maxlength="500"></textarea></div>
+                  <div class="field es-ed-wide"><label for="es-ed-footnote">Подпись под карточками</label><textarea id="es-ed-footnote" rows="2" maxlength="500"></textarea></div>
+                </div>
+                <button class="btn dark admin-small-btn" type="submit">Сохранить оформление</button>
+              </fieldset>
+            </form>
+          </details>
+          <div id="es-ed-list" class="es-ed-admin-list"></div>
+          <button id="es-ed-admin-more" class="btn soft admin-small-btn" type="button" hidden>Показать ещё</button>
+          <form id="es-ed-post-form" class="panel es-ed-editor" hidden>
+            <h3 id="es-ed-editor-title">Новая карточка</h3>
+            <fieldset id="es-ed-post-fields">
+              <div class="es-ed-form-grid">
+                <div class="field"><label for="es-ed-kind">Вид публикации</label><select id="es-ed-kind"><option value="product">Вещь в фокусе</option><option value="look">Готовый образ / капсула</option><option value="sale">Распродажа</option></select></div>
+                <div class="field"><label for="es-ed-order">Порядок показа</label><input id="es-ed-order" type="number" min="0" max="10000" step="1" value="100" required></div>
+                <div class="field es-ed-wide"><label for="es-ed-post-title">Заголовок карточки *</label><input id="es-ed-post-title" maxlength="140" required></div>
+                <div class="field"><label for="es-ed-brand">Бренд или магазин</label><input id="es-ed-brand" maxlength="100"></div>
+                <div class="field"><label for="es-ed-country">Страна выкупа</label><input id="es-ed-country" maxlength="100" placeholder="Например, Германия"></div>
+                <div class="field"><label for="es-ed-badge">Отметка на фотографии</label><input id="es-ed-badge" maxlength="50" placeholder="Например, Рекомендуем"></div>
+                <div class="field"><label for="es-ed-price">Цена магазина, €</label><input id="es-ed-price" type="text" inputmode="decimal" maxlength="12" placeholder="Необязательно"></div>
+                <div class="field es-ed-wide"><label for="es-ed-summary">Короткое описание на карточке</label><textarea id="es-ed-summary" rows="3" maxlength="500"></textarea></div>
+                <div class="field es-ed-wide"><label for="es-ed-body">Подробный текст</label><textarea id="es-ed-body" rows="7" maxlength="20000" placeholder="Описание, состав, размеры, идеи сочетаний и условия. Абзацы отделяйте пустой строкой."></textarea></div>
+                <div class="field es-ed-wide"><label for="es-ed-url">Ссылка на товар или магазин</label><input id="es-ed-url" type="url" maxlength="2000" placeholder="https://"></div>
+              </div>
+              <div class="es-ed-photo-heading"><h4>Фотографии</h4><span class="es-ed-hint">До 5 фото · JPG, PNG или WEBP · до 5 МБ каждое</span></div>
+              <div class="field"><label for="es-ed-files">Добавить фотографии</label><input id="es-ed-files" type="file" accept="image/jpeg,image/png,image/webp" multiple></div>
+              <div class="es-ed-photo-list" id="es-ed-photo-list"></div>
+              <label class="es-ed-check"><input id="es-ed-published" type="checkbox"> Опубликовать на сайте</label>
+              <p class="es-ed-hint">Без отметки карточка сохраняется как черновик и видна только в админке.</p>
+              <div class="es-ed-form-actions">
+                <button class="btn dark admin-small-btn" type="submit">Сохранить карточку</button>
+                <button class="btn soft admin-small-btn" id="es-ed-preview-toggle" type="button">Предпросмотр</button>
+                <button class="btn soft admin-small-btn" id="es-ed-cancel" type="button">Отмена</button>
+              </div>
+            </fieldset>
+            <div id="es-ed-preview" class="es-editorial-grid es-ed-preview" hidden></div>
+          </form>
+        </div>
+</div>
     </section>
   </main>
 
   <footer class="footer">
     <div class="container footer-inner">
       <span>europa-sale.com · EUROPA SALE</span>
-      <nav class="es-footer-links" aria-label="Разделы сайта"><a href="#home">Главная</a><a href="#how-to-order">Как заказать</a><a href="#stores">Бренды и магазины</a><a href="#about">О нас</a><a href="#faq">FAQ</a><a href="#login">Моя сверка</a></nav>
+      <nav class="es-footer-links" aria-label="Разделы сайта"><a href="#home">Главная</a><a href="#editorial" data-editorial-nav>EDITORIAL</a><a href="#how-to-order">Как заказать</a><a href="#stores">Бренды и магазины</a><a href="#about">О нас</a><a href="#faq">FAQ</a><a href="#login">Моя сверка</a></nav>
     </div>
   </footer>
 </div>
@@ -2395,6 +2565,7 @@ function normalizeEmail(value){
 
 const esPublicRoutes={
   home:{page:'home'},
+  editorial:{page:'editorial',target:'editorial'},
   about:{page:'about',target:'about'},
   'es-catalogue-panel':{page:'about',target:'es-catalogue-panel'},
   'how-to-order':{page:'order',order:'steps',target:'how-to-order'},
@@ -3252,10 +3423,11 @@ function adminStatusLabel(status){
 }
 
 function setAdminTab(tab){
-  const allowed=['sverka','debtors','mailing','users'];
+  const allowed=['sverka','debtors','mailing','users','editorial'];
   currentAdminTab=allowed.includes(tab)?tab:'sverka';
   document.querySelectorAll('[data-admin-tab]').forEach(btn=>btn.classList.toggle('active',btn.dataset.adminTab===currentAdminTab));
   document.querySelectorAll('[data-admin-view]').forEach(el=>el.classList.toggle('active',el.dataset.adminView===currentAdminTab));
+  if(currentAdminTab==='editorial') window.dispatchEvent(new Event('es:editorial-admin-open'));
   if(currentAdminTab==='debtors') loadAdminDebtors(!adminLoaded.debtors);
   if(currentAdminTab==='users') loadAdminUsers(!adminLoaded.users);
   if(currentAdminTab==='mailing'){
@@ -3666,6 +3838,14 @@ supabaseClient.auth.onAuthStateChange((event, session)=>{
   function openDialog(button){
     if(isOpen()) return;
     opener=button;
+    if(button.dataset.buyoutUrl){
+      fields.url.value=button.dataset.buyoutUrl;
+      fields.size.value='';fields.color.value='';
+      fields.comment.value=button.dataset.buyoutComment||'';
+      output.hidden=true;status.textContent='';
+      chat.href=whatsappUrl;
+      Object.keys(fields).forEach(clearError);
+    }
     if(!fields.nick.value.trim() || fields.nick.value===autofilledNick){
       fields.nick.value=sessionNick();
       autofilledNick=fields.nick.value;
@@ -3679,7 +3859,11 @@ supabaseClient.auth.onAuthStateChange((event, session)=>{
     document.body.classList.add('es-buyout-modal-open');
     fields.url.focus({preventScroll:true});
   }
-  document.querySelectorAll('[data-buyout-open]').forEach(button=>button.addEventListener('click',()=>openDialog(button)));
+  document.addEventListener('click',event=>{
+    const button=event.target?.closest?.('[data-buyout-open]');
+    if(!button || button.disabled) return;
+    openDialog(button);
+  });
   document.getElementById('es-buyout-close').addEventListener('click',closeDialog);
   overlay.addEventListener('click',closeDialog);
   dialog.addEventListener('close',restorePage);
@@ -4130,5 +4314,276 @@ supabaseClient.auth.onAuthStateChange((event, session)=>{
 })();
 </script>
 
+<script id="es-editorial-cms">
+/* EDITORIAL: shared Supabase content. No localStorage CMS or client-side roles. */
+(()=>{
+  'use strict';
+  const api=typeof supabaseClient!=='undefined'?supabaseClient:null;
+  const $=id=>document.getElementById(id);
+  const adminRoot=$('es-ed-admin');
+  if(!adminRoot) return;
+  const names={product:'Вещь в фокусе',look:'Готовый образ',sale:'Распродажа'};
+  const defaults={enabled:true,eyebrow:'EDITORIAL',title:'Нашли в Европе.',accent:'Выбрали для вас.',description:'Вещи, подборки и распродажи, на которые стоит обратить внимание.',footnote:'Наличие и стоимость подтверждаем перед выкупом.'};
+  const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const paragraphs=value=>String(value||'').split(/\n\s*\n/).filter(Boolean).map(p=>'<p>'+esc(p)+'</p>').join('');
+  const state={owner:'',generation:0,busy:false,loading:false,loaded:false,settings:null,settingsDirty:false,posts:[],offset:0,more:false,edit:null,photos:[],uploads:new Set(),dirty:false};
+  let publicPosts=[],publicSettings={...defaults},publicOffset=0,publicMore=false,publicPending=false,publicRevision=0,publicAt=0;
+  function currentAdmin(){
+    return typeof currentSession!=='undefined'&&currentSession?.user?.id&&typeof isAdminSession!=='undefined'&&isAdminSession===true?currentSession.user.id:'';
+  }
+  function safeSource(value){
+    try{const u=new URL(value);return u.protocol==='https:'&&!u.username&&!u.password?u.href:'';}catch{return '';}
+  }
+  function safePhoto(value){
+    try{const u=new URL(value),base=new URL(SUPABASE_URL);return u.origin===base.origin&&u.pathname.startsWith('/storage/v1/object/sign/europa-editorial/')?u.href:'';}catch{return '';}
+  }
+  function message(text='',error=false){
+    const el=$('es-ed-message');el.textContent=text;el.className='admin-message'+(text?' show '+(error?'error':'info'):'');el.setAttribute('role',error?'alert':'status');
+  }
+  async function request(action,payload={},privateCall=true){
+    if(!api) throw new Error('Сервис сайта недоступен. Обновите страницу.');
+    const owner=privateCall?currentAdmin():'';
+    if(privateCall&&!owner) throw new Error('Войдите в кабинет администратора.');
+    const options={body:payload instanceof FormData?payload:{action,...payload}};
+    if(privateCall){
+      const latest=await api.auth.getSession();
+      if(latest.error||latest.data?.session?.user?.id!==owner||currentAdmin()!==owner) throw new Error('Сессия изменилась. Войдите снова.');
+      options.headers={Authorization:'Bearer '+latest.data.session.access_token};
+    }
+    const {data,error}=await api.functions.invoke('editorial-api',options);
+    if(privateCall&&currentAdmin()!==owner) throw new Error('Сессия изменилась.');
+    if(error){
+      let detail='Не удалось обратиться к EDITORIAL. Повторите попытку.';
+      try{const result=await error.context?.clone?.().json();if(result?.error)detail=result.error;}catch{}
+      throw new Error(detail);
+    }
+    if(!data?.success) throw new Error(data?.error||'Не удалось выполнить действие.');
+    return data;
+  }
+  function cardHtml(post,preview=false){
+    const photos=(post.photos||[]).map(p=>({...p,url:safePhoto(p.url)}));
+    const cover=photos[0];
+    const meta=[names[post.kind]||names.product,post.brand,post.country].filter(Boolean).join(' · ');
+    const price=post.price_eur!==null&&post.price_eur!==''&&post.price_eur!==undefined&&Number.isFinite(Number(post.price_eur))
+      ?'<p class="es-editorial-price">'+esc(new Intl.NumberFormat('ru-RU',{style:'currency',currency:'EUR',maximumFractionDigits:2}).format(Number(post.price_eur)))+'<small>Цена магазина · комиссия и доставка отдельно</small></p>':'';
+    const url=safeSource(post.source_url);
+    const question='https://wa.me/79039114172?text='+encodeURIComponent('Здравствуйте! Подскажите, пожалуйста, о публикации EDITORIAL: '+post.title+(url?'\n'+url:''));
+    const action=preview?'':url&&post.kind!=='sale'
+      ?'<button type="button" class="es-editorial-action" data-buyout-open data-buyout-url="'+esc(url)+'" data-buyout-comment="'+esc('EDITORIAL: '+post.title)+'" aria-controls="es-buyout-dialog" aria-haspopup="dialog">ЗАПРОСИТЬ ВЫКУП <span aria-hidden="true">→</span></button>'
+      :'<a class="es-editorial-action" href="'+esc(question)+'" target="_blank" rel="noopener noreferrer">УТОЧНИТЬ ПОДРОБНОСТИ <span aria-hidden="true">→</span></a>';
+    const shop=url&&!preview?'<a class="es-editorial-action" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">В МАГАЗИН <span aria-hidden="true">↗</span></a>':'';
+    return '<article class="es-editorial-card" data-editorial-card="'+esc(post.id||'preview')+'">'+
+      (cover?.url?'<div class="es-editorial-picture"><img src="'+esc(cover.url)+'" alt="'+esc(cover.alt||post.title)+'" loading="lazy" decoding="async">'+(post.badge?'<span class="es-editorial-badge">'+esc(post.badge)+'</span>':'')+'</div>':'')+
+      '<p class="es-editorial-meta">'+esc(meta)+'</p><h3>'+esc(post.title||'Заголовок карточки')+'</h3>'+
+      (post.summary?'<p class="es-editorial-summary">'+esc(post.summary)+'</p>':'')+price+
+      '<details class="es-editorial-details"><summary>ПОДРОБНЕЕ</summary><div class="es-editorial-body">'+paragraphs(post.body)+
+      (photos.length>1?'<div class="es-editorial-gallery">'+photos.slice(1).filter(p=>p.url).map(p=>'<img src="'+esc(p.url)+'" alt="'+esc(p.alt||post.title)+'" loading="lazy" decoding="async">').join('')+'</div>':'')+shop+'</div></details>'+action+'</article>';
+  }
+  function renderPublic(){
+    const enabled=publicSettings.enabled!==false;
+    document.querySelectorAll('[data-editorial-nav]').forEach(el=>{el.hidden=!enabled;});
+    document.querySelectorAll('[data-editorial-heading]').forEach(el=>{
+      el.querySelector('[data-ed-eyebrow]').textContent=publicSettings.eyebrow||defaults.eyebrow;
+      el.querySelector('[data-ed-title]').textContent=publicSettings.title||defaults.title;
+      el.querySelector('[data-ed-accent]').textContent=publicSettings.accent||'';
+      el.querySelector('[data-ed-description]').textContent=publicSettings.description||'';
+    });
+    document.querySelectorAll('[data-editorial-footnote]').forEach(el=>{el.textContent=publicSettings.footnote||'';});
+    $('es-editorial-grid').innerHTML=enabled?publicPosts.map(p=>cardHtml(p)).join(''):'';
+    $('es-editorial-teaser-grid').innerHTML=enabled?publicPosts.slice(0,3).map(p=>cardHtml(p)).join(''):'';
+    $('es-editorial-teaser').hidden=!enabled||!publicPosts.length;
+    $('es-editorial-more').hidden=!enabled||!publicMore;
+    $('es-editorial-state').textContent=enabled&&publicPosts.length?'':'Готовим для вас новую подборку.';
+  }
+  async function loadPublic(append=false,force=false){
+    if((publicPending&&!force)||(!append&&!force&&publicAt&&Date.now()-publicAt<60000))return;
+    const revision=++publicRevision;publicPending=true;
+    const more=$('es-editorial-more');more.disabled=true;
+    try{
+      const data=await request('public_list',{offset:append?publicOffset:0,limit:9},false);
+      if(revision!==publicRevision)return;
+      publicSettings={...defaults,...data.settings};
+      publicPosts=append?[...publicPosts,...data.posts.filter(p=>!publicPosts.some(old=>old.id===p.id))]:data.posts;
+      publicOffset=data.next_offset;publicMore=data.has_more;publicAt=Date.now();
+      renderPublic();$('es-editorial-retry').hidden=true;
+    }catch{
+      if(revision===publicRevision){$('es-editorial-state').textContent='Подборка временно недоступна. Попробуйте обновить её позже.';$('es-editorial-retry').hidden=false;}
+    }finally{
+      if(revision===publicRevision){publicPending=false;more.disabled=false;}
+    }
+  }
+  function setBusy(busy){
+    state.busy=busy;
+    $('es-ed-post-fields').disabled=busy;
+    $('es-ed-settings-fields').disabled=busy||!state.settings;
+    ['es-ed-add','es-ed-refresh','es-ed-admin-more'].forEach(id=>{$(id).disabled=busy;});
+    $('es-ed-list').querySelectorAll('button').forEach(el=>{el.disabled=busy;});
+  }
+  function setSettingsForm(){
+    const s=state.settings;if(!s)return;
+    $('es-ed-enabled').checked=s.enabled;
+    for(const field of ['eyebrow','title','accent','description','footnote'])$('es-ed-'+field).value=s[field]||'';
+    $('es-ed-settings-fields').disabled=false;
+  }
+  function renderAdminList(){
+    $('es-ed-list').innerHTML=state.posts.length?state.posts.map(p=>{
+      const url=safePhoto(p.photos?.[0]?.url);
+      return '<article class="es-ed-row">'+(url?'<img src="'+esc(url)+'" alt="'+esc(p.title)+'" loading="lazy">':'<div class="es-ed-thumb-empty" aria-label="Пока без фото"></div>')+
+        '<div><h4>'+esc(p.title)+'</h4><p>'+esc([p.published?'Опубликовано':'Черновик',names[p.kind],p.brand,'Порядок: '+p.sort_order].filter(Boolean).join(' · '))+'</p></div><div class="es-ed-row-actions">'+
+        '<button type="button" data-ed-edit="'+esc(p.id)+'">Редактировать</button><button type="button" data-ed-delete="'+esc(p.id)+'">Удалить</button></div></article>';
+    }).join(''):'<p class="es-ed-hint">Карточек пока нет. Добавьте первую публикацию.</p>';
+    $('es-ed-admin-more').hidden=!state.more;
+  }
+  async function loadAdmin(append=false){
+    const owner=currentAdmin();if(!owner||state.loading||state.busy)return;
+    if(state.owner!==owner)resetAdmin(owner);
+    const run=state.generation;state.loading=true;setBusy(true);message('Загружаем публикации…');
+    try{
+      const data=await request('admin_list',{offset:append?state.offset:0,limit:50});
+      if(run!==state.generation)return;
+      if(!state.settingsDirty)state.settings=data.settings;
+      state.posts=append?[...state.posts,...data.posts.filter(p=>!state.posts.some(old=>old.id===p.id))]:data.posts;
+      state.offset=data.next_offset;state.more=data.has_more;state.loaded=true;
+      if(!state.settingsDirty)setSettingsForm();renderAdminList();message();
+    }catch(error){if(run===state.generation)message(error.message,true);}
+    finally{if(run===state.generation){state.loading=false;setBusy(false);}}
+  }
+  function resetAdmin(owner=''){
+    state.generation++;state.owner=owner;state.posts=[];state.settings=null;state.settingsDirty=false;state.loaded=false;state.loading=false;state.edit=null;state.photos=[];state.uploads.clear();state.dirty=false;state.offset=0;state.more=false;
+    $('es-ed-list').replaceChildren();$('es-ed-post-form').reset();$('es-ed-post-form').hidden=true;$('es-ed-photo-list').replaceChildren();$('es-ed-preview').replaceChildren();$('es-ed-preview').hidden=true;$('es-ed-settings-form').reset();$('es-ed-settings-fields').disabled=true;$('es-ed-admin-more').hidden=true;message();setBusy(false);
+  }
+  async function discardUploads(){
+    const paths=[...state.uploads];state.uploads.clear();
+    await Promise.allSettled(paths.map(path=>request('discard_image',{path})));
+  }
+  function canLeave(){return !state.dirty||window.confirm('Есть несохранённые изменения карточки. Закрыть без сохранения?');}
+  async function closeEditor(){
+    if(state.busy||!canLeave())return false;
+    const run=state.generation;setBusy(true);await discardUploads();
+    if(run!==state.generation)return false;
+    state.edit=null;state.photos=[];state.dirty=false;$('es-ed-post-form').hidden=true;$('es-ed-preview').hidden=true;setBusy(false);return true;
+  }
+  async function openEditor(post=null){
+    if(!currentAdmin()||state.busy)return;
+    if(state.edit&&!(await closeEditor()))return;
+    state.edit=post?{...post}:{id:crypto.randomUUID(),version:0};
+    state.photos=post?(post.photos||[]).map(p=>({...p})):[];state.uploads.clear();state.dirty=false;
+    const form=$('es-ed-post-form');form.reset();
+    $('es-ed-editor-title').textContent=post?'Редактировать карточку':'Новая карточка';
+    const values={kind:post?.kind||'product',order:post?.sort_order??100,'post-title':post?.title||'',brand:post?.brand||'',country:post?.country||'',summary:post?.summary||'',body:post?.body||'',badge:post?.badge||'',price:post?.price_eur??'',url:post?.source_url||''};
+    for(const [key,value]of Object.entries(values))$('es-ed-'+key).value=value;
+    $('es-ed-published').checked=post?.published===true;
+    renderPhotos();$('es-ed-preview').hidden=true;form.hidden=false;form.scrollIntoView({behavior:'smooth',block:'start'});$('es-ed-post-title').focus({preventScroll:true});
+  }
+  function collectPost(){
+    return {id:state.edit.id,kind:$('es-ed-kind').value,title:$('es-ed-post-title').value.trim(),brand:$('es-ed-brand').value.trim(),country:$('es-ed-country').value.trim(),summary:$('es-ed-summary').value.trim(),body:$('es-ed-body').value.trim(),badge:$('es-ed-badge').value.trim(),price_eur:$('es-ed-price').value.trim().replace(',','.')||null,source_url:$('es-ed-url').value.trim(),published:$('es-ed-published').checked,sort_order:Number($('es-ed-order').value),photos:state.photos.map(p=>({path:p.path,alt:p.alt||'',url:p.url}))};
+  }
+  function renderPhotos(){
+    $('es-ed-photo-list').innerHTML=state.photos.map((p,i)=>'<div class="es-ed-photo">'+
+      (safePhoto(p.url)?'<img src="'+esc(safePhoto(p.url))+'" alt="'+esc(p.alt||'Фото '+(i+1))+'">':'')+
+      '<p class="es-ed-photo-caption">'+(i===0?'Обложка':'Фото '+(i+1))+'</p><label>Описание для изображения<input type="text" maxlength="180" data-ed-alt="'+i+'" value="'+esc(p.alt||'')+'"></label><div class="es-ed-photo-actions">'+
+      '<button type="button" data-ed-photo-up="'+i+'" aria-label="Поднять фото '+(i+1)+'" '+(i===0?'disabled':'')+'>↑</button><button type="button" data-ed-photo-down="'+i+'" aria-label="Опустить фото '+(i+1)+'" '+(i===state.photos.length-1?'disabled':'')+'>↓</button><button type="button" data-ed-photo-remove="'+i+'">Удалить фото</button></div></div>').join('');
+  }
+  async function uploadImages(){
+    const input=$('es-ed-files');const files=Array.from(input.files||[]);input.value='';
+    if(!files.length||state.busy||!state.edit)return;
+    if(files.length+state.photos.length>5){message('В одной карточке может быть до 5 фото.',true);return;}
+    if(files.some(f=>!['image/jpeg','image/png','image/webp'].includes(f.type)||!f.size||f.size>5*1024*1024)){message('Выберите JPG, PNG или WEBP до 5 МБ каждое.',true);return;}
+    const run=state.generation;setBusy(true);
+    try{
+      for(let i=0;i<files.length;i++){
+        message('Загружаем фото '+(i+1)+' из '+files.length+'…');
+        const form=new FormData();form.append('file',files[i]);
+        const data=await request('upload_image',form);
+        if(run!==state.generation)return;
+        state.photos.push(data.photo);state.uploads.add(data.photo.path);state.dirty=true;renderPhotos();
+      }
+      message('Фотографии загружены. Сохраните карточку, чтобы применить изменения.');
+    }catch(error){if(run===state.generation)message(error.message,true);}
+    finally{if(run===state.generation)setBusy(false);}
+  }
+  $('es-ed-files').addEventListener('change',uploadImages);
+  $('es-ed-photo-list').addEventListener('input',event=>{
+    const input=event.target.closest('[data-ed-alt]');if(!input)return;
+    const index=Number(input.dataset.edAlt);if(state.photos[index]){state.photos[index].alt=input.value;state.dirty=true;}
+  });
+  $('es-ed-photo-list').addEventListener('click',async event=>{
+    if(state.busy)return;
+    const button=event.target.closest('button');if(!button)return;
+    const up=button.dataset.edPhotoUp,down=button.dataset.edPhotoDown,remove=button.dataset.edPhotoRemove;
+    const index=Number(up??down??remove);if(!Number.isInteger(index)||!state.photos[index])return;
+    if(remove!==undefined){
+      const [photo]=state.photos.splice(index,1);state.dirty=true;renderPhotos();
+      if(state.uploads.has(photo.path)){
+        state.uploads.delete(photo.path);const run=state.generation;setBusy(true);
+        try{await request('discard_image',{path:photo.path});}catch(error){if(run===state.generation)message(error.message,true);}finally{if(run===state.generation)setBusy(false);}
+      }
+    }else{
+      const next=up!==undefined?index-1:index+1;
+      if(next>=0&&next<state.photos.length){[state.photos[index],state.photos[next]]=[state.photos[next],state.photos[index]];state.dirty=true;renderPhotos();}
+    }
+  });
+  $('es-ed-post-form').addEventListener('input',()=>{if(state.edit)state.dirty=true;});
+  $('es-ed-post-form').addEventListener('submit',async event=>{
+    event.preventDefault();if(state.busy||!state.edit||!currentAdmin())return;
+    const post=collectPost();
+    if(post.published&&!post.photos.length){message('Для публикации загрузите хотя бы одно фото.',true);return;}
+    const run=state.generation;setBusy(true);message('Сохраняем карточку…');
+    try{
+      const wire={...post,photos:post.photos.map(({path,alt})=>({path,alt}))};
+      await request('save_post',{post:wire,expected_version:state.edit.version});
+      if(run!==state.generation)return;
+      state.uploads.clear();state.dirty=false;state.edit=null;state.photos=[];$('es-ed-post-form').hidden=true;$('es-ed-preview').hidden=true;
+      setBusy(false);await loadAdmin();if(run!==state.generation)return;
+      message(post.published?'Карточка опубликована.':'Черновик сохранён.');void loadPublic(false,true);
+    }catch(error){if(run===state.generation)message(error.message,true);}
+    finally{if(run===state.generation)setBusy(false);}
+  });
+  $('es-ed-settings-form').addEventListener('submit',async event=>{
+    event.preventDefault();if(state.busy||!state.settings||!currentAdmin())return;
+    const settings={enabled:$('es-ed-enabled').checked};
+    for(const key of ['eyebrow','title','accent','description','footnote'])settings[key]=$('es-ed-'+key).value.trim();
+    const run=state.generation;setBusy(true);message('Сохраняем оформление…');
+    try{const result=await request('save_settings',{settings,expected_version:state.settings.version});if(run!==state.generation)return;state.settings=result.settings;state.settingsDirty=false;message('Оформление раздела сохранено.');void loadPublic(false,true);}
+    catch(error){if(run===state.generation)message(error.message,true);}
+    finally{if(run===state.generation)setBusy(false);}
+  });
+  $('es-ed-preview-toggle').addEventListener('click',()=>{
+    if(!state.edit)return;const preview=$('es-ed-preview');preview.hidden=!preview.hidden;
+    if(!preview.hidden){preview.innerHTML=cardHtml(collectPost(),true);preview.scrollIntoView({behavior:'smooth',block:'nearest'});}
+  });
+  $('es-ed-list').addEventListener('click',async event=>{
+    if(state.busy)return;const button=event.target.closest('button');if(!button)return;
+    const id=button.dataset.edEdit||button.dataset.edDelete;const post=state.posts.find(p=>p.id===id);if(!post)return;
+    if(button.dataset.edEdit){await openEditor(post);return;}
+    if(!window.confirm('Удалить карточку «'+post.title+'» и её фотографии?'))return;
+    if(state.edit?.id===id&&!(await closeEditor()))return;
+    const run=state.generation;setBusy(true);message('Удаляем карточку…');
+    try{await request('delete_post',{id,expected_version:post.version});if(run!==state.generation)return;setBusy(false);await loadAdmin();if(run!==state.generation)return;message('Карточка удалена.');void loadPublic(false,true);}
+    catch(error){if(run===state.generation)message(error.message,true);}
+    finally{if(run===state.generation)setBusy(false);}
+  });
+  $('es-ed-add').addEventListener('click',()=>{void openEditor();});
+  $('es-ed-cancel').addEventListener('click',()=>{void closeEditor();});
+  $('es-ed-refresh').addEventListener('click',async()=>{if(state.edit&&!(await closeEditor()))return;if(state.settingsDirty&&!window.confirm('Есть несохранённые изменения заголовка раздела. Обновить без сохранения?'))return;state.settingsDirty=false;void loadAdmin();});
+  $('es-ed-admin-more').addEventListener('click',()=>{void loadAdmin(true);});
+  $('es-editorial-more').addEventListener('click',()=>{void loadPublic(true);});
+  $('es-editorial-retry').addEventListener('click',()=>{void loadPublic(false,true);});
+  window.addEventListener('es:editorial-admin-open',()=>{void loadAdmin();});
+  function navigate(){
+    if(['','#home','#editorial'].includes(location.hash))void loadPublic();
+    if(location.hash==='#admin'&&typeof currentAdminTab!=='undefined'&&currentAdminTab==='editorial'&&currentAdmin())void loadAdmin();
+  }
+  window.addEventListener('es:navigate',navigate);window.addEventListener('hashchange',navigate);window.addEventListener('popstate',navigate);
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)navigate();});
+  $('es-ed-settings-form').addEventListener('input',()=>{state.settingsDirty=true;});
+  window.addEventListener('beforeunload',event=>{if(state.dirty||state.settingsDirty){event.preventDefault();event.returnValue='';}});
+  if(api){api.auth.onAuthStateChange((_event,session)=>{
+    if(state.owner&&session?.user?.id!==state.owner)resetAdmin();
+  });}
+  renderPublic();navigate();
+})();
+
+</script>
 </body>
 </html>
