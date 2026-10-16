@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#f8f3f1" />
   <title>EUROPA SALE</title>
   <meta name="description" content="EUROPA SALE — покупки из Германии, Италии и других стран Европы." />
-  <meta name="europa-sale-version" content="EUROPA_SALE_20261013_EDITORIAL_SECTIONS_ABOUT_MESSENGERS_REGISTRATION_LINK_RETRY_SINGLE_CLICK_NAV_BRANDS_15_SHOPS_SALES_CALCULATOR_CLIENT_CATALOGUES_DATE_DESC" />
+  <meta name="europa-sale-version" content="EUROPA_SALE_20261016_FIVE_PUBLIC_TABS_EDITORIAL_SLOGANS_FAQ15_AUTH_PRESERVED" />
   <style>
     :root{
       --bg:#f8f3f1;
@@ -800,110 +800,190 @@
       #about .es-about-messenger:last-child,#about .es-catalogue-channel:last-child{border-bottom:1px solid var(--line)}
       #calculator .es-calc-result{padding:24px 0}
     }
+
+    /* EUROPA SALE · FAQ · native disclosure answers · 2026-10-15 */
+    #view-home #faq{scroll-margin-top:122px}
+    #faq .es-faq-items{border-top:1px solid var(--line)}
+    #faq .es-faq-item{border-bottom:1px solid var(--line)}
+    #faq .es-faq-item>summary{display:grid;grid-template-columns:32px minmax(0,1fr) 18px;gap:16px;align-items:start;padding:24px 0;list-style:none;cursor:pointer;color:var(--text);font-size:18px;line-height:1.55;font-weight:400}
+    #faq .es-faq-item>summary::-webkit-details-marker{display:none}
+    #faq .es-faq-item>summary::marker{content:""}
+    #faq .es-faq-item>summary::after{content:"+";font-size:24px;line-height:1.15;font-weight:400;color:var(--muted);text-align:right}
+    #faq .es-faq-item[open]>summary::after{content:"−"}
+    #faq .es-faq-item>summary:hover,#faq .es-faq-item[open]>summary{color:var(--rose)}
+    #faq .es-faq-item>summary:focus-visible{outline:2px solid var(--text);outline-offset:5px}
+    #faq .es-faq-number{font-size:12px;line-height:1.8;padding-top:3px;color:var(--muted-2);letter-spacing:.08em;font-variant-numeric:tabular-nums}
+    #faq .es-faq-answer{padding:0 34px 26px 48px;color:var(--muted);font-size:17px;line-height:1.75;overflow-wrap:break-word}
+    #faq .es-faq-answer p{margin:0 0 16px}
+    #faq .es-faq-answer strong{color:var(--text);font-weight:500}
+    #faq .es-faq-answer a{color:var(--text);text-decoration:underline;text-underline-offset:3px}
+    #faq .es-faq-answer a:focus-visible{outline:2px solid var(--text);outline-offset:4px}
+    #faq .es-faq-list{margin:0 0 16px;padding-left:20px}
+    #faq .es-faq-list li{padding-left:2px;margin:5px 0}
+    #faq .es-faq-answer>:last-child{margin-bottom:0}
+    #faq .es-faq-contact{margin-top:40px}
+    #faq .es-faq-contact h3{margin:0 0 14px;font-size:23px;line-height:1.35;letter-spacing:-.025em;font-weight:400;color:var(--text)}
+    #faq .es-faq-contact p{max-width:620px;margin:0 0 16px;font-size:16px;line-height:1.75;color:var(--muted)}
+    #faq .es-faq-contact-link{display:inline-flex;align-items:center;gap:22px;min-height:44px;padding:9px 0;border-bottom:1px solid var(--line);font-size:11px;letter-spacing:.06em;line-height:1.5;text-decoration:none;color:var(--text)}
+    #faq .es-faq-contact-link:hover{border-color:var(--text)}
+    #faq .es-faq-contact-link:focus-visible{outline:2px solid var(--text);outline-offset:5px}
+    @media(max-width:860px){#view-home #faq{scroll-margin-top:96px}}
+    @media(max-width:700px){
+      #faq .es-faq-item>summary{grid-template-columns:28px minmax(0,1fr) 18px;gap:12px;padding:21px 0;font-size:17px;line-height:1.55}
+      #faq .es-faq-answer{padding:0 0 24px 40px;font-size:16px}
+      #faq .es-faq-contact{margin-top:32px}
+      #faq .es-faq-contact h3{font-size:22px}
+    }
+
+    /* EUROPA SALE · Five public pages and local navigation · 2026-10-16 */
+    #view-home [hidden]{display:none!important}
+    .es-tabbed-header .topbar-inner{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:20px;min-height:96px}
+    .es-tabbed-header .brand{font-size:24px;letter-spacing:.13em}
+    .es-tabbed-header .es-site-menu{justify-content:flex-end;gap:22px;flex-wrap:wrap;min-width:0}
+    .es-main-links,.es-member-links{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+    .es-member-links:empty{display:none}
+    .es-tabbed-header .nav a,.es-tabbed-header .nav button{font-size:13px;line-height:1.6;min-height:44px;display:inline-flex;align-items:center}
+    .es-tabbed-header [data-es-main-nav]{position:relative}
+    .es-tabbed-header [data-es-main-nav][aria-current="page"]{color:var(--rose)}
+    .es-tabbed-header [data-es-main-nav][aria-current="page"]::after{content:"";position:absolute;bottom:2px;left:0;right:0;height:1px;background:var(--rose)}
+    .es-header-cabinet{display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:46px;padding:12px 17px;background:var(--black);color:#fff;text-decoration:none;font-size:12px;white-space:nowrap}
+    .es-header-cabinet:hover{background:#000}
+    .es-nav-toggle{display:none}
+    .es-tabbed-header a:focus-visible,.es-tabbed-header button:focus-visible,.es-local-nav a:focus-visible,.es-home-shortcuts a:focus-visible,.es-inline-link:focus-visible{outline:2px solid var(--rose);outline-offset:5px}
+    #view-home .es-public-section,#view-home [data-es-public-page]>#about,#view-home [data-es-public-page]>#faq{border-top:0;padding:82px 0 96px;min-height:calc(100vh - 176px);scroll-margin-top:96px}
+    #view-home #es-catalogue-panel{scroll-margin-top:122px}
+    .es-local-nav{display:flex;gap:14px 26px;flex-wrap:wrap;margin:0 0 38px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+    .es-local-nav a{display:inline-flex;align-items:center;min-height:44px;padding:8px 0;color:var(--muted);font-size:14px;line-height:1.5;text-decoration:none;border-bottom:1px solid transparent}
+    .es-local-nav a[aria-current="page"]{border-bottom-color:var(--rose);color:var(--rose)}
+    .es-local-nav a:hover{color:var(--text)}
+    #view-home .es-pane-title{font-size:24px;line-height:1.4;font-weight:400;letter-spacing:-.02em;margin:0 0 26px;max-width:30ch}
+    #brands{background:transparent}
+    #calculator{border:0;padding:0}
+    #where-we-buy{padding:0;border:0}
+    .es-pane-intro{font-size:17px;line-height:1.7;color:var(--muted);margin:0 0 24px}
+    .es-conditions-list{margin:0 0 24px}
+    .es-conditions-list>div{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:26px;padding:24px 0;border-top:1px solid var(--line)}
+    .es-conditions-list dt{font-size:16px;line-height:1.7;color:var(--text)}
+    .es-conditions-list dd{margin:0;color:var(--muted);font-size:16px;line-height:1.7}
+    .es-conditions-list dd strong{color:var(--text);font-weight:500}
+    .es-conditions-list dd p{margin:14px 0 0}
+    .es-inline-link{display:inline-flex;align-items:center;gap:22px;min-height:44px;padding:9px 0;border-bottom:1px solid var(--line);color:var(--text);text-decoration:none;font-size:11px;line-height:1.6;letter-spacing:.06em}
+    .es-home-intro{text-align:center;padding-top:72px;padding-bottom:62px}
+    .es-home-intro>.section-eyebrow{margin:0 0 30px;font-size:11px;line-height:1.6;letter-spacing:.13em}
+    .es-home-title{max-width:1080px;margin:0 auto;font-size:clamp(46px,5.5vw,88px);line-height:1.04;font-weight:400;letter-spacing:-.05em}
+    .es-home-title em{display:block;max-width:22ch;margin:10px auto 0;color:var(--rose);font-family:"Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,serif;font-weight:400;line-height:1.06}
+    .es-home-lead{max-width:610px;margin:28px auto 0;font-size:17px;line-height:1.75;color:var(--muted)}
+    .es-home-brands{display:flex;justify-content:center;gap:10px 24px;flex-wrap:wrap;list-style:none;margin:24px 0 0;padding:0;font-size:13px;line-height:1.6;color:var(--text)}
+    .es-home-actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin:30px auto 0}
+    .es-home-actions .btn{min-height:54px;font-size:11px;letter-spacing:.07em;padding:16px 24px;font-weight:500}
+    .es-home-shortcuts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;padding-bottom:58px}
+    .es-home-shortcuts>a{display:flex;flex-direction:column;gap:13px;min-width:0;padding:25px 0 0;border-top:1px solid var(--line);text-decoration:none}
+    .es-shortcut-index{font-size:10px;letter-spacing:.12em;color:var(--muted)}
+    .es-shortcut-title{display:flex;justify-content:space-between;gap:14px;font-size:20px;line-height:1.4;letter-spacing:-.02em}
+    .es-shortcut-title>span{color:var(--rose)}
+    .es-shortcut-copy{font-size:13px;line-height:1.6;color:var(--muted)}
+    .es-home-shortcuts>a:hover .es-shortcut-title{color:var(--rose)}
+    .es-footer-links{display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center;line-height:1.7}
+    @media(max-width:1250px){
+      .es-tabbed-header .topbar-inner{grid-template-columns:1fr auto;gap:0 20px;padding-top:20px;padding-bottom:13px}
+      .es-tabbed-header .es-site-menu{grid-row:2;grid-column:1/-1;justify-content:space-between;margin-top:10px}
+      .es-tabbed-header .es-header-cabinet{grid-column:2;grid-row:1}
+      #view-home .es-public-section,#view-home [data-es-public-page]>#about,#view-home [data-es-public-page]>#faq{scroll-margin-top:142px}
+      #view-home #es-catalogue-panel{scroll-margin-top:166px}
+    }
+    @media(max-width:760px){
+      .es-tabbed-header .topbar-inner{grid-template-columns:minmax(0,1fr) auto auto;min-height:78px;padding:15px 18px;gap:0 10px}
+      .es-tabbed-header .brand{font-size:clamp(16px,4.4vw,22px);letter-spacing:.1em}
+      .es-tabbed-header .es-header-cabinet{grid-column:2;grid-row:1;min-height:42px;font-size:11px;padding:10px 12px;gap:8px}
+      .es-nav-toggle{grid-column:3;grid-row:1;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;width:42px;height:42px;padding:10px;background:transparent;border:1px solid var(--line);color:var(--text);cursor:pointer}
+      .es-nav-toggle span{display:block;width:18px;height:1px;background:currentColor;transition:transform .18s ease}
+      .es-nav-toggle[aria-expanded="true"] span:first-child{transform:translateY(3.5px) rotate(45deg)}
+      .es-nav-toggle[aria-expanded="true"] span:last-child{transform:translateY(-3.5px) rotate(-45deg)}
+      .es-tabbed-header .es-site-menu{display:none;grid-row:2;grid-column:1/-1;margin-top:16px;padding-top:8px;border-top:1px solid var(--line);max-height:calc(100dvh - 110px);overflow:auto}
+      .es-tabbed-header .es-site-menu[data-expanded="true"]{display:flex;align-items:stretch;flex-direction:column;gap:8px}
+      .es-main-links{display:grid;grid-template-columns:minmax(0,1fr);gap:0}
+      .es-member-links{gap:12px 24px}
+      .es-tabbed-header .nav a,.es-tabbed-header .nav button{font-size:15px;min-height:48px}
+      .es-tabbed-header [data-es-main-nav][aria-current="page"]::after{right:auto;width:28px}
+      #view-home .es-public-section,#view-home [data-es-public-page]>#about,#view-home [data-es-public-page]>#faq{padding:48px 0 64px;min-height:calc(100vh - 150px);scroll-margin-top:78px}
+      #view-home #es-catalogue-panel{scroll-margin-top:102px}
+      .es-home-intro{padding-top:48px;padding-bottom:42px}
+      .es-home-intro>.section-eyebrow{font-size:10px;max-width:30ch;margin:0 auto 26px}
+      .es-home-title{font-size:clamp(38px,8.5vw,62px)}
+      .es-home-title em{max-width:20ch}
+      .es-home-lead{font-size:16px;margin-top:24px}
+      .es-home-brands{font-size:12px;gap:8px 18px;margin-top:20px}
+      .es-home-shortcuts{gap:22px;grid-template-columns:minmax(0,1fr);padding-bottom:42px}
+      .es-home-shortcuts>a{padding-top:20px;gap:10px}
+      .es-shortcut-title{font-size:20px}
+      .es-local-nav{margin-bottom:28px;gap:0 22px;padding-bottom:10px}
+      .es-local-nav a{font-size:13px}
+      #view-home .es-pane-title{font-size:22px;margin-bottom:22px}
+      .es-conditions-list>div{grid-template-columns:minmax(0,1fr);gap:8px;padding:20px 0}
+      .es-footer-links{gap:10px 18px}
+    }
+    @media(max-width:400px){
+      .es-tabbed-header .topbar-inner{padding-left:16px;padding-right:16px;gap:0 8px}
+      .es-header-cabinet>span{display:none}
+    }
+    @media(prefers-reduced-motion:reduce){.es-nav-toggle span{transition:none}}
   </style>
 </head>
 <body>
 <div class="shell">
-  <header class="topbar">
+  <header class="topbar es-tabbed-header">
     <div class="topbar-inner">
-      <a class="brand" href="#home">EUROPA <span class="brand-sale">SALE</span></a>
-      <nav class="nav" aria-label="Основная навигация">
-        <a href="#home">Главная</a>
-        <a href="#about">О нас</a>
-        <a href="#how-to-order">Как заказать</a>
-        <a href="#calculator">Калькулятор</a>
-        <a href="#login">Вход</a>
-        <a id="profile-nav-link" href="#profile" style="display:none;">Профиль</a>
-        <a id="admin-nav-link" href="#admin" style="display:none;">Админ</a>
-        <a class="primary" href="#login">Моя сверка</a>
-        <button id="logout-btn" style="display:none;">Выйти</button>
+      <a class="brand" href="#home" aria-label="EUROPA SALE — главная">EUROPA <span class="brand-sale">SALE</span></a>
+      <nav class="nav es-site-menu" id="es-site-menu" aria-label="Основная навигация" data-expanded="false">
+        <div class="es-main-links">
+          <a href="#home" data-es-main-nav="home" aria-current="page">Главная</a>
+          <a href="#how-to-order" data-es-main-nav="order">Как заказать</a>
+          <a href="#stores" data-es-main-nav="stores">Бренды и магазины</a>
+          <a href="#about" data-es-main-nav="about">О нас</a>
+          <a href="#faq" data-es-main-nav="faq">FAQ</a>
+        </div>
+        <div class="es-member-links">
+          <a id="profile-nav-link" href="#profile" style="display:none;">Профиль</a>
+          <a id="admin-nav-link" href="#admin" style="display:none;">Админ</a>
+          <button id="logout-btn" type="button" style="display:none;">Выйти</button>
+        </div>
       </nav>
+      <a class="es-header-cabinet" href="#login">Моя сверка <span aria-hidden="true">↗</span></a>
+      <button class="es-nav-toggle" id="es-nav-toggle" type="button" aria-label="Открыть меню" aria-controls="es-site-menu" aria-expanded="false"><span></span><span></span></button>
     </div>
   </header>
 
   <main class="main">
     <section id="view-home" class="view active">
-      <div class="container home-hero">
-        <div class="home-hero-inner">
-          <div class="hero-kicker">БАЙЕР-СЕРВИС · С 2010 ГОДА</div>
-          <h1 class="hero-title">Европейский шопинг.<em>Ближе, чем кажется.</em></h1>
-          <p class="hero-copy">Любимые бренды, продуманный выбор и находки из Германии и Италии — с доставкой к вам.</p>
-          <div class="hero-actions">
-            <a class="btn rose" href="#login">Открыть мою сверку <span aria-hidden="true">↗</span></a>
-            <a class="btn" href="#how-to-order">Как сделать заказ</a>
+      <div data-es-public-page="home">
+        <section class="es-home-intro container" aria-labelledby="es-home-title">
+          <p class="section-eyebrow">EUROPA SALE · ваш персональный байер в Европе</p>
+          <h1 id="es-home-title" class="es-home-title">Находим вещи, <em>которые выглядят дороже своей цены.</em></h1>
+          <p class="es-home-lead">Персональный шопинг, распродажи и капсулы из Германии и Италии — с доставкой по России.</p>
+          <ul class="es-home-brands" aria-label="Любимые бренды"><li>Zara</li><li>COS</li><li>Arket</li><li>Massimo Dutti</li><li>Max Mara</li></ul>
+          <div class="es-home-actions">
+            <button class="btn dark" type="button" data-buyout-open aria-controls="es-buyout-dialog" aria-haspopup="dialog">ОТПРАВИТЬ ССЫЛКУ <span aria-hidden="true">→</span></button>
+            <a class="btn soft" href="#login">МОЯ СВЕРКА <span aria-hidden="true">→</span></a>
           </div>
-          <div class="hero-countries" aria-label="География покупок">
-            <span>Германия</span><span class="dot">•</span><span>Италия</span><span class="arrow">→ Россия</span>
-          </div>
-        </div>
+        </section>
+        <nav class="es-home-shortcuts container" aria-label="Начать знакомство">
+          <a href="#order-conditions"><span class="es-shortcut-index">01 / ПОКУПКИ</span><span class="es-shortcut-title">Условия и доставка <span aria-hidden="true">↗</span></span><span class="es-shortcut-copy">Процент выкупа, сроки и получение</span></a>
+          <a href="#stores"><span class="es-shortcut-index">02 / ВЫБОР</span><span class="es-shortcut-title">Бренды и магазины <span aria-hidden="true">↗</span></span><span class="es-shortcut-copy">Любимые марки и европейские распродажи</span></a>
+          <a href="#es-catalogue-panel"><span class="es-shortcut-index">03 / ВДОХНОВЕНИЕ</span><span class="es-shortcut-title">Каталоги скидок <span aria-hidden="true">↗</span></span><span class="es-shortcut-copy">Заявки в группы после регистрации</span></a>
+        </nav>
       </div>
 
-      <section class="home-section" id="about" aria-labelledby="es-about-title">
-        <div class="container">
-          <div class="home-section-grid">
-            <div>
-              <div class="section-eyebrow">О нас</div>
-              <h2 class="es-about-title" id="es-about-title">Находим вещи,
-                <em>которые выглядят дороже своей цены.</em>
-              </h2>
-            </div>
-            <div class="home-copy es-about-copy">
-              <p>EUROPA SALE — ваш персональный байер в Европе. Помогаем выбирать и покупать одежду, обувь, аксессуары, косметику и товары для дома с выкупом из Германии и Италии.</p>
-              <ul class="es-about-brands" aria-label="Бренды">
-                <li>Zara</li><li>COS</li><li>Arket</li><li>Massimo Dutti</li><li>Max Mara</li>
-              </ul>
-              <p class="es-about-brands-note">И сотни других европейских брендов.</p>
-              <ul class="es-about-services" aria-label="Услуги EUROPA SALE">
-                <li>Персональный шопинг</li>
-                <li>Распродажи и капсулы</li>
-                <li>Проверенные бренды</li>
-                <li>Доставка в Россию</li>
-              </ul>
-              <p>Вы отправляете нам ссылку или обращаетесь за подбором. Мы уточняем условия покупки, подтверждаем выкуп и сопровождаем заказ до отправки. Покупки, суммы и информация по посылкам отображаются в вашем личном кабинете.</p>
-              <div class="es-about-contact">
-                <p>Заказ, подбор и вопросы — в личные сообщения.</p>
-                <a class="es-about-contact-link" href="https://wa.me/79039114172" target="_blank" rel="noopener noreferrer">НАПИСАТЬ В WHATSAPP <span aria-hidden="true">→</span></a>
-              </div>
-            </div>
-          </div>
-          <div class="es-catalogue-panel es-section-layout" id="es-catalogue-panel" aria-labelledby="es-about-groups-title">
-<div class="es-section-heading"><div class="section-eyebrow">Каталоги скидок</div><h3 id="es-about-groups-title">Наши группы <em>в мессенджерах</em></h3></div>
-<div class="es-section-content es-community-copy">
-<p class="es-catalogue-description">Каталоги скидок, подборки товаров и предложения европейских магазинов — в наших группах.</p>
-<p class="es-catalogue-description"><strong>Группы доступны только зарегистрированным клиентам.</strong> После регистрации на сайте можно подать заявки на вступление. Мы проверим регистрацию, рассмотрим заявки и сообщим, как присоединиться к выбранным группам.</p>
-<p class="es-about-nick-note"><strong>Важно:</strong> при регистрации используйте свой постоянный Ник EUROPA SALE — тот же, под которым оформляете покупки.</p>
-<div class="es-catalogue-guest" data-catalogue-guest>
-              <div class="es-about-messenger-grid" aria-label="Группы EUROPA SALE">
-                <div class="es-about-messenger"><strong>Telegram</strong><span>Каталоги скидок</span></div>
-                <div class="es-about-messenger"><strong>WhatsApp</strong><span>Каталоги скидок</span></div>
-                <div class="es-about-messenger"><strong>MAX</strong><span>Каталоги скидок</span></div>
-              </div>
-              <div class="es-about-community-actions">
-                <a class="es-catalogue-action" href="#register">ЗАРЕГИСТРИРОВАТЬСЯ <span aria-hidden="true">→</span></a>
-                <a class="es-catalogue-action" href="#login">ВОЙТИ В ЛИЧНЫЙ КАБИНЕТ <span aria-hidden="true">→</span></a>
-              </div>
-            </div>
-<div class="es-catalogue-member" data-catalogue-member hidden>
-              <p class="es-catalogue-member-note">Выберите группу, в которую хотите вступить. В заявку подставим Ник из вашего клиентского кабинета.</p>
-              <div class="es-catalogue-channels">
-                <button class="es-catalogue-channel" type="button" data-catalogue-request="telegram" disabled><strong>Telegram</strong><span>ПОДАТЬ ЗАЯВКУ →</span></button>
-                <button class="es-catalogue-channel" type="button" data-catalogue-request="whatsapp" disabled><strong>WhatsApp</strong><span>ПОДАТЬ ЗАЯВКУ →</span></button>
-                <button class="es-catalogue-channel" type="button" data-catalogue-request="max" disabled><strong>MAX</strong><span>ПОДАТЬ ЗАЯВКУ →</span></button>
-              </div>
-              <p class="es-catalogue-member-note es-catalogue-confirmation">Заявка откроется в личном WhatsApp EUROPA SALE. Подтвердите отправку сообщения — мы проверим регистрацию и сообщим, как вступить в группу.</p>
-            </div>
-<p class="es-catalogue-status" id="es-catalogue-status" role="status" aria-live="polite"></p>
-<button class="es-catalogue-retry" id="es-catalogue-retry" type="button" hidden>ПОВТОРИТЬ ПРОВЕРКУ →</button>
-<a class="es-catalogue-chat" id="es-catalogue-chat" target="_blank" rel="noopener noreferrer" hidden>ОТКРЫТЬ WHATSAPP С ЗАЯВКОЙ →</a>
-</div>
-</div>
-        </div>
-      </section>
-
-      <section class="home-section es-order" id="how-to-order" aria-labelledby="es-order-title">
-        <div class="container es-section-layout">
-<div class="es-order-heading es-section-heading"><div class="section-eyebrow">01 — 06</div><h2 id="es-order-title">Как <em>заказать</em></h2></div>
-<div class="es-section-content">
+      <div data-es-public-page="order" hidden>
+        <section class="home-section es-public-section es-order" id="how-to-order" aria-labelledby="es-order-title">
+          <div class="container es-section-layout">
+            <div class="es-order-heading es-section-heading"><div class="section-eyebrow">Как заказать</div><h2 id="es-order-title">Вы выбираете. <em>О выкупе позаботимся мы.</em></h2></div>
+            <div class="es-section-content">
+              <nav class="es-local-nav" aria-label="Информация о заказе">
+                <a href="#how-to-order" data-es-order-nav="steps" aria-current="page">Этапы заказа</a>
+                <a href="#order-conditions" data-es-order-nav="conditions">Условия и доставка</a>
+                <a href="#calculator" data-es-order-nav="calculator">Калькулятор</a>
+              </nav>
+              <div id="es-order-steps" data-es-order-pane="steps">
 <p class="es-order-intro">Покупки из Германии, Италии и других стран Европы — просто и прозрачно.</p>
 <ol class="es-order-grid" aria-label="Шесть шагов заказа">
             <li class="es-order-step">
@@ -944,13 +1024,22 @@
           </div>
 <p class="es-order-note"><strong>Важно:</strong> при регистрации используйте тот же Ник, под которым оформляете покупки в EUROPA SALE. Так заказы автоматически появятся в вашем личном кабинете.</p>
 </div>
-</div>
-      </section>
 
-      <section class="home-section" id="calculator" aria-labelledby="es-calc-title">
-        <div class="container es-section-layout">
-<div class="es-calc-heading es-section-heading"><div class="section-eyebrow">Предварительный расчёт</div><h2 id="es-calc-title">Калькулятор <em>покупки</em></h2></div>
-<div class="es-section-content">
+              <section id="order-conditions" data-es-order-pane="conditions" aria-labelledby="es-conditions-title" hidden>
+                <h3 class="es-pane-title" id="es-conditions-title">Условия и доставка</h3>
+                <p class="es-pane-intro">Условия подтверждаем до оформления заказа.</p>
+                <dl class="es-conditions-list">
+                  <div><dt>Организационный процент</dt><dd>Германия — <strong>20%</strong><br>Италия — <strong>25%</strong></dd></div>
+                  <div><dt>Доставка до России</dt><dd>Из Германии — <strong>7 € / кг</strong><br>Из Италии — <strong>22 € / кг</strong><p>Стоимость распределяется пропорционально весу заказа. Расчёт производится по приезде посылки к нам в Россию.</p></dd></div>
+                  <div><dt>Срок получения</dt><dd><strong>От 4-х недель.</strong> Зависит от логистики магазина и работы курьерских компаний. Срок по конкретному заказу уточняем при подтверждении выкупа.</dd></div>
+                  <div><dt>Получение заказа</dt><dd>В центрах выдачи или курьерской службой. Доставляем по всей России. Курьерская доставка до вашего города оплачивается отдельно по тарифу компании.</dd></div>
+                </dl>
+                <a class="es-inline-link" href="#faq">ПОДРОБНЕЕ В ЧАСТЫХ ВОПРОСАХ <span aria-hidden="true">→</span></a>
+              </section>
+
+              <section id="calculator" data-es-order-pane="calculator" aria-labelledby="es-calc-title" hidden>
+                <h3 class="es-pane-title" id="es-calc-title">Калькулятор покупки</h3>
+
 <p class="es-calc-intro">Оцените стоимость покупки в Европе. Для расчёта используйте курс и комиссию, согласованные с EUROPA SALE.</p>
 <div class="es-calc-layout">
             <form class="es-calc-form" id="es-calc-form" novalidate>
@@ -1020,14 +1109,26 @@
               <p class="es-calc-confirmation">Откроется личный WhatsApp EUROPA SALE. Подтвердите отправку сообщения в чате.</p>
             </div>
           </div>
-</div>
-</div>
-      </section>
 
-      <section class="home-section" id="brands" aria-labelledby="es-brands-title">
-        <div class="container es-section-layout">
-<div class="es-brands-heading es-section-heading"><div class="section-eyebrow">Европейские бренды</div><h2 id="es-brands-title">Бренды, <em>которые мы покупаем</em></h2></div>
-<div class="es-section-content">
+              </section>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div data-es-public-page="stores" hidden>
+        <section class="home-section es-public-section" id="stores" aria-labelledby="es-stores-page-title">
+          <div class="container es-section-layout">
+            <div class="es-section-heading"><div class="section-eyebrow">Бренды и магазины</div><h2 id="es-stores-page-title">Любимые бренды. <em>Выгодные находки из Европы.</em></h2></div>
+            <div class="es-section-content">
+              <nav class="es-local-nav" aria-label="Бренды и места покупок">
+                <a href="#brands" data-es-store-nav="brands" aria-current="page">Бренды</a>
+                <a href="#european-shops" data-es-store-nav="shops">Магазины</a>
+                <a href="#closed-sales" data-es-store-nav="sales">Закрытые распродажи</a>
+              </nav>
+              <section id="brands" data-es-store-pane="brands" aria-labelledby="es-brands-title">
+                <h3 class="es-pane-title" id="es-brands-title">Бренды, которые мы покупаем</h3>
+
 <ul class="es-brands-grid" aria-labelledby="es-brands-title">
             <li class="es-brand-name">MAX MARA</li>
             <li class="es-brand-name">COS</li>
@@ -1046,16 +1147,12 @@
             <li class="es-brand-name">Calvin Klein</li>
           </ul>
 <p class="es-brands-note">И сотни других европейских брендов.</p>
-</div>
-</div>
-      </section>
 
-      <section class="home-section" id="where-we-buy" aria-label="Где мы покупаем">
-        <div class="container">
-          
-          <section class="es-stores-group es-section-layout" id="european-shops" aria-labelledby="es-stores-title">
-<div class="es-stores-heading es-section-heading"><div class="section-eyebrow es-sources-eyebrow">Где мы покупаем</div><h2 id="es-stores-title" class="es-section-title-long">Мультибрендовые и стоковые <em>европейские магазины</em></h2></div>
-<div class="es-section-content">
+              </section>
+              <div id="where-we-buy">
+                <section id="european-shops" data-es-store-pane="shops" aria-labelledby="es-stores-title" hidden>
+                  <h3 class="es-pane-title" id="es-stores-title">Мультибрендовые и стоковые европейские магазины</h3>
+
 <ul class="es-stores-grid es-shops-grid" aria-labelledby="es-stores-title">
               <li class="es-store-card es-shop-card">
                 <h3>Intrend</h3>
@@ -1083,12 +1180,11 @@
               </li>
             </ul>
 <p class="es-sources-note">И другие сайты.</p>
-</div>
-</section>
 
-          <section class="es-stores-group es-sales-group es-section-layout" id="closed-sales" aria-labelledby="es-sales-title">
-<div class="es-stores-heading es-section-heading"><div class="section-eyebrow">Закрытые продажи</div><h2 id="es-sales-title">Закрытые <em>распродажи</em></h2></div>
-<div class="es-section-content">
+                </section>
+                <section id="closed-sales" data-es-store-pane="sales" aria-labelledby="es-sales-title" hidden>
+                  <h3 class="es-pane-title" id="es-sales-title">Закрытые распродажи</h3>
+
 <ul class="es-stores-grid es-sales-grid" aria-labelledby="es-sales-title">
               <li class="es-store-card es-sale-card">
                 <h3>ZALANDO LOUNGE</h3>
@@ -1117,10 +1213,150 @@
               </li>
             </ul>
 <p class="es-sources-note">И другие закрытые распродажи.</p>
+
+                </section>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div data-es-public-page="about" hidden><section class="home-section" id="about" aria-labelledby="es-about-title">
+        <div class="container">
+          <div class="home-section-grid">
+            <div>
+              <div class="section-eyebrow">О нас</div>
+              <h2 id="es-about-title" class="es-about-title">Знаем, где искать. <em>Помогаем находить своё.</em></h2>
+            </div>
+            <div class="home-copy es-about-copy">
+              <p>EUROPA SALE — ваш персональный байер в Европе. Помогаем выбирать и покупать одежду, обувь, аксессуары, косметику и товары для дома с выкупом из Германии и Италии.</p>
+              <ul class="es-about-brands" aria-label="Бренды">
+                <li>Zara</li><li>COS</li><li>Arket</li><li>Massimo Dutti</li><li>Max Mara</li>
+              </ul>
+              <p class="es-about-brands-note">И сотни других европейских брендов.</p>
+              <ul class="es-about-services" aria-label="Услуги EUROPA SALE">
+                <li>Персональный шопинг</li>
+                <li>Распродажи и капсулы</li>
+                <li>Проверенные бренды</li>
+                <li>Доставка в Россию</li>
+              </ul>
+              <p>Вы отправляете нам ссылку или обращаетесь за подбором. Мы уточняем условия покупки, подтверждаем выкуп и сопровождаем заказ до отправки. Покупки, суммы и информация по посылкам отображаются в вашем личном кабинете.</p>
+              <div class="es-about-contact">
+                <p>Заказ, подбор и вопросы — в личные сообщения.</p>
+                <a class="es-about-contact-link" href="https://wa.me/79039114172" target="_blank" rel="noopener noreferrer">НАПИСАТЬ В WHATSAPP <span aria-hidden="true">→</span></a>
+              </div>
+            </div>
+          </div>
+          <div class="es-catalogue-panel es-section-layout" id="es-catalogue-panel" aria-labelledby="es-about-groups-title">
+<div class="es-section-heading"><div class="section-eyebrow">Каталоги скидок</div><h3 id="es-about-groups-title">Наши группы <em>в мессенджерах</em></h3></div>
+<div class="es-section-content es-community-copy">
+<p class="es-catalogue-description">Каталоги скидок, подборки товаров и предложения европейских магазинов — в наших группах.</p>
+<p class="es-catalogue-description"><strong>Группы доступны только зарегистрированным клиентам.</strong> После регистрации на сайте можно подать заявки на вступление. Мы проверим регистрацию, рассмотрим заявки и сообщим, как присоединиться к выбранным группам.</p>
+<p class="es-about-nick-note"><strong>Важно:</strong> при регистрации используйте свой постоянный Ник EUROPA SALE — тот же, под которым оформляете покупки.</p>
+<div class="es-catalogue-guest" data-catalogue-guest>
+              <div class="es-about-messenger-grid" aria-label="Группы EUROPA SALE">
+                <div class="es-about-messenger"><strong>Telegram</strong><span>Каталоги скидок</span></div>
+                <div class="es-about-messenger"><strong>WhatsApp</strong><span>Каталоги скидок</span></div>
+                <div class="es-about-messenger"><strong>MAX</strong><span>Каталоги скидок</span></div>
+              </div>
+              <div class="es-about-community-actions">
+                <a class="es-catalogue-action" href="#register">ЗАРЕГИСТРИРОВАТЬСЯ <span aria-hidden="true">→</span></a>
+                <a class="es-catalogue-action" href="#login">ВОЙТИ В ЛИЧНЫЙ КАБИНЕТ <span aria-hidden="true">→</span></a>
+              </div>
+            </div>
+<div class="es-catalogue-member" data-catalogue-member hidden>
+              <p class="es-catalogue-member-note">Выберите группу, в которую хотите вступить. В заявку подставим Ник из вашего клиентского кабинета.</p>
+              <div class="es-catalogue-channels">
+                <button class="es-catalogue-channel" type="button" data-catalogue-request="telegram" disabled><strong>Telegram</strong><span>ПОДАТЬ ЗАЯВКУ →</span></button>
+                <button class="es-catalogue-channel" type="button" data-catalogue-request="whatsapp" disabled><strong>WhatsApp</strong><span>ПОДАТЬ ЗАЯВКУ →</span></button>
+                <button class="es-catalogue-channel" type="button" data-catalogue-request="max" disabled><strong>MAX</strong><span>ПОДАТЬ ЗАЯВКУ →</span></button>
+              </div>
+              <p class="es-catalogue-member-note es-catalogue-confirmation">Заявка откроется в личном WhatsApp EUROPA SALE. Подтвердите отправку сообщения — мы проверим регистрацию и сообщим, как вступить в группу.</p>
+            </div>
+<p class="es-catalogue-status" id="es-catalogue-status" role="status" aria-live="polite"></p>
+<button class="es-catalogue-retry" id="es-catalogue-retry" type="button" hidden>ПОВТОРИТЬ ПРОВЕРКУ →</button>
+<a class="es-catalogue-chat" id="es-catalogue-chat" target="_blank" rel="noopener noreferrer" hidden>ОТКРЫТЬ WHATSAPP С ЗАЯВКОЙ →</a>
 </div>
-</section>
+</div>
         </div>
-      </section>
+      </section></div>
+      <div data-es-public-page="faq" hidden><section class="home-section" id="faq" aria-labelledby="es-faq-title">
+        <div class="container es-section-layout">
+          <div class="es-section-heading">
+            <div class="section-eyebrow">FAQ</div>
+            <h2 id="es-faq-title" class="">Отвечаем на вопросы, <em>чтобы покупать было проще.</em></h2>
+          </div>
+          <div class="es-section-content">
+            <div class="es-faq-items">
+              <details class="es-faq-item">
+                <summary><span class="es-faq-number" aria-hidden="true">01</span><span class="es-faq-question">Как происходит выкуп?</span></summary>
+                <div class="es-faq-answer"><p>Пришлите ссылку на товар, размер, цвет и свой постоянный Ник EUROPA SALE. Мы проверим наличие, уточним условия покупки и после подтверждения оформим заказ в европейском магазине.</p></div>
+              </details>
+              <details class="es-faq-item">
+                <summary><span class="es-faq-number" aria-hidden="true">02</span><span class="es-faq-question">Какой организационный процент?</span></summary>
+                <div class="es-faq-answer"><p>Организационный процент — это плата за нашу услугу выкупа. Он составляет <strong>в Германии 20%, в Италии 25%</strong>. Условия подтверждаем до оформления заказа.</p></div>
+              </details>
+              <details class="es-faq-item">
+                <summary><span class="es-faq-number" aria-hidden="true">03</span><span class="es-faq-question">Как узнать, с каких сайтов вы выкупаете?</span></summary>
+                <div class="es-faq-answer"><p>Основные магазины и площадки представлены в разделе <a href="#where-we-buy">«Где мы покупаем»</a>: европейские интернет-магазины, мультибрендовые площадки и закрытые распродажи. Если нужного магазина нет в списке, отправьте нам ссылку — уточним возможность выкупа.</p></div>
+              </details>
+              <details class="es-faq-item">
+                <summary><span class="es-faq-number" aria-hidden="true">04</span><span class="es-faq-question">Можно ли заказать товар, которого нет на сайте?</span></summary>
+                <div class="es-faq-answer"><p>Возможно, да, всё зависит от сайта. Пришлите ссылку на нужную вещь в европейском магазине, размер и цвет. Мы проверим наличие и возможность выкупа, а также отслеживание товара на сайте, даже если этот товар не был в наших подборках.</p></div>
+              </details>
+              <details class="es-faq-item">
+                <summary><span class="es-faq-number" aria-hidden="true">05</span><span class="es-faq-question">Можно ли отказаться от заказа после выкупа?</span></summary>
+                <div class="es-faq-answer"><p>После выкупа заказа отказаться от него нельзя. Если вы оставляете нам заказ, значит согласны с нашими условиями, поэтому заранее оценивайте свои финансовые возможности.</p></div>
+              </details>
+              <details class="es-faq-item">
+                <summary><span class="es-faq-number" aria-hidden="true">06</span><span class="es-faq-question">Сколько ждать заказ?</span></summary>
+                <div class="es-faq-answer"><p>Ориентировочный срок получения — <strong>от 4-х недель (зависит от логистики самого онлайн-магазина и работы курьерских компаний)</strong>. Он включает доставку из магазина, обработку покупки и отправку в Россию. Срок по конкретному заказу уточняем при подтверждении выкупа.</p></div>
+              </details>
+              <details class="es-faq-item">
+                <summary><span class="es-faq-number" aria-hidden="true">07</span><span class="es-faq-question">Как узнать, когда и где получать заказ?</span></summary>
+                <div class="es-faq-answer"><p>Получение заказа организуется <strong>в центрах выдачи заказов или курьерскими службами до нужного вам места. Услуги курьера оплачиваете вы</strong>. Дату и место выдачи заранее согласовываем через мессенджеры.</p></div>
+              </details>
+              <details class="es-faq-item">
+                <summary><span class="es-faq-number" aria-hidden="true">08</span><span class="es-faq-question">В какие города осуществляется доставка?</span></summary>
+                <div class="es-faq-answer"><p>Доставляем заказы <strong>по всей России</strong>. Способ получения и стоимость отправки до вашего города уточняем отдельно.</p></div>
+              </details>
+              <details class="es-faq-item">
+                <summary><span class="es-faq-number" aria-hidden="true">09</span><span class="es-faq-question">Сколько стоит доставка до России?</span></summary>
+                <div class="es-faq-answer"><p>Стоимость доставки до России составляет:</p><ul class="es-faq-list"><li>из Германии — <strong>7 евро за кг</strong>;</li><li>из Италии — <strong>22 евро за кг</strong>.</li></ul><p>Стоимость доставки распределяется пропорционально весу вашего заказа. Расчёт производится по приезде посылки к нам в Россию.</p><p>Примерный вес вещей:</p><ul class="es-faq-list"><li>футболка (T-shirt) — 0,2 кг;</li><li>джинсы (Jeans) — 0,6 кг;</li><li>кроссовки (sneakers) — 0,8 кг.</li></ul><p>Курьерская доставка до вашего города не включена в этот тариф. Она оплачивается отдельно согласно тарифу курьерской компании.</p></div>
+              </details>
+              <details class="es-faq-item">
+                <summary><span class="es-faq-number" aria-hidden="true">10</span><span class="es-faq-question">Как понять, что мой заказ приехал?</span></summary>
+                <div class="es-faq-answer"><p>О поступлении и готовности заказа к получению сообщаем дополнительно на электронную почту, указанную в вашей карточке на сайте EUROPA SALE, и в мессенджер.</p></div>
+              </details>
+              <details class="es-faq-item">
+                <summary><span class="es-faq-number" aria-hidden="true">11</span><span class="es-faq-question">Как посмотреть свои покупки?</span></summary>
+                <div class="es-faq-answer"><p>Войдите в <a href="#account">личный кабинет EUROPA SALE</a> по Нику или email и паролю. В разделе «Моя сверка» отображаются ваши покупки, суммы и номера посылок. Новые операции расположены сверху.</p></div>
+              </details>
+              <details class="es-faq-item">
+                <summary><span class="es-faq-number" aria-hidden="true">12</span><span class="es-faq-question">Как зарегистрироваться в личном кабинете?</span></summary>
+                <div class="es-faq-answer"><p>Нажмите <a href="#register">«Зарегистрироваться»</a>, заполните форму и создайте пароль. Используйте свой постоянный Ник EUROPA SALE — тот же, под которым оформляете покупки.</p></div>
+              </details>
+              <details class="es-faq-item">
+                <summary><span class="es-faq-number" aria-hidden="true">13</span><span class="es-faq-question">Что делать, если мой Ник уже есть в сверке?</span></summary>
+                <div class="es-faq-answer"><p>При регистрации укажите именно этот Ник — он нужен для привязки ваших покупок к кабинету. Если сайт сообщает, что кабинет уже зарегистрирован, воспользуйтесь <a href="#login">входом</a>. Если войти не получается или сверка не отображается, напишите нам и укажите свой Ник.</p></div>
+              </details>
+              <details class="es-faq-item">
+                <summary><span class="es-faq-number" aria-hidden="true">14</span><span class="es-faq-question">Где смотреть анонсы скидок?</span></summary>
+                <div class="es-faq-answer"><p>Каталоги скидок, подборки товаров и предложения европейских магазинов публикуем в группах Telegram, WhatsApp и MAX. После регистрации на сайте можно подать заявки на вступление. Доступ подтверждаем после проверки регистрации и рассмотрения заявки.</p></div>
+              </details>
+              <details class="es-faq-item">
+                <summary><span class="es-faq-number" aria-hidden="true">15</span><span class="es-faq-question">Работаете ли вы с оптовиками и организаторами закупок?</span></summary>
+                <div class="es-faq-answer"><p>Работаем. Для согласования условий пишите в личные сообщения.</p></div>
+              </details>
+            </div>
+            <div class="es-faq-contact">
+              <h3>Не нашли ответ на свой вопрос?</h3>
+              <p>Напишите в личные сообщения EUROPA SALE — поможем разобраться с заказом, подбором товара или личным кабинетом.</p>
+              <a class="es-faq-contact-link" href="https://wa.me/79039114172" target="_blank" rel="noopener noreferrer">НАПИСАТЬ В WHATSAPP <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </div>
+      </section></div>
     </section>
 
     <section id="view-login" class="view">
@@ -1515,7 +1751,7 @@
   <footer class="footer">
     <div class="container footer-inner">
       <span>europa-sale.com · EUROPA SALE</span>
-      <span><a href="#home">Главная</a> · <a href="#how-to-order">Как заказать</a> · <a href="#calculator">Калькулятор</a> · <a href="#brands">Бренды</a> · <a href="#where-we-buy">Где мы покупаем</a> · <a href="#login">Моя сверка</a></span>
+      <nav class="es-footer-links" aria-label="Разделы сайта"><a href="#home">Главная</a><a href="#how-to-order">Как заказать</a><a href="#stores">Бренды и магазины</a><a href="#about">О нас</a><a href="#faq">FAQ</a><a href="#login">Моя сверка</a></nav>
     </div>
   </footer>
 </div>
@@ -2157,7 +2393,43 @@ function normalizeEmail(value){
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? email : null;
 }
 
-const esHomeSectionIds=['about','how-to-order','calculator','brands','where-we-buy','european-shops','closed-sales'];
+const esPublicRoutes={
+  home:{page:'home'},
+  about:{page:'about',target:'about'},
+  'es-catalogue-panel':{page:'about',target:'es-catalogue-panel'},
+  'how-to-order':{page:'order',order:'steps',target:'how-to-order'},
+  'order-conditions':{page:'order',order:'conditions',target:'how-to-order'},
+  calculator:{page:'order',order:'calculator',target:'how-to-order'},
+  stores:{page:'stores',store:'brands',target:'stores'},
+  brands:{page:'stores',store:'brands',target:'stores'},
+  'where-we-buy':{page:'stores',store:'shops',target:'stores'},
+  'european-shops':{page:'stores',store:'shops',target:'stores'},
+  'closed-sales':{page:'stores',store:'sales',target:'stores'},
+  faq:{page:'faq',target:'faq'}
+};
+const esHomeSectionIds=Object.keys(esPublicRoutes).filter(key=>key!=='home');
+
+function esApplyPublicRoute(hash){
+  const key=String(hash||'#home').slice(1);
+  const selected=Object.hasOwn(esPublicRoutes,key)?esPublicRoutes[key]:esPublicRoutes.home;
+  document.querySelectorAll('#view-home [data-es-public-page]').forEach(el=>{
+    el.hidden=el.dataset.esPublicPage!==selected.page;
+  });
+  document.querySelectorAll('#view-home [data-es-order-pane]').forEach(el=>{
+    el.hidden=el.dataset.esOrderPane!==(selected.order||'steps');
+  });
+  document.querySelectorAll('#view-home [data-es-store-pane]').forEach(el=>{
+    el.hidden=el.dataset.esStorePane!==(selected.store||'brands');
+  });
+  const mark=(selector,field,value)=>document.querySelectorAll(selector).forEach(el=>{
+    if(el.dataset[field]===value) el.setAttribute('aria-current','page');
+    else el.removeAttribute('aria-current');
+  });
+  mark('[data-es-main-nav]','esMainNav',selected.page);
+  mark('[data-es-order-nav]','esOrderNav',selected.order||'steps');
+  mark('[data-es-store-nav]','esStoreNav',selected.store||'brands');
+  return selected.target?document.getElementById(selected.target):null;
+}
 const esViewRouteIds=['home','login','register','account','profile','admin','reset-password'];
 let esViewScrollRevision=0;
 let esRouteRevision=0;
@@ -2168,11 +2440,11 @@ function showView(view){
   const target=document.getElementById('view-'+view);
   document.querySelectorAll('.view').forEach(el=>el.classList.toggle('active',el===target));
   const routeHash=location.hash||'#home';
-  const homeSectionId=routeHash.slice(1);
-  const section=view==='home'&&esHomeSectionIds.includes(homeSectionId)
-    ? document.getElementById(homeSectionId) : null;
-  // One scroll after the target view is visible; never scroll to the top
-  // before moving to a home-page section. Ignore frames from older clicks.
+  const section=view==='home'?esApplyPublicRoute(routeHash):null;
+  if(view!=='home'){
+    document.querySelectorAll('[data-es-main-nav]').forEach(el=>el.removeAttribute('aria-current'));
+  }
+  // Reveal the chosen page before scrolling. Ignore frames from older clicks.
   window.requestAnimationFrame(()=>{
     if(scrollRevision!==esViewScrollRevision || (location.hash||'#home')!==routeHash || !target?.classList.contains('active')) return;
     if(section){
@@ -3824,6 +4096,37 @@ supabaseClient.auth.onAuthStateChange((event, session)=>{
     render();
   });
   render();
+})();
+</script>
+
+
+<script id="es-public-menu">
+(()=>{
+  const toggle=document.getElementById('es-nav-toggle');
+  const menu=document.getElementById('es-site-menu');
+  if(!toggle||!menu) return;
+  const close=(restoreFocus=false)=>{
+    menu.dataset.expanded='false';
+    toggle.setAttribute('aria-expanded','false');
+    toggle.setAttribute('aria-label','Открыть меню');
+    if(restoreFocus) toggle.focus({preventScroll:true});
+  };
+  toggle.addEventListener('click',()=>{
+    const open=toggle.getAttribute('aria-expanded')!=='true';
+    menu.dataset.expanded=String(open);
+    toggle.setAttribute('aria-expanded',String(open));
+    toggle.setAttribute('aria-label',open?'Закрыть меню':'Открыть меню');
+  });
+  document.addEventListener('keydown',event=>{
+    if(event.key==='Escape'&&toggle.getAttribute('aria-expanded')==='true') close(true);
+  });
+  document.addEventListener('click',event=>{
+    if(!event.target.closest?.('.es-tabbed-header')) close();
+  });
+  const onNavigate=()=>close(menu.contains(document.activeElement)&&window.matchMedia('(max-width:760px)').matches);
+  window.addEventListener('es:navigate',onNavigate);
+  window.addEventListener('hashchange',onNavigate);
+  window.addEventListener('popstate',onNavigate);
 })();
 </script>
 
