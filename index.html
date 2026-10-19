@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#f8f3f1" />
   <title>EUROPA SALE</title>
   <meta name="description" content="EUROPA SALE — покупки из Германии, Италии и других стран Европы." />
-  <meta name="europa-sale-version" content="EUROPA_SALE_20261016_EDITORIAL_CMS_ADMIN_SHARED_STORAGE_TABS_FAQ_AUTH_PRESERVED" />
+  <meta name="europa-sale-version" content="EUROPA_SALE_20261019_TELEGRAM_AUTO_MAX_WHATSAPP_MANUAL_EDITORIAL_PRESERVED" />
   <style>
     :root{
       --bg:#f8f3f1;
@@ -423,7 +423,16 @@
     .messenger-status{font-size:11px;color:var(--muted);line-height:1.45}
     .messenger-status.connected{color:#35634b}
     .messenger-link{display:inline-flex;margin-top:auto;width:max-content;text-decoration:none;border-bottom:1px solid currentColor;color:var(--rose);font-size:12px;padding-bottom:2px}
-    .messenger-choices.disabled{opacity:.48;pointer-events:none}
+    .messenger-choices.disabled{opacity:.75}
+    .messenger-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .messenger-actions .btn{padding:10px 14px;font-size:12px}
+    .manual-client{padding:18px 0;border-bottom:1px solid var(--line)}
+    .manual-client small{display:block;margin-top:8px;font-size:12px;line-height:1.5}
+    #manual-dialog{width:min(640px,calc(100% - 32px));max-height:90vh;overflow:auto;border:1px solid var(--line);padding:24px;background:#faf8f5;color:#181716}
+    #manual-dialog::backdrop{background:rgba(0,0,0,.35)}
+    #manual-draft-text{width:100%;min-height:260px;resize:vertical;border:1px solid var(--line);padding:14px;font:inherit;font-size:14px;line-height:1.6;background:#fff}
+    #manual-dialog-help{font-size:14px;line-height:1.6}
+    [hidden]{display:none!important}
     @media(max-width:900px){.profile-layout{grid-template-columns:1fr}.profile-card.wide{grid-column:auto}.messenger-choices{grid-template-columns:1fr}.profile-head{align-items:flex-start;flex-direction:column}.profile-fields{grid-template-columns:1fr}.profile-field-full{grid-column:auto}}
     @media(max-width:560px){.profile-page{padding:34px 0 72px}.profile-head h2{font-size:44px}.profile-card{padding:20px 16px;border-radius:16px}.profile-actions .btn{width:100%}}
 
@@ -1677,18 +1686,21 @@
             </label>
 
             <div class="messenger-choices" id="messenger-choices">
+              <div class="messenger-choice">
+                <label class="messenger-choice-head" for="profile-telegram"><input id="profile-telegram" type="checkbox"><strong>Telegram · через бота</strong></label>
+                <span class="messenger-status" id="profile-telegram-status" aria-live="polite">Проверяем подключение…</span>
+                <div class="messenger-actions"><button class="btn soft" id="tg-connect" type="button">Подключить Telegram →</button><button class="btn soft" id="tg-check" type="button">Проверить подключение</button><button class="btn soft" id="tg-disconnect" type="button" hidden>Отключить Telegram</button></div>
+                <p id="tg-message" class="profile-message" aria-live="polite"></p>
+                <a class="messenger-link" id="tg-open-bot" href="https://t.me" target="_blank" rel="noopener noreferrer" hidden>Открыть бота Telegram →</a>
+                <div id="tg-confirm-panel" hidden><p id="tg-candidate-name"></p><p>Подтвердите свой аккаунт. Уведомления Telegram будут включены.</p><button class="btn dark" id="tg-confirm" type="button">Это мой аккаунт · подключить</button></div>
+              </div>
               <label class="messenger-choice">
-                <span class="messenger-choice-head"><input id="profile-telegram" type="checkbox"><strong>Telegram</strong></span>
-                <span class="messenger-status" id="profile-telegram-status">Не подключено</span>
+                <span class="messenger-choice-head"><input id="profile-max" type="checkbox"><strong>MAX · вручную</strong></span>
+                <span class="messenger-status" id="profile-max-status">Ручная отправка администратором</span>
                 <a class="messenger-link" href="#about">Каталоги · подать заявку →</a>
               </label>
               <label class="messenger-choice">
-                <span class="messenger-choice-head"><input id="profile-max" type="checkbox"><strong>MAX</strong></span>
-                <span class="messenger-status" id="profile-max-status">Не подключено</span>
-                <a class="messenger-link" href="#about">Каталоги · подать заявку →</a>
-              </label>
-              <label class="messenger-choice">
-                <span class="messenger-choice-head"><input id="profile-whatsapp" type="checkbox"><strong>WhatsApp</strong></span>
+                <span class="messenger-choice-head"><input id="profile-whatsapp" type="checkbox"><strong>WhatsApp · вручную</strong></span>
                 <span class="messenger-status" id="profile-whatsapp-status">Используется телефон из профиля</span>
                 <a class="messenger-link" href="#about">Каталоги · подать заявку →</a>
               </label>
@@ -1698,7 +1710,7 @@
               <button class="btn dark" id="profile-notifications-save" type="button">Сохранить уведомления</button>
               <span class="profile-message" id="profile-notifications-message"></span>
             </div>
-            <div class="warning" style="margin-top:18px"><b>Важно:</b> выбор Telegram или MAX сохраняет ваше предпочтение. Для персональной автоматической отправки этим каналам также требуется техническая привязка аккаунта к боту EUROPA SALE.</div>
+            <div class="warning" style="margin-top:18px"><b>Telegram:</b> подключите бота, нажмите «Запустить» в Telegram, затем вернитесь и подтвердите свой аккаунт. <b>MAX и WhatsApp:</b> выбранная галочка разрешает администратору отправлять вам личные сообщения вручную. Для WhatsApp проверьте номер в профиле. Доступ к группам оформляется отдельно.</div>
           </div>
         </div>
       </div>
@@ -1801,14 +1813,17 @@
                 </label>
                 <label class="mailing-type-option">
                   <input id="mailing-social" type="checkbox" checked>
-                  <span><strong>Соцсети / мессенджеры</strong><span>Отправлять во все подключённые клиентом каналы: Telegram, MAX и WhatsApp.</span></span>
+                  <span><strong>Telegram · автоматически через бота</strong><span>Только клиентам с подтверждённой привязкой и включёнными уведомлениями Telegram.</span></span>
                 </label>
               </div>
               <div class="mailing-preview-label">Текст сообщения</div>
               <pre class="mailing-preview" id="mailing-preview"></pre>
               <button class="btn dark" id="mailing-send" type="button">Отправить выбранным</button>
+              <button class="btn soft" id="tg-admin-setup" type="button">Подключить бота Telegram</button><span id="tg-admin-message" class="profile-message" aria-live="polite"></span>
               <div class="admin-message" id="mailing-message"></div>
               <div class="warning"><b>Защита от повторов:</b> одинаковое напоминание тому же клиенту по тому же каналу не отправляется повторно в течение 30 минут.</div>
+              <div style="margin-top:28px;border-top:1px solid var(--line);padding-top:24px"><h3>MAX и WhatsApp · ручная отправка</h3><p>Выберите клиентов в разделе «Должники». Для MAX подготовим текст для копирования, для WhatsApp — чат с готовым сообщением. Отправляете вы сами; эти действия не отмечаются как доставка в журнале.</p><button class="btn soft" id="manual-prepare" type="button">Подготовить ручные уведомления</button><p id="manual-message" class="profile-message" aria-live="polite"></p><div id="manual-clients"></div></div>
+              <dialog id="manual-dialog" aria-labelledby="manual-dialog-title"><h3 id="manual-dialog-title">Уведомление</h3><p id="manual-dialog-help"></p><label for="manual-draft-text">Готовый текст</label><textarea id="manual-draft-text" readonly></textarea><div class="messenger-actions"><button class="btn dark" id="manual-copy" type="button">Скопировать текст</button><a class="btn dark" id="manual-whatsapp-open" target="_blank" rel="noopener noreferrer" hidden>Открыть WhatsApp →</a><button class="btn soft" id="manual-dialog-close" type="button">Закрыть</button></div><p id="manual-copy-message" class="profile-message" aria-live="polite"></p></dialog>
             </div>
             <div class="panel">
               <div class="admin-panel-head"><div><h3>Журнал рассылки</h3><p>Последние 200 попыток отправки.</p></div><button class="btn soft admin-small-btn" id="mailing-log-refresh" type="button">Обновить</button></div>
@@ -1839,8 +1854,8 @@
               <div class="field"><label for="user-name">Имя и фамилия</label><input id="user-name" type="text"></div>
               <div class="field"><label for="user-phone">Телефон</label><input id="user-phone" type="text"></div>
               <div class="field"><label for="user-email">Email</label><input id="user-email" type="email"></div>
-              <div class="field"><label for="user-telegram">Telegram chat_id</label><input id="user-telegram" type="text" placeholder="Например 123456789"></div>
-              <div class="field"><label for="user-max">MAX user_id</label><input id="user-max" type="text"></div>
+              <div class="field" hidden><label for="user-telegram">Telegram chat_id</label><input id="user-telegram" type="text" placeholder="Например 123456789"></div>
+              <div class="field" hidden><label for="user-max">MAX user_id</label><input id="user-max" type="text"></div>
               <div class="field"><label for="user-whatsapp">WhatsApp</label><input id="user-whatsapp" type="text" placeholder="79991234567"></div>
             </div>
             <label class="admin-checkbox-line"><input id="user-email-notifications" type="checkbox"> Получать уведомления EUROPA SALE на электронную почту</label>
@@ -2452,9 +2467,9 @@ function renderProfile(client={}){
     el.textContent=isConnected?'✓ Подключено':(selected?unconnectedText:'Не выбрано');
     el.classList.toggle('connected',isConnected);
   };
-  status('profile-telegram-status',connected.telegram===true,prefs.telegram===true,'Выбрано · требуется привязка к боту');
-  status('profile-max-status',connected.max===true,prefs.max===true,'Выбрано · требуется привязка к боту');
-  status('profile-whatsapp-status',connected.whatsapp===true,prefs.whatsapp===true,'Выбрано · проверьте телефон в профиле');
+  refreshTgConnection();
+  document.getElementById('profile-max-status').textContent=prefs.max===true&&client.social_notifications===true?'Разрешена ручная отправка':'Ручные уведомления выключены';
+  document.getElementById('profile-whatsapp-status').textContent=prefs.whatsapp===true&&client.social_notifications===true?'Разрешена ручная отправка · проверьте телефон':'Ручные уведомления выключены';
   updateMessengerChoicesState();
 }
 
@@ -2546,6 +2561,166 @@ document.getElementById('profile-notifications-save')?.addEventListener('click',
   }catch(err){setProfileMessage('profile-notifications-message',err?.message||'Не удалось сохранить уведомления.','error');}
   finally{btn.disabled=false;btn.textContent=old;}
 });
+
+// Telegram connection state is authoritative on the server; no account IDs or secrets in HTML.
+let tgRequestId=null;
+let tgGeneration=0;
+let tgBusy=false;
+async function tgInvoke(action,extra={}){
+ const token=currentSession?.access_token;if(!token)throw new Error('Войдите в личный кабинет.');
+ const {data,error}=await supabaseClient.functions.invoke('telegram-notifications',{body:{action,...extra},headers:{Authorization:`Bearer ${token}`}});
+ if(error)throw new Error(await readFunctionError(error));
+ if(!data?.success)throw new Error(data?.error||'Не удалось обновить подключение Telegram.');
+ return data;
+}
+function resetTgConnection(){
+ tgGeneration++;tgRequestId=null;
+ document.getElementById('tg-open-bot').hidden=true;
+ document.getElementById('tg-open-bot').href='https://t.me';
+ document.getElementById('tg-confirm-panel').hidden=true;
+ document.getElementById('tg-disconnect').hidden=true;
+ const el=document.getElementById('profile-telegram-status');el.textContent='Проверяем подключение…';el.classList.remove('connected');
+ setProfileMessage('tg-message','');
+}
+function showTgConnection(data){
+ tgRequestId=data.pending?.request_id||null;
+ const el=document.getElementById('profile-telegram-status');
+ el.textContent=data.connected?'✓ Подключено'+(data.display_name?' · '+data.display_name:''):data.pending?'Ожидает подтверждения в кабинете':'Не подключено';
+ el.classList.toggle('connected',data.connected===true);
+ document.getElementById('tg-disconnect').hidden=!data.connected&&!data.expires_at;
+ document.getElementById('tg-confirm-panel').hidden=!tgRequestId;
+ document.getElementById('tg-candidate-name').textContent=data.pending?'Аккаунт Telegram: '+(data.pending.display_name||'Пользователь Telegram'):'';
+ document.getElementById('tg-connect').textContent=data.connected?'Подключить другой аккаунт':'Подключить Telegram →';
+ if(!data.expires_at){document.getElementById('tg-open-bot').hidden=true;document.getElementById('tg-open-bot').href='https://t.me';}
+}
+async function refreshTgConnection(){
+ const generation=++tgGeneration,token=currentSession?.access_token;
+ if(!token){resetTgConnection();return;}
+ try{const data=await tgInvoke('status');if(generation!==tgGeneration||token!==currentSession?.access_token)return;showTgConnection(data);}
+ catch(err){if(generation!==tgGeneration||token!==currentSession?.access_token)return;document.getElementById('profile-telegram-status').textContent='Не удалось проверить подключение';setProfileMessage('tg-message','Подключение Telegram пока недоступно. Попробуйте позже.','error');}
+}
+async function tgAction(action){
+ if(tgBusy)return;
+ const token=currentSession?.access_token;if(!token)return;
+ tgBusy=true;const generation=++tgGeneration;
+ const buttons=['tg-connect','tg-check','tg-disconnect','tg-confirm'];buttons.forEach(id=>document.getElementById(id).disabled=true);
+ setProfileMessage('tg-message','');
+ try{
+  const data=await tgInvoke(action,action==='confirm'?{request_id:tgRequestId}:{});
+  if(generation!==tgGeneration||token!==currentSession?.access_token)return;
+  showTgConnection(data);
+  if(action==='start'){
+   if(typeof data.link!=='string')throw new Error('Не удалось получить ссылку бота.');
+   const link=new URL(data.link);
+   if(link.protocol!=='https:'||link.hostname!=='t.me'||link.username||link.password)throw new Error('Не удалось получить ссылку бота.');
+   const a=document.getElementById('tg-open-bot');a.href=link.href;a.hidden=false;
+   setProfileMessage('tg-message','Откройте бота по ссылке ниже и нажмите «Начать». Затем вернитесь и нажмите «Проверить подключение». Ссылка действует 10 минут.');
+  }else if(action==='confirm'||action==='disconnect'){
+   const enabled=action==='confirm';
+   document.getElementById('profile-telegram').checked=enabled;
+   if(enabled)document.getElementById('profile-notify-social').checked=true;
+   if(profileClientCache){profileClientCache.connected={...profileClientCache.connected,telegram:enabled};profileClientCache.messenger_preferences={...profileClientCache.messenger_preferences,telegram:enabled};if(enabled)profileClientCache.social_notifications=true;}
+   updateMessengerChoicesState();accountLoadedForUserId=null;
+   setProfileMessage('tg-message',enabled?'Telegram подключён. Настройки сохранены.':'Telegram отключён. Новые уведомления отправляться не будут.','ok');
+  }else if(!data.pending){setProfileMessage('tg-message',data.connected?'Telegram подключён.':'Если вы уже нажали «Начать», подождите несколько секунд и проверьте ещё раз.');}
+ }catch(err){if(generation===tgGeneration&&token===currentSession?.access_token)setProfileMessage('tg-message',err?.message||'Не удалось обновить подключение Telegram.','error');}
+ finally{tgBusy=false;buttons.forEach(id=>document.getElementById(id).disabled=false);}
+}
+document.getElementById('tg-connect').addEventListener('click',()=>tgAction('start'));
+document.getElementById('tg-check').addEventListener('click',()=>tgAction('status'));
+document.getElementById('tg-confirm').addEventListener('click',()=>tgAction('confirm'));
+document.getElementById('tg-disconnect').addEventListener('click',()=>tgAction('disconnect'));
+// Clear ephemeral connection links immediately when the authenticated account changes.
+
+document.getElementById('tg-admin-setup').addEventListener('click',async()=>{
+ const button=document.getElementById('tg-admin-setup');button.disabled=true;
+ setProfileMessage('tg-admin-message','Подключаем бота…');
+ try{await tgInvoke('admin_setup');setProfileMessage('tg-admin-message','Бот Telegram подключён. Теперь клиент может привязать его в своём профиле. Сообщения не отправлялись.','ok');}
+ catch(err){setProfileMessage('tg-admin-message',err?.message||'Не удалось подключить бота.','error');}
+ finally{button.disabled=false;}
+});
+
+// Preparing a manual draft never sends or marks a notification as delivered.
+let manualGeneration=0;
+let manualDraft=null;
+function closeManualDraft(){
+ const dialog=document.getElementById('manual-dialog');if(dialog.open&&typeof dialog.close==='function')dialog.close();else dialog.removeAttribute('open');
+ manualDraft=null;document.getElementById('manual-draft-text').value='';
+ const link=document.getElementById('manual-whatsapp-open');link.hidden=true;link.removeAttribute('href');
+ setProfileMessage('manual-copy-message','');
+}
+function resetManualNotifications(){
+ manualGeneration++;closeManualDraft();document.getElementById('manual-clients').replaceChildren();
+ setProfileMessage('manual-message','Выберите клиентов и нажмите «Подготовить ручные уведомления».');
+}
+function manualWhatsappUrl(phone,message){
+ if(!/^[1-9]\d{6,14}$/.test(String(phone)))throw new Error('Некорректный номер WhatsApp.');
+ const link=new URL('https://wa.me/'+phone);link.searchParams.set('text',message);return link.href;
+}
+async function manualRequest(ids){
+ const token=currentSession?.access_token;if(!token)throw new Error('Войдите как администратор.');
+ const {data,error}=await supabaseClient.functions.invoke('admin-mailing',{body:{action:'manual_preview',client_ids:ids},headers:{Authorization:`Bearer ${token}`}});
+ if(error)throw new Error(await readFunctionError(error));if(!data?.success)throw new Error(data?.error||'Не удалось подготовить уведомления.');return data;
+}
+async function prepareManualNotifications(){
+ const ids=[...selectedDebtorIds];if(!ids.length){setProfileMessage('manual-message','Сначала выберите клиентов в разделе «Должники».','error');return;}
+ if(ids.length>50){setProfileMessage('manual-message','Выберите не более 50 клиентов за один раз.','error');return;}
+ resetManualNotifications();const generation=manualGeneration,token=currentSession?.access_token;
+ setProfileMessage('manual-message','Проверяем суммы и разрешения клиентов…');
+ try{
+  const data=await manualRequest(ids);if(generation!==manualGeneration||token!==currentSession?.access_token)return;
+  const list=document.getElementById('manual-clients');
+  for(const client of data.clients||[]){
+   const card=document.createElement('div');card.className='manual-client';
+   const name=document.createElement('strong');name.textContent=client.login+' · '+formatRub(client.balance);card.append(name);
+   const row=document.createElement('div');row.className='messenger-actions';
+   for(const [channel,label] of [['max','MAX · подготовить текст'],['whatsapp','WhatsApp · открыть сообщение']]){
+    const button=document.createElement('button');button.type='button';button.className='btn soft';button.textContent=label;button.disabled=!client[channel]?.allowed;
+    button.addEventListener('click',()=>openManualDraft(client.client_id,channel));row.append(button);
+    if(!client[channel]?.allowed){const reason=document.createElement('small');reason.textContent=channel.toUpperCase()+': '+(client[channel]?.reason||'Недоступно');card.append(reason);}
+   }
+   card.append(row);list.append(card);
+  }
+  setProfileMessage('manual-message',data.clients?.length?'Выберите действие у клиента. Перед показом текста сумма и разрешения проверяются повторно.':'Выбранные клиенты не найдены. Обновите список должников.');
+ }catch(err){if(generation===manualGeneration&&token===currentSession?.access_token)setProfileMessage('manual-message',err?.message||'Не удалось подготовить уведомления.','error');}
+}
+async function openManualDraft(clientId,channel){
+ if(!['max','whatsapp'].includes(channel))return;
+ const generation=++manualGeneration,token=currentSession?.access_token;closeManualDraft();
+ setProfileMessage('manual-message','Обновляем данные выбранного клиента…');
+ try{
+  const data=await manualRequest([clientId]);if(generation!==manualGeneration||token!==currentSession?.access_token)return;
+  const client=data.clients?.find(c=>Number(c.client_id)===Number(clientId));if(!client||!client[channel]?.allowed||!client.message)throw new Error(client?.[channel]?.reason||'Канал недоступен.');
+  manualDraft={client_id:clientId,channel,message:client.message,preparedAt:Date.now()};
+  document.getElementById('manual-dialog-title').textContent=(channel==='max'?'MAX':'WhatsApp')+' · '+client.login;
+  document.getElementById('manual-draft-text').value=client.message;
+  document.getElementById('manual-dialog-help').textContent=channel==='max'?'Скопируйте текст и отправьте его в личный чат этого клиента в MAX. Проверьте получателя перед отправкой.':'Проверьте номер клиента: +'+client.whatsapp.phone+'. Откройте WhatsApp и нажмите «Отправить» самостоятельно.';
+  const link=document.getElementById('manual-whatsapp-open');link.hidden=channel!=='whatsapp';
+  if(channel==='whatsapp')link.href=manualWhatsappUrl(client.whatsapp.phone,client.message);
+  const dialog=document.getElementById('manual-dialog');if(typeof dialog.showModal==='function')dialog.showModal();else dialog.setAttribute('open','');
+  setProfileMessage('manual-message','Подготовлен черновик. Сообщение ещё не отправлено.');
+ }catch(err){if(generation===manualGeneration&&token===currentSession?.access_token)setProfileMessage('manual-message',err?.message||'Не удалось подготовить уведомление.','error');}
+}
+document.getElementById('manual-prepare').addEventListener('click',prepareManualNotifications);
+document.getElementById('manual-dialog-close').addEventListener('click',()=>{manualGeneration++;closeManualDraft();});
+document.getElementById('manual-dialog').addEventListener('close',()=>{if(document.getElementById('manual-dialog').open)return;manualDraft=null;document.getElementById('manual-draft-text').value='';const a=document.getElementById('manual-whatsapp-open');a.hidden=true;a.removeAttribute('href');});
+document.getElementById('manual-dialog').addEventListener('cancel',()=>{manualGeneration++;closeManualDraft();});
+document.getElementById('manual-copy').addEventListener('click',async()=>{
+ const draft=manualDraft,token=currentSession?.access_token;if(!draft||!token)return;
+ if(Date.now()-draft.preparedAt>300000){closeManualDraft();setProfileMessage('manual-message','Черновик устарел. Подготовьте сообщение заново.','error');return;}
+ try{
+  if(!navigator.clipboard?.writeText)throw new Error('clipboard unavailable');await navigator.clipboard.writeText(draft.message);
+  if(manualDraft===draft&&token===currentSession?.access_token)setProfileMessage('manual-copy-message','Текст скопирован. Отправьте его клиенту самостоятельно.','ok');
+ }catch{
+  if(manualDraft!==draft||token!==currentSession?.access_token)return;
+  const area=document.getElementById('manual-draft-text');area.focus();area.select();setProfileMessage('manual-copy-message','Текст выделен. Нажмите ⌘C на Mac или Ctrl+C на Windows.');
+ }
+});
+
+document.getElementById('manual-whatsapp-open').addEventListener('click',event=>{
+ if(!manualDraft||!currentSession?.access_token||Date.now()-manualDraft.preparedAt>300000){event.preventDefault();closeManualDraft();setProfileMessage('manual-message','Черновик устарел. Подготовьте сообщение заново.','error');}
+});
+
 
 async function sendWelcomeEmailOnce(){
   if(!currentSession?.access_token) return;
@@ -2692,6 +2867,7 @@ function updateAdminNavigation(){
 }
 
 function clearAdminState(){
+  resetManualNotifications();
   isAdminSession=false;
   adminCheckedUserId=null;
   updateAdminNavigation();
@@ -3118,7 +3294,7 @@ document.getElementById('reset-password-form').addEventListener('submit',async e
 supabaseClient.auth.onAuthStateChange((event,session)=>{
   const previousUserId=currentSession?.user?.id || null;
   currentSession=session;
-  if((session?.user?.id || null)!==previousUserId) resetAccountOrdersCache();
+  if((session?.user?.id || null)!==previousUserId){resetAccountOrdersCache();resetTgConnection();resetManualNotifications();}
   if(event==='PASSWORD_RECOVERY'){
     authReady=true;
     history.replaceState(null,'',location.pathname+'#reset-password');
@@ -3410,9 +3586,9 @@ function adminChannelsHtml(row){
   const c=row?.channels || {};
   return `<div class="channel-tags">
     <span class="channel-tag ${c.email?'on':'off'}">EMAIL</span>
-    <span class="channel-tag ${c.telegram?'on':'off'}">TG</span>
-    <span class="channel-tag ${c.max?'on':'off'}">MAX</span>
-    <span class="channel-tag ${c.whatsapp?'on':'off'}">WA</span>
+    <span class="channel-tag" title="Привязка проверяется перед отправкой">TG · бот</span>
+    <span class="channel-tag" title="Разрешение проверяется при подготовке текста">MAX · вручную</span>
+    <span class="channel-tag" title="Номер и разрешение проверяются при подготовке">WA · вручную</span>
   </div>`;
 }
 
@@ -3475,6 +3651,7 @@ function renderDebtors(){
 }
 
 function updateSelectedDebtorsUI(){
+  resetManualNotifications();
   const count=document.getElementById('mailing-selected-count');
   if(count) count.textContent=String(selectedDebtorIds.size);
   refreshMailingPreview();
@@ -3564,15 +3741,15 @@ document.getElementById('mailing-send')?.addEventListener('click',async()=>{
   if(!ids.length){ setAdminMessage('mailing-message','Сначала выберите должников в разделе «Должники».','warn'); return; }
   const sendEmail=document.getElementById('mailing-email')?.checked===true;
   const sendSocial=document.getElementById('mailing-social')?.checked===true;
-  if(!sendEmail&&!sendSocial){ setAdminMessage('mailing-message','Выберите email и/или соцсети.','warn'); return; }
-  const channelsLabel=[sendEmail?'email':null,sendSocial?'соцсети':null].filter(Boolean).join(' + ');
+  if(!sendEmail&&!sendSocial){ setAdminMessage('mailing-message','Выберите email и/или Telegram.','warn'); return; }
+  const channelsLabel=[sendEmail?'email':null,sendSocial?'Telegram':null].filter(Boolean).join(' + ');
   if(!confirm(`Отправить напоминание ${ids.length} клиентам через ${channelsLabel}?`)) return;
   const btn=document.getElementById('mailing-send');
   const old=btn.textContent; btn.disabled=true; btn.textContent='Отправляем…';
   setAdminMessage('mailing-message','Идёт отправка. Не закрывайте страницу…','info');
   try{
     const {data,error}=await supabaseClient.functions.invoke('admin-mailing',{
-      body:{client_ids:ids,send_email:sendEmail,send_social:sendSocial},
+      body:{action:'send',client_ids:ids,send_email:sendEmail,send_social:sendSocial},
       headers:{Authorization:`Bearer ${currentSession.access_token}`}
     });
     if(error) throw new Error(await readFunctionError(error));
