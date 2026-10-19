@@ -4504,7 +4504,7 @@ supabaseClient.auth.onAuthStateChange((event, session)=>{
   const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const paragraphs=value=>String(value||'').split(/\n\s*\n/).filter(Boolean).map(p=>'<p>'+esc(p)+'</p>').join('');
   const state={owner:'',generation:0,busy:false,loading:false,loaded:false,settings:null,settingsDirty:false,posts:[],offset:0,more:false,edit:null,photos:[],uploads:new Set(),dirty:false};
-  let publicPosts=[],publicSettings={...defaults},publicOffset=0,publicMore=false,publicPending=false,publicRevision=0,publicAt=0;
+  let publicPosts=[],publicSettings={...defaults},publicOffset=0,publicMore=false,publicPending=false,publicRevision=0,publicLoaded=false;
   function currentAdmin(){
     return typeof currentSession!=='undefined'&&currentSession?.user?.id&&typeof isAdminSession!=='undefined'&&isAdminSession===true?currentSession.user.id:'';
   }
@@ -4573,7 +4573,7 @@ supabaseClient.auth.onAuthStateChange((event, session)=>{
     $('es-editorial-state').textContent=enabled&&publicPosts.length?'':'Готовим для вас новую подборку.';
   }
   async function loadPublic(append=false,force=false){
-    if((publicPending&&!force)||(!append&&!force&&publicAt&&Date.now()-publicAt<60000))return;
+    if((publicPending&&!force)||(!append&&!force&&publicLoaded))return;
     const revision=++publicRevision;publicPending=true;
     const more=$('es-editorial-more');more.disabled=true;
     try{
@@ -4581,7 +4581,7 @@ supabaseClient.auth.onAuthStateChange((event, session)=>{
       if(revision!==publicRevision)return;
       publicSettings={...defaults,...data.settings};
       publicPosts=append?[...publicPosts,...data.posts.filter(p=>!publicPosts.some(old=>old.id===p.id))]:data.posts;
-      publicOffset=data.next_offset;publicMore=data.has_more;publicAt=Date.now();
+      publicOffset=data.next_offset;publicMore=data.has_more;publicLoaded=true;
       renderPublic();$('es-editorial-retry').hidden=true;
     }catch{
       if(revision===publicRevision){$('es-editorial-state').textContent='Подборка временно недоступна. Попробуйте обновить её позже.';$('es-editorial-retry').hidden=false;}
@@ -4752,7 +4752,6 @@ supabaseClient.auth.onAuthStateChange((event, session)=>{
     if(location.hash==='#admin'&&typeof currentAdminTab!=='undefined'&&currentAdminTab==='editorial'&&currentAdmin())void loadAdmin();
   }
   window.addEventListener('es:navigate',navigate);window.addEventListener('hashchange',navigate);window.addEventListener('popstate',navigate);
-  document.addEventListener('visibilitychange',()=>{if(!document.hidden)navigate();});
   $('es-ed-settings-form').addEventListener('input',()=>{state.settingsDirty=true;});
   window.addEventListener('beforeunload',event=>{if(state.dirty||state.settingsDirty){event.preventDefault();event.returnValue='';}});
   if(api){api.auth.onAuthStateChange((_event,session)=>{
