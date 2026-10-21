@@ -1061,6 +1061,8 @@
     .es-parcels-empty{padding:30px 20px;border:1px solid var(--line);color:var(--muted);font-size:14px;line-height:1.7;background:var(--paper)}
     .es-account-sections button:focus-visible,.es-parcel-statuses button:focus-visible,.es-parcel-head:focus-visible{outline:2px solid var(--rose);outline-offset:4px}
     @media(max-width:600px){.es-parcels-toolbar{align-items:start}.es-parcels-toolbar p{margin-top:0}.es-parcel-group{padding:18px 15px}.es-parcel-head h3{font-size:20px}.es-parcel-item{gap:12px}.es-parcel-item-price{max-width:40%}.es-parcel-filter{align-items:start;flex-direction:column;gap:8px}.es-parcel-filter select{width:100%}.es-parcel-head>span{font-size:11px}.es-parcel-item-price b{font-size:14px}}
+
+.ap-tools{display:flex;gap:16px;align-items:end;flex-wrap:wrap;margin:24px 0}.ap-tools label{display:flex;flex-direction:column;gap:8px;font-size:13px}.ap-tools select{min-height:44px;max-width:100%;padding:10px;border:1px solid var(--line);background:var(--paper);color:var(--text);font:inherit}.ap-client{border:1px solid var(--line);padding:20px;margin:16px 0;background:var(--paper);overflow-wrap:anywhere}.ap-client summary{cursor:pointer;font-size:15px;line-height:1.6}.ap-client ul{list-style:none;padding:0;margin:16px 0 0}.ap-client li{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-top:1px solid var(--line)}.ap-client small{display:block;margin-top:8px;font-size:12px;color:var(--muted)}.ap-select{display:block;margin-top:14px}.ap-preview-text{white-space:pre-line;line-height:1.7;font-size:14px}#ap-draft-text{width:100%;padding:16px;line-height:1.7;border:1px solid var(--line);font:inherit;background:var(--paper);color:var(--text)}#ap-previews .btn{margin:4px 8px 4px 0}#ap-notifications{margin-top:32px;padding-top:24px;border-top:1px solid var(--line)}@media(max-width:600px){.ap-tools{align-items:stretch;flex-direction:column}.ap-client{padding:15px}.ap-client li{font-size:13px}.ap-client li>span{white-space:nowrap}}
   </style>
 </head>
 <body>
@@ -1779,6 +1781,7 @@
 
         <div class="admin-tabs" id="admin-tabs">
           <button type="button" class="admin-tab active" data-admin-tab="sverka">Сверки</button>
+          <button type="button" class="admin-tab" data-admin-tab="parcels">Посылки</button>
           <button type="button" class="admin-tab" data-admin-tab="debtors">Должники</button>
           <button type="button" class="admin-tab" data-admin-tab="mailing">Рассылка</button>
           <button type="button" class="admin-tab" data-admin-tab="users">Пользователи</button>
@@ -1833,6 +1836,22 @@
               </div>
             </div>
           </div>
+        </div>
+
+        <div class="admin-tab-view" data-admin-view="parcels" id="admin-parcels-panel">
+          <p class="section-eyebrow">ПОСЫЛКИ ИЗ ЕВРОПЫ</p><h3>Прибыли. Готовы к получению.</h3>
+          <p class="admin-note">Номер общей посылки берём из загруженной сверки. Здесь видны покупки всех клиентов; в личном кабинете каждый видит только свои. Номера редактируются в исходной сверке.</p>
+          <div class="ap-tools"><label>Сверка<select id="ap-kind"><option value="current">Актуальная</option><option value="old">Старая</option></select></label><label>Посылка<select id="ap-number"><option value="">Выберите посылку</option></select></label><button class="btn soft" type="button" id="ap-refresh">Обновить список</button></div>
+          <p id="ap-message" role="status" class="admin-message"></p>
+          <div id="ap-content"></div>
+          <section id="ap-notifications" hidden>
+            <h3>Уведомления о прибытии</h3><p class="admin-note">Выберите до 20 клиентов и подготовьте уведомления. Telegram отправляет бот после нажатия кнопки. WhatsApp и MAX — личные сообщения, которые вы отправляете самостоятельно. Наличие долга не требуется. Загрузка сверки не запускает рассылку.</p>
+            <label><input type="checkbox" id="ap-select-all"> Выбрать всех доступных клиентов (до 20)</label>
+            <div class="messenger-actions"><button type="button" class="btn soft" id="ap-preview">Подготовить уведомления</button><button type="button" class="btn" id="ap-send" disabled>Отправить в Telegram</button></div>
+            <div id="ap-previews"></div>
+            <div id="ap-draft" hidden><h4 id="ap-draft-title"></h4><textarea id="ap-draft-text" rows="9" readonly aria-label="Текст личного уведомления"></textarea><p id="ap-draft-help"></p><button type="button" class="btn soft" id="ap-copy">Скопировать текст</button> <a class="btn soft" id="ap-wa" target="_blank" rel="noopener noreferrer" hidden>Открыть WhatsApp →</a></div>
+            <div id="ap-results" role="status"></div>
+          </section>
         </div>
 
         <div class="admin-tab-view" data-admin-view="debtors">
@@ -3009,6 +3028,7 @@ function updateAdminNavigation(){
 }
 
 function clearAdminState(){
+  resetAdminParcels();
   resetManualNotifications();
   isAdminSession=false;
   adminCheckedUserId=null;
@@ -3436,7 +3456,7 @@ document.getElementById('reset-password-form').addEventListener('submit',async e
 supabaseClient.auth.onAuthStateChange((event,session)=>{
   const previousUserId=currentSession?.user?.id || null;
   currentSession=session;
-  if((session?.user?.id || null)!==previousUserId){resetAccountOrdersCache();resetTgConnection();resetManualNotifications();}
+  if((session?.user?.id || null)!==previousUserId){resetAccountOrdersCache();resetTgConnection();resetManualNotifications();resetAdminParcels();}
   if(event==='PASSWORD_RECOVERY'){
     authReady=true;
     history.replaceState(null,'',location.pathname+'#reset-password');
@@ -3699,6 +3719,89 @@ function setupAdminImporter(cfg){
 
 adminImporters.forEach(setupAdminImporter);
 
+// Admin-only parcel view; the backend validates the administrator on every action.
+let apGroups=[],apSelected=new Set(),apGeneration=0,apBusy=false,apPrepared=false,apDraftAt=0;
+function apResetDraft(){apDraftAt=0;document.getElementById('ap-draft').hidden=true;document.getElementById('ap-draft-text').value='';const a=document.getElementById('ap-wa');a.hidden=true;a.removeAttribute('href');}
+function apInvalidate(){apPrepared=false;apResetDraft();document.getElementById('ap-previews').replaceChildren();document.getElementById('ap-send').disabled=true;}
+function resetAdminParcels(){apGeneration++;apGroups=[];apSelected.clear();apBusy=false;apInvalidate();for(const id of ['ap-content','ap-results'])document.getElementById(id).replaceChildren();document.getElementById('ap-number').innerHTML='<option value="">Выберите посылку</option>';document.getElementById('ap-kind').value='current';document.getElementById('ap-notifications').hidden=true;setAdminMessage('ap-message','');apSetBusy(false);}
+function apGroup(){return apGroups.find(g=>g.number===document.getElementById('ap-number').value);}
+function apSetBusy(busy){apBusy=busy;for(const id of ['ap-kind','ap-number','ap-refresh','ap-preview','ap-select-all'])document.getElementById(id).disabled=busy;document.querySelectorAll('[data-ap-client],[data-ap-channel]').forEach(e=>e.disabled=busy);document.getElementById('ap-send').disabled=busy||!apPrepared;}
+async function apRequest(action,payload={}){
+ if(!isAdminSession||!currentSession?.access_token)throw new Error('Войдите как администратор.');
+ const token=currentSession.access_token;
+ const {data,error}=await supabaseClient.functions.invoke('admin-parcels',{body:{action,reconciliation_kind:document.getElementById('ap-kind').value,...payload},headers:{Authorization:`Bearer ${token}`}});
+ if(token!==currentSession?.access_token||!isAdminSession)throw new Error('Сессия изменилась.');
+ if(error)throw new Error(await readFunctionError(error));if(!data?.success)throw new Error(data?.error||'Не удалось получить данные посылок.');return data;
+}
+async function loadAdminParcels(){
+ if(!isAdminSession||apBusy)return;
+ const generation=++apGeneration,token=currentSession?.access_token;apSelected.clear();apInvalidate();apGroups=[];document.getElementById('ap-number').innerHTML='<option value="">Выберите посылку</option>';apRender();apSetBusy(true);setAdminMessage('ap-message','Загружаем посылки…');
+ try{
+  const data=await apRequest('list');if(generation!==apGeneration||token!==currentSession?.access_token)return;
+  apGroups=data.groups||[];const select=document.getElementById('ap-number');
+  select.innerHTML='<option value="">Выберите посылку</option>'+apGroups.map(g=>`<option value="${escapeHtml(g.number)}">№ ${escapeHtml(g.number)} · ${g.count} ${positionWord(g.count)}</option>`).join('');
+  if(apGroups.length)select.value=apGroups[0].number;
+  apRender();setAdminMessage('ap-message',apGroups.length?`Посылок: ${apGroups.length}.`:'В выбранной сверке нет покупок с номером посылки.');
+ }catch(error){if(generation===apGeneration)setAdminMessage('ap-message',error.message||'Не удалось загрузить посылки.','error');}
+ finally{if(generation===apGeneration)apSetBusy(false);}
+}
+function apRender(){
+ const group=apGroup();const content=document.getElementById('ap-content');document.getElementById('ap-notifications').hidden=!group||document.getElementById('ap-kind').value!=='current';document.getElementById('ap-select-all').checked=false;
+ if(!group){content.innerHTML='<p class="admin-note">Выберите посылку из списка.</p>';return;}
+ content.innerHTML=`<h3>Посылка № ${escapeHtml(group.number)}</h3><p class="admin-note">К получению · ${group.count} ${positionWord(group.count)} · клиентов: ${group.clients.length}</p>`+group.clients.map(client=>`<details class="ap-client" open><summary><strong>${escapeHtml(client.login)}</strong> · ${client.items.length} ${positionWord(client.items.length)}${!client.registered?' · ожидает регистрации':client.disabled?' · отключён':''}</summary>${client.client_id&&client.registered&&!client.disabled&&document.getElementById('ap-kind').value==='current'?`<label class="ap-select"><input type="checkbox" data-ap-client="${Number(client.client_id)}" ${apSelected.has(client.client_id)?'checked':''}> Уведомить клиента</label>`:''}<ul>${client.items.map(item=>`<li><div><strong>${escapeHtml(item.model)}</strong>${item.size?`<small>${escapeHtml(item.size)}</small>`:''}<small>Дата выкупа: ${escapeHtml(formatDate(item.date))}</small></div><span>${formatRub(item.total)} ₽</span></li>`).join('')}</ul></details>`).join('');
+ content.querySelectorAll('[data-ap-client]').forEach(box=>box.addEventListener('change',()=>{const id=Number(box.dataset.apClient);if(box.checked&&apSelected.size>=20){box.checked=false;setAdminMessage('ap-message','Выберите не более 20 клиентов.','error');return;}box.checked?apSelected.add(id):apSelected.delete(id);apGeneration++;apInvalidate();document.getElementById('ap-results').replaceChildren();}));
+}
+async function apPreview(){
+ if(apBusy)return;const group=apGroup();if(!group||!apSelected.size){setAdminMessage('ap-message','Выберите посылку и клиентов.','error');return;}
+ const generation=++apGeneration,token=currentSession?.access_token;apInvalidate();apSetBusy(true);setAdminMessage('ap-message','Проверяем состав посылки и разрешения клиентов…');
+ try{
+  const data=await apRequest('preview',{parcel_number:group.number,client_ids:[...apSelected]});if(generation!==apGeneration||token!==currentSession?.access_token)return;
+  const list=document.getElementById('ap-previews');list.replaceChildren();
+  for(const c of data.clients||[]){
+   const card=document.createElement('article');card.className='ap-client';const name=document.createElement('strong');name.textContent=c.login;card.append(name);
+   const status=document.createElement('p');const states={sent:'Отправлено',sending:'Отправка начата',unknown:'Результат не подтверждён',error:'Ошибка, можно повторить'};status.textContent='Telegram: '+(c.delivery?states[c.delivery.status]||c.delivery.status:c.telegram?'готов к отправке':'не подключён или нет разрешения');card.append(status);
+   const text=document.createElement('p');text.className='ap-preview-text';text.textContent=c.message;card.append(text);
+   for(const [channel,label] of [['max','MAX · подготовить текст'],['whatsapp','WhatsApp · подготовить сообщение']]){const button=document.createElement('button');button.className='btn soft';button.type='button';button.textContent=label;button.dataset.apChannel=channel;button.disabled=!c[channel];button.addEventListener('click',()=>apManual(c.client_id,channel));card.append(button);if(!c[channel]){const note=document.createElement('small');note.textContent=channel.toUpperCase()+': клиент не разрешил канал или не указал номер.';card.append(note);}}
+   list.append(card);
+  }
+  apPrepared=(data.clients||[]).some(c=>c.telegram&&(!c.delivery||c.delivery.status==='error'));
+  setAdminMessage('ap-message','Тексты подготовлены. Сообщения ещё не отправлены.');
+ }catch(error){if(generation===apGeneration)setAdminMessage('ap-message',error.message,'error');}
+ finally{if(generation===apGeneration)apSetBusy(false);}
+}
+async function apSend(){
+ if(apBusy||!apPrepared)return;const group=apGroup();if(!group||!apSelected.size)return;
+ if(!window.confirm(`Отправить уведомление о прибытии посылки № ${group.number} выбранным клиентам в Telegram? Клиенты без подключённого канала и уже отправленные уведомления будут пропущены.`))return;
+ const generation=++apGeneration,token=currentSession?.access_token;apSetBusy(true);apResetDraft();setAdminMessage('ap-message','Отправляем уведомления. Дождитесь результата…');
+ try{
+  const data=await apRequest('send',{parcel_number:group.number,client_ids:[...apSelected]});if(generation!==apGeneration||token!==currentSession?.access_token)return;
+  const states={sent:'Отправлено',skipped:'Пропущено',error:'Ошибка',unknown:'Результат не подтверждён'};
+  document.getElementById('ap-results').innerHTML='<h4>Результат отправки Telegram</h4>'+(data.results||[]).map(r=>`<p>${escapeHtml(r.login)} — ${escapeHtml(states[r.status]||r.status)}${r.error?': '+escapeHtml(r.error):''}</p>`).join('');
+  apPrepared=false;setAdminMessage('ap-message','Отправка обработана. Проверьте результат по каждому клиенту.');
+ }catch(error){if(generation===apGeneration){apPrepared=false;setAdminMessage('ap-message',error.message+' Перед повтором подготовьте уведомления заново и проверьте статус.','error');}}
+ finally{if(generation===apGeneration)apSetBusy(false);}
+}
+async function apManual(id,channel){
+ if(apBusy)return;const group=apGroup();if(!group)return;const generation=++apGeneration,token=currentSession?.access_token;apResetDraft();apSetBusy(true);
+ try{
+  const data=await apRequest('preview',{parcel_number:group.number,client_ids:[id]});if(generation!==apGeneration||token!==currentSession?.access_token)return;
+  const c=data.clients?.find(c=>c.client_id===id);if(!c?.[channel])throw new Error('Канал недоступен: проверьте разрешения клиента.');
+  document.getElementById('ap-draft-title').textContent=(channel==='max'?'MAX':'WhatsApp')+' · '+c.login;
+  document.getElementById('ap-draft-text').value=c.message;document.getElementById('ap-draft-help').textContent=channel==='max'?'Скопируйте текст и отправьте в личный чат этого клиента.':'Получатель: +'+c.phone+'. Откройте WhatsApp и отправьте сообщение самостоятельно.';
+  const link=document.getElementById('ap-wa');if(channel==='whatsapp'){link.href=manualWhatsappUrl(c.phone,c.message);link.hidden=false;}
+  apDraftAt=Date.now();document.getElementById('ap-draft').hidden=false;
+ }catch(error){if(generation===apGeneration)setAdminMessage('ap-message',error.message,'error');}
+ finally{if(generation===apGeneration)apSetBusy(false);}
+}
+document.getElementById('ap-refresh').addEventListener('click',loadAdminParcels);
+document.getElementById('ap-kind').addEventListener('change',loadAdminParcels);
+document.getElementById('ap-number').addEventListener('change',()=>{apGeneration++;apSelected.clear();apInvalidate();document.getElementById('ap-results').replaceChildren();apRender();});
+document.getElementById('ap-select-all').addEventListener('change',event=>{apGeneration++;apSelected.clear();if(event.target.checked)for(const c of apGroup()?.clients||[]){if(c.client_id&&c.registered&&!c.disabled&&apSelected.size<20)apSelected.add(c.client_id);}apInvalidate();apRender();document.getElementById('ap-select-all').checked=apSelected.size>0;});
+document.getElementById('ap-preview').addEventListener('click',apPreview);
+document.getElementById('ap-send').addEventListener('click',apSend);
+document.getElementById('ap-copy').addEventListener('click',async()=>{if(!isAdminSession||!apDraftAt||Date.now()-apDraftAt>300000){apResetDraft();return;}try{await navigator.clipboard.writeText(document.getElementById('ap-draft-text').value);setAdminMessage('ap-message','Текст скопирован. Отправьте его клиенту самостоятельно.');}catch{document.getElementById('ap-draft-text').select();setAdminMessage('ap-message','Выделен текст — скопируйте его сочетанием Ctrl+C или Cmd+C.');}});
+document.getElementById('ap-wa').addEventListener('click',event=>{if(!isAdminSession||!apDraftAt||Date.now()-apDraftAt>300000){event.preventDefault();apResetDraft();setAdminMessage('ap-message','Подготовьте сообщение заново.');}});
+
 // ===== Admin: должники / рассылка / пользователи =====
 let currentAdminTab='sverka';
 let adminDebtors=[];
@@ -3741,11 +3844,12 @@ function adminStatusLabel(status){
 }
 
 function setAdminTab(tab){
-  const allowed=['sverka','debtors','mailing','users','editorial'];
+  const allowed=['sverka','parcels','debtors','mailing','users','editorial'];
   currentAdminTab=allowed.includes(tab)?tab:'sverka';
   document.querySelectorAll('[data-admin-tab]').forEach(btn=>btn.classList.toggle('active',btn.dataset.adminTab===currentAdminTab));
   document.querySelectorAll('[data-admin-view]').forEach(el=>el.classList.toggle('active',el.dataset.adminView===currentAdminTab));
   if(currentAdminTab==='editorial') window.dispatchEvent(new Event('es:editorial-admin-open'));
+  if(currentAdminTab==='parcels') void loadAdminParcels();
   if(currentAdminTab==='debtors') loadAdminDebtors(!adminLoaded.debtors);
   if(currentAdminTab==='users') loadAdminUsers(!adminLoaded.users);
   if(currentAdminTab==='mailing'){
