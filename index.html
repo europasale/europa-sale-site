@@ -1028,6 +1028,39 @@
   .es-ed-photo img{height:210px}
 }
 
+
+    /* My parcels: shares the existing authenticated reconciliation, no global parcel data. */
+    .es-account-sections{display:flex;gap:26px;border-bottom:1px solid var(--line);margin:10px 0 24px}
+    .es-account-sections button{appearance:none;border:0;border-bottom:2px solid transparent;background:none;padding:14px 0;color:var(--muted);font:inherit;font-size:15px;cursor:pointer}
+    .es-account-sections button.active{color:var(--text);border-bottom-color:var(--text)}
+    .es-parcels-toolbar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:20px}
+    #parcels-refresh{appearance:none;min-height:44px;padding:12px 18px;border:1px solid var(--line);border-radius:0;background:transparent;color:var(--text);font-size:13px;cursor:pointer;flex-shrink:0}
+    #parcels-refresh:focus-visible{outline:2px solid var(--text);outline-offset:4px}#parcels-refresh[disabled]{opacity:.55;cursor:wait}
+    .es-parcels-toolbar p,.es-parcels-intro,.es-parcel-note{color:var(--muted);font-size:13px;line-height:1.7}
+    .es-parcel-statuses{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+    .es-parcel-statuses button{appearance:none;background:var(--paper);border:1px solid var(--line);padding:12px 18px;font:inherit;font-size:14px;cursor:pointer;color:var(--text)}
+    .es-parcel-statuses button.active{background:var(--black);border-color:var(--black);color:#fff}
+    .es-parcel-statuses button>span{display:inline-block;margin-left:12px;font-size:12px;opacity:.8}
+    .es-parcel-filter{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+    .es-parcel-filter label{font-size:13px;color:var(--muted)}
+    .es-parcel-filter select{max-width:100%;min-width:210px;padding:12px;border:1px solid var(--line);background:var(--paper);color:var(--text);font:inherit;font-size:14px}
+    .es-parcels-intro{max-width:750px;margin:0 0 24px}
+    .es-parcel-group{border:1px solid var(--line);background:var(--paper);margin-bottom:20px;padding:24px}
+    .es-parcel-head{display:flex;justify-content:space-between;align-items:center;gap:16px;list-style:none}
+    summary.es-parcel-head{cursor:pointer}summary.es-parcel-head::-webkit-details-marker{display:none}
+    .es-parcel-head .eyebrow{font-size:10px;letter-spacing:.15em;margin:0 0 8px}
+    .es-parcel-head h3{font-size:23px;font-weight:400;margin:0;overflow-wrap:anywhere}
+    .es-parcel-head>span{color:var(--muted);font-size:13px;white-space:nowrap}
+    .es-parcel-note{margin:16px 0 0;max-width:760px}
+    .es-parcel-items{list-style:none;padding:0;margin:20px 0 0}
+    .es-parcel-item{display:flex;justify-content:space-between;align-items:start;gap:24px;padding:18px 0;border-top:1px solid var(--line-soft)}
+    .es-parcel-item>div:first-child{min-width:0}.es-parcel-item strong{display:block;font-size:15px;font-weight:500;line-height:1.5;overflow-wrap:anywhere}
+    .es-parcel-item span,.es-parcel-item small{display:block;margin-top:6px;font-size:12px;line-height:1.5;color:var(--muted)}
+    .es-parcel-item a{display:inline-block;margin-top:10px;font-size:12px;text-underline-offset:3px}
+    .es-parcel-item-price{text-align:right;flex-shrink:0}.es-parcel-item-price b{font-size:15px;font-weight:500;white-space:nowrap}
+    .es-parcels-empty{padding:30px 20px;border:1px solid var(--line);color:var(--muted);font-size:14px;line-height:1.7;background:var(--paper)}
+    .es-account-sections button:focus-visible,.es-parcel-statuses button:focus-visible,.es-parcel-head:focus-visible{outline:2px solid var(--rose);outline-offset:4px}
+    @media(max-width:600px){.es-parcels-toolbar{align-items:start}.es-parcels-toolbar p{margin-top:0}.es-parcel-group{padding:18px 15px}.es-parcel-head h3{font-size:20px}.es-parcel-item{gap:12px}.es-parcel-item-price{max-width:40%}.es-parcel-filter{align-items:start;flex-direction:column;gap:8px}.es-parcel-filter select{width:100%}.es-parcel-head>span{font-size:11px}.es-parcel-item-price b{font-size:14px}}
   </style>
 </head>
 <body>
@@ -1599,10 +1632,15 @@
         <div class="account-top">
           <div>
             <div class="eyebrow">Личный кабинет</div>
-            <h2>Сверка для<br><span id="account-name">клиента</span></h2>
+            <h2><span id="account-section-title">Сверка для</span><br><span id="account-name">клиента</span></h2>
             <div class="hello" id="account-note">Загружаем персональную сверку…</div>
           </div>
           <div class="balance"><span>К оплате</span><strong id="balance-total">0 ₽</strong></div>
+        </div>
+
+        <div class="es-account-sections" aria-label="Раздел личного кабинета">
+          <button type="button" class="active" data-account-section="reconciliation" aria-pressed="true" aria-controls="account-reconciliation-panel">Моя сверка</button>
+          <button type="button" data-account-section="parcels" aria-pressed="false" aria-controls="account-parcels-panel">Мои посылки</button>
         </div>
 
         <div class="reconciliation-tabs" id="reconciliation-tabs" aria-label="Выбор сверки">
@@ -1610,6 +1648,7 @@
           <button class="reconciliation-tab" type="button" data-reconciliation="old">Старая сверка</button>
         </div>
 
+        <div id="account-reconciliation-panel">
         <div class="mobile-controls">
           <div class="mobile-count" id="mobile-count-label">Загрузка…</div>
           <div class="mobile-pagination" id="mobile-pagination"></div>
@@ -1632,6 +1671,17 @@
         </div>
         <div class="cards" id="cards"></div>
         <div class="pagination" id="pagination" style="display:none"></div>
+        </div>
+        <div id="account-parcels-panel" hidden>
+          <div class="es-parcels-toolbar"><p id="parcels-scope">По актуальной сверке · только ваши покупки</p><button class="account-refresh" id="parcels-refresh" type="button">Обновить данные</button></div>
+          <div class="es-parcel-statuses" aria-label="Статус покупки">
+            <button type="button" class="active" data-parcel-status="bought" aria-pressed="true" aria-controls="my-parcels-list">Выкуплен <span id="parcels-bought-count">0</span></button>
+            <button type="button" data-parcel-status="ready" aria-pressed="false" aria-controls="my-parcels-list">К получению <span id="parcels-ready-count">0</span></button>
+          </div>
+          <div class="es-parcel-filter" id="parcel-number-field" hidden><label for="parcel-number-filter">Номер посылки</label><select id="parcel-number-filter"><option value="">Все мои посылки</option></select></div>
+          <p class="es-parcels-intro">Статус определяется по сверке: без номера посылки — «Выкуплен», с номером — «К получению». Оплаты и расходы на доставку остаются в разделе «Моя сверка».</p>
+          <div id="my-parcels-list" aria-live="polite"></div>
+        </div>
 
       </div>
     </section>
@@ -2302,9 +2352,13 @@ function render(filter=''){
   }
   renderMobilePagination(filtered.length);
   if(isMobile && data.length) hydrateVisibleProductImages(data);
+  renderMyParcels();
 }
 
 function setAccountOrdersBusy(busy){
+  const parcelsButton=document.getElementById('parcels-refresh');
+  if(parcelsButton){parcelsButton.disabled=busy;parcelsButton.textContent=busy?'Обновляем…':'Обновить данные';}
+  renderMyParcels();
   const button=document.getElementById('account-refresh');
   if(button){button.disabled=busy;button.textContent=busy?'Обновляем…':'Обновить сверку';}
   document.getElementById('view-account')?.setAttribute('aria-busy',String(busy));
@@ -2318,6 +2372,7 @@ function resetAccountOrdersCache(){
   accountLoadedAt=0;
   rows=[];
   mobilePage=1;
+  resetMyParcels();
   setAccountOrdersBusy(false);
 }
 
@@ -2336,6 +2391,7 @@ async function loadMyOrders(force=false){
   const request={key:loadKey,revision:++accountRequestRevision,promise:null};
   accountActiveRequest=request;
   accountLoading=true;
+  parcelLoadError='';
   const stillCurrent=()=>request.revision===accountRequestRevision && currentSession?.user?.id===userId && currentReconciliationKind===kind;
   const note=document.getElementById('account-note');
   const count=document.getElementById('count-label');
@@ -2384,6 +2440,7 @@ async function loadMyOrders(force=false){
       accountLoadedForUserId=null;
       accountLoadedAt=0;
       const message=err?.message || 'Не удалось загрузить персональную сверку.';
+      parcelLoadError=message;
       if(note) note.textContent=message;
       if(balance) balance.textContent='—';
       render('');
@@ -2427,6 +2484,87 @@ document.querySelectorAll('[data-reconciliation]').forEach(btn=>{
   });
 });
 updateReconciliationTabs();
+
+// Parcel statuses are derived exclusively from this customer's selected reconciliation.
+let accountSection='reconciliation';
+let parcelStatus='bought';
+let parcelNumberFilter='';
+let parcelLoadError='';
+function parcelNumber(value){
+ const number=String(value??'').trim();
+ return /^(?:[-–—]+|null|none|nan|нет)$/i.test(number)?'':number;
+}
+function myParcelItems(items){
+ // Each imported product line remains a separate position, including identical purchases.
+ return items.filter(item=>item.kind==='product'&&(item.model||item.link||item.size)&&item.total>=0);
+}
+function groupMyParcels(items){
+ const bought=[],ready=[],groups=new Map();
+ for(const item of myParcelItems(items)){
+  const number=parcelNumber(item.parcel);
+  if(!number){bought.push(item);continue;}
+  ready.push(item);
+  if(!groups.has(number))groups.set(number,[]);
+  groups.get(number).push(item);
+ }
+ return {bought,ready,groups};
+}
+function setAccountSection(section){
+ accountSection=section==='parcels'?'parcels':'reconciliation';
+ const parcels=accountSection==='parcels';
+ document.getElementById('account-reconciliation-panel').hidden=parcels;
+ document.getElementById('account-parcels-panel').hidden=!parcels;
+ document.getElementById('account-section-title').textContent=parcels?'Посылки для':'Сверка для';
+ document.querySelectorAll('[data-account-section]').forEach(button=>{
+  const active=button.dataset.accountSection===accountSection;
+  button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active));
+ });
+ if(parcels)renderMyParcels();
+}
+function resetMyParcels(){
+ parcelStatus='bought';parcelNumberFilter='';parcelLoadError='';
+ const list=document.getElementById('my-parcels-list');if(list)list.replaceChildren();
+ const filter=document.getElementById('parcel-number-filter');if(filter){filter.replaceChildren();filter.value='';}
+ setAccountSection('reconciliation');
+}
+function parcelItemHtml(item){
+ const link=/^https?:\/\//i.test(item.link)?`<a href="${escapeHtml(item.link)}" target="_blank" rel="noopener noreferrer">Товар в магазине ↗</a>`:'';
+ return `<li class="es-parcel-item"><div><strong>${escapeHtml(item.model||'Покупка')}</strong>${item.size?`<span>${escapeHtml(item.size)}</span>`:''}<small>Дата выкупа: ${escapeHtml(formatDate(item.date)||'Не указана')}</small>${link}</div><div class="es-parcel-item-price"><b>${formatRub(item.total)} ₽</b>${item.price?`<small>${formatNumber(item.price,2)} € · цена магазина</small>`:''}</div></li>`;
+}
+function renderMyParcels(){
+ const panel=document.getElementById('account-parcels-panel');if(!panel)return;
+ // No global parcel query: rows come from the verified customer's get-my-orders response.
+ const data=groupMyParcels(currentSession?.user?.id?rows:[]);
+ document.getElementById('parcels-bought-count').textContent=String(data.bought.length);
+ document.getElementById('parcels-ready-count').textContent=String(data.ready.length);
+ document.querySelectorAll('[data-parcel-status]').forEach(button=>{
+  const active=button.dataset.parcelStatus===parcelStatus;
+  button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active));
+ });
+ const filter=document.getElementById('parcel-number-filter');
+ if(parcelNumberFilter&&!data.groups.has(parcelNumberFilter))parcelNumberFilter='';
+ filter.innerHTML='<option value="">Все мои посылки</option>'+[...data.groups.keys()].sort((a,b)=>a.localeCompare(b,'ru',{numeric:true})).map(number=>`<option value="${escapeHtml(number)}">Посылка № ${escapeHtml(number)}</option>`).join('');
+ filter.value=parcelNumberFilter;
+ document.getElementById('parcel-number-field').hidden=parcelStatus!=='ready';
+ filter.disabled=accountLoading||!data.groups.size;
+ const scope=currentReconciliationKind==='old'?'По старой сверке':'По актуальной сверке';
+ document.getElementById('parcels-scope').textContent=scope+' · только ваши покупки';
+ const list=document.getElementById('my-parcels-list');
+ if(!currentSession?.user?.id){list.replaceChildren();return;}
+ if(parcelLoadError){list.innerHTML=`<div class="es-parcels-empty" role="alert">${escapeHtml(parcelLoadError)} Нажмите «Обновить данные», чтобы повторить.</div>`;return;}
+ if(accountLoading&&!rows.length){list.innerHTML='<div class="es-parcels-empty" role="status">Загружаем ваши покупки…</div>';return;}
+ if(parcelStatus==='bought'){
+  list.innerHTML=data.bought.length?`<article class="es-parcel-group"><div class="es-parcel-head"><div><p class="eyebrow">Выкуплен</p><h3>В пути</h3></div><span>${data.bought.length} ${positionWord(data.bought.length)}</span></div><p class="es-parcel-note">Покупки выкуплены, номер посылки ещё не указан. Сведения о прибытии появятся после обновления сверки. Точное местонахождение пока не указано.</p><ul class="es-parcel-items">${data.bought.map(parcelItemHtml).join('')}</ul></article>`:'<div class="es-parcels-empty">Покупок без номера посылки в выбранной сверке пока нет.</div>';
+ }else{
+  const groups=[...data.groups].filter(([number])=>!parcelNumberFilter||number===parcelNumberFilter);
+  list.innerHTML=groups.length?groups.map(([number,items])=>`<details class="es-parcel-group" open><summary class="es-parcel-head"><div><p class="eyebrow">К получению</p><h3>Посылка № ${escapeHtml(number)}</h3></div><span>${items.length} ${positionWord(items.length)} <span aria-hidden="true">⌄</span></span></summary><p class="es-parcel-note">Посылка приехала. Здесь показаны только ваши покупки из общей посылки. Способ и время получения согласовываем в личных сообщениях.</p><ul class="es-parcel-items">${items.map(parcelItemHtml).join('')}</ul></details>`).join(''):'<div class="es-parcels-empty">В выбранной сверке пока нет покупок с номером посылки.</div>';
+ }
+}
+document.querySelectorAll('[data-account-section]').forEach(button=>button.addEventListener('click',()=>setAccountSection(button.dataset.accountSection)));
+document.querySelectorAll('[data-parcel-status]').forEach(button=>button.addEventListener('click',()=>{parcelStatus=button.dataset.parcelStatus==='ready'?'ready':'bought';renderMyParcels();}));
+document.getElementById('parcel-number-filter').addEventListener('change',event=>{parcelNumberFilter=event.target.value;renderMyParcels();});
+document.getElementById('parcels-refresh').addEventListener('click',()=>{void loadMyOrders(true);});
+
 
 let profileClientCache=null;
 
