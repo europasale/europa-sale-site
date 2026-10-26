@@ -2638,12 +2638,12 @@ document.getElementById('parcels-refresh').addEventListener('click',()=>{void lo
 
 // Payment reports never edit financial rows or the displayed reconciliation balance.
 let ledgerTarget=null,ledgerRows=[],ledgerGeneration=0;
-let paymentGeneration=0,paymentBusy=false,paymentRequestId='',paymentPayloadKey='',myPaymentReports=[];
+let paymentGeneration=0,paymentStatusGeneration=0,paymentBusy=false,paymentSubmitted=false,paymentRequestId='',paymentPayloadKey='',myPaymentReports=[];
 let adminPaymentGeneration=0,adminPaymentPage=0,adminPaymentTotal=0,adminPaymentRows=[],adminPaymentFlags=new Set(),adminPaymentBusy=false;
 const paymentLabels={pending:'Клиент сообщил об оплате · ожидает проверки',confirmed:'Оплата подтверждена администратором',rejected:'Оплата не подтверждена'};
 function closeLedger(){ledgerGeneration++;ledgerTarget=null;ledgerRows=[];const d=document.getElementById('ledger-dialog');if(d.open&&d.close)d.close();else d.removeAttribute('open');for(const id of ['ledger-content','ledger-total'])document.getElementById(id).replaceChildren();document.getElementById('ledger-title').textContent='Сверка клиента';document.getElementById('ledger-search').value='';setAdminMessage('ledger-message','');}
-function closePaymentForm(){paymentGeneration++;paymentRequestId='';paymentPayloadKey='';paymentBusy=false;const d=document.getElementById('payment-dialog');if(d.open&&d.close)d.close();else d.removeAttribute('open');for(const id of ['payment-amount','payment-date','payment-comment'])document.getElementById(id).value='';paymentFormBusy(false);setAdminMessage('payment-message','');}
-function resetPaymentsAndLedger(){closeLedger();closePaymentForm();myPaymentReports=[];adminPaymentRows=[];adminPaymentFlags.clear();adminPaymentGeneration++;adminPaymentPage=0;adminPaymentBusy=false;document.getElementById('my-payment-history').replaceChildren();document.getElementById('payments-list').replaceChildren();document.getElementById('payment-open').disabled=false;document.getElementById('payment-count').textContent='';for(const id of ['payments-prev','payments-next','payments-refresh','payments-filter','payments-search'])document.getElementById(id).disabled=false;setAdminMessage('my-payment-message','');setAdminMessage('payments-message','');}
+function closePaymentForm(){paymentGeneration++;paymentRequestId='';paymentPayloadKey='';paymentBusy=false;paymentSubmitted=false;const d=document.getElementById('payment-dialog');if(d.open&&d.close)d.close();else d.removeAttribute('open');for(const id of ['payment-amount','payment-date','payment-comment'])document.getElementById(id).value='';paymentFormBusy(false);setAdminMessage('payment-message','');}
+function resetPaymentsAndLedger(){paymentStatusGeneration++;closeLedger();closePaymentForm();myPaymentReports=[];adminPaymentRows=[];adminPaymentFlags.clear();adminPaymentGeneration++;adminPaymentPage=0;adminPaymentBusy=false;document.getElementById('my-payment-history').replaceChildren();document.getElementById('payments-list').replaceChildren();document.getElementById('payment-open').disabled=false;document.getElementById('payment-count').textContent='';for(const id of ['payments-prev','payments-next','payments-refresh','payments-filter','payments-search'])document.getElementById(id).disabled=false;setAdminMessage('my-payment-message','');setAdminMessage('payments-message','');}
 async function paymentApi(action,payload={}){const token=currentSession?.access_token;if(!token)throw new Error('Войдите в личный кабинет.');const {data,error}=await supabaseClient.functions.invoke('payment-reports',{body:{action,...payload},headers:{Authorization:`Bearer ${token}`}});if(token!==currentSession?.access_token)throw new Error('Сессия изменилась.');if(error)throw new Error(await readFunctionError(error));if(!data?.success)throw new Error(data?.error||'Не удалось обработать запрос.');return data;}
 function ledgerLink(id,nick){return `<button type="button" class="ledger-nick" data-ledger-id="${id==null?'':Number(id)}" data-ledger-nick="${escapeHtml(nick||'')}">${escapeHtml(nick||'—')}</button>`;}
 function paymentFlag(id){return adminPaymentFlags.has(Number(id))?'<small class="payment-flag">Сообщил(а) об оплате · проверить</small>':'';}
@@ -2663,28 +2663,29 @@ function renderAdminLedger(){
 }
 function paymentScope(){document.getElementById('client-payment-tools').hidden=currentReconciliationKind!=='current'||isAdminSession;}
 async function loadMyPaymentReports(){
- if(!currentSession?.user?.id||isAdminSession)return;const generation=++paymentGeneration,token=currentSession.access_token;
- try{const data=await paymentApi('client_status');if(generation!==paymentGeneration||token!==currentSession?.access_token||isAdminSession)return;
+ if(!currentSession?.user?.id||isAdminSession)return;const generation=++paymentStatusGeneration,token=currentSession.access_token;
+ try{const data=await paymentApi('client_status');if(generation!==paymentStatusGeneration||token!==currentSession?.access_token||isAdminSession)return;
  myPaymentReports=data.reports||[];const pending=myPaymentReports.find(r=>r.status==='pending');document.getElementById('payment-open').disabled=Boolean(pending);
  setAdminMessage('my-payment-message',pending?`Вы сообщили об оплате ${formatRub(pending.amount)} ₽. Ожидает проверки администратором.`:'');
  document.getElementById('my-payment-history').innerHTML=myPaymentReports.length?`<details><summary>Мои сообщения об оплате · ${myPaymentReports.length}</summary>${myPaymentReports.map(r=>`<article class="payment-history-item"><strong>${formatRub(r.amount)} ₽ · ${escapeHtml(formatDate(r.paid_date))}</strong><p>${escapeHtml(paymentLabels[r.status]||r.status)}</p>${r.review_note?`<p>${escapeHtml(r.review_note)}</p>`:''}<small>Баланс сверки обновляется после учёта платежа в исходном файле.</small></article>`).join('')}</details>`:'';
- }catch(error){if(generation===paymentGeneration)setAdminMessage('my-payment-message','Не удалось проверить сообщения об оплате. '+error.message,'error');}
+ }catch(error){if(generation===paymentStatusGeneration)setAdminMessage('my-payment-message','Не удалось проверить сообщения об оплате. '+error.message,'error');}
 }
 function paymentFormBusy(busy){paymentBusy=busy;for(const id of ['payment-submit','payment-amount','payment-date','payment-comment'])document.getElementById(id).disabled=busy;document.getElementById('payment-submit').textContent=busy?'Отправляем…':'Я оплатил(а) — сообщить';}
 function moscowToday(){const parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Moscow',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());const v=Object.fromEntries(parts.map(p=>[p.type,p.value]));return `${v.year}-${v.month}-${v.day}`;}
 function openPaymentForm(){if(!currentSession?.user?.id||isAdminSession||currentReconciliationKind!=='current')return;if(myPaymentReports.some(r=>r.status==='pending'))return;closePaymentForm();const balance=rows.reduce((s,r)=>s+Number(r.total||0),0);document.getElementById('payment-amount').value=balance>0?balance.toFixed(2):'';document.getElementById('payment-date').value=moscowToday();document.getElementById('payment-date').max=moscowToday();const d=document.getElementById('payment-dialog');if(d.showModal)d.showModal();else d.setAttribute('open','');}
 async function submitPaymentReport(event){
- event.preventDefault();if(paymentBusy||isAdminSession||!currentSession?.user?.id||!document.getElementById('payment-form').reportValidity())return;
+ event.preventDefault();if(paymentBusy||paymentSubmitted||isAdminSession||!currentSession?.user?.id||!document.getElementById('payment-form').reportValidity())return;
  const payload={amount:Number(document.getElementById('payment-amount').value),paid_date:document.getElementById('payment-date').value,comment:document.getElementById('payment-comment').value.trim()};
  if(!Number.isFinite(payload.amount)||payload.amount<=0){setAdminMessage('payment-message','Укажите сумму перевода.','error');return;}
  const key=JSON.stringify(payload);if(paymentPayloadKey!==key){paymentRequestId=crypto.randomUUID();paymentPayloadKey=key;}
  const generation=++paymentGeneration,token=currentSession.access_token;paymentFormBusy(true);setAdminMessage('payment-message','Сохраняем сообщение об оплате…');
  try{const data=await paymentApi('client_report',{...payload,request_id:paymentRequestId});if(generation!==paymentGeneration||token!==currentSession?.access_token||isAdminSession)return;
  setAdminMessage('payment-message',data.result.already_pending?'У вас уже есть сообщение, ожидающее проверки. Закройте окно, чтобы посмотреть его.':'Сообщение сохранено. Администратор проверит оплату. Баланс сверки пока не изменён.');
- document.getElementById('payment-submit').disabled=true;document.getElementById('payment-open').disabled=true;
+ paymentBusy=false;paymentSubmitted=true;
+ document.getElementById('payment-submit').disabled=true;document.getElementById('payment-submit').textContent='Сообщение отправлено';document.getElementById('payment-open').disabled=true;
  setAdminMessage('my-payment-message','Вы сообщили об оплате. Сообщение ожидает проверки администратором.');
- // Read-only status refresh cannot change reconciliation amounts.
- await loadMyPaymentReports();
+ // Status loading has its own revision and never keeps the submit button busy.
+ void loadMyPaymentReports();
  }catch(error){if(generation===paymentGeneration){paymentFormBusy(false);setAdminMessage('payment-message',error.message+' При сбое связи повторите с теми же данными.','error');}}
  finally{if(generation===paymentGeneration)paymentBusy=false;}
 }
