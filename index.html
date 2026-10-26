@@ -1063,6 +1063,10 @@
     @media(max-width:600px){.es-parcels-toolbar{align-items:start}.es-parcels-toolbar p{margin-top:0}.es-parcel-group{padding:18px 15px}.es-parcel-head h3{font-size:20px}.es-parcel-item{gap:12px}.es-parcel-item-price{max-width:40%}.es-parcel-filter{align-items:start;flex-direction:column;gap:8px}.es-parcel-filter select{width:100%}.es-parcel-head>span{font-size:11px}.es-parcel-item-price b{font-size:14px}}
 
 .ap-tools{display:flex;gap:16px;align-items:end;flex-wrap:wrap;margin:24px 0}.ap-tools label{display:flex;flex-direction:column;gap:8px;font-size:13px}.ap-tools select{min-height:44px;max-width:100%;padding:10px;border:1px solid var(--line);background:var(--paper);color:var(--text);font:inherit}.ap-client{border:1px solid var(--line);padding:20px;margin:16px 0;background:var(--paper);overflow-wrap:anywhere}.ap-client summary{cursor:pointer;font-size:15px;line-height:1.6}.ap-client ul{list-style:none;padding:0;margin:16px 0 0}.ap-client li{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-top:1px solid var(--line)}.ap-client small{display:block;margin-top:8px;font-size:12px;color:var(--muted)}.ap-select{display:block;margin-top:14px}.ap-preview-text{white-space:pre-line;line-height:1.7;font-size:14px}#ap-draft-text{width:100%;padding:16px;line-height:1.7;border:1px solid var(--line);font:inherit;background:var(--paper);color:var(--text)}#ap-previews .btn{margin:4px 8px 4px 0}#ap-notifications{margin-top:32px;padding-top:24px;border-top:1px solid var(--line)}@media(max-width:600px){.ap-tools{align-items:stretch;flex-direction:column}.ap-client{padding:15px}.ap-client li{font-size:13px}.ap-client li>span{white-space:nowrap}}
+
+#ar-dialog{width:min(700px,calc(100% - 32px));max-height:90vh;overflow:auto;padding:26px;border:1px solid var(--line);background:var(--paper);color:var(--text)}#ar-dialog::backdrop{background:rgba(0,0,0,.35)}#ar-dialog h3{font-weight:400}#ar-dialog .field input{width:100%}#ar-dialog .messenger-actions{margin:16px 0}#ar-credentials{width:100%;padding:16px;border:1px solid var(--line);background:var(--paper);color:var(--text);font:inherit;line-height:1.6}#ar-result{margin-top:20px}#ar-form>button[type=submit]{margin-top:20px}@media(max-width:600px){#ar-dialog{padding:18px}#ar-dialog .user-form-grid{grid-template-columns:1fr}}
+
+.ledger-nick{appearance:none;padding:0;border:0;background:none;color:inherit;font:inherit;font-weight:650;text-align:left;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;cursor:pointer}.ledger-nick:focus-visible{outline:2px solid var(--rose);outline-offset:5px}.payment-flag{display:block;margin-top:8px;color:#875c31;font-size:11px;line-height:1.6}.client-payment-tools{margin:8px 0 24px}.client-payment-tools summary{cursor:pointer;font-size:13px;color:var(--muted);padding:12px 0}.payment-history-item{border-top:1px solid var(--line);padding:14px 0;font-size:13px}.payment-history-item small{color:var(--muted)}#ledger-dialog,#payment-dialog{width:min(1150px,calc(100% - 32px));max-height:90vh;overflow:auto;padding:26px;border:1px solid var(--line);background:var(--paper);color:var(--text)}#payment-dialog{width:min(660px,calc(100% - 32px))}#ledger-dialog::backdrop,#payment-dialog::backdrop{background:rgba(0,0,0,.35)}.ledger-tools{display:flex;gap:16px;align-items:end;flex-wrap:wrap;margin:20px 0}.ledger-tools label{display:flex;flex-direction:column;gap:8px;font-size:13px}.ledger-tools input,.ledger-tools select{padding:12px;min-height:44px;border:1px solid var(--line);background:var(--paper);color:var(--text);font:inherit;max-width:100%}.ledger-table{min-width:850px;table-layout:auto}.ledger-table td,.ledger-table th{font-size:12px}.ledger-table small{display:block;margin-top:6px;color:var(--muted)}.payment-admin-card{padding:24px;border:1px solid var(--line);margin:16px 0;background:var(--paper);overflow-wrap:anywhere}.payment-admin-head{display:flex;justify-content:space-between;gap:20px;align-items:center}.payment-admin-head h3{margin:0}.payment-admin-card small{color:var(--muted);font-size:12px}.payment-admin-card label{display:block;margin:20px 0 8px;font-size:13px}.payment-admin-card textarea,#payment-comment{width:100%;border:1px solid var(--line);padding:12px;line-height:1.6;font:inherit;background:var(--paper);color:var(--text)}#payment-form>button{margin-top:20px}@media(max-width:600px){#ledger-dialog,#payment-dialog{padding:16px}.ledger-tools{flex-direction:column;align-items:stretch}.payment-admin-card{padding:16px}.payment-admin-head{align-items:start}.payment-admin-head h3{font-size:18px}.payment-admin-head>strong{white-space:nowrap}}
   </style>
 </head>
 <body>
@@ -1640,6 +1644,10 @@
           <div class="balance"><span>К оплате</span><strong id="balance-total">0 ₽</strong></div>
         </div>
 
+        <section id="client-payment-tools" class="client-payment-tools" aria-label="Сообщения об оплате">
+          <div class="messenger-actions"><button type="button" class="btn soft" id="payment-open">Сообщить об оплате</button><button type="button" class="btn soft" id="payment-status-refresh">Обновить статус оплаты</button></div><p class="admin-message" id="my-payment-message" role="status"></p><div id="my-payment-history"></div>
+        </section>
+
         <div class="es-account-sections" aria-label="Раздел личного кабинета">
           <button type="button" class="active" data-account-section="reconciliation" aria-pressed="true" aria-controls="account-reconciliation-panel">Моя сверка</button>
           <button type="button" data-account-section="parcels" aria-pressed="false" aria-controls="account-parcels-panel">Мои посылки</button>
@@ -1783,6 +1791,7 @@
           <button type="button" class="admin-tab active" data-admin-tab="sverka">Сверки</button>
           <button type="button" class="admin-tab" data-admin-tab="parcels">Посылки</button>
           <button type="button" class="admin-tab" data-admin-tab="debtors">Должники</button>
+          <button type="button" class="admin-tab" data-admin-tab="payments">Оплаты<span id="payment-count"></span></button>
           <button type="button" class="admin-tab" data-admin-tab="mailing">Рассылка</button>
           <button type="button" class="admin-tab" data-admin-tab="users">Пользователи</button>
           <button type="button" class="admin-tab" data-admin-tab="editorial">EDITORIAL</button>
@@ -1871,6 +1880,13 @@
               <tbody id="debtors-body"><tr><td colspan="7" class="admin-empty">Нажмите «Обновить», чтобы загрузить должников.</td></tr></tbody>
             </table>
           </div>
+        </div>
+
+        <div class="admin-tab-view" data-admin-view="payments" id="admin-payments-panel">
+          <p class="section-eyebrow">СООБЩЕНИЯ КЛИЕНТОВ</p><h3>Оплаты под контролем.</h3><p class="admin-note">Клиент сообщает о переводе, вы проверяете поступление денег. Подтверждение здесь не меняет суммы сверки: учёт платежа по-прежнему ведётся в исходном файле. По Нику можно открыть детализацию.</p>
+          <div class="ledger-tools"><label>Статус<select id="payments-filter"><option value="pending">Ожидают проверки</option><option value="confirmed">Подтверждены</option><option value="rejected">Не подтверждены</option><option value="all">Все сообщения</option></select></label><label>Ник клиента<input type="search" id="payments-search" placeholder="Поиск по Нику"></label><button type="button" class="btn soft" id="payments-refresh">Обновить</button></div>
+          <p class="admin-message" id="payments-message" role="status"></p><div id="payments-list"></div>
+          <div class="messenger-actions"><button type="button" class="btn soft" id="payments-prev">← Назад</button><span id="payments-page"></span><button type="button" class="btn soft" id="payments-next">Далее →</button></div>
         </div>
 
         <div class="admin-tab-view" data-admin-view="mailing">
@@ -2064,6 +2080,38 @@
     </div>
   </div>
 </dialog>
+
+  <dialog id="ledger-dialog" aria-labelledby="ledger-title">
+  <div class="admin-panel-head"><div><p class="section-eyebrow">ПЕРСОНАЛЬНАЯ СВЕРКА</p><h3 id="ledger-title">Сверка клиента</h3></div><button type="button" class="admin-icon-btn" id="ledger-close" aria-label="Закрыть сверку">×</button></div>
+  <div class="ledger-tools"><label>Сверка<select id="ledger-kind"><option value="current">Актуальная</option><option value="old">Старая</option></select></label><label>Поиск по позициям<input id="ledger-search" type="search" placeholder="Товар, оплата, доставка, посылка"></label><button type="button" class="btn soft" id="ledger-refresh">Обновить</button></div>
+  <p id="ledger-message" class="admin-message" role="status"></p><p id="ledger-total"></p><div class="table-wrap" id="ledger-content"></div>
+</dialog>
+<dialog id="payment-dialog" aria-labelledby="payment-title" aria-describedby="payment-help">
+  <div class="admin-panel-head"><h3 id="payment-title">Сообщить об оплате</h3><button type="button" class="admin-icon-btn" id="payment-close" aria-label="Закрыть сообщение об оплате">×</button></div>
+  <p class="admin-note" id="payment-help">Если вы уже перевели деньги, укажите сумму и дату. Администратор проверит поступление. Баланс изменится после учёта оплаты в сверке.</p>
+  <form id="payment-form"><div class="user-form-grid"><div class="field"><label for="payment-amount">Сумма перевода, ₽ *</label><input id="payment-amount" type="number" min="0.01" max="100000000" step="0.01" inputmode="decimal" required></div><div class="field"><label for="payment-date">Дата оплаты *</label><input id="payment-date" type="date" required></div></div><div class="field"><label for="payment-comment">Комментарий (необязательно)</label><textarea id="payment-comment" maxlength="1000" rows="3" placeholder="Например: частичная оплата или имя отправителя перевода"></textarea></div><button type="submit" class="btn dark" id="payment-submit">Я оплатил(а) — сообщить</button></form>
+  <p id="payment-message" class="admin-message" role="status" aria-live="polite"></p>
+</dialog>
+
+<dialog id="ar-dialog" aria-labelledby="ar-title" aria-describedby="ar-description">
+    <div class="admin-panel-head"><h3 id="ar-title">Регистрация клиента</h3><button type="button" class="admin-icon-btn" id="ar-close" aria-label="Закрыть регистрацию">×</button></div>
+    <p class="admin-note" id="ar-description">Создайте вход для существующей карточки. Пароль без срока действия; клиент может сменить его по желанию в своём профиле.</p>
+    <form id="ar-form">
+      <div class="user-form-grid">
+        <div class="field"><label for="ar-login">Постоянный Ник</label><input id="ar-login" readonly></div>
+        <div class="field"><label for="ar-name">Имя и фамилия *</label><input id="ar-name" required maxlength="300" autocomplete="off"></div>
+        <div class="field"><label for="ar-email">Email клиента *</label><input id="ar-email" type="email" required maxlength="254" autocomplete="off" autocapitalize="none" spellcheck="false"></div>
+        <div class="field"><label for="ar-phone">Телефон *</label><input id="ar-phone" type="tel" required maxlength="80" autocomplete="off"></div>
+        <div class="field"><label for="ar-password">Пароль для входа *</label><input id="ar-password" type="password" required minlength="8" maxlength="128" autocomplete="new-password" aria-describedby="ar-password-note"></div>
+      </div>
+      <div class="messenger-actions"><button class="btn soft" type="button" id="ar-generate">Сгенерировать пароль</button><button class="btn soft" type="button" id="ar-show" aria-pressed="false">Показать пароль</button></div>
+      <p class="admin-note" id="ar-password-note">От 8 символов. Можно задать свой пароль. Обязательной смены при первом входе нет.</p>
+      <label class="admin-checkbox-line"><input type="checkbox" id="ar-verified" required> Я проверил(а), что указанный email принадлежит этому клиенту.</label>
+      <button class="btn dark" id="ar-submit" type="submit">Зарегистрировать клиента</button>
+    </form>
+    <p id="ar-message" class="admin-message" role="status" aria-live="polite"></p>
+    <section id="ar-result" hidden><h4>Данные для входа готовы</h4><p class="admin-note">Передайте их клиенту лично. Пароль не отправлен по email или в мессенджеры. После закрытия формы он здесь не сохраняется.</p><textarea id="ar-credentials" rows="8" readonly aria-label="Данные для входа клиента"></textarea><button class="btn soft" id="ar-copy" type="button">Скопировать данные для клиента</button></section>
+  </dialog>
 
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -2384,6 +2432,7 @@ function setAccountOrdersBusy(busy){
 }
 
 function resetAccountOrdersCache(){
+  resetPaymentsAndLedger();
   ++accountRequestRevision;
   accountActiveRequest=null;
   accountLoading=false;
@@ -2452,6 +2501,7 @@ async function loadMyOrders(force=false){
           : (rows.length?'Ваша актуальная сверка EUROPA SALE.':'Для вашего Ника пока нет позиций в актуальной сверке. Если покупки уже были, обратитесь в EUROPA SALE.');
       }
       render(document.getElementById('search')?.value || '');
+      void loadMyPaymentReports();
     }catch(err){
       if(!stillCurrent()) return;
       console.error('Load my orders error:',err);
@@ -2483,6 +2533,7 @@ async function loadMyOrders(force=false){
 document.getElementById('account-refresh')?.addEventListener('click',()=>{loadMyOrders(true);});
 
 function updateReconciliationTabs(){
+  paymentScope();
   document.querySelectorAll('[data-reconciliation]').forEach(btn=>{
     btn.classList.toggle('active',btn.dataset.reconciliation===currentReconciliationKind);
   });
@@ -2583,6 +2634,87 @@ document.querySelectorAll('[data-account-section]').forEach(button=>button.addEv
 document.querySelectorAll('[data-parcel-status]').forEach(button=>button.addEventListener('click',()=>{parcelStatus=button.dataset.parcelStatus==='ready'?'ready':'bought';renderMyParcels();}));
 document.getElementById('parcel-number-filter').addEventListener('change',event=>{parcelNumberFilter=event.target.value;renderMyParcels();});
 document.getElementById('parcels-refresh').addEventListener('click',()=>{void loadMyOrders(true);});
+
+
+// Payment reports never edit financial rows or the displayed reconciliation balance.
+let ledgerTarget=null,ledgerRows=[],ledgerGeneration=0;
+let paymentGeneration=0,paymentBusy=false,paymentRequestId='',paymentPayloadKey='',myPaymentReports=[];
+let adminPaymentGeneration=0,adminPaymentPage=0,adminPaymentTotal=0,adminPaymentRows=[],adminPaymentFlags=new Set(),adminPaymentBusy=false;
+const paymentLabels={pending:'Клиент сообщил об оплате · ожидает проверки',confirmed:'Оплата подтверждена администратором',rejected:'Оплата не подтверждена'};
+function closeLedger(){ledgerGeneration++;ledgerTarget=null;ledgerRows=[];const d=document.getElementById('ledger-dialog');if(d.open&&d.close)d.close();else d.removeAttribute('open');for(const id of ['ledger-content','ledger-total'])document.getElementById(id).replaceChildren();document.getElementById('ledger-title').textContent='Сверка клиента';document.getElementById('ledger-search').value='';setAdminMessage('ledger-message','');}
+function closePaymentForm(){paymentGeneration++;paymentRequestId='';paymentPayloadKey='';paymentBusy=false;const d=document.getElementById('payment-dialog');if(d.open&&d.close)d.close();else d.removeAttribute('open');for(const id of ['payment-amount','payment-date','payment-comment'])document.getElementById(id).value='';paymentFormBusy(false);setAdminMessage('payment-message','');}
+function resetPaymentsAndLedger(){closeLedger();closePaymentForm();myPaymentReports=[];adminPaymentRows=[];adminPaymentFlags.clear();adminPaymentGeneration++;adminPaymentPage=0;adminPaymentBusy=false;document.getElementById('my-payment-history').replaceChildren();document.getElementById('payments-list').replaceChildren();document.getElementById('payment-open').disabled=false;document.getElementById('payment-count').textContent='';for(const id of ['payments-prev','payments-next','payments-refresh','payments-filter','payments-search'])document.getElementById(id).disabled=false;setAdminMessage('my-payment-message','');setAdminMessage('payments-message','');}
+async function paymentApi(action,payload={}){const token=currentSession?.access_token;if(!token)throw new Error('Войдите в личный кабинет.');const {data,error}=await supabaseClient.functions.invoke('payment-reports',{body:{action,...payload},headers:{Authorization:`Bearer ${token}`}});if(token!==currentSession?.access_token)throw new Error('Сессия изменилась.');if(error)throw new Error(await readFunctionError(error));if(!data?.success)throw new Error(data?.error||'Не удалось обработать запрос.');return data;}
+function ledgerLink(id,nick){return `<button type="button" class="ledger-nick" data-ledger-id="${id==null?'':Number(id)}" data-ledger-nick="${escapeHtml(nick||'')}">${escapeHtml(nick||'—')}</button>`;}
+function paymentFlag(id){return adminPaymentFlags.has(Number(id))?'<small class="payment-flag">Сообщил(а) об оплате · проверить</small>':'';}
+async function openAdminLedger(id,nick){if(!isAdminSession)return;closeLedger();ledgerTarget={client_id:id||null,login:nick||''};document.getElementById('ledger-kind').value='current';document.getElementById('ledger-title').textContent='Сверка · '+nick;const d=document.getElementById('ledger-dialog');if(d.showModal)d.showModal();else d.setAttribute('open','');await loadAdminLedger();}
+async function loadAdminLedger(){
+ if(!isAdminSession||!ledgerTarget)return;const generation=++ledgerGeneration,token=currentSession?.access_token;const target={...ledgerTarget},kind=document.getElementById('ledger-kind').value;
+ ledgerRows=[];renderAdminLedger();setAdminMessage('ledger-message','Загружаем сверку выбранного клиента…');
+ try{const data=await paymentApi('admin_ledger',{...target,reconciliation_kind:kind});if(generation!==ledgerGeneration||token!==currentSession?.access_token||!isAdminSession)return;
+ ledgerRows=sortReconciliationNewestFirst(data.orders.map(order=>({...normalizeOrder(order),comment:String(order.comments||'')})));document.getElementById('ledger-title').textContent='Сверка · '+data.client.login;
+ document.getElementById('ledger-total').textContent=`Итог ${kind==='old'?'старой':'актуальной'} сверки: ${formatRub(data.total_rub)} ₽ · строк: ${ledgerRows.length}`;
+ renderAdminLedger();setAdminMessage('ledger-message','Все строки сверки: товары, оплаты, доставка и корректировки. Сообщения об оплате сами этот итог не меняют.');
+ }catch(error){if(generation===ledgerGeneration)setAdminMessage('ledger-message',error.message,'error');}
+}
+function renderAdminLedger(){
+ const q=document.getElementById('ledger-search').value.trim().toLowerCase();const filtered=ledgerRows.filter(r=>[r.model,r.link,r.size,r.parcel,r.comment].join(' ').toLowerCase().includes(q));
+ document.getElementById('ledger-content').innerHTML=filtered.length?`<table class="ledger-table" aria-label="Детализация сверки клиента"><thead><tr><th>Товар / операция</th><th>Размер / цвет</th><th>Цена €</th><th>Орг %</th><th>Курс</th><th>Итого ₽</th><th>Дата</th><th>Посылка</th></tr></thead><tbody>${filtered.map(r=>`<tr><td><strong>${escapeHtml(r.model||'Операция')}</strong>${/^https?:\/\//i.test(r.link)?`<br><a href="${escapeHtml(r.link)}" target="_blank" rel="noopener noreferrer">Товар ↗</a>`:''}${r.comment?`<small>${escapeHtml(r.comment)}</small>`:''}</td><td>${escapeHtml(r.size)}</td><td>${formatNumber(r.price,2)}</td><td>${formatNumber(r.org,2)}</td><td>${formatNumber(r.rate,2)}</td><td>${formatRub(r.total)}</td><td>${escapeHtml(formatDate(r.date))}</td><td>${escapeHtml(r.parcel||'—')}</td></tr>`).join('')}</tbody></table>`:'<p class="admin-note">Строки не найдены.</p>';
+}
+function paymentScope(){document.getElementById('client-payment-tools').hidden=currentReconciliationKind!=='current'||isAdminSession;}
+async function loadMyPaymentReports(){
+ if(!currentSession?.user?.id||isAdminSession)return;const generation=++paymentGeneration,token=currentSession.access_token;
+ try{const data=await paymentApi('client_status');if(generation!==paymentGeneration||token!==currentSession?.access_token||isAdminSession)return;
+ myPaymentReports=data.reports||[];const pending=myPaymentReports.find(r=>r.status==='pending');document.getElementById('payment-open').disabled=Boolean(pending);
+ setAdminMessage('my-payment-message',pending?`Вы сообщили об оплате ${formatRub(pending.amount)} ₽. Ожидает проверки администратором.`:'');
+ document.getElementById('my-payment-history').innerHTML=myPaymentReports.length?`<details><summary>Мои сообщения об оплате · ${myPaymentReports.length}</summary>${myPaymentReports.map(r=>`<article class="payment-history-item"><strong>${formatRub(r.amount)} ₽ · ${escapeHtml(formatDate(r.paid_date))}</strong><p>${escapeHtml(paymentLabels[r.status]||r.status)}</p>${r.review_note?`<p>${escapeHtml(r.review_note)}</p>`:''}<small>Баланс сверки обновляется после учёта платежа в исходном файле.</small></article>`).join('')}</details>`:'';
+ }catch(error){if(generation===paymentGeneration)setAdminMessage('my-payment-message','Не удалось проверить сообщения об оплате. '+error.message,'error');}
+}
+function paymentFormBusy(busy){paymentBusy=busy;for(const id of ['payment-submit','payment-amount','payment-date','payment-comment'])document.getElementById(id).disabled=busy;document.getElementById('payment-submit').textContent=busy?'Отправляем…':'Я оплатил(а) — сообщить';}
+function moscowToday(){const parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Moscow',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());const v=Object.fromEntries(parts.map(p=>[p.type,p.value]));return `${v.year}-${v.month}-${v.day}`;}
+function openPaymentForm(){if(!currentSession?.user?.id||isAdminSession||currentReconciliationKind!=='current')return;if(myPaymentReports.some(r=>r.status==='pending'))return;closePaymentForm();const balance=rows.reduce((s,r)=>s+Number(r.total||0),0);document.getElementById('payment-amount').value=balance>0?balance.toFixed(2):'';document.getElementById('payment-date').value=moscowToday();document.getElementById('payment-date').max=moscowToday();const d=document.getElementById('payment-dialog');if(d.showModal)d.showModal();else d.setAttribute('open','');}
+async function submitPaymentReport(event){
+ event.preventDefault();if(paymentBusy||isAdminSession||!currentSession?.user?.id||!document.getElementById('payment-form').reportValidity())return;
+ const payload={amount:Number(document.getElementById('payment-amount').value),paid_date:document.getElementById('payment-date').value,comment:document.getElementById('payment-comment').value.trim()};
+ if(!Number.isFinite(payload.amount)||payload.amount<=0){setAdminMessage('payment-message','Укажите сумму перевода.','error');return;}
+ const key=JSON.stringify(payload);if(paymentPayloadKey!==key){paymentRequestId=crypto.randomUUID();paymentPayloadKey=key;}
+ const generation=++paymentGeneration,token=currentSession.access_token;paymentFormBusy(true);setAdminMessage('payment-message','Сохраняем сообщение об оплате…');
+ try{const data=await paymentApi('client_report',{...payload,request_id:paymentRequestId});if(generation!==paymentGeneration||token!==currentSession?.access_token||isAdminSession)return;
+ setAdminMessage('payment-message',data.result.already_pending?'У вас уже есть сообщение, ожидающее проверки. Закройте окно, чтобы посмотреть его.':'Сообщение сохранено. Администратор проверит оплату. Баланс сверки пока не изменён.');
+ document.getElementById('payment-submit').disabled=true;document.getElementById('payment-open').disabled=true;
+ setAdminMessage('my-payment-message','Вы сообщили об оплате. Сообщение ожидает проверки администратором.');
+ // Read-only status refresh cannot change reconciliation amounts.
+ await loadMyPaymentReports();
+ }catch(error){if(generation===paymentGeneration){paymentFormBusy(false);setAdminMessage('payment-message',error.message+' При сбое связи повторите с теми же данными.','error');}}
+ finally{if(generation===paymentGeneration)paymentBusy=false;}
+}
+async function loadAdminPayments(summaryOnly=false){
+ if(!isAdminSession)return;const generation=++adminPaymentGeneration,token=currentSession?.access_token;
+ if(!summaryOnly)setAdminMessage('payments-message','Загружаем сообщения об оплате…');
+ try{const data=await paymentApi('admin_list',{status:document.getElementById('payments-filter').value,search:document.getElementById('payments-search').value,page:adminPaymentPage});if(generation!==adminPaymentGeneration||token!==currentSession?.access_token||!isAdminSession)return;
+ adminPaymentFlags=new Set(data.pending_clients.map(Number));document.getElementById('payment-count').textContent=data.pending_count?' · '+data.pending_count:'';renderDebtors();
+ if(!summaryOnly){adminPaymentRows=data.reports;adminPaymentTotal=data.total;if(adminPaymentPage>0&&!data.reports.length&&adminPaymentPage*50>=data.total){adminPaymentPage--;await loadAdminPayments();return;}renderAdminPayments();setAdminMessage('payments-message',`Сообщений: ${data.total}. Ожидают проверки всего: ${data.pending_count}.`);}
+ }catch(error){if(generation===adminPaymentGeneration)setAdminMessage(summaryOnly?'debtors-message':'payments-message',error.message,'error');}
+}
+function renderAdminPayments(){
+ const states={pending:'Ожидает проверки',confirmed:'Подтверждено администратором',rejected:'Не подтверждено'};
+ document.getElementById('payments-list').innerHTML=adminPaymentRows.length?adminPaymentRows.map(r=>`<article class="payment-admin-card"><div class="payment-admin-head"><h3>${ledgerLink(r.client_id,r.login_snapshot)}</h3><strong>${formatRub(r.amount)} ₽</strong></div><p>${escapeHtml(states[r.status]||r.status)} · дата оплаты: ${escapeHtml(formatDate(r.paid_date))}</p><small>Сообщено: ${escapeHtml(new Date(r.created_at).toLocaleString('ru-RU',{timeZone:'Europe/Moscow'}))} · итог сверки на момент сообщения: ${formatRub(r.balance_snapshot)} ₽</small>${r.comment?`<p>${escapeHtml(r.comment)}</p>`:''}${r.status==='pending'?`<label for="review-${r.id}">Комментарий администратора (необязательно)</label><textarea id="review-${r.id}" maxlength="1000" rows="2"></textarea><div class="messenger-actions"><button type="button" class="btn soft" data-payment-review="${r.id}" data-payment-status="confirmed">Подтвердить поступление</button><button type="button" class="btn soft" data-payment-review="${r.id}" data-payment-status="rejected">Не подтверждено</button></div>`:`${r.review_note?`<p>Комментарий: ${escapeHtml(r.review_note)}</p>`:''}<small>Проверено: ${escapeHtml(new Date(r.reviewed_at).toLocaleString('ru-RU',{timeZone:'Europe/Moscow'}))}</small>`}</article>`).join(''):'<p class="admin-note">Сообщений по выбранному фильтру нет.</p>';
+ document.getElementById('payments-page').textContent=`Страница ${adminPaymentPage+1} из ${Math.max(1,Math.ceil(adminPaymentTotal/50))}`;document.getElementById('payments-prev').disabled=adminPaymentPage===0;document.getElementById('payments-next').disabled=(adminPaymentPage+1)*50>=adminPaymentTotal;
+}
+async function reviewPayment(id,status){
+ if(!isAdminSession||adminPaymentBusy)return;const report=adminPaymentRows.find(r=>r.id===id);if(!report||report.status!=='pending')return;
+ if(!window.confirm(`${status==='confirmed'?'Подтвердить поступление':'Отметить как неподтверждённую оплату'} ${formatRub(report.amount)} ₽ от ${report.login_snapshot}? Итог сверки автоматически не изменится.`))return;
+ adminPaymentBusy=true;const generation=++adminPaymentGeneration,token=currentSession?.access_token;document.querySelectorAll('[data-payment-review]').forEach(b=>b.disabled=true);
+ try{await paymentApi('admin_review',{report_id:id,status,version:report.version,note:document.getElementById('review-'+id).value.trim()});if(generation!==adminPaymentGeneration||token!==currentSession?.access_token||!isAdminSession)return;adminPaymentBusy=false;await loadAdminPayments();}
+ catch(error){if(generation===adminPaymentGeneration)setAdminMessage('payments-message',error.message,'error');}
+ finally{if(token===currentSession?.access_token){adminPaymentBusy=false;document.querySelectorAll('[data-payment-review]').forEach(b=>b.disabled=false);}}
+}
+document.addEventListener('click',event=>{const link=event.target.closest('[data-ledger-nick]');if(link&&isAdminSession){event.preventDefault();void openAdminLedger(Number(link.dataset.ledgerId)||null,link.dataset.ledgerNick);}const review=event.target.closest('[data-payment-review]');if(review&&isAdminSession)void reviewPayment(review.dataset.paymentReview,review.dataset.paymentStatus);});
+document.getElementById('ledger-close').addEventListener('click',closeLedger);document.getElementById('ledger-dialog').addEventListener('cancel',event=>{event.preventDefault();closeLedger();});document.getElementById('ledger-kind').addEventListener('change',loadAdminLedger);document.getElementById('ledger-refresh').addEventListener('click',loadAdminLedger);document.getElementById('ledger-search').addEventListener('input',renderAdminLedger);
+document.getElementById('payment-open').addEventListener('click',openPaymentForm);document.getElementById('payment-close').addEventListener('click',closePaymentForm);document.getElementById('payment-dialog').addEventListener('cancel',event=>{event.preventDefault();closePaymentForm();});document.getElementById('payment-form').addEventListener('submit',submitPaymentReport);
+document.getElementById('payments-refresh').addEventListener('click',()=>{void loadAdminPayments();});document.getElementById('payments-filter').addEventListener('change',()=>{adminPaymentPage=0;void loadAdminPayments();});document.getElementById('payments-search').addEventListener('change',()=>{adminPaymentPage=0;void loadAdminPayments();});document.getElementById('payments-prev').addEventListener('click',()=>{if(adminPaymentPage>0){adminPaymentPage--;void loadAdminPayments();}});document.getElementById('payments-next').addEventListener('click',()=>{if((adminPaymentPage+1)*50<adminPaymentTotal){adminPaymentPage++;void loadAdminPayments();}});
+
+document.getElementById('payment-status-refresh').addEventListener('click',()=>{void loadMyPaymentReports();});
 
 
 let profileClientCache=null;
@@ -3028,6 +3160,8 @@ function updateAdminNavigation(){
 }
 
 function clearAdminState(){
+  resetPaymentsAndLedger();
+  resetAdminRegistration();
   resetAdminParcels();
   resetManualNotifications();
   isAdminSession=false;
@@ -3456,7 +3590,7 @@ document.getElementById('reset-password-form').addEventListener('submit',async e
 supabaseClient.auth.onAuthStateChange((event,session)=>{
   const previousUserId=currentSession?.user?.id || null;
   currentSession=session;
-  if((session?.user?.id || null)!==previousUserId){resetAccountOrdersCache();resetTgConnection();resetManualNotifications();resetAdminParcels();}
+  if((session?.user?.id || null)!==previousUserId){resetAccountOrdersCache();resetTgConnection();resetManualNotifications();resetAdminParcels();resetAdminRegistration();}
   if(event==='PASSWORD_RECOVERY'){
     authReady=true;
     history.replaceState(null,'',location.pathname+'#reset-password');
@@ -3844,13 +3978,15 @@ function adminStatusLabel(status){
 }
 
 function setAdminTab(tab){
-  const allowed=['sverka','parcels','debtors','mailing','users','editorial'];
+  if(tab!=='users') resetAdminRegistration();
+  const allowed=['sverka','parcels','debtors','payments','mailing','users','editorial'];
   currentAdminTab=allowed.includes(tab)?tab:'sverka';
   document.querySelectorAll('[data-admin-tab]').forEach(btn=>btn.classList.toggle('active',btn.dataset.adminTab===currentAdminTab));
   document.querySelectorAll('[data-admin-view]').forEach(el=>el.classList.toggle('active',el.dataset.adminView===currentAdminTab));
   if(currentAdminTab==='editorial') window.dispatchEvent(new Event('es:editorial-admin-open'));
   if(currentAdminTab==='parcels') void loadAdminParcels();
-  if(currentAdminTab==='debtors') loadAdminDebtors(!adminLoaded.debtors);
+  if(currentAdminTab==='debtors'){loadAdminDebtors(!adminLoaded.debtors);void loadAdminPayments(true);}
+  if(currentAdminTab==='payments') void loadAdminPayments();
   if(currentAdminTab==='users') loadAdminUsers(!adminLoaded.users);
   if(currentAdminTab==='mailing'){
     refreshMailingPreview();
@@ -3863,6 +3999,7 @@ document.querySelectorAll('[data-admin-tab]').forEach(btn=>btn.addEventListener(
 async function loadAdminDashboard(){
   if(!isAdminSession) return;
   setAdminTab(currentAdminTab || 'sverka');
+  if(!['payments','debtors'].includes(currentAdminTab)) void loadAdminPayments(true);
 }
 
 function renderDebtors(){
@@ -3880,7 +4017,7 @@ function renderDebtors(){
     const checked=d.client_id!=null && selectedDebtorIds.has(Number(d.client_id))?'checked':'';
     return `<tr>
       <td class="admin-check-col"><input type="checkbox" data-debtor-id="${escapeHtml(id)}" ${checked} ${disabled}></td>
-      <td><strong>${escapeHtml(d.login||'—')}</strong></td>
+      <td>${ledgerLink(d.client_id,d.login)}${paymentFlag(d.client_id)}</td>
       <td>${escapeHtml(d.name||'—')}</td>
       <td>${escapeHtml(d.phone||'—')}</td>
       <td>${escapeHtml(d.email||'—')}</td>
@@ -4009,6 +4146,66 @@ document.getElementById('mailing-send')?.addEventListener('click',async()=>{
   }finally{ btn.disabled=false; btn.textContent=old; }
 });
 
+// The browser never creates an Auth session for the customer or retains their password.
+let arClientId=null,arGeneration=0,arBusy=false,arPayloadKey='',arRequestId='';
+function arBusyState(busy){arBusy=busy;for(const id of ['ar-submit','ar-generate','ar-show','ar-name','ar-email','ar-phone','ar-password','ar-verified'])document.getElementById(id).disabled=busy;document.getElementById('ar-submit').textContent=busy?'Регистрируем…':'Зарегистрировать клиента';}
+function resetAdminRegistration(){
+ arGeneration++;arClientId=null;arPayloadKey='';arRequestId='';arBusyState(false);
+ const d=document.getElementById('ar-dialog');if(d.open&&typeof d.close==='function')d.close();else d.removeAttribute('open');
+ for(const id of ['ar-login','ar-name','ar-email','ar-phone','ar-password','ar-credentials'])document.getElementById(id).value='';
+ document.getElementById('ar-verified').checked=false;document.getElementById('ar-password').type='password';document.getElementById('ar-show').textContent='Показать пароль';document.getElementById('ar-show').setAttribute('aria-pressed','false');document.getElementById('ar-form').hidden=false;document.getElementById('ar-result').hidden=true;setAdminMessage('ar-message','');
+}
+function openAdminRegistration(clientId){
+ if(!isAdminSession)return;const c=adminUsers.find(c=>Number(c.client_id)===clientId);
+ if(!c||c.auth_user_id||c.status==='registered'||c.is_disabled){setAdminMessage('users-message','Регистрация доступна только для активной карточки без входа.','warn');return;}
+ resetAdminRegistration();arClientId=clientId;
+ for(const [id,value] of [['ar-login',c.login],['ar-name',c.name],['ar-email',c.email],['ar-phone',c.phone]])document.getElementById(id).value=value||'';
+ const d=document.getElementById('ar-dialog');if(typeof d.showModal==='function')d.showModal();else d.setAttribute('open','');document.getElementById('ar-name').focus();
+}
+function arGeneratePassword(){
+ const pick=chars=>{const bytes=new Uint32Array(1),limit=Math.floor(4294967296/chars.length)*chars.length;do{crypto.getRandomValues(bytes);}while(bytes[0]>=limit);return chars[bytes[0]%chars.length];};
+ const chars='ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#%';
+ const result=[pick('ABCDEFGHJKLMNPQRSTUVWXYZ'),pick('abcdefghijkmnopqrstuvwxyz'),pick('23456789'),pick('!@#%')];while(result.length<16)result.push(pick(chars));
+ for(let i=result.length-1;i>0;i--){const options=Array.from({length:i+1},(_,j)=>String.fromCharCode(j));const j=pick(options).charCodeAt(0);[result[i],result[j]]=[result[j],result[i]];}
+ return result.join('');
+}
+async function submitAdminRegistration(event){
+ event.preventDefault();if(arBusy||!isAdminSession||!arClientId||!currentSession?.access_token)return;
+ const form=document.getElementById('ar-form');if(!form.reportValidity())return;
+ const payload={client_id:arClientId,login:document.getElementById('ar-login').value,name:document.getElementById('ar-name').value.trim(),email:normalizeEmail(document.getElementById('ar-email').value),phone:document.getElementById('ar-phone').value.trim(),password:document.getElementById('ar-password').value};
+ if(!payload.email||!payload.name||!payload.phone||payload.password.length<8||!document.getElementById('ar-verified').checked){setAdminMessage('ar-message','Заполните поля, задайте пароль от 8 символов и подтвердите email клиента.','error');return;}
+ const key=JSON.stringify(payload);if(key!==arPayloadKey){arPayloadKey=key;arRequestId=crypto.randomUUID();}
+ const generation=++arGeneration,token=currentSession.access_token;arBusyState(true);setAdminMessage('ar-message','Создаём вход и привязываем покупки…');
+ try{
+  const {data,error}=await supabaseClient.functions.invoke('admin-register-client',{body:{...payload,request_id:arRequestId},headers:{Authorization:`Bearer ${token}`}});
+  if(generation!==arGeneration||token!==currentSession?.access_token||!isAdminSession)return;
+  if(error)throw new Error(await readFunctionError(error));if(!data?.success)throw new Error(data?.error||'Не удалось завершить регистрацию.');
+  document.getElementById('ar-form').hidden=true;document.getElementById('ar-result').hidden=false;
+  document.getElementById('ar-credentials').value=`Ваш личный кабинет EUROPA SALE\n\nСайт: https://europa-sale.com/#login\nНик: ${data.login}\nEmail: ${data.email}\nПароль: ${payload.password}\n\nПароль без срока действия. При желании его можно изменить в профиле.`;
+  document.getElementById('ar-password').value='';arPayloadKey='';arRequestId='';
+  // Reflect the completed registration immediately, then refresh existing admin lists.
+  const row=adminUsers.find(c=>Number(c.client_id)===arClientId);if(row){row.status='registered';row.auth_user_id=data.auth_user_id;row.email=data.email;row.name=payload.name;row.phone=payload.phone;}
+  renderUsers();adminLoaded.users=false;adminLoaded.debtors=false;resetAdminParcels();
+  setAdminMessage('ar-message',`Клиент зарегистрирован. Покупки привязаны; перенесено ожидавших позиций: ${data.linked_orders||0}.`,'info');
+  try{
+   const refreshed=await invokeAdminData('users');
+   if(generation===arGeneration&&token===currentSession?.access_token&&isAdminSession){
+    adminUsers=Array.isArray(refreshed.users)?refreshed.users:[];
+    for(const [id,key] of [['users-total','total'],['users-registered','registered'],['users-pending','pending'],['users-disabled','disabled']])document.getElementById(id).textContent=String(refreshed[key]||0);
+    adminLoaded.users=true;renderUsers();
+   }
+  }catch{if(generation===arGeneration)setAdminMessage('ar-message','Клиент зарегистрирован. Данные для входа готовы. Список пользователей можно обновить кнопкой «Обновить».');}
+ }catch(error){if(generation===arGeneration&&token===currentSession?.access_token)setAdminMessage('ar-message',(error?.message||'Не удалось получить подтверждение регистрации.')+' При сбое связи не закрывайте форму: повторите с теми же данными.','error');}
+ finally{if(generation===arGeneration)arBusyState(false);}
+}
+document.getElementById('ar-form').addEventListener('submit',submitAdminRegistration);
+document.getElementById('ar-close').addEventListener('click',()=>{if(arBusy&&!window.confirm('Регистрация уже выполняется и может завершиться на сервере. Закрыть форму и очистить данные для входа?'))return;resetAdminRegistration();});
+document.getElementById('ar-dialog').addEventListener('cancel',event=>{event.preventDefault();document.getElementById('ar-close').click();});
+document.getElementById('ar-dialog').addEventListener('close',()=>{if(document.getElementById('ar-dialog').open)return;if(arClientId!==null)resetAdminRegistration();});
+document.getElementById('ar-generate').addEventListener('click',()=>{document.getElementById('ar-password').value=arGeneratePassword();});
+document.getElementById('ar-show').addEventListener('click',()=>{const field=document.getElementById('ar-password');const show=field.type==='password';field.type=show?'text':'password';document.getElementById('ar-show').textContent=show?'Скрыть пароль':'Показать пароль';document.getElementById('ar-show').setAttribute('aria-pressed',String(show));});
+document.getElementById('ar-copy').addEventListener('click',async()=>{if(!isAdminSession||!arClientId)return;try{await navigator.clipboard.writeText(document.getElementById('ar-credentials').value);setAdminMessage('ar-message','Данные скопированы. Передайте их клиенту лично.');}catch{document.getElementById('ar-credentials').select();setAdminMessage('ar-message','Текст выделен — скопируйте сочетанием Ctrl+C или Cmd+C.');}});
+
 function renderUsers(){
   const body=document.getElementById('users-body');
   if(!body) return;
@@ -4016,13 +4213,14 @@ function renderUsers(){
   const list=adminUsers.filter(u=>[u.login,u.name,u.phone,u.email].join(' ').toLowerCase().includes(q));
   if(!list.length){ body.innerHTML='<tr><td colspan="7" class="admin-empty">Пользователи не найдены.</td></tr>'; return; }
   body.innerHTML=list.map(u=>`<tr>
-    <td><strong>${escapeHtml(u.login||'—')}</strong></td>
+    <td>${ledgerLink(u.client_id,u.login)}</td>
     <td>${escapeHtml(u.name||'—')}</td>
     <td>${escapeHtml(u.phone||'—')}</td>
     <td>${escapeHtml(u.email||'—')}</td>
     <td>${adminStatusLabel(u.status)}</td>
     <td>${adminChannelsHtml(u)}</td>
     <td><div class="user-actions">
+      ${!u.auth_user_id&&u.status!=='registered'&&!u.is_disabled?`<button class="mini-action" data-user-register="${u.client_id}">Зарегистрировать</button>`:''}
       <button class="mini-action" data-user-edit="${u.client_id}">Изменить</button>
       <button class="mini-action" data-user-toggle="${u.client_id}" data-disabled="${u.is_disabled?'1':'0'}">${u.is_disabled?'Включить':'Отключить'}</button>
       ${u.auth_user_id&&u.email?`<button class="mini-action" data-user-reset="${u.client_id}">Сбросить пароль</button>`:''}
@@ -4030,6 +4228,7 @@ function renderUsers(){
     </div></td>
   </tr>`).join('');
 
+  body.querySelectorAll('[data-user-register]').forEach(btn=>btn.addEventListener('click',()=>openAdminRegistration(Number(btn.dataset.userRegister))));
   body.querySelectorAll('[data-user-edit]').forEach(btn=>btn.addEventListener('click',()=>openUserEditor(Number(btn.dataset.userEdit))));
   body.querySelectorAll('[data-user-toggle]').forEach(btn=>btn.addEventListener('click',()=>toggleUserDisabled(Number(btn.dataset.userToggle),btn.dataset.disabled!=='1')));
   body.querySelectorAll('[data-user-reset]').forEach(btn=>btn.addEventListener('click',()=>sendUserReset(Number(btn.dataset.userReset))));
