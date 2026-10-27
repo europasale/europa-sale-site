@@ -1064,7 +1064,7 @@
 
 .ap-tools{display:flex;gap:16px;align-items:end;flex-wrap:wrap;margin:24px 0}.ap-tools label{display:flex;flex-direction:column;gap:8px;font-size:13px}.ap-tools select{min-height:44px;max-width:100%;padding:10px;border:1px solid var(--line);background:var(--paper);color:var(--text);font:inherit}.ap-client{border:1px solid var(--line);padding:20px;margin:16px 0;background:var(--paper);overflow-wrap:anywhere}.ap-client summary{cursor:pointer;font-size:15px;line-height:1.6}.ap-client ul{list-style:none;padding:0;margin:16px 0 0}.ap-client li{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-top:1px solid var(--line)}.ap-client small{display:block;margin-top:8px;font-size:12px;color:var(--muted)}.ap-select{display:block;margin-top:14px}.ap-preview-text{white-space:pre-line;line-height:1.7;font-size:14px}#ap-draft-text{width:100%;padding:16px;line-height:1.7;border:1px solid var(--line);font:inherit;background:var(--paper);color:var(--text)}#ap-previews .btn{margin:4px 8px 4px 0}#ap-notifications{margin-top:32px;padding-top:24px;border-top:1px solid var(--line)}@media(max-width:600px){.ap-tools{align-items:stretch;flex-direction:column}.ap-client{padding:15px}.ap-client li{font-size:13px}.ap-client li>span{white-space:nowrap}}
 
-#ar-dialog{width:min(700px,calc(100% - 32px));max-height:90vh;overflow:auto;padding:26px;border:1px solid var(--line);background:var(--paper);color:var(--text)}#ar-dialog::backdrop{background:rgba(0,0,0,.35)}#ar-dialog h3{font-weight:400}#ar-dialog .field input{width:100%}#ar-dialog .messenger-actions{margin:16px 0}#ar-credentials{width:100%;padding:16px;border:1px solid var(--line);background:var(--paper);color:var(--text);font:inherit;line-height:1.6}#ar-result{margin-top:20px}#ar-form>button[type=submit]{margin-top:20px}@media(max-width:600px){#ar-dialog{padding:18px}#ar-dialog .user-form-grid{grid-template-columns:1fr}}
+#ar-dialog{width:min(700px,calc(100% - 32px));max-height:90vh;overflow:auto;padding:26px;border:1px solid var(--line);background:var(--paper);color:var(--text)}#ar-dialog::backdrop{background:rgba(0,0,0,.35)}#ar-dialog h3{font-weight:400}#ar-dialog .field input{width:100%}#ar-dialog .messenger-actions{margin:16px 0}#ar-credentials{width:100%;padding:16px;border:1px solid var(--line);background:var(--paper);color:var(--text);font:inherit;line-height:1.6}#ar-result{margin-top:20px}#ar-form>button[type=submit]{margin-top:20px}#ci-form input{width:100%;margin-bottom:18px}#ci-form button{margin:12px 0}#ci-check,#ci-account{margin-top:18px}@media(max-width:600px){#ar-dialog{padding:18px}#ar-dialog .user-form-grid{grid-template-columns:1fr}}
 
 .ledger-nick{appearance:none;padding:0;border:0;background:none;color:inherit;font:inherit;font-weight:650;text-align:left;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;cursor:pointer}.ledger-nick:focus-visible{outline:2px solid var(--rose);outline-offset:5px}.payment-flag{display:block;margin-top:8px;color:#875c31;font-size:11px;line-height:1.6}.client-payment-tools{margin:8px 0 24px}.client-payment-tools summary{cursor:pointer;font-size:13px;color:var(--muted);padding:12px 0}.payment-history-item{border-top:1px solid var(--line);padding:14px 0;font-size:13px}.payment-history-item small{color:var(--muted)}#ledger-dialog,#payment-dialog{width:min(1150px,calc(100% - 32px));max-height:90vh;overflow:auto;padding:26px;border:1px solid var(--line);background:var(--paper);color:var(--text)}#payment-dialog{width:min(660px,calc(100% - 32px))}#ledger-dialog::backdrop,#payment-dialog::backdrop{background:rgba(0,0,0,.35)}.ledger-tools{display:flex;gap:16px;align-items:end;flex-wrap:wrap;margin:20px 0}.ledger-tools label{display:flex;flex-direction:column;gap:8px;font-size:13px}.ledger-tools input,.ledger-tools select{padding:12px;min-height:44px;border:1px solid var(--line);background:var(--paper);color:var(--text);font:inherit;max-width:100%}.ledger-table{min-width:850px;table-layout:auto}.ledger-table td,.ledger-table th{font-size:12px}.ledger-table small{display:block;margin-top:6px;color:var(--muted)}.payment-admin-card{padding:24px;border:1px solid var(--line);margin:16px 0;background:var(--paper);overflow-wrap:anywhere}.payment-admin-head{display:flex;justify-content:space-between;gap:20px;align-items:center}.payment-admin-head h3{margin:0}.payment-admin-card small{color:var(--muted);font-size:12px}.payment-admin-card label{display:block;margin:20px 0 8px;font-size:13px}.payment-admin-card textarea,#payment-comment{width:100%;border:1px solid var(--line);padding:12px;line-height:1.6;font:inherit;background:var(--paper);color:var(--text)}#payment-form>button{margin-top:20px}@media(max-width:600px){#ledger-dialog,#payment-dialog{padding:16px}.ledger-tools{flex-direction:column;align-items:stretch}.payment-admin-card{padding:16px}.payment-admin-head{align-items:start}.payment-admin-head h3{font-size:18px}.payment-admin-head>strong{white-space:nowrap}}
   </style>
@@ -1612,14 +1612,22 @@
           <h2>Создайте пароль</h2>
           <p class="lead">Придумайте пароль для входа в личный кабинет EUROPA SALE.</p>
           <form id="reset-password-form" novalidate>
-            <div class="field"><label for="new-password">Новый пароль</label><input id="new-password" type="password" autocomplete="new-password" placeholder="Минимум 4 символа"></div>
-            <div class="field"><label for="new-password-repeat">Повторите пароль</label><input id="new-password-repeat" type="password" autocomplete="new-password" placeholder="Повторите пароль"></div>
+            <div class="field"><label for="new-password">Новый пароль</label><input id="new-password" type="password" required minlength="6" maxlength="128" autocomplete="new-password" placeholder="Минимум 6 символов"></div>
+            <div class="field"><label for="new-password-repeat">Повторите пароль</label><input id="new-password-repeat" required minlength="6" maxlength="128" type="password" autocomplete="new-password" placeholder="Повторите пароль"></div>
             <div class="login-actions"><button class="btn rose" id="reset-password-submit" type="submit">Сохранить пароль</button></div>
           </form>
           <div class="login-message" id="reset-password-message" role="status" aria-live="polite"></div>
         </div>
       </div>
     </section>
+
+    <section id="view-confirm-registration" class="view"><div class="container"><div class="panel" style="max-width:600px;margin:50px auto">
+ <p class="section-eyebrow">EUROPA SALE · ЛИЧНЫЙ КАБИНЕТ</p><h2>Подтвердите регистрацию.</h2><p id="ci-description">После проверки ссылки задайте собственный пароль от 6 символов. Срока действия у пароля нет.</p>
+ <p id="ci-message" class="admin-message" role="status" aria-live="polite"></p>
+ <form id="ci-form" hidden><div class="field"><label for="ci-password">Ваш пароль *</label><input id="ci-password" type="password" required minlength="6" maxlength="128" autocomplete="new-password"></div><div class="field"><label for="ci-repeat">Повторите пароль *</label><input id="ci-repeat" type="password" required minlength="6" maxlength="128" autocomplete="new-password"></div><button id="ci-submit" class="btn dark" type="submit">Подтвердить регистрацию</button></form>
+ <button id="ci-check" class="btn soft" type="button">Проверить ссылку ещё раз</button><a id="ci-account" class="btn soft" href="#account" hidden>Перейти в кабинет →</a>
+ <p><a href="/">На главную</a></p>
+</div></div></section>
 
     <section id="view-account" class="view">
       <div class="container account">
@@ -2102,10 +2110,10 @@
         <div class="field"><label for="ar-name">Имя и фамилия *</label><input id="ar-name" required maxlength="300" autocomplete="off"></div>
         <div class="field"><label for="ar-email">Email клиента *</label><input id="ar-email" type="email" required maxlength="254" autocomplete="off" autocapitalize="none" spellcheck="false"></div>
         <div class="field"><label for="ar-phone">Телефон *</label><input id="ar-phone" type="tel" required maxlength="80" autocomplete="off"></div>
-        <div class="field"><label for="ar-password">Пароль для входа *</label><input id="ar-password" type="password" required minlength="8" maxlength="128" autocomplete="new-password" aria-describedby="ar-password-note"></div>
+        <div class="field"><label for="ar-password">Пароль для входа *</label><input id="ar-password" type="password" required minlength="6" maxlength="128" autocomplete="new-password" aria-describedby="ar-password-note"></div>
       </div>
       <div class="messenger-actions"><button class="btn soft" type="button" id="ar-generate">Сгенерировать пароль</button><button class="btn soft" type="button" id="ar-show" aria-pressed="false">Показать пароль</button></div>
-      <p class="admin-note" id="ar-password-note">От 8 символов. Можно задать свой пароль. Обязательной смены при первом входе нет.</p>
+      <p class="admin-note" id="ar-password-note">От 6 символов. Можно задать свой пароль. Обязательной смены при первом входе нет.</p>
       <label class="admin-checkbox-line"><input type="checkbox" id="ar-verified" required> Я проверил(а), что указанный email принадлежит этому клиенту.</label>
       <button class="btn dark" id="ar-submit" type="submit">Зарегистрировать клиента</button>
     </form>
@@ -3070,7 +3078,7 @@ function esApplyPublicRoute(hash){
   mark('[data-es-store-nav]','esStoreNav',selected.store||'brands');
   return selected.target?document.getElementById(selected.target):null;
 }
-const esViewRouteIds=['home','login','register','account','profile','admin','reset-password'];
+const esViewRouteIds=['home','login','register','account','profile','admin','reset-password','confirm-registration'];
 let esViewScrollRevision=0;
 let esRouteRevision=0;
 
@@ -3206,6 +3214,7 @@ async function route(){
   const routeHash=location.hash||'#home';
   const routeUserId=currentSession?.user?.id || null;
   let key=routeHash.slice(1);
+  if(new URLSearchParams(location.search).get('confirm_registration')==='1') key='confirm-registration';
   if(!esViewRouteIds.includes(key)) key='home';
   const stillCurrent=()=>routeRevision===esRouteRevision && (location.hash||'#home')===routeHash;
 
@@ -3220,9 +3229,11 @@ async function route(){
   }
 
   if(!authReady){
-    showView(['login','register','reset-password'].includes(key)?key:'home');
+    showView(['login','register','reset-password','confirm-registration'].includes(key)?key:'home');
     return;
   }
+
+  if(key==='confirm-registration'){showView('confirm-registration');await loadInvitationStatus();return;}
 
   if(currentSession){
     await ensureAdminState();
@@ -3554,8 +3565,8 @@ document.getElementById('reset-password-form').addEventListener('submit',async e
   setResetMessage('');
   const password=document.getElementById('new-password').value;
   const repeat=document.getElementById('new-password-repeat').value;
-  if(password.length<4){
-    setResetMessage('Пароль должен содержать минимум 4 символа.','error');
+  if(password.length<6){
+    setResetMessage('Пароль должен содержать минимум 6 символов.','error');
     return;
   }
   if(password!==repeat){
@@ -3592,6 +3603,9 @@ supabaseClient.auth.onAuthStateChange((event,session)=>{
   const previousUserId=currentSession?.user?.id || null;
   currentSession=session;
   if((session?.user?.id || null)!==previousUserId){resetAccountOrdersCache();resetTgConnection();resetManualNotifications();resetAdminParcels();resetAdminRegistration();}
+  if(event==='PASSWORD_RECOVERY'&&new URLSearchParams(location.search).get('confirm_registration')==='1'){
+    authReady=true;history.replaceState(null,'',location.pathname+location.search+'#confirm-registration');showView('confirm-registration');setTimeout(()=>{void route();},0);return;
+  }
   if(event==='PASSWORD_RECOVERY'){
     authReady=true;
     history.replaceState(null,'',location.pathname+'#reset-password');
@@ -3973,6 +3987,7 @@ function adminChannelsHtml(row){
 }
 
 function adminStatusLabel(status){
+  if(status==='awaiting_confirmation') return '<span class="status-pill pending">Подтвердить регистрацию</span>';
   if(status==='registered') return '<span class="status-pill registered">Зарегистрирован</span>';
   if(status==='disabled') return '<span class="status-pill disabled">Отключён</span>';
   return '<span class="status-pill pending">Ожидает регистрации</span>';
@@ -4148,10 +4163,11 @@ document.getElementById('mailing-send')?.addEventListener('click',async()=>{
 });
 
 // The browser never creates an Auth session for the customer or retains their password.
+let ciGeneration=0,ciBusy=false;
 let arClientId=null,arGeneration=0,arBusy=false,arPayloadKey='',arRequestId='';
 function arBusyState(busy){arBusy=busy;for(const id of ['ar-submit','ar-generate','ar-show','ar-name','ar-email','ar-phone','ar-password','ar-verified'])document.getElementById(id).disabled=busy;document.getElementById('ar-submit').textContent=busy?'Регистрируем…':'Зарегистрировать клиента';}
 function resetAdminRegistration(){
- arGeneration++;arClientId=null;arPayloadKey='';arRequestId='';arBusyState(false);
+ arGeneration++;ciGeneration++;ciBusy=false;for(const id of ['ci-password','ci-repeat'])document.getElementById(id).value='';document.getElementById('ci-form').hidden=true;document.getElementById('ci-account').hidden=true;document.getElementById('ci-submit').disabled=false;document.getElementById('ci-submit').textContent='Подтвердить регистрацию';arClientId=null;arPayloadKey='';arRequestId='';arBusyState(false);
  const d=document.getElementById('ar-dialog');if(d.open&&typeof d.close==='function')d.close();else d.removeAttribute('open');
  for(const id of ['ar-login','ar-name','ar-email','ar-phone','ar-password','ar-credentials'])document.getElementById(id).value='';
  document.getElementById('ar-verified').checked=false;document.getElementById('ar-password').type='password';document.getElementById('ar-show').textContent='Показать пароль';document.getElementById('ar-show').setAttribute('aria-pressed','false');document.getElementById('ar-form').hidden=false;document.getElementById('ar-result').hidden=true;setAdminMessage('ar-message','');
@@ -4166,7 +4182,7 @@ function openAdminRegistration(clientId){
 function arGeneratePassword(){
  const pick=chars=>{const bytes=new Uint32Array(1),limit=Math.floor(4294967296/chars.length)*chars.length;do{crypto.getRandomValues(bytes);}while(bytes[0]>=limit);return chars[bytes[0]%chars.length];};
  const chars='ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#%';
- const result=[pick('ABCDEFGHJKLMNPQRSTUVWXYZ'),pick('abcdefghijkmnopqrstuvwxyz'),pick('23456789'),pick('!@#%')];while(result.length<16)result.push(pick(chars));
+ const result=[pick('ABCDEFGHJKLMNPQRSTUVWXYZ'),pick('abcdefghijkmnopqrstuvwxyz'),pick('23456789'),pick('!@#%')];while(result.length<6)result.push(pick(chars));
  for(let i=result.length-1;i>0;i--){const options=Array.from({length:i+1},(_,j)=>String.fromCharCode(j));const j=pick(options).charCodeAt(0);[result[i],result[j]]=[result[j],result[i]];}
  return result.join('');
 }
@@ -4174,28 +4190,32 @@ async function submitAdminRegistration(event){
  event.preventDefault();if(arBusy||!isAdminSession||!arClientId||!currentSession?.access_token)return;
  const form=document.getElementById('ar-form');if(!form.reportValidity())return;
  const payload={client_id:arClientId,login:document.getElementById('ar-login').value,name:document.getElementById('ar-name').value.trim(),email:normalizeEmail(document.getElementById('ar-email').value),phone:document.getElementById('ar-phone').value.trim(),password:document.getElementById('ar-password').value};
- if(!payload.email||!payload.name||!payload.phone||payload.password.length<8||!document.getElementById('ar-verified').checked){setAdminMessage('ar-message','Заполните поля, задайте пароль от 8 символов и подтвердите email клиента.','error');return;}
+ if(!payload.email||!payload.name||!payload.phone||payload.password.length<6||!document.getElementById('ar-verified').checked){setAdminMessage('ar-message','Заполните поля, задайте пароль от 6 символов и подтвердите email клиента.','error');return;}
  const key=JSON.stringify(payload);if(key!==arPayloadKey){arPayloadKey=key;arRequestId=crypto.randomUUID();}
  const generation=++arGeneration,token=currentSession.access_token;arBusyState(true);setAdminMessage('ar-message','Создаём вход и привязываем покупки…');
  try{
   const {data,error}=await supabaseClient.functions.invoke('admin-register-client',{body:{...payload,request_id:arRequestId},headers:{Authorization:`Bearer ${token}`}});
   if(generation!==arGeneration||token!==currentSession?.access_token||!isAdminSession)return;
-  if(error)throw new Error(await readFunctionError(error));if(!data?.success)throw new Error(data?.error||'Не удалось завершить регистрацию.');
+  if(error){
+   if(error.name==='FunctionsFetchError'||/Failed to send a request|Failed to fetch|NetworkError/i.test(error.message||''))throw new Error('Нет связи с серверной функцией admin-register-client. Проверьте, что она создана и развёрнута в Supabase под этим именем.');
+   throw new Error(await readFunctionError(error));
+  }
+  if(!data?.success)throw new Error(data?.error||'Не удалось завершить регистрацию.');
   document.getElementById('ar-form').hidden=true;document.getElementById('ar-result').hidden=false;
-  document.getElementById('ar-credentials').value=`Ваш личный кабинет EUROPA SALE\n\nСайт: https://europa-sale.com/#login\nНик: ${data.login}\nEmail: ${data.email}\nПароль: ${payload.password}\n\nПароль без срока действия. При желании его можно изменить в профиле.`;
+  document.getElementById('ar-credentials').value=`Ваш личный кабинет EUROPA SALE\nСайт: https://europa-sale.com/#login\nНик: ${data.login}\nEmail: ${data.email}\nУстановите свой пароль по ссылке из письма.`;
   document.getElementById('ar-password').value='';arPayloadKey='';arRequestId='';
   // Reflect the completed registration immediately, then refresh existing admin lists.
   const row=adminUsers.find(c=>Number(c.client_id)===arClientId);if(row){row.status='registered';row.auth_user_id=data.auth_user_id;row.email=data.email;row.name=payload.name;row.phone=payload.phone;}
   renderUsers();adminLoaded.users=false;adminLoaded.debtors=false;resetAdminParcels();
-  setAdminMessage('ar-message',`Клиент зарегистрирован. Покупки привязаны; перенесено ожидавших позиций: ${data.linked_orders||0}.`,'info');
+  setAdminMessage('ar-message',data.email_sent?'Клиент зарегистрирован. Покупки привязаны. Письмо передано почтовому сервису.':'Клиент зарегистрирован, покупки привязаны. '+(data.email_error||'Отправка письма не подтверждена.')+' Повторить можно кнопкой «Письмо для смены пароля» в списке.',data.email_sent?'info':'warn');
   try{
-   const refreshed=await invokeAdminData('users');
+   const refreshed=await mergeInvitationStatuses(await invokeAdminData('users'));
    if(generation===arGeneration&&token===currentSession?.access_token&&isAdminSession){
     adminUsers=Array.isArray(refreshed.users)?refreshed.users:[];
     for(const [id,key] of [['users-total','total'],['users-registered','registered'],['users-pending','pending'],['users-disabled','disabled']])document.getElementById(id).textContent=String(refreshed[key]||0);
     adminLoaded.users=true;renderUsers();
    }
-  }catch{if(generation===arGeneration)setAdminMessage('ar-message','Клиент зарегистрирован. Данные для входа готовы. Список пользователей можно обновить кнопкой «Обновить».');}
+  }catch{/* Registration result remains visible even if list refresh fails. */}
  }catch(error){if(generation===arGeneration&&token===currentSession?.access_token)setAdminMessage('ar-message',(error?.message||'Не удалось получить подтверждение регистрации.')+' При сбое связи не закрывайте форму: повторите с теми же данными.','error');}
  finally{if(generation===arGeneration)arBusyState(false);}
 }
@@ -4206,6 +4226,57 @@ document.getElementById('ar-dialog').addEventListener('close',()=>{if(document.g
 document.getElementById('ar-generate').addEventListener('click',()=>{document.getElementById('ar-password').value=arGeneratePassword();});
 document.getElementById('ar-show').addEventListener('click',()=>{const field=document.getElementById('ar-password');const show=field.type==='password';field.type=show?'text':'password';document.getElementById('ar-show').textContent=show?'Скрыть пароль':'Показать пароль';document.getElementById('ar-show').setAttribute('aria-pressed',String(show));});
 document.getElementById('ar-copy').addEventListener('click',async()=>{if(!isAdminSession||!arClientId)return;try{await navigator.clipboard.writeText(document.getElementById('ar-credentials').value);setAdminMessage('ar-message','Данные скопированы. Передайте их клиенту лично.');}catch{document.getElementById('ar-credentials').select();setAdminMessage('ar-message','Текст выделен — скопируйте сочетанием Ctrl+C или Cmd+C.');}});
+
+async function registrationApi(action,payload={}){
+ const token=currentSession?.access_token;if(!token||!isAdminSession)throw new Error('Войдите как администратор.');
+ const {data,error}=await supabaseClient.functions.invoke('admin-register-client',{body:{action,...payload},headers:{Authorization:`Bearer ${token}`}});
+ if(token!==currentSession?.access_token||!isAdminSession)throw new Error('Сессия изменилась.');
+ if(error)throw new Error(await readFunctionError(error));if(!data?.success)throw new Error(data?.error||'Не удалось выполнить запрос.');return data;
+}
+async function mergeInvitationStatuses(data){
+ const result=await registrationApi('statuses'),map=new Map(result.clients.map(c=>[Number(c.client_id),c]));
+ const users=(data.users||[]).map(c=>({...c,...map.get(Number(c.client_id))}));
+ return {...data,users,total:users.length,registered:users.filter(c=>c.status==='registered').length,disabled:users.filter(c=>c.status==='disabled').length,pending:users.filter(c=>!['registered','disabled'].includes(c.status)).length};
+}
+let noticeBusy=new Set();
+document.addEventListener('click',async event=>{
+ const button=event.target.closest('[data-registration-notice]');if(!button||!isAdminSession)return;
+ const id=Number(button.dataset.registrationNotice);if(noticeBusy.has(id))return;noticeBusy.add(id);button.disabled=true;const token=currentSession?.access_token;
+ try{const data=await registrationApi('resend',{client_id:id});if(token!==currentSession?.access_token)return;setAdminMessage('users-message',data.email_sent?'Письмо для смены пароля передано почтовому сервису.':(data.email_error||'Отправка письма не подтверждена.'),data.email_sent?'info':'warn');}
+ catch(error){if(token===currentSession?.access_token)setAdminMessage('users-message',error.message,'error');}
+ finally{noticeBusy.delete(id);button.disabled=false;}
+});
+async function invitationApi(action,payload={}){
+ const token=currentSession?.access_token;if(!token)throw new Error('Перейдите по ссылке из письма, чтобы подтвердить email.');
+ const {data,error}=await supabaseClient.functions.invoke('client-invitations',{body:{action,...payload},headers:{Authorization:`Bearer ${token}`}});
+ if(token!==currentSession?.access_token)throw new Error('Сессия изменилась.');
+ if(error){if(error.name==='FunctionsFetchError'||/Failed to send a request|Failed to fetch/i.test(error.message||''))throw new Error('Функция client-invitations недоступна. Проверьте её развёртывание в Supabase.');throw new Error(await readFunctionError(error));}
+ if(!data?.success)throw new Error(data?.error||'Не удалось обработать приглашение.');return data;
+}
+function leaveInvitationQuery(){const url=new URL(location.href);url.searchParams.delete('confirm_registration');url.hash='account';history.replaceState(null,'',url.pathname+url.search+url.hash);}
+async function loadInvitationStatus(){
+ const generation=++ciGeneration,token=currentSession?.access_token;document.getElementById('ci-form').hidden=true;document.getElementById('ci-account').hidden=true;
+ if(!token){setAdminMessage('ci-message','Откройте действующую ссылку из письма. Если ссылка устарела, попросите администратора отправить приглашение повторно.','error');return;}
+ setAdminMessage('ci-message','Проверяем подтверждение email…');
+ try{const data=await invitationApi('status');if(generation!==ciGeneration||token!==currentSession?.access_token)return;
+ if(!data.invited)throw new Error('Приглашение для текущего аккаунта не найдено. Откройте письмо в браузере клиента.');
+ if(data.complete){setAdminMessage('ci-message','Регистрация уже подтверждена. Ваш пароль повторно менять не нужно.');document.getElementById('ci-account').hidden=false;return;}
+ if(!data.email_verified)throw new Error('Email ещё не подтверждён. Перейдите по ссылке из письма.');
+ setAdminMessage('ci-message','Email подтверждён. Установите пароль для Ника '+data.login+'.');document.getElementById('ci-form').hidden=false;
+ }catch(error){if(generation===ciGeneration)setAdminMessage('ci-message',error.message,'error');}
+}
+
+document.getElementById('ci-check').addEventListener('click',loadInvitationStatus);
+document.getElementById('ci-account').addEventListener('click',event=>{event.preventDefault();leaveInvitationQuery();void route();});
+document.getElementById('ci-form').addEventListener('submit',async event=>{
+ event.preventDefault();if(ciBusy||!document.getElementById('ci-form').reportValidity())return;const password=document.getElementById('ci-password').value,repeat=document.getElementById('ci-repeat').value;
+ if(password.length<6||password!==repeat){setAdminMessage('ci-message','Введите одинаковый пароль от 6 символов в обоих полях.','error');return;}
+ const generation=++ciGeneration,token=currentSession?.access_token;ciBusy=true;document.getElementById('ci-submit').disabled=true;document.getElementById('ci-submit').textContent='Подтверждаем…';
+ try{await invitationApi('complete',{password,repeat_password:repeat});if(generation!==ciGeneration||token!==currentSession?.access_token)return;
+ document.getElementById('ci-password').value='';document.getElementById('ci-repeat').value='';document.getElementById('ci-form').hidden=true;setAdminMessage('ci-message','Регистрация подтверждена. Покупки привязаны к вашему кабинету.');document.getElementById('ci-account').hidden=false;document.getElementById('ci-submit').textContent='Регистрация подтверждена';
+ }catch(error){if(generation===ciGeneration){document.getElementById('ci-submit').disabled=false;document.getElementById('ci-submit').textContent='Подтвердить регистрацию';setAdminMessage('ci-message',error.message,'error');}}
+ finally{if(generation===ciGeneration)ciBusy=false;}
+});
 
 function renderUsers(){
   const body=document.getElementById('users-body');
@@ -4218,11 +4289,11 @@ function renderUsers(){
     <td>${escapeHtml(u.name||'—')}</td>
     <td>${escapeHtml(u.phone||'—')}</td>
     <td>${escapeHtml(u.email||'—')}</td>
-    <td>${adminStatusLabel(u.status)}</td>
+    <td>${adminStatusLabel(u.status)}${u.invitation_state==='error'?'<small class="payment-flag">Письмо не отправлено</small>':u.invitation_state==='preparing'?'<small class="payment-flag">Отправка письма не подтверждена</small>':''}</td>
     <td>${adminChannelsHtml(u)}</td>
     <td><div class="user-actions">
       ${!u.auth_user_id&&u.status!=='registered'&&!u.is_disabled?`<button class="mini-action" data-user-register="${u.client_id}">Зарегистрировать</button>`:''}
-      <button class="mini-action" data-user-edit="${u.client_id}">Изменить</button>
+      ${u.status==='registered'?`<button type="button" class="btn small" data-registration-notice="${u.client_id}">Письмо для смены пароля</button>`:''}<button class="mini-action" data-user-edit="${u.client_id}">Изменить</button>
       <button class="mini-action" data-user-toggle="${u.client_id}" data-disabled="${u.is_disabled?'1':'0'}">${u.is_disabled?'Включить':'Отключить'}</button>
       ${u.auth_user_id&&u.email?`<button class="mini-action" data-user-reset="${u.client_id}">Сбросить пароль</button>`:''}
       <button class="mini-action danger" data-user-delete="${u.client_id}">Удалить окончательно</button>
@@ -4239,8 +4310,10 @@ function renderUsers(){
 async function loadAdminUsers(force=false){
   if(adminLoaded.users&&!force){renderUsers();return;}
   setAdminMessage('users-message','Загружаем пользователей…','info');
+  const token=currentSession?.access_token;
   try{
-    const data=await invokeAdminData('users');
+    const data=await mergeInvitationStatuses(await invokeAdminData('users'));
+    if(token!==currentSession?.access_token||!isAdminSession)return;
     adminUsers=Array.isArray(data.users)?data.users:[];
     document.getElementById('users-total').textContent=String(data.total||0);
     document.getElementById('users-registered').textContent=String(data.registered||0);
