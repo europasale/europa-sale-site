@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="referrer" content="no-referrer" />
   <meta name="theme-color" content="#f8f3f1" />
   <title>EUROPA SALE</title>
   <link rel="icon" href="/favicon.ico?v=20261020" sizes="16x16 32x32 48x48" />
@@ -322,6 +323,7 @@
     .admin-icon-btn{width:38px;height:38px;border:1px solid var(--line);background:transparent;font-size:23px;line-height:1;cursor:pointer}
     .user-actions{display:flex;gap:6px;flex-wrap:wrap;min-width:300px}
     .mini-action{border:1px solid var(--line);background:#fff;padding:7px 9px;font:inherit;font-size:11px;cursor:pointer;color:var(--text)}
+    .mini-action.registration-notice{background:var(--paper);font-weight:400;line-height:1.4;max-width:180px;text-align:left}.mini-action.registration-notice:disabled{opacity:.55;cursor:wait}
     .mini-action:hover{border-color:#bcaea8}
     .mini-action.danger{color:#943c46;border-color:#d9b8bd;background:#fff8f8}
     .status-pill{display:inline-flex;align-items:center;padding:5px 8px;border:1px solid var(--line);font-size:11px;white-space:nowrap}
@@ -1610,13 +1612,13 @@
         <div class="login-card">
           <div class="eyebrow">EUROPA SALE · личный кабинет</div>
           <h2>Создайте пароль</h2>
-          <p class="lead">Придумайте пароль для входа в личный кабинет EUROPA SALE.</p>
-          <form id="reset-password-form" novalidate>
+          <p class="lead">Ваш кабинет готов. Установите свой пароль от 6 символов, чтобы войти и посмотреть покупки.</p>
+          <form id="reset-password-form" hidden>
             <div class="field"><label for="new-password">Новый пароль</label><input id="new-password" type="password" required minlength="6" maxlength="128" autocomplete="new-password" placeholder="Минимум 6 символов"></div>
             <div class="field"><label for="new-password-repeat">Повторите пароль</label><input id="new-password-repeat" required minlength="6" maxlength="128" type="password" autocomplete="new-password" placeholder="Повторите пароль"></div>
             <div class="login-actions"><button class="btn rose" id="reset-password-submit" type="submit">Сохранить пароль</button></div>
           </form>
-          <div class="login-message" id="reset-password-message" role="status" aria-live="polite"></div>
+          <div class="login-message" id="reset-password-message" role="status" aria-live="polite"></div><p class="auth-switch"><a id="password-back-login" href="#login">Вернуться ко входу ↗</a></p>
         </div>
       </div>
     </section>
@@ -2118,7 +2120,7 @@
       <button class="btn dark" id="ar-submit" type="submit">Зарегистрировать клиента</button>
     </form>
     <p id="ar-message" class="admin-message" role="status" aria-live="polite"></p>
-    <section id="ar-result" hidden><h4>Данные для входа готовы</h4><p class="admin-note">Передайте их клиенту лично. Пароль не отправлен по email или в мессенджеры. После закрытия формы он здесь не сохраняется.</p><textarea id="ar-credentials" rows="8" readonly aria-label="Данные для входа клиента"></textarea><button class="btn soft" id="ar-copy" type="button">Скопировать данные для клиента</button></section>
+    <section id="ar-result" hidden><h4>Данные для входа готовы</h4><p class="admin-note">Кабинет создан. Клиент сможет установить свой пароль по ссылке из письма. При необходимости скопируйте информацию о кабинете и передайте её лично.</p><textarea id="ar-credentials" rows="8" readonly aria-label="Данные для входа клиента"></textarea><button class="btn soft" id="ar-copy" type="button">Скопировать данные для клиента</button></section>
   </dialog>
 
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
@@ -2127,6 +2129,24 @@
 <script>
 const SUPABASE_URL = 'https://lxjwemduphbwzghrufvq.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_g_Cqw1P1TGV2GH__DRkgTQ_Why8CEqX';
+// Capture the email intent before the Auth SDK consumes or replaces the URL fragment.
+const esPasswordEntry=(()=>{
+ const url=new URL(location.href),hash=new URLSearchParams(url.hash.slice(1));
+ const token=url.searchParams.get('type')==='recovery'?url.searchParams.get('token_hash'):null;
+ const requested=url.searchParams.get('set_password')==='1'||!!token||hash.get('type')==='recovery'||url.hash==='#reset-password';
+ const error=hash.get('error_code')||url.searchParams.get('error_code');
+ if(token){url.searchParams.delete('token_hash');url.searchParams.delete('type');history.replaceState(null,'',url.pathname+url.search+url.hash);}
+ return {requested:requested||!!error,token,error,verified:!token,failed:false};
+})();
+let esPasswordFlow=esPasswordEntry.requested;
+function preparePasswordView(){
+ const form=document.getElementById('reset-password-form');
+ const canSet=authReady&&!esPasswordEntry.failed&&!esPasswordEntry.error&&!!(esPasswordEntry.token||currentSession?.access_token);
+ form.hidden=!canSet;
+ if(esPasswordEntry.failed||esPasswordEntry.error)setResetMessage('Ссылка недействительна или уже использована. Попросите администратора отправить новое письмо либо восстановите доступ на странице входа.','error');
+ else if(!canSet)setResetMessage(authReady?'Откройте действующую ссылку из письма. Если она устарела, запросите новое письмо.':'Проверяем ссылку…',authReady?'error':'info');
+}
+
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
   auth: {
     persistSession: true,
@@ -3215,6 +3235,7 @@ async function route(){
   const routeUserId=currentSession?.user?.id || null;
   let key=routeHash.slice(1);
   if(new URLSearchParams(location.search).get('confirm_registration')==='1') key='confirm-registration';
+  else if(esPasswordFlow) key='reset-password';
   if(!esViewRouteIds.includes(key)) key='home';
   const stillCurrent=()=>routeRevision===esRouteRevision && (location.hash||'#home')===routeHash;
 
@@ -3230,10 +3251,13 @@ async function route(){
 
   if(!authReady){
     showView(['login','register','reset-password','confirm-registration'].includes(key)?key:'home');
+    if(key==='reset-password')preparePasswordView();
     return;
   }
 
   if(key==='confirm-registration'){showView('confirm-registration');await loadInvitationStatus();return;}
+
+  if(key==='reset-password'){showView('reset-password');preparePasswordView();return;}
 
   if(currentSession){
     await ensureAdminState();
@@ -3561,43 +3585,38 @@ document.getElementById('register-form').addEventListener('submit',async e=>{
 });
 
 document.getElementById('reset-password-form').addEventListener('submit',async e=>{
-  e.preventDefault();
-  setResetMessage('');
-  const password=document.getElementById('new-password').value;
-  const repeat=document.getElementById('new-password-repeat').value;
-  if(password.length<6){
-    setResetMessage('Пароль должен содержать минимум 6 символов.','error');
-    return;
+ e.preventDefault();const form=document.getElementById('reset-password-form');
+ if(form.hidden||!form.reportValidity())return;
+ const password=document.getElementById('new-password').value,repeat=document.getElementById('new-password-repeat').value;
+ if(password.length<6||password.length>128){setResetMessage('Пароль должен содержать от 6 до 128 символов.','error');return;}
+ if(password!==repeat){setResetMessage('Пароли не совпадают.','error');return;}
+ const btn=document.getElementById('reset-password-submit');if(btn.disabled)return;btn.disabled=true;btn.textContent='Сохраняем…';setResetMessage('');
+ try{
+  if(esPasswordEntry.failed||esPasswordEntry.error)throw new Error('Недействительная ссылка.');
+  if(esPasswordEntry.token){
+   const token=esPasswordEntry.token;
+   const {data,error}=await supabaseClient.auth.verifyOtp({token_hash:token,type:'recovery'});
+   if(error||!data?.session?.user?.id){esPasswordEntry.failed=true;esPasswordEntry.token=null;preparePasswordView();return;}
+   esPasswordEntry.token=null;esPasswordEntry.verified=true;
+   currentSession=data.session;
   }
-  if(password!==repeat){
-    setResetMessage('Пароли не совпадают.','error');
-    return;
-  }
-  const btn=document.getElementById('reset-password-submit');
-  const old=btn.textContent;
-  btn.disabled=true;
-  btn.textContent='Сохраняем…';
-  try{
-    const {error}=await supabaseClient.auth.updateUser({password});
-    if(error) throw error;
-    setResetMessage('Пароль установлен. Сейчас откроется страница входа.','info');
-    setTimeout(async()=>{
-      await supabaseClient.auth.signOut();
-      currentSession=null;
-      document.getElementById('password').value='';
-      document.getElementById('new-password').value='';
-      document.getElementById('new-password-repeat').value='';
-      location.hash='login';
-      setLoginMessage('Пароль установлен. Теперь войдите по email и новому паролю.','info');
-    },1000);
-  }catch(err){
-    console.error('Password update error:',err);
-    setResetMessage('Не удалось установить пароль. Возможно, ссылка устарела — запросите новую.','error');
-  }finally{
-    btn.disabled=false;
-    btn.textContent=old;
-  }
+  const userId=currentSession?.user?.id;
+  if(!userId||!currentSession?.access_token)throw new Error('Откройте действующую ссылку из письма.');
+  const {error}=await supabaseClient.auth.updateUser({password});
+  if(userId!==currentSession?.user?.id)return;
+  if(error)throw error;
+  document.getElementById('new-password').value='';document.getElementById('new-password-repeat').value='';form.hidden=true;
+  setResetMessage('Пароль установлен. Войдите в кабинет с новым паролем.','info');
+  // No timer or Auth callback can route back to home while the password page is open.
+  await supabaseClient.auth.signOut();currentSession=null;esPasswordFlow=false;
+  const url=new URL(location.href);for(const key of ['set_password','token_hash','type','error','error_code','error_description'])url.searchParams.delete(key);
+  history.replaceState(null,'',url.pathname+url.search+'#login');
+  document.getElementById('password').value='';showView('login');setLoginMessage('Пароль установлен. Войдите по Нику или email и новому паролю.','info');
+ }catch(error){setResetMessage(error?.message||'Не удалось установить пароль. Запросите новую ссылку.','error');}
+ finally{btn.disabled=false;btn.textContent='Сохранить пароль';}
 });
+
+document.getElementById('password-back-login').addEventListener('click',event=>{event.preventDefault();esPasswordFlow=false;esPasswordEntry.token=null;const url=new URL(location.href);for(const key of ['set_password','token_hash','type','error','error_code','error_description'])url.searchParams.delete(key);history.replaceState(null,'',url.pathname+url.search+'#login');void route();});
 
 supabaseClient.auth.onAuthStateChange((event,session)=>{
   const previousUserId=currentSession?.user?.id || null;
@@ -3607,9 +3626,9 @@ supabaseClient.auth.onAuthStateChange((event,session)=>{
     authReady=true;history.replaceState(null,'',location.pathname+location.search+'#confirm-registration');showView('confirm-registration');setTimeout(()=>{void route();},0);return;
   }
   if(event==='PASSWORD_RECOVERY'){
-    authReady=true;
+    esPasswordFlow=true;authReady=true;
     history.replaceState(null,'',location.pathname+'#reset-password');
-    showView('reset-password');
+    showView('reset-password');preparePasswordView();
     return;
   }
   if(event==='SIGNED_OUT'){
@@ -4293,7 +4312,7 @@ function renderUsers(){
     <td>${adminChannelsHtml(u)}</td>
     <td><div class="user-actions">
       ${!u.auth_user_id&&u.status!=='registered'&&!u.is_disabled?`<button class="mini-action" data-user-register="${u.client_id}">Зарегистрировать</button>`:''}
-      ${u.status==='registered'?`<button type="button" class="btn small" data-registration-notice="${u.client_id}">Письмо для смены пароля</button>`:''}<button class="mini-action" data-user-edit="${u.client_id}">Изменить</button>
+      ${u.status==='registered'?`<button type="button" class="mini-action registration-notice" data-registration-notice="${u.client_id}">Письмо для смены пароля</button>`:''}<button class="mini-action" data-user-edit="${u.client_id}">Изменить</button>
       <button class="mini-action" data-user-toggle="${u.client_id}" data-disabled="${u.is_disabled?'1':'0'}">${u.is_disabled?'Включить':'Отключить'}</button>
       ${u.auth_user_id&&u.email?`<button class="mini-action" data-user-reset="${u.client_id}">Сбросить пароль</button>`:''}
       <button class="mini-action danger" data-user-delete="${u.client_id}">Удалить окончательно</button>
