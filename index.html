@@ -1069,7 +1069,45 @@
 #ar-dialog{width:min(700px,calc(100% - 32px));max-height:90vh;overflow:auto;padding:26px;border:1px solid var(--line);background:var(--paper);color:var(--text)}#ar-dialog::backdrop{background:rgba(0,0,0,.35)}#ar-dialog h3{font-weight:400}#ar-dialog .field input{width:100%}#ar-dialog .messenger-actions{margin:16px 0}#ar-credentials{width:100%;padding:16px;border:1px solid var(--line);background:var(--paper);color:var(--text);font:inherit;line-height:1.6}#ar-result{margin-top:20px}#ar-form>button[type=submit]{margin-top:20px}#ci-form input{width:100%;margin-bottom:18px}#ci-form button{margin:12px 0}#ci-check,#ci-account{margin-top:18px}@media(max-width:600px){#ar-dialog{padding:18px}#ar-dialog .user-form-grid{grid-template-columns:1fr}}
 
 .ledger-nick{appearance:none;padding:0;border:0;background:none;color:inherit;font:inherit;font-weight:650;text-align:left;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;cursor:pointer}.ledger-nick:focus-visible{outline:2px solid var(--rose);outline-offset:5px}.payment-flag{display:block;margin-top:8px;color:#875c31;font-size:11px;line-height:1.6}.client-payment-tools{margin:8px 0 24px}.client-payment-tools summary{cursor:pointer;font-size:13px;color:var(--muted);padding:12px 0}.payment-history-item{border-top:1px solid var(--line);padding:14px 0;font-size:13px}.payment-history-item small{color:var(--muted)}#ledger-dialog,#payment-dialog{width:min(1150px,calc(100% - 32px));max-height:90vh;overflow:auto;padding:26px;border:1px solid var(--line);background:var(--paper);color:var(--text)}#payment-dialog{width:min(660px,calc(100% - 32px))}#ledger-dialog::backdrop,#payment-dialog::backdrop{background:rgba(0,0,0,.35)}.ledger-tools{display:flex;gap:16px;align-items:end;flex-wrap:wrap;margin:20px 0}.ledger-tools label{display:flex;flex-direction:column;gap:8px;font-size:13px}.ledger-tools input,.ledger-tools select{padding:12px;min-height:44px;border:1px solid var(--line);background:var(--paper);color:var(--text);font:inherit;max-width:100%}.ledger-table{min-width:850px;table-layout:auto}.ledger-table td,.ledger-table th{font-size:12px}.ledger-table small{display:block;margin-top:6px;color:var(--muted)}.payment-admin-card{padding:24px;border:1px solid var(--line);margin:16px 0;background:var(--paper);overflow-wrap:anywhere}.payment-admin-head{display:flex;justify-content:space-between;gap:20px;align-items:center}.payment-admin-head h3{margin:0}.payment-admin-card small{color:var(--muted);font-size:12px}.payment-admin-card label{display:block;margin:20px 0 8px;font-size:13px}.payment-admin-card textarea,#payment-comment{width:100%;border:1px solid var(--line);padding:12px;line-height:1.6;font:inherit;background:var(--paper);color:var(--text)}#payment-form>button{margin-top:20px}@media(max-width:600px){#ledger-dialog,#payment-dialog{padding:16px}.ledger-tools{flex-direction:column;align-items:stretch}.payment-admin-card{padding:16px}.payment-admin-head{align-items:start}.payment-admin-head h3{font-size:18px}.payment-admin-head>strong{white-space:nowrap}}
-  </style>
+  
+/* Compact administrator parcel list; notification controls stay outside disclosures. */
+#ap-content .ap-parcel-heading{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:24px 0 10px}
+#ap-content .ap-parcel-heading .eyebrow{margin:0 0 8px;font-size:11px}
+#ap-content .ap-parcel-heading h3{margin:0;font-size:24px;font-weight:500;letter-spacing:-.025em}
+#ap-content .ap-parcel-heading .admin-note{margin:0;font-size:13px}
+#ap-content .ap-collapse-hint{font-size:12px;color:var(--muted);margin:0 0 18px;line-height:1.6}
+#ap-content .ap-compact-client{display:grid;grid-template-columns:minmax(0,1fr) 175px;align-items:start;gap:24px;margin:0;border:0;border-top:1px solid var(--line);padding:0 18px;background:var(--paper)}
+#ap-content .ap-compact-client:last-child{border-bottom:1px solid var(--line)}
+#ap-content .ap-client-purchases{min-width:0}
+#ap-content .ap-client-purchases summary{display:grid;grid-template-columns:16px minmax(0,1fr) 110px 135px;gap:14px;align-items:center;list-style:none;padding:20px 0;font-size:14px;line-height:1.5}
+#ap-content .ap-client-purchases summary::-webkit-details-marker{display:none}
+#ap-content .ap-client-purchases summary:focus-visible{outline:2px solid var(--rose);outline-offset:3px}
+#ap-content .ap-chevron{font-size:25px;font-weight:400;color:var(--rose);line-height:1;transition:transform .15s ease}
+#ap-content details[open] .ap-chevron{transform:rotate(90deg)}
+#ap-content .ap-client-name strong{font-weight:500}
+#ap-content .ap-client-name small{margin:3px 0 0;font-size:11px}
+#ap-content .ap-client-count{font-size:12px;color:var(--muted);white-space:nowrap}
+#ap-content .ap-client-sum{font-size:14px;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+#ap-content .ap-select{display:flex;align-items:center;gap:8px;margin:22px 0;font-size:12px;line-height:1.5;cursor:pointer}
+#ap-content .ap-select input{margin:0;width:15px;height:15px;accent-color:var(--rose);flex:none}
+#ap-content .ap-notify-unavailable{margin:22px 0;font-size:11px;color:var(--muted);line-height:1.5}
+#ap-content .ap-client-purchases ul{margin:0 0 12px 30px}
+#ap-content .ap-client-purchases li{padding:16px 0;font-size:13px;line-height:1.5}
+#ap-content .ap-client-purchases li strong{font-weight:500}
+#ap-content .ap-client-purchases li>span{white-space:nowrap;font-variant-numeric:tabular-nums}
+@media(max-width:760px){
+ #ap-content .ap-parcel-heading{align-items:start;flex-direction:column;gap:8px}
+ #ap-content .ap-compact-client{grid-template-columns:minmax(0,1fr);gap:0;padding:0 14px}
+ #ap-content .ap-client-purchases summary{grid-template-columns:14px minmax(0,1fr) auto;gap:6px 10px;padding:17px 0 12px}
+ #ap-content .ap-chevron{grid-row:1 / 3}
+ #ap-content .ap-client-name{grid-column:2 / 4}
+ #ap-content .ap-client-count{grid-column:2}
+ #ap-content .ap-client-sum{grid-column:3}
+ #ap-content .ap-select,#ap-content .ap-notify-unavailable{margin:0 0 16px 24px}
+ #ap-content .ap-client-purchases ul{margin-left:24px}
+}
+
+</style>
 </head>
 <body>
 <div class="shell">
@@ -3916,7 +3954,12 @@ async function loadAdminParcels(){
 function apRender(){
  const group=apGroup();const content=document.getElementById('ap-content');document.getElementById('ap-notifications').hidden=!group||document.getElementById('ap-kind').value!=='current';document.getElementById('ap-select-all').checked=false;
  if(!group){content.innerHTML='<p class="admin-note">Выберите посылку из списка.</p>';return;}
- content.innerHTML=`<h3>Посылка № ${escapeHtml(group.number)}</h3><p class="admin-note">К получению · ${group.count} ${positionWord(group.count)} · клиентов: ${group.clients.length}</p>`+group.clients.map(client=>`<details class="ap-client" open><summary><strong>${escapeHtml(client.login)}</strong> · ${client.items.length} ${positionWord(client.items.length)}${!client.registered?' · ожидает регистрации':client.disabled?' · отключён':''}</summary>${client.client_id&&client.registered&&!client.disabled&&document.getElementById('ap-kind').value==='current'?`<label class="ap-select"><input type="checkbox" data-ap-client="${Number(client.client_id)}" ${apSelected.has(client.client_id)?'checked':''}> Уведомить клиента</label>`:''}<ul>${client.items.map(item=>`<li><div><strong>${escapeHtml(item.model)}</strong>${item.size?`<small>${escapeHtml(item.size)}</small>`:''}<small>Дата выкупа: ${escapeHtml(formatDate(item.date))}</small></div><span>${formatRub(item.total)} ₽</span></li>`).join('')}</ul></details>`).join('');
+ content.innerHTML=`<div class="ap-parcel-heading"><div><p class="eyebrow">К получению</p><h3>Посылка № ${escapeHtml(group.number)}</h3></div><p class="admin-note">${group.count} ${positionWord(group.count)} · клиентов: ${group.clients.length}</p></div><p class="ap-collapse-hint">Нажмите на строку клиента, чтобы посмотреть покупки.</p>`+group.clients.map(client=>{
+ const total=client.items.reduce((sum,item)=>sum+(Number(item.total)||0),0);
+ const status=!client.registered?'Ожидает регистрации':client.disabled?'Отключён':'';
+ const selectable=client.client_id&&client.registered&&!client.disabled&&document.getElementById('ap-kind').value==='current';
+ return `<article class="ap-client ap-compact-client"><details class="ap-client-purchases"><summary><span class="ap-chevron" aria-hidden="true">›</span><span class="ap-client-name"><strong>${escapeHtml(client.login)}</strong>${status?`<small>${escapeHtml(status)}</small>`:''}</span><span class="ap-client-count">${client.items.length} ${positionWord(client.items.length)}</span><span class="ap-client-sum">${formatRub(total)} ₽</span></summary><ul aria-label="Покупки клиента">${client.items.map(item=>`<li><div><strong>${escapeHtml(item.model)}</strong>${item.size?`<small>${escapeHtml(item.size)}</small>`:''}<small>Дата выкупа: ${escapeHtml(formatDate(item.date))}</small></div><span>${formatRub(item.total)} ₽</span></li>`).join('')}</ul></details>${selectable?`<label class="ap-select"><input type="checkbox" data-ap-client="${Number(client.client_id)}" ${apSelected.has(client.client_id)?'checked':''}> Уведомить клиента</label>`:'<span class="ap-notify-unavailable">Уведомление недоступно</span>'}</article>`;
+ }).join('');
  content.querySelectorAll('[data-ap-client]').forEach(box=>box.addEventListener('change',()=>{const id=Number(box.dataset.apClient);if(box.checked&&apSelected.size>=20){box.checked=false;setAdminMessage('ap-message','Выберите не более 20 клиентов.','error');return;}box.checked?apSelected.add(id):apSelected.delete(id);apGeneration++;apInvalidate();document.getElementById('ap-results').replaceChildren();}));
 }
 async function apPreview(){
