@@ -1107,6 +1107,56 @@
  #ap-content .ap-client-purchases ul{margin-left:24px}
 }
 
+
+.ap-channel-choice{display:flex;flex-wrap:wrap;gap:12px 26px;margin:20px 0;font-size:13px}.ap-channel-choice label{display:flex;align-items:center;gap:8px}.ap-channel-choice input{accent-color:var(--rose)}
+#ap-previews .ap-client{padding:20px;margin:12px 0}#ap-previews .ap-client>strong{font-weight:500;font-size:15px}
+#ap-previews .ap-delivery-status{font-size:12px;margin:10px 0;line-height:1.6;color:var(--muted)}
+#ap-previews details{margin:14px 0}#ap-previews summary{font-size:12px;color:var(--rose)}
+#ap-previews .ap-preview-text{font-size:13px}#ap-previews .mini-action{margin:5px 8px 0 0}
+#ap-results{font-size:13px;line-height:1.7}#ap-results p{padding:8px 0;margin:0;border-bottom:1px solid var(--line-soft)}
+
+
+    /* Client entry: one task per screen, within the existing editorial palette. */
+    .es-auth-card{width:min(860px,100%)}
+    .es-auth-card [hidden]{display:none!important}
+    .es-auth-options{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .es-auth-option{border:1px solid var(--line);padding:28px;display:flex;flex-direction:column;align-items:flex-start;gap:18px}
+    .es-auth-card h3{font-size:23px;font-weight:500;line-height:1.3;margin:0 0 20px;letter-spacing:-.025em}
+    .es-auth-option h3{margin:0}
+    .es-auth-option p,.es-auth-description{font-size:16px;line-height:1.65;color:var(--muted);margin:0 0 24px}
+    .es-auth-option .btn{margin-top:auto;width:100%;text-align:center;white-space:normal}
+    .es-auth-back{background:none;border:0;padding:0;color:var(--muted);font:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:5px;margin:0 0 28px}
+    #auth-signin .es-auth-back:last-child{margin:20px 0 0}
+    .es-auth-help{border-top:1px solid var(--line);padding-top:24px;margin-top:32px;color:var(--muted);font-size:14px;line-height:1.7}
+    .es-auth-help a{color:var(--rose);text-underline-offset:4px}
+    .es-password-field{position:relative}
+    .es-password-field input{padding-right:100px}
+    .es-password-field button{position:absolute;right:14px;top:50%;transform:translateY(-50%);border:0;background:transparent;font:inherit;font-size:13px;cursor:pointer;padding:8px}
+    #auth-signin,#auth-email{max-width:540px}
+    @media(max-width:640px){.es-auth-options{grid-template-columns:1fr;gap:16px}.es-auth-option{padding:24px}.es-auth-card h2{font-size:clamp(38px,9vw,54px)}}
+      .users-table .user-date{min-width:132px;white-space:nowrap;font-variant-numeric:tabular-nums}
+    .user-date small{display:block;margin-top:6px;color:var(--muted);font-size:12px}
+    .user-date-empty,.user-dates-note{color:var(--muted);font-size:13px;line-height:1.65}
+    .user-dates-note{margin-top:16px;max-width:960px}
+  
+    #admin-payments-panel .es-payment-batch{display:flex;flex-wrap:wrap;align-items:center;gap:20px;border:1px solid var(--line);padding:18px 22px;margin:20px 0;background:#fffaf8}
+    #admin-payments-panel [hidden]{display:none!important}
+    .es-payment-batch label{display:flex;gap:10px;align-items:center;font-size:14px}
+    .es-payment-batch input,.es-payment-select input{width:19px;height:19px;accent-color:#b34858;cursor:pointer}
+    #payments-batch-summary{color:var(--muted);font-size:14px;margin-left:auto;font-variant-numeric:tabular-nums}
+    .es-payment-batch .btn{padding:15px 20px;font-size:14px}
+    .es-payments-table{width:100%;border-collapse:collapse;background:#fffaf8;font-size:14px}
+    .es-payments-table th{padding:16px;text-align:left;font-size:12px;font-weight:500;color:var(--muted);background:#f0e9e5}
+    .es-payments-table td{padding:20px 16px;vertical-align:top;border-bottom:1px solid var(--line);line-height:1.6}
+    .es-payments-table .es-payment-select{width:42px}
+    .es-payment-amount{font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
+    .es-payment-client{font-weight:600;overflow-wrap:anywhere}
+    .es-payment-status{font-size:12px;display:inline-block;border:1px solid var(--line);padding:4px 9px}
+    .es-payment-status.confirmed{color:#32664c;background:#edf4ef}.es-payment-status.pending{color:#80623e;background:#faf4e9}.es-payment-status.rejected{color:#a33f4e;background:#fbf0f1}
+    .es-payment-details{width:30%}.es-payment-details summary{cursor:pointer;color:var(--muted);text-underline-offset:4px}
+    .es-payment-detail-body{font-size:13px;line-height:1.65;padding-top:14px;overflow-wrap:anywhere}.es-payment-detail-body p{margin:0 0 12px}.es-payment-detail-body textarea{width:100%;box-sizing:border-box;margin:8px 0;padding:10px;border:1px solid var(--line);background:transparent;font:inherit}
+    .es-payment-row-actions{display:flex;flex-wrap:wrap;gap:8px}
+    @media(max-width:850px){.es-payments-table,.es-payments-table tbody,.es-payments-table tr,.es-payments-table td{display:block}.es-payments-table thead{display:none}.es-payments-table{background:transparent}.es-payments-table tr{position:relative;margin:0 0 16px;border:1px solid var(--line);padding:18px;background:#fffaf8}.es-payments-table td{padding:6px 0;border:0}.es-payments-table .es-payment-select{position:absolute;right:18px;top:12px;width:auto}.es-payments-table .es-payment-client{padding-right:34px;font-size:17px}.es-payments-table td[data-label]:not(.es-payment-client)::before{content:attr(data-label);display:inline-block;min-width:110px;color:var(--muted);font-size:12px;font-weight:400}.es-payments-table .es-payment-details{width:100%;border-top:1px solid var(--line);margin-top:12px;padding-top:14px}#payments-batch-summary{margin-left:0}.es-payment-batch .btn{width:100%}}
 </style>
 </head>
 <body>
@@ -1566,24 +1616,45 @@
     </section>
 
     <section id="view-login" class="view">
-      <div class="login-wrap">
-        <div class="login-card">
-          <div class="eyebrow">EUROPA SALE · личный кабинет</div>
-          <h2>Моя сверка</h2>
-          <p class="lead">Клиенты входят по Нику или email и паролю. Администратор — под логином <b>admin</b>.</p>
+      <div class="login-wrap"><div class="login-card es-auth-card">
+        <div class="eyebrow">EUROPA SALE · личный кабинет</div>
+        <h2>Личный кабинет</h2>
+        <p class="lead">Ваши покупки, посылки и сверка — в одном месте.</p>
+        <div id="auth-choose" class="es-auth-options">
+          <div class="es-auth-option"><h3>У меня уже есть пароль</h3><p>Войдите с данными, которые использовали при регистрации.</p><button class="btn rose" type="button" data-auth-step="signin">Войти →</button></div>
+          <div class="es-auth-option"><h3>Я впервые на сайте</h3><p>Создайте кабинет или установите пароль, если вас уже зарегистрировал администратор.</p><button class="btn soft" type="button" data-auth-step="first">Начать →</button></div>
+        </div>
+        <div id="auth-signin" hidden>
+          <button class="es-auth-back" type="button" data-auth-step="choose">← Назад к выбору</button>
+          <h3 tabindex="-1">Вход в кабинет</h3>
           <form id="login-form" novalidate>
-            <div class="field"><label for="login">Email или логин</label><input id="login" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="Ваш Ник, email или admin"></div>
-            <div class="field"><label for="password">Пароль</label><input id="password" type="password" autocomplete="current-password" placeholder="••••••••"></div>
-            <div class="login-actions">
-              <button class="btn rose" id="login-submit" type="submit">Войти</button>
-              <button class="btn soft" id="first-login-btn" type="button">Первый вход / установить пароль</button>
-            </div>
+            <div class="field"><label for="login">Ваш email или постоянный Ник</label><input id="login" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="Email или Ник EUROPA SALE"></div>
+            <div class="field"><label for="password">Пароль</label><div class="es-password-field"><input id="password" type="password" autocomplete="current-password"><button id="login-password-toggle" type="button" aria-controls="password" aria-pressed="false">Показать</button></div></div>
+            <div class="login-actions"><button class="btn rose" id="login-submit" type="submit">Войти</button></div>
           </form>
           <div class="login-message" id="login-message" role="status" aria-live="polite"></div>
-          <div class="auth-switch">Нет кабинета? <a href="#register">Зарегистрироваться</a></div>
-          <div class="demo-note">Для первого входа используйте email, указанный в вашей клиентской базе EUROPA SALE.</div>
+          <button class="es-auth-back" type="button" data-auth-step="recover">Не помню пароль</button>
         </div>
-      </div>
+        <div id="auth-first" hidden>
+          <button class="es-auth-back" type="button" data-auth-step="choose">← Назад к выбору</button>
+          <h3 tabindex="-1">Вы впервые на сайте</h3>
+          <div class="es-auth-options">
+            <div class="es-auth-option"><h3>Создать личный кабинет</h3><p>Если вы ещё не регистрировались, заполните короткую форму. Даже если ваши покупки уже есть в сверке, кабинет нужно создать отдельно.</p><a class="btn rose" href="#register">Зарегистрироваться →</a></div>
+            <div class="es-auth-option"><h3>Меня зарегистрировал администратор</h3><p>Если EUROPA SALE уже создал вам кабинет, получите письмо для установки своего пароля.</p><button class="btn soft" type="button" data-auth-step="setup">Получить письмо →</button></div>
+          </div>
+        </div>
+        <div id="auth-email" hidden>
+          <button class="es-auth-back" id="auth-email-back" type="button" data-auth-step="first">← Назад</button>
+          <h3 id="auth-email-title" tabindex="-1">Установить свой пароль</h3>
+          <p class="es-auth-description" id="auth-email-description">Укажите email, который вы сообщили EUROPA SALE. Мы отправим ссылку для установки пароля.</p>
+          <form id="auth-email-form">
+            <div class="field"><label for="auth-email-input">Ваш email</label><input id="auth-email-input" type="email" autocomplete="email" autocapitalize="none" spellcheck="false" placeholder="name@example.com" required></div>
+            <button class="btn rose" id="first-login-btn" type="submit">Получить письмо</button>
+          </form>
+          <div class="login-message" id="auth-email-message" role="status" aria-live="polite"></div>
+        </div>
+        <div class="es-auth-help">Не помните свои данные? <a href="https://wa.me/79039114172" target="_blank" rel="noopener noreferrer">Напишите нам →</a></div>
+      </div></div>
     </section>
 
     <section id="view-register" class="view">
@@ -1595,19 +1666,20 @@
 
           <form id="register-form" novalidate>
             <div class="field">
-              <label for="register-login">Логин *</label>
-              <input id="register-login" type="text" autocomplete="username" placeholder="Ваш Ник" required>
+              <label for="register-login">Постоянный Ник EUROPA SALE *</label>
+              <input id="register-login" type="text" autocomplete="username" placeholder="Ваш Ник" required aria-describedby="register-nick-hint">
+              <div class="field-hint" id="register-nick-hint">Уже заказываете у нас? Укажите тот же Ник, под которым оформляете покупки. Не придумывайте новый.</div>
             </div>
 
             <div class="field">
               <label for="register-password">Пароль *</label>
-              <input id="register-password" type="password" autocomplete="new-password" minlength="4" placeholder="••••••••" required>
-              <div class="field-hint">Минимальная длина пароля — 4 символа.</div>
+              <input id="register-password" type="password" autocomplete="new-password" minlength="6" placeholder="••••••••" required>
+              <div class="field-hint">Минимальная длина пароля — 6 символов.</div>
             </div>
 
             <div class="field">
               <label for="register-password-repeat">Повторите пароль *</label>
-              <input id="register-password-repeat" type="password" autocomplete="new-password" minlength="4" placeholder="••••••••" required>
+              <input id="register-password-repeat" type="password" autocomplete="new-password" minlength="6" placeholder="••••••••" required>
             </div>
 
             <div class="field">
@@ -1639,7 +1711,8 @@
             </div>
           </form>
 
-          <div class="auth-switch">Уже зарегистрированы? <a href="#login">Войти в личный кабинет</a></div>
+          <div class="auth-switch">Уже есть пароль? <a href="#login" data-auth-step="signin">Войти в личный кабинет</a></div>
+          <div class="es-auth-help">Не помните свой Ник? <a href="https://wa.me/79039114172" target="_blank" rel="noopener noreferrer">Напишите нам →</a></div>
           <div class="demo-note">Логин — это ваш Ник EUROPA SALE, под которым оформлялись покупки. После регистрации система привяжет к кабинету все строки вашей сверки.</div>
         </div>
       </div>
@@ -1902,9 +1975,9 @@
           <p id="ap-message" role="status" class="admin-message"></p>
           <div id="ap-content"></div>
           <section id="ap-notifications" hidden>
-            <h3>Уведомления о прибытии</h3><p class="admin-note">Выберите до 20 клиентов и подготовьте уведомления. Telegram отправляет бот после нажатия кнопки. WhatsApp и MAX — личные сообщения, которые вы отправляете самостоятельно. Наличие долга не требуется. Загрузка сверки не запускает рассылку.</p>
+            <h3>Уведомления о прибытии</h3><p class="admin-note">Выберите клиентов и каналы, затем подготовьте уведомления. Email и Telegram отправляются после нажатия кнопки; Telegram использует того же бота, что и уведомления о задолженности. MAX и WhatsApp отправляете самостоятельно. Загрузка сверки не запускает рассылку.</p>
             <label><input type="checkbox" id="ap-select-all"> Выбрать всех доступных клиентов (до 20)</label>
-            <div class="messenger-actions"><button type="button" class="btn soft" id="ap-preview">Подготовить уведомления</button><button type="button" class="btn" id="ap-send" disabled>Отправить в Telegram</button></div>
+            <div class="ap-channel-choice"><label><input type="checkbox" id="ap-email" checked> Email</label><label><input type="checkbox" id="ap-telegram" checked> Telegram · бот EUROPA SALE</label></div><div class="messenger-actions"><button type="button" class="btn soft" id="ap-preview">Подготовить уведомления</button><button type="button" class="btn" id="ap-send" disabled>Отправить уведомления</button></div>
             <div id="ap-previews"></div>
             <div id="ap-draft" hidden><h4 id="ap-draft-title"></h4><textarea id="ap-draft-text" rows="9" readonly aria-label="Текст личного уведомления"></textarea><p id="ap-draft-help"></p><button type="button" class="btn soft" id="ap-copy">Скопировать текст</button> <a class="btn soft" id="ap-wa" target="_blank" rel="noopener noreferrer" hidden>Открыть WhatsApp →</a></div>
             <div id="ap-results" role="status"></div>
@@ -1933,7 +2006,8 @@
         <div class="admin-tab-view" data-admin-view="payments" id="admin-payments-panel">
           <p class="section-eyebrow">СООБЩЕНИЯ КЛИЕНТОВ</p><h3>Оплаты под контролем.</h3><p class="admin-note">Клиент сообщает о переводе, вы проверяете поступление денег. Подтверждение здесь не меняет суммы сверки: учёт платежа по-прежнему ведётся в исходном файле. По Нику можно открыть детализацию.</p>
           <div class="ledger-tools"><label>Статус<select id="payments-filter"><option value="pending">Ожидают проверки</option><option value="confirmed">Подтверждены</option><option value="rejected">Не подтверждены</option><option value="all">Все сообщения</option></select></label><label>Ник клиента<input type="search" id="payments-search" placeholder="Поиск по Нику"></label><button type="button" class="btn soft" id="payments-refresh">Обновить</button></div>
-          <p class="admin-message" id="payments-message" role="status"></p><div id="payments-list"></div>
+          <p class="admin-message" id="payments-message" role="status" aria-live="polite"></p>
+          <div class="es-payment-batch" id="payments-batch-tools" hidden><label><input type="checkbox" id="payments-select-all"> Выбрать все на странице</label><span id="payments-batch-summary" aria-live="polite">Выбрано: 0</span><button type="button" class="btn dark" id="payments-confirm-selected" disabled>Подтвердить выбранные</button></div><div id="payments-list"></div>
           <div class="messenger-actions"><button type="button" class="btn soft" id="payments-prev">← Назад</button><span id="payments-page"></span><button type="button" class="btn soft" id="payments-next">Далее →</button></div>
         </div>
 
@@ -2006,10 +2080,11 @@
 
           <div class="admin-table-scroll">
             <table class="admin-table users-table">
-              <thead><tr><th>Ник</th><th>Имя</th><th>Телефон</th><th>Email</th><th>Статус</th><th>Каналы</th><th>Действия</th></tr></thead>
-              <tbody id="users-body"><tr><td colspan="7" class="admin-empty">Нажмите «Обновить», чтобы загрузить пользователей.</td></tr></tbody>
+              <thead><tr><th>Ник</th><th>Имя</th><th>Телефон</th><th>Email</th><th>Статус</th><th>Регистрация</th><th>Последний вход</th><th>Каналы</th><th>Действия</th></tr></thead>
+              <tbody id="users-body"><tr><td colspan="9" class="admin-empty">Нажмите «Обновить», чтобы загрузить пользователей.</td></tr></tbody>
             </table>
           </div>
+          <p class="user-dates-note">Даты и время — по Москве. Регистрация — создание кабинета, самостоятельно или администратором. Последний вход — последняя успешная авторизация, в том числе по ссылке из письма. Обновите список, чтобы увидеть свежие данные.</p>
         </div>
               <div class="admin-tab-view" data-admin-view="editorial" id="es-ed-admin">
           <div class="admin-toolbar">
@@ -2709,7 +2784,7 @@ let adminPaymentGeneration=0,adminPaymentPage=0,adminPaymentTotal=0,adminPayment
 const paymentLabels={pending:'Клиент сообщил об оплате · ожидает проверки',confirmed:'Оплата подтверждена администратором',rejected:'Оплата не подтверждена'};
 function closeLedger(){ledgerGeneration++;ledgerTarget=null;ledgerRows=[];const d=document.getElementById('ledger-dialog');if(d.open&&d.close)d.close();else d.removeAttribute('open');for(const id of ['ledger-content','ledger-total'])document.getElementById(id).replaceChildren();document.getElementById('ledger-title').textContent='Сверка клиента';document.getElementById('ledger-search').value='';setAdminMessage('ledger-message','');}
 function closePaymentForm(){paymentGeneration++;paymentRequestId='';paymentPayloadKey='';paymentBusy=false;paymentSubmitted=false;const d=document.getElementById('payment-dialog');if(d.open&&d.close)d.close();else d.removeAttribute('open');for(const id of ['payment-amount','payment-date','payment-comment'])document.getElementById(id).value='';paymentFormBusy(false);setAdminMessage('payment-message','');}
-function resetPaymentsAndLedger(){paymentStatusGeneration++;closeLedger();closePaymentForm();myPaymentReports=[];adminPaymentRows=[];adminPaymentFlags.clear();adminPaymentGeneration++;adminPaymentPage=0;adminPaymentBusy=false;document.getElementById('my-payment-history').replaceChildren();document.getElementById('payments-list').replaceChildren();document.getElementById('payment-open').disabled=false;document.getElementById('payment-count').textContent='';for(const id of ['payments-prev','payments-next','payments-refresh','payments-filter','payments-search'])document.getElementById(id).disabled=false;setAdminMessage('my-payment-message','');setAdminMessage('payments-message','');}
+function resetPaymentsAndLedger(){selectedPayments.clear();updatePaymentSelection();paymentStatusGeneration++;closeLedger();closePaymentForm();myPaymentReports=[];adminPaymentRows=[];adminPaymentFlags.clear();adminPaymentGeneration++;adminPaymentPage=0;adminPaymentBusy=false;document.getElementById('my-payment-history').replaceChildren();document.getElementById('payments-list').replaceChildren();document.getElementById('payment-open').disabled=false;document.getElementById('payment-count').textContent='';for(const id of ['payments-prev','payments-next','payments-refresh','payments-filter','payments-search'])document.getElementById(id).disabled=false;setAdminMessage('my-payment-message','');setAdminMessage('payments-message','');}
 async function paymentApi(action,payload={}){const token=currentSession?.access_token;if(!token)throw new Error('Войдите в личный кабинет.');const {data,error}=await supabaseClient.functions.invoke('payment-reports',{body:{action,...payload},headers:{Authorization:`Bearer ${token}`}});if(token!==currentSession?.access_token)throw new Error('Сессия изменилась.');if(error)throw new Error(await readFunctionError(error));if(!data?.success)throw new Error(data?.error||'Не удалось обработать запрос.');return data;}
 function ledgerLink(id,nick){return `<button type="button" class="ledger-nick" data-ledger-id="${id==null?'':Number(id)}" data-ledger-nick="${escapeHtml(nick||'')}">${escapeHtml(nick||'—')}</button>`;}
 function paymentFlag(id){return adminPaymentFlags.has(Number(id))?'<small class="payment-flag">Сообщил(а) об оплате · проверить</small>':'';}
@@ -2757,25 +2832,84 @@ async function submitPaymentReport(event){
 }
 async function loadAdminPayments(summaryOnly=false){
  if(!isAdminSession)return;const generation=++adminPaymentGeneration,token=currentSession?.access_token;
- if(!summaryOnly)setAdminMessage('payments-message','Загружаем сообщения об оплате…');
+ if(!summaryOnly){selectedPayments.clear();updatePaymentSelection();setAdminMessage('payments-message','Загружаем сообщения об оплате…');}
  try{const data=await paymentApi('admin_list',{status:document.getElementById('payments-filter').value,search:document.getElementById('payments-search').value,page:adminPaymentPage});if(generation!==adminPaymentGeneration||token!==currentSession?.access_token||!isAdminSession)return;
  adminPaymentFlags=new Set(data.pending_clients.map(Number));document.getElementById('payment-count').textContent=data.pending_count?' · '+data.pending_count:'';renderDebtors();
  if(!summaryOnly){adminPaymentRows=data.reports;adminPaymentTotal=data.total;if(adminPaymentPage>0&&!data.reports.length&&adminPaymentPage*50>=data.total){adminPaymentPage--;await loadAdminPayments();return;}renderAdminPayments();setAdminMessage('payments-message',`Сообщений: ${data.total}. Ожидают проверки всего: ${data.pending_count}.`);}
  }catch(error){if(generation===adminPaymentGeneration)setAdminMessage(summaryOnly?'debtors-message':'payments-message',error.message,'error');}
 }
+let selectedPayments=new Set();
+const paymentControlIds=['payments-prev','payments-next','payments-refresh','payments-filter','payments-search'];
+function updatePaymentSelection(){
+ const pending=adminPaymentRows.filter(r=>r.status==='pending');
+ const ids=new Set(pending.map(r=>r.id));selectedPayments=new Set([...selectedPayments].filter(id=>ids.has(id)));
+ const picked=pending.filter(r=>selectedPayments.has(r.id));
+ const all=document.getElementById('payments-select-all');
+ all.checked=!!pending.length&&picked.length===pending.length;all.indeterminate=picked.length>0&&picked.length<pending.length;all.disabled=adminPaymentBusy||!pending.length;
+ document.getElementById('payments-batch-summary').textContent=`Выбрано: ${picked.length} · ${formatRub(picked.reduce((sum,r)=>sum+Number(r.amount),0))} ₽`;
+ const button=document.getElementById('payments-confirm-selected');button.disabled=adminPaymentBusy||!picked.length;button.textContent=adminPaymentBusy?'Подтверждаем…':`Подтвердить выбранные${picked.length?' · '+picked.length:''}`;
+ document.querySelectorAll('[data-payment-select]').forEach(input=>{input.checked=selectedPayments.has(input.dataset.paymentSelect);input.disabled=adminPaymentBusy;});
+ document.querySelectorAll('[data-payment-review], [data-payment-note]').forEach(control=>control.disabled=adminPaymentBusy);
+ document.getElementById('payments-batch-tools').hidden=!pending.length;
+}
+function setPaymentReviewBusy(busy){
+ adminPaymentBusy=busy;
+ for(const id of paymentControlIds)document.getElementById(id).disabled=busy;
+ if(!busy){document.getElementById('payments-prev').disabled=adminPaymentPage===0;document.getElementById('payments-next').disabled=(adminPaymentPage+1)*50>=adminPaymentTotal;}
+ updatePaymentSelection();
+}
 function renderAdminPayments(){
- const states={pending:'Ожидает проверки',confirmed:'Подтверждено администратором',rejected:'Не подтверждено'};
- document.getElementById('payments-list').innerHTML=adminPaymentRows.length?adminPaymentRows.map(r=>`<article class="payment-admin-card"><div class="payment-admin-head"><h3>${ledgerLink(r.client_id,r.login_snapshot)}</h3><strong>${formatRub(r.amount)} ₽</strong></div><p>${escapeHtml(states[r.status]||r.status)} · дата оплаты: ${escapeHtml(formatDate(r.paid_date))}</p><small>Сообщено: ${escapeHtml(new Date(r.created_at).toLocaleString('ru-RU',{timeZone:'Europe/Moscow'}))} · итог сверки на момент сообщения: ${formatRub(r.balance_snapshot)} ₽</small>${r.comment?`<p>${escapeHtml(r.comment)}</p>`:''}${r.status==='pending'?`<label for="review-${r.id}">Комментарий администратора (необязательно)</label><textarea id="review-${r.id}" maxlength="1000" rows="2"></textarea><div class="messenger-actions"><button type="button" class="btn soft" data-payment-review="${r.id}" data-payment-status="confirmed">Подтвердить поступление</button><button type="button" class="btn soft" data-payment-review="${r.id}" data-payment-status="rejected">Не подтверждено</button></div>`:`${r.review_note?`<p>Комментарий: ${escapeHtml(r.review_note)}</p>`:''}<small>Проверено: ${escapeHtml(new Date(r.reviewed_at).toLocaleString('ru-RU',{timeZone:'Europe/Moscow'}))}</small>`}</article>`).join(''):'<p class="admin-note">Сообщений по выбранному фильтру нет.</p>';
- document.getElementById('payments-page').textContent=`Страница ${adminPaymentPage+1} из ${Math.max(1,Math.ceil(adminPaymentTotal/50))}`;document.getElementById('payments-prev').disabled=adminPaymentPage===0;document.getElementById('payments-next').disabled=(adminPaymentPage+1)*50>=adminPaymentTotal;
+ const states={pending:'Ожидает проверки',confirmed:'Подтверждено',rejected:'Не подтверждено'};
+ document.getElementById('payments-list').innerHTML=adminPaymentRows.length?`<table class="es-payments-table"><thead><tr><th aria-label="Выбор"></th><th>Клиент</th><th>Сумма</th><th>Дата оплаты</th><th>Статус</th><th>Подробности</th></tr></thead><tbody>${adminPaymentRows.map(r=>`<tr>
+ <td class="es-payment-select">${r.status==='pending'?`<input type="checkbox" data-payment-select="${escapeHtml(r.id)}" aria-label="Выбрать оплату от ${escapeHtml(r.login_snapshot)} на ${formatRub(r.amount)} рублей">`:'<span aria-hidden="true">—</span>'}</td>
+ <td data-label="Клиент" class="es-payment-client">${ledgerLink(r.client_id,r.login_snapshot)}</td>
+ <td data-label="Сумма" class="es-payment-amount">${formatRub(r.amount)} ₽</td>
+ <td data-label="Дата оплаты">${escapeHtml(formatDate(r.paid_date))}</td>
+ <td data-label="Статус"><span class="es-payment-status ${['pending','confirmed','rejected'].includes(r.status)?r.status:''}">${escapeHtml(states[r.status]||r.status)}</span></td>
+ <td class="es-payment-details"><details><summary>Подробнее</summary><div class="es-payment-detail-body"><p>Сообщено: ${escapeHtml(new Date(r.created_at).toLocaleString('ru-RU',{timeZone:'Europe/Moscow'}))} МСК</p><p>Итог сверки на момент сообщения: ${formatRub(r.balance_snapshot)} ₽</p>${r.comment?`<p>Комментарий клиента: ${escapeHtml(r.comment)}</p>`:''}${r.status==='pending'?`<label for="review-${escapeHtml(r.id)}">Комментарий администратора</label><textarea data-payment-note id="review-${escapeHtml(r.id)}" maxlength="1000" rows="2"></textarea><div class="es-payment-row-actions"><button type="button" class="mini-action" data-payment-review="${escapeHtml(r.id)}" data-payment-status="confirmed">Подтвердить</button><button type="button" class="mini-action" data-payment-review="${escapeHtml(r.id)}" data-payment-status="rejected">Не подтверждено</button></div>`:`${r.review_note?`<p>Комментарий администратора: ${escapeHtml(r.review_note)}</p>`:''}<p>Проверено: ${r.reviewed_at?escapeHtml(new Date(r.reviewed_at).toLocaleString('ru-RU',{timeZone:'Europe/Moscow'}))+' МСК':'—'}</p>`}</div></details></td></tr>`).join('')}</tbody></table>`:'<p class="admin-note">Сообщений по выбранному фильтру нет.</p>';
+ document.getElementById('payments-page').textContent=`Страница ${adminPaymentPage+1} из ${Math.max(1,Math.ceil(adminPaymentTotal/50))}`;
+ setPaymentReviewBusy(adminPaymentBusy);
+}
+async function confirmSelectedPayments(){
+ if(!isAdminSession||adminPaymentBusy)return;
+ const reports=adminPaymentRows.filter(r=>r.status==='pending'&&selectedPayments.has(r.id)).map(r=>({...r,note:document.getElementById('review-'+r.id)?.value.trim()||''}));
+ if(!reports.length)return;
+ const token=currentSession?.access_token,generation=++adminPaymentGeneration;if(!token)return;
+ let done=0,failure='';setPaymentReviewBusy(true);
+ try{
+  for(const report of reports){
+   if(token!==currentSession?.access_token||!isAdminSession||generation!==adminPaymentGeneration)return;
+   setAdminMessage('payments-message',`Подтверждаем ${done+1} из ${reports.length}…`,'info');
+   try{await paymentApi('admin_review',{report_id:report.id,status:'confirmed',version:report.version,note:report.note});}
+   catch(error){failure=error.message||'Не удалось получить результат.';break;}
+   if(token!==currentSession?.access_token||!isAdminSession||generation!==adminPaymentGeneration)return;
+   done++;selectedPayments.delete(report.id);report.status='confirmed';
+   const row=adminPaymentRows.find(r=>r.id===report.id);if(row)row.status='confirmed';
+  }
+  if(token!==currentSession?.access_token||!isAdminSession||generation!==adminPaymentGeneration)return;
+  selectedPayments.clear();await loadAdminPayments();
+  if(token!==currentSession?.access_token||!isAdminSession)return;
+  setAdminMessage('payments-message',failure?`Подтверждено: ${done} из ${reports.length}. Отправка остальных остановлена. ${failure} Проверьте обновлённый список перед повтором.`:`Подтверждено оплат: ${done}. Суммы сверки не изменены.`,failure?'warn':'info');
+ }finally{if(token===currentSession?.access_token&&isAdminSession)setPaymentReviewBusy(false);}
 }
 async function reviewPayment(id,status){
  if(!isAdminSession||adminPaymentBusy)return;const report=adminPaymentRows.find(r=>r.id===id);if(!report||report.status!=='pending')return;
  if(!window.confirm(`${status==='confirmed'?'Подтвердить поступление':'Отметить как неподтверждённую оплату'} ${formatRub(report.amount)} ₽ от ${report.login_snapshot}? Итог сверки автоматически не изменится.`))return;
- adminPaymentBusy=true;const generation=++adminPaymentGeneration,token=currentSession?.access_token;document.querySelectorAll('[data-payment-review]').forEach(b=>b.disabled=true);
- try{await paymentApi('admin_review',{report_id:id,status,version:report.version,note:document.getElementById('review-'+id).value.trim()});if(generation!==adminPaymentGeneration||token!==currentSession?.access_token||!isAdminSession)return;adminPaymentBusy=false;await loadAdminPayments();}
+ const generation=++adminPaymentGeneration,token=currentSession?.access_token;setPaymentReviewBusy(true);
+ try{await paymentApi('admin_review',{report_id:id,status,version:report.version,note:document.getElementById('review-'+id).value.trim()});if(generation!==adminPaymentGeneration||token!==currentSession?.access_token||!isAdminSession)return;selectedPayments.delete(id);await loadAdminPayments();}
  catch(error){if(generation===adminPaymentGeneration)setAdminMessage('payments-message',error.message,'error');}
- finally{if(token===currentSession?.access_token){adminPaymentBusy=false;document.querySelectorAll('[data-payment-review]').forEach(b=>b.disabled=false);}}
+ finally{if(token===currentSession?.access_token&&isAdminSession)setPaymentReviewBusy(false);}
 }
+document.getElementById('payments-select-all').addEventListener('change',event=>{
+ if(adminPaymentBusy)return;selectedPayments=new Set(event.target.checked?adminPaymentRows.filter(r=>r.status==='pending').map(r=>r.id):[]);updatePaymentSelection();
+});
+document.getElementById('payments-list').addEventListener('change',event=>{
+ const input=event.target.closest('[data-payment-select]');if(!input||adminPaymentBusy)return;
+ const id=input.dataset.paymentSelect;if(!adminPaymentRows.some(r=>r.id===id&&r.status==='pending'))return;
+ if(input.checked)selectedPayments.add(id);else selectedPayments.delete(id);updatePaymentSelection();
+});
+document.getElementById('payments-confirm-selected').addEventListener('click',()=>{void confirmSelectedPayments();});
+
 document.addEventListener('click',event=>{const link=event.target.closest('[data-ledger-nick]');if(link&&isAdminSession){event.preventDefault();void openAdminLedger(Number(link.dataset.ledgerId)||null,link.dataset.ledgerNick);}const review=event.target.closest('[data-payment-review]');if(review&&isAdminSession)void reviewPayment(review.dataset.paymentReview,review.dataset.paymentStatus);});
 document.getElementById('ledger-close').addEventListener('click',closeLedger);document.getElementById('ledger-dialog').addEventListener('cancel',event=>{event.preventDefault();closeLedger();});document.getElementById('ledger-kind').addEventListener('change',loadAdminLedger);document.getElementById('ledger-refresh').addEventListener('click',loadAdminLedger);document.getElementById('ledger-search').addEventListener('input',renderAdminLedger);
 document.getElementById('payment-open').addEventListener('click',openPaymentForm);document.getElementById('payment-close').addEventListener('click',closePaymentForm);document.getElementById('payment-dialog').addEventListener('cancel',event=>{event.preventDefault();closePaymentForm();});document.getElementById('payment-form').addEventListener('submit',submitPaymentReport);
@@ -3379,7 +3513,7 @@ document.getElementById('login-form').addEventListener('submit',async e=>{
   const password=document.getElementById('password').value;
 
   if(!identifier){
-    setLoginMessage('Введите email или логин.','error');
+    setLoginMessage('Введите свой email или постоянный Ник EUROPA SALE.','error');
     return;
   }
   if(!password){
@@ -3467,34 +3601,49 @@ document.getElementById('login-form').addEventListener('submit',async e=>{
   }
 });
 
-document.getElementById('first-login-btn').addEventListener('click',async()=>{
+// Separate sign-in, first visit and email recovery: never reuse the login field for email.
+let esAuthEmailBusy=false;
+function esAuthStep(step){
+  const panel={choose:'choose',signin:'signin',first:'first',setup:'email',recover:'email'}[step] || 'choose';
+  for(const name of ['choose','signin','first','email']) document.getElementById('auth-'+name).hidden=name!==panel;
   setLoginMessage('');
-  const rawIdentifier=String(document.getElementById('login').value || '').trim();
-  if(rawIdentifier.toLowerCase()==='admin'){
-    setLoginMessage('Для восстановления пароля администратора используйте email администратора.','info');
-    return;
+  if(panel==='email'){
+    const recovery=step==='recover';
+    document.getElementById('auth-email-title').textContent=recovery?'Восстановить пароль':'Установить свой пароль';
+    document.getElementById('auth-email-description').textContent=recovery?'Укажите email, который использовали при регистрации. Мы отправим ссылку для смены пароля.':'Укажите email, который вы сообщили EUROPA SALE. Мы отправим ссылку для установки пароля.';
+    document.getElementById('auth-email-back').dataset.authStep=recovery?'signin':'first';
   }
-  const email=normalizeEmail(rawIdentifier);
-  if(!email){
-    setLoginMessage('Сначала введите email, указанный в вашей клиентской базе.','error');
-    document.getElementById('login').focus();
-    return;
-  }
-  const btn=document.getElementById('first-login-btn');
-  const old=btn.textContent;
-  btn.disabled=true;
-  btn.textContent='Отправляем письмо…';
+  const heading=document.querySelector('#auth-'+panel+' > h3');
+  if(heading) heading.focus();
+}
+document.querySelectorAll('[data-auth-step]').forEach(control=>control.addEventListener('click',event=>{
+  event.preventDefault();
+  if(location.hash!=='#login') location.hash='login';
+  esAuthStep(control.dataset.authStep);
+}));
+document.getElementById('login-password-toggle').addEventListener('click',()=>{
+  const input=document.getElementById('password'),button=document.getElementById('login-password-toggle');
+  const show=input.type==='password';input.type=show?'text':'password';
+  button.textContent=show?'Скрыть':'Показать';button.setAttribute('aria-pressed',String(show));
+});
+document.getElementById('auth-email-form').addEventListener('submit',async event=>{
+  event.preventDefault();
+  if(esAuthEmailBusy) return;
+  const input=document.getElementById('auth-email-input');
+  const message=document.getElementById('auth-email-message');
+  const email=normalizeEmail(input.value);
+  const show=(text,type)=>{message.textContent=text;message.className='login-message show '+type;};
+  if(!email){show('Введите корректный email. Ник и телефон здесь не подойдут.','error');input.focus();return;}
+  if(!authReady){show('Соединение ещё устанавливается. Попробуйте через несколько секунд.','info');return;}
+  const button=document.getElementById('first-login-btn');
+  esAuthEmailBusy=true;button.disabled=true;button.textContent='Отправляем письмо…';message.textContent='';
   try{
-    const {error}=await supabaseClient.auth.resetPasswordForEmail(email,{redirectTo:'https://europa-sale.com'});
+    const {error}=await supabaseClient.auth.resetPasswordForEmail(email,{redirectTo:'https://europa-sale.com/#reset-password'});
     if(error) throw error;
-    setLoginMessage('Если этот email есть в базе EUROPA SALE, письмо со ссылкой для установки пароля отправлено.','info');
-  }catch(err){
-    console.error('First login error:',err);
-    setLoginMessage('Не удалось отправить письмо. Попробуйте позже или напишите EUROPA SALE.','error');
-  }finally{
-    btn.disabled=false;
-    btn.textContent=old;
-  }
+    show('Если кабинет зарегистрирован на этот email, письмо отправлено. Проверьте почту и папку «Спам». Откройте письмо EUROPA SALE и нажмите «Установить пароль».','info');
+  }catch(error){
+    show('Не удалось отправить письмо. Попробуйте позже или напишите EUROPA SALE.','error');
+  }finally{esAuthEmailBusy=false;button.disabled=false;button.textContent='Получить письмо';}
 });
 
 document.getElementById('register-form').addEventListener('submit',async e=>{
@@ -3512,12 +3661,12 @@ document.getElementById('register-form').addEventListener('submit',async e=>{
     : '';
 
   if(!nick){
-    setRegisterMessage('Введите логин.','error');
+    setRegisterMessage('Укажите свой постоянный Ник EUROPA SALE.','error');
     document.getElementById('register-login').focus();
     return;
   }
-  if(password.length<4){
-    setRegisterMessage('Минимальная длина пароля — 4 символа.','error');
+  if(password.length<6){
+    setRegisterMessage('Минимальная длина пароля — 6 символов.','error');
     document.getElementById('register-password').focus();
     return;
   }
@@ -3926,12 +4075,12 @@ function setupAdminImporter(cfg){
 adminImporters.forEach(setupAdminImporter);
 
 // Admin-only parcel view; the backend validates the administrator on every action.
-let apGroups=[],apSelected=new Set(),apGeneration=0,apBusy=false,apPrepared=false,apDraftAt=0;
+let apGroups=[],apSelected=new Set(),apGeneration=0,apBusy=false,apPrepared=false,apDraftAt=0,apLastPreview=[];
 function apResetDraft(){apDraftAt=0;document.getElementById('ap-draft').hidden=true;document.getElementById('ap-draft-text').value='';const a=document.getElementById('ap-wa');a.hidden=true;a.removeAttribute('href');}
-function apInvalidate(){apPrepared=false;apResetDraft();document.getElementById('ap-previews').replaceChildren();document.getElementById('ap-send').disabled=true;}
+function apInvalidate(){apPrepared=false;apLastPreview=[];apResetDraft();document.getElementById('ap-previews').replaceChildren();document.getElementById('ap-send').disabled=true;}
 function resetAdminParcels(){apGeneration++;apGroups=[];apSelected.clear();apBusy=false;apInvalidate();for(const id of ['ap-content','ap-results'])document.getElementById(id).replaceChildren();document.getElementById('ap-number').innerHTML='<option value="">Выберите посылку</option>';document.getElementById('ap-kind').value='current';document.getElementById('ap-notifications').hidden=true;setAdminMessage('ap-message','');apSetBusy(false);}
 function apGroup(){return apGroups.find(g=>g.number===document.getElementById('ap-number').value);}
-function apSetBusy(busy){apBusy=busy;for(const id of ['ap-kind','ap-number','ap-refresh','ap-preview','ap-select-all'])document.getElementById(id).disabled=busy;document.querySelectorAll('[data-ap-client],[data-ap-channel]').forEach(e=>e.disabled=busy);document.getElementById('ap-send').disabled=busy||!apPrepared;}
+function apSetBusy(busy){apBusy=busy;for(const id of ['ap-kind','ap-number','ap-refresh','ap-preview','ap-select-all','ap-email','ap-telegram'])document.getElementById(id).disabled=busy;document.querySelectorAll('[data-ap-client],[data-ap-channel]').forEach(e=>e.disabled=busy||e.dataset.apUnavailable==='true');document.getElementById('ap-send').disabled=busy||!apPrepared;}
 async function apRequest(action,payload={}){
  if(!isAdminSession||!currentSession?.access_token)throw new Error('Войдите как администратор.');
  const token=currentSession.access_token;
@@ -3962,36 +4111,59 @@ function apRender(){
  }).join('');
  content.querySelectorAll('[data-ap-client]').forEach(box=>box.addEventListener('change',()=>{const id=Number(box.dataset.apClient);if(box.checked&&apSelected.size>=20){box.checked=false;setAdminMessage('ap-message','Выберите не более 20 клиентов.','error');return;}box.checked?apSelected.add(id):apSelected.delete(id);apGeneration++;apInvalidate();document.getElementById('ap-results').replaceChildren();}));
 }
+function apChannels(){return ['email','telegram'].filter(c=>document.getElementById(c==='email'?'ap-email':'ap-telegram').checked);}
+function apCanSend(c,channel){const state=c.deliveries?.[channel]?.status;return c[channel]&&(!state||state==='error');}
+function apDeliveryLabel(c,channel){
+ const names={sending:'Отправка начата',sent:channel==='email'?'Принято почтовым сервисом':'Отправлено',unknown:'Результат не подтверждён — требуется проверка',error:'Ошибка — можно повторить'};
+ const status=c.deliveries?.[channel]?.status;
+ return status?(names[status]||status):(c[channel]?'Готово к отправке':c[channel+'_reason']||'Канал недоступен');
+}
 async function apPreview(){
  if(apBusy)return;const group=apGroup();if(!group||!apSelected.size){setAdminMessage('ap-message','Выберите посылку и клиентов.','error');return;}
- const generation=++apGeneration,token=currentSession?.access_token;apInvalidate();apSetBusy(true);setAdminMessage('ap-message','Проверяем состав посылки и разрешения клиентов…');
+ if(!apChannels().length){setAdminMessage('ap-message','Выберите email и/или Telegram.','error');return;}
+ const generation=++apGeneration,token=currentSession?.access_token;apInvalidate();apSetBusy(true);setAdminMessage('ap-message','Проверяем состав посылки и доступные каналы…');
  try{
-  const data=await apRequest('preview',{parcel_number:group.number,client_ids:[...apSelected]});if(generation!==apGeneration||token!==currentSession?.access_token)return;
-  const list=document.getElementById('ap-previews');list.replaceChildren();
-  for(const c of data.clients||[]){
+  const data=await apRequest('preview',{parcel_number:group.number,client_ids:[...apSelected]});if(generation!==apGeneration||token!==currentSession?.access_token||!isAdminSession)return;
+  apLastPreview=data.clients||[];const list=document.getElementById('ap-previews');list.replaceChildren();
+  for(const c of apLastPreview){
    const card=document.createElement('article');card.className='ap-client';const name=document.createElement('strong');name.textContent=c.login;card.append(name);
-   const status=document.createElement('p');const states={sent:'Отправлено',sending:'Отправка начата',unknown:'Результат не подтверждён',error:'Ошибка, можно повторить'};status.textContent='Telegram: '+(c.delivery?states[c.delivery.status]||c.delivery.status:c.telegram?'готов к отправке':'не подключён или нет разрешения');card.append(status);
-   const text=document.createElement('p');text.className='ap-preview-text';text.textContent=c.message;card.append(text);
-   for(const [channel,label] of [['max','MAX · подготовить текст'],['whatsapp','WhatsApp · подготовить сообщение']]){const button=document.createElement('button');button.className='btn soft';button.type='button';button.textContent=label;button.dataset.apChannel=channel;button.disabled=!c[channel];button.addEventListener('click',()=>apManual(c.client_id,channel));card.append(button);if(!c[channel]){const note=document.createElement('small');note.textContent=channel.toUpperCase()+': клиент не разрешил канал или не указал номер.';card.append(note);}}
+   for(const [channel,label] of [['email','Email'],['telegram','Telegram']]){const status=document.createElement('p');status.className='ap-delivery-status';status.textContent=label+': '+apDeliveryLabel(c,channel);card.append(status);}
+   const details=document.createElement('details'),summary=document.createElement('summary');summary.textContent='Текст уведомления';details.append(summary);const text=document.createElement('p');text.className='ap-preview-text';text.textContent=c.message;details.append(text);card.append(details);
+   for(const [channel,label] of [['max','MAX · подготовить текст'],['whatsapp','WhatsApp · подготовить сообщение']]){const button=document.createElement('button');button.className='mini-action';button.type='button';button.textContent=label;button.dataset.apChannel=channel;button.disabled=!c[channel];button.dataset.apUnavailable=String(!c[channel]);button.addEventListener('click',()=>apManual(c.client_id,channel));card.append(button);}
    list.append(card);
   }
-  apPrepared=(data.clients||[]).some(c=>c.telegram&&(!c.delivery||c.delivery.status==='error'));
-  setAdminMessage('ap-message','Тексты подготовлены. Сообщения ещё не отправлены.');
+  apPrepared=apLastPreview.some(c=>apChannels().some(channel=>apCanSend(c,channel)));
+  setAdminMessage('ap-message',apPrepared?'Уведомления подготовлены. Проверьте каналы и нажмите «Отправить уведомления».':'По выбранным каналам нет доступных отправок. Проверьте подключения и статусы клиентов.');
  }catch(error){if(generation===apGeneration)setAdminMessage('ap-message',error.message,'error');}
  finally{if(generation===apGeneration)apSetBusy(false);}
 }
-async function apSend(){
- if(apBusy||!apPrepared)return;const group=apGroup();if(!group||!apSelected.size)return;
- if(!window.confirm(`Отправить уведомление о прибытии посылки № ${group.number} выбранным клиентам в Telegram? Клиенты без подключённого канала и уже отправленные уведомления будут пропущены.`))return;
- const generation=++apGeneration,token=currentSession?.access_token;apSetBusy(true);apResetDraft();setAdminMessage('ap-message','Отправляем уведомления. Дождитесь результата…');
- try{
-  const data=await apRequest('send',{parcel_number:group.number,client_ids:[...apSelected]});if(generation!==apGeneration||token!==currentSession?.access_token)return;
-  const states={sent:'Отправлено',skipped:'Пропущено',error:'Ошибка',unknown:'Результат не подтверждён'};
-  document.getElementById('ap-results').innerHTML='<h4>Результат отправки Telegram</h4>'+(data.results||[]).map(r=>`<p>${escapeHtml(r.login)} — ${escapeHtml(states[r.status]||r.status)}${r.error?': '+escapeHtml(r.error):''}</p>`).join('');
-  apPrepared=false;setAdminMessage('ap-message','Отправка обработана. Проверьте результат по каждому клиенту.');
- }catch(error){if(generation===apGeneration){apPrepared=false;setAdminMessage('ap-message',error.message+' Перед повтором подготовьте уведомления заново и проверьте статус.','error');}}
- finally{if(generation===apGeneration)apSetBusy(false);}
+function apRenderResults(results){
+ const labels={sent:'Отправлено',skipped:'Пропущено',error:'Ошибка',unknown:'Результат не подтверждён'};
+ document.getElementById('ap-results').innerHTML='<h4>Результаты отправки</h4>'+results.map(r=>`<p><strong>${escapeHtml(r.login)}</strong> · ${r.channel==='email'?'Email':'Telegram'} — ${escapeHtml(r.channel==='email'&&r.status==='sent'?'Принято почтовым сервисом':labels[r.status]||r.status)}${r.error?'<br><span>'+escapeHtml(r.error)+'</span>':''}</p>`).join('');
 }
+async function apSend(){
+ if(apBusy||!apPrepared)return;const group=apGroup(),channels=apChannels();if(!group||!apSelected.size||!channels.length)return;
+ if(!window.confirm(`Отправить уведомления о посылке № ${group.number}? Каналы: ${channels.map(c=>c==='email'?'Email':'Telegram').join(', ')}. Уже отправленные уведомления и недоступные каналы будут пропущены.`))return;
+ const ids=[...apSelected],generation=++apGeneration,token=currentSession?.access_token,results=[];let stopped=false;
+ apPrepared=false;apSetBusy(true);apResetDraft();
+ try{
+  // One customer per invocation keeps a selection of 20 below Edge Function time limits.
+  for(let i=0;i<ids.length;i++){
+   if(generation!==apGeneration||token!==currentSession?.access_token||!isAdminSession)return;
+   setAdminMessage('ap-message',`Отправляем уведомления: клиент ${i+1} из ${ids.length}…`);
+   try{const data=await apRequest('send',{parcel_number:group.number,client_ids:[ids[i]],channels});
+    if(generation!==apGeneration||token!==currentSession?.access_token||!isAdminSession)return;
+    results.push(...(data.results||[]));apRenderResults(results);
+   }catch(error){
+    if(generation!==apGeneration||token!==currentSession?.access_token||!isAdminSession)return;
+    const login=apLastPreview.find(c=>c.client_id===ids[i])?.login||'Клиент';
+    results.push(...channels.map(channel=>({login,channel,status:'unknown',error:'Ответ сервера не получен. Подготовьте уведомления заново, чтобы проверить журнал перед повтором.'})));apRenderResults(results);stopped=true;break;
+   }
+  }
+  if(generation===apGeneration)setAdminMessage('ap-message',stopped?'Обработка остановлена. Проверьте результаты; остальные клиенты ещё не обработаны.':'Обработка завершена. Результат указан отдельно по каждому клиенту и каналу. Для новой отправки подготовьте уведомления заново.',stopped?'warn':'info');
+ }finally{if(generation===apGeneration)apSetBusy(false);}
+}
+
 async function apManual(id,channel){
  if(apBusy)return;const group=apGroup();if(!group)return;const generation=++apGeneration,token=currentSession?.access_token;apResetDraft();apSetBusy(true);
  try{
@@ -4008,6 +4180,7 @@ document.getElementById('ap-refresh').addEventListener('click',loadAdminParcels)
 document.getElementById('ap-kind').addEventListener('change',loadAdminParcels);
 document.getElementById('ap-number').addEventListener('change',()=>{apGeneration++;apSelected.clear();apInvalidate();document.getElementById('ap-results').replaceChildren();apRender();});
 document.getElementById('ap-select-all').addEventListener('change',event=>{apGeneration++;apSelected.clear();if(event.target.checked)for(const c of apGroup()?.clients||[]){if(c.client_id&&c.registered&&!c.disabled&&apSelected.size<20)apSelected.add(c.client_id);}apInvalidate();apRender();document.getElementById('ap-select-all').checked=apSelected.size>0;});
+for(const id of ['ap-email','ap-telegram'])document.getElementById(id).addEventListener('change',()=>{apGeneration++;apInvalidate();document.getElementById('ap-results').replaceChildren();setAdminMessage('ap-message','Каналы изменены. Подготовьте уведомления заново.');});
 document.getElementById('ap-preview').addEventListener('click',apPreview);
 document.getElementById('ap-send').addEventListener('click',apSend);
 document.getElementById('ap-copy').addEventListener('click',async()=>{if(!isAdminSession||!apDraftAt||Date.now()-apDraftAt>300000){apResetDraft();return;}try{await navigator.clipboard.writeText(document.getElementById('ap-draft-text').value);setAdminMessage('ap-message','Текст скопирован. Отправьте его клиенту самостоятельно.');}catch{document.getElementById('ap-draft-text').select();setAdminMessage('ap-message','Выделен текст — скопируйте его сочетанием Ctrl+C или Cmd+C.');}});
@@ -4340,18 +4513,40 @@ document.getElementById('ci-form').addEventListener('submit',async event=>{
  finally{if(generation===ciGeneration)ciBusy=false;}
 });
 
+// Dates are server-owned Auth timestamps; never use card/import timestamps.
+function userDate(value){
+  if(!value)return null;
+  const date=new Date(value);if(!Number.isFinite(date.getTime()))return null;
+  return {date:new Intl.DateTimeFormat('ru-RU',{timeZone:'Europe/Moscow',day:'2-digit',month:'2-digit',year:'numeric'}).format(date),time:new Intl.DateTimeFormat('ru-RU',{timeZone:'Europe/Moscow',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(date)};
+}
+function userDateHtml(value){
+ const d=userDate(value);return d?`<span>${escapeHtml(d.date)}</span><small>${escapeHtml(d.time)} МСК</small>`:'<span class="user-date-empty">Нет данных</span>';
+}
+function userRegistrationDate(user){
+ if(!Object.prototype.hasOwnProperty.call(user,'account_created_at'))return '<span class="user-date-empty">Нет данных</span>';
+ if(!user.account_created_at)return '<span class="user-date-empty">Кабинет не создан</span>';
+ return userDateHtml(user.account_created_at);
+}
+function userLastLoginDate(user){
+ if(!Object.prototype.hasOwnProperty.call(user,'last_sign_in_at'))return '<span class="user-date-empty">Нет данных</span>';
+ if(!user.auth_user_id)return '<span class="user-date-empty">—</span>';
+ return user.last_sign_in_at?userDateHtml(user.last_sign_in_at):'<span class="user-date-empty">Ещё не входил</span>';
+}
+
 function renderUsers(){
   const body=document.getElementById('users-body');
   if(!body) return;
   const q=String(document.getElementById('users-search')?.value||'').trim().toLowerCase();
   const list=adminUsers.filter(u=>[u.login,u.name,u.phone,u.email].join(' ').toLowerCase().includes(q));
-  if(!list.length){ body.innerHTML='<tr><td colspan="7" class="admin-empty">Пользователи не найдены.</td></tr>'; return; }
+  if(!list.length){ body.innerHTML='<tr><td colspan="9" class="admin-empty">Пользователи не найдены.</td></tr>'; return; }
   body.innerHTML=list.map(u=>`<tr>
     <td>${ledgerLink(u.client_id,u.login)}</td>
     <td>${escapeHtml(u.name||'—')}</td>
     <td>${escapeHtml(u.phone||'—')}</td>
     <td>${escapeHtml(u.email||'—')}</td>
     <td>${adminStatusLabel(u.status)}${u.invitation_state==='error'?'<small class="payment-flag">Письмо не отправлено</small>':u.invitation_state==='preparing'?'<small class="payment-flag">Отправка письма не подтверждена</small>':''}</td>
+    <td class="user-date">${userRegistrationDate(u)}</td>
+    <td class="user-date">${userLastLoginDate(u)}</td>
     <td>${adminChannelsHtml(u)}</td>
     <td><div class="user-actions">
       ${!u.auth_user_id&&u.status!=='registered'&&!u.is_disabled?`<button class="mini-action" data-user-register="${u.client_id}">Зарегистрировать</button>`:''}
