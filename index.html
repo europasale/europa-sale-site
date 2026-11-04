@@ -746,10 +746,6 @@
     }
 
     /* Personal reconciliation refresh */
-    #account-refresh{appearance:none;min-height:50px;padding:12px 18px;border:1px solid var(--line);border-radius:0;background:transparent;color:var(--text);font-size:13px;cursor:pointer}
-    #account-refresh:hover{background:var(--paper)}
-    #account-refresh:focus-visible{outline:2px solid var(--text);outline-offset:4px}
-    #account-refresh[disabled]{opacity:.55;cursor:wait}
 
     /* EUROPA SALE · Shared section layout from the approved About reference · 2026-10-13 */
     #view-home .es-section-layout{display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);column-gap:9vw;align-items:start}
@@ -1157,6 +1153,19 @@
     .es-payment-detail-body{font-size:13px;line-height:1.65;padding-top:14px;overflow-wrap:anywhere}.es-payment-detail-body p{margin:0 0 12px}.es-payment-detail-body textarea{width:100%;box-sizing:border-box;margin:8px 0;padding:10px;border:1px solid var(--line);background:transparent;font:inherit}
     .es-payment-row-actions{display:flex;flex-wrap:wrap;gap:8px}
     @media(max-width:850px){.es-payments-table,.es-payments-table tbody,.es-payments-table tr,.es-payments-table td{display:block}.es-payments-table thead{display:none}.es-payments-table{background:transparent}.es-payments-table tr{position:relative;margin:0 0 16px;border:1px solid var(--line);padding:18px;background:#fffaf8}.es-payments-table td{padding:6px 0;border:0}.es-payments-table .es-payment-select{position:absolute;right:18px;top:12px;width:auto}.es-payments-table .es-payment-client{padding-right:34px;font-size:17px}.es-payments-table td[data-label]:not(.es-payment-client)::before{content:attr(data-label);display:inline-block;min-width:110px;color:var(--muted);font-size:12px;font-weight:400}.es-payments-table .es-payment-details{width:100%;border-top:1px solid var(--line);margin-top:12px;padding-top:14px}#payments-batch-summary{margin-left:0}.es-payment-batch .btn{width:100%}}
+
+ .users-table{table-layout:auto;width:100%;font-size:14px}.users-table td{vertical-align:top;padding:20px 14px;line-height:1.6}.users-table th{padding:16px 14px}
+ .es-users-client{min-width:150px;max-width:240px;overflow-wrap:anywhere}.es-users-client small{display:block;margin-top:6px;color:var(--muted);font-size:12px;font-weight:400}
+ .es-users-contacts{max-width:270px;min-width:180px}.es-contact-copy{display:block;text-align:left;border:0;padding:2px 0;background:none;color:inherit;font:inherit;font-size:13px;cursor:pointer;overflow-wrap:anywhere;max-width:100%;line-height:1.6}.es-contact-copy:hover{text-decoration:underline;text-underline-offset:3px}.es-contact-empty{display:block;font-size:12px;color:var(--muted)}
+ .es-users-sort{padding:4px 0;border:0;background:transparent;color:inherit;font:inherit;cursor:pointer;text-align:left;white-space:nowrap}.es-users-sort span{margin-left:7px;color:#b34858}.es-users-manage .mini-action{white-space:nowrap}.es-users-sort-note{font-size:13px;color:var(--muted);line-height:1.65}.es-users-mobile-sort{display:none}
+ .es-user-management{position:fixed;inset:0 0 0 auto;margin:0;width:min(540px,100vw);height:100dvh;max-height:100dvh;max-width:100vw;box-sizing:border-box;overflow-y:auto;border:0;border-left:1px solid var(--line);padding:32px;background:#fffaf8;color:var(--text)}
+ .es-user-management::backdrop{background:rgba(26,22,21,.34)}.es-user-management-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:24px}.es-user-management-head h2{font-size:30px;line-height:1.25;font-weight:400;letter-spacing:-.03em;margin:12px 0 0;overflow-wrap:anywhere}.es-user-management-head button{font-size:24px;min-width:40px;flex-shrink:0}
+ .es-user-panel-section{padding:24px 0;border-bottom:1px solid var(--line)}.es-user-panel-section h3{font-size:17px;font-weight:500;margin:0 0 16px}.es-user-name{margin:0 0 10px}.es-user-contacts{margin-bottom:18px}.es-user-dates{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:20px 0 0}.es-user-dates dt{font-size:12px;color:var(--muted);margin-bottom:8px}.es-user-dates dd{margin:0;line-height:1.6;font-size:14px}.es-user-dates small{display:block;color:var(--muted)}.es-user-panel-note{font-size:13px;line-height:1.65;color:var(--muted)}.es-user-panel-actions{display:flex;gap:12px;flex-wrap:wrap}.es-user-danger{margin-top:20px;border:0}.es-user-danger h3{color:var(--muted)}
+ @media(max-width:850px){.es-users-mobile-sort{display:flex;flex-direction:column;gap:8px;margin:16px 0;font-size:13px}.es-users-mobile-sort select{padding:12px;border:1px solid var(--line);background:transparent;font:inherit}.users-table,.users-table tbody,.users-table tr,.users-table td{display:block}.users-table thead{display:none}.users-table tr{border:1px solid var(--line);padding:20px;margin-bottom:16px;background:#fffaf8}.users-table td{padding:7px 0;border:0;max-width:none;min-width:0}.users-table .es-users-client{font-size:18px;padding-bottom:12px}.users-table td[data-label]:not(.es-users-client)::before{content:attr(data-label);display:block;font-size:11px;color:var(--muted);margin-bottom:3px}.users-table .user-date{display:inline-block;width:48%;white-space:normal;min-width:0}.es-users-manage .mini-action{width:100%;margin-top:12px}.es-users-action-title{display:none}.es-user-management{padding:24px}}
+
+ .es-account-tg{border:1px solid var(--line);background:#fffaf8;padding:24px 28px;margin:24px 0;display:grid;grid-template-columns:1fr auto;gap:16px 32px;align-items:center}
+ .es-account-tg[hidden],.es-account-tg [hidden]{display:none!important}.es-account-tg h3{font-size:19px;font-weight:500;margin:0 0 10px}.es-account-tg p{font-size:14px;line-height:1.65;color:var(--muted);margin:0}.es-account-tg-status{font-size:13px;line-height:1.6;margin-top:12px}.es-account-tg-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end;max-width:400px}.es-account-tg-actions .btn{font-size:13px;padding:14px 18px}.es-account-tg-settings{font-size:12px;color:var(--muted);width:100%;text-align:right;text-underline-offset:4px}.es-account-tg .es-account-tg-message{grid-column:1/-1;font-size:13px}.es-account-tg-message:empty{display:none}
+ @media(max-width:760px){.es-account-tg{grid-template-columns:1fr;padding:22px}.es-account-tg-actions{justify-content:flex-start;max-width:none}.es-account-tg-actions .btn{width:100%;text-align:center}.es-account-tg-settings{text-align:left}}
 </style>
 </head>
 <body>
@@ -1765,6 +1774,12 @@
           <div class="balance"><span>К оплате</span><strong id="balance-total">0 ₽</strong></div>
         </div>
 
+        <section id="account-tg-block" class="es-account-tg" aria-labelledby="account-tg-title" hidden>
+          <div><h3 id="account-tg-title">Уведомления в Telegram</h3><p>Узнавайте о прибытии посылок и выкупленных заказах в личных сообщениях.</p><div id="account-tg-status" class="es-account-tg-status" role="status" aria-live="polite"></div></div>
+          <div class="es-account-tg-actions"><button type="button" class="btn soft" id="account-tg-connect">Подключить Telegram →</button><a class="btn dark" id="account-tg-open" href="https://t.me" target="_blank" rel="noopener noreferrer" hidden>Открыть бота →</a><button type="button" class="btn soft" id="account-tg-check" hidden>Проверить подключение</button><button type="button" class="btn dark" id="account-tg-confirm" hidden>Это мой аккаунт · подключить</button><a class="es-account-tg-settings" href="#profile">Настройки уведомлений →</a></div>
+          <p id="account-tg-message" class="es-account-tg-message" role="status" aria-live="polite"></p>
+        </section>
+
         <section id="client-payment-tools" class="client-payment-tools" aria-label="Сообщения об оплате">
           <div class="messenger-actions"><button type="button" class="btn soft" id="payment-open">Сообщить об оплате</button><button type="button" class="btn soft" id="payment-status-refresh">Обновить статус оплаты</button></div><p class="admin-message" id="my-payment-message" role="status"></p><div id="my-payment-history"></div>
         </section>
@@ -1787,7 +1802,6 @@
 
         <div class="toolbar">
           <input class="search" id="search" type="search" placeholder="Поиск по товару, размеру или посылке">
-          <button class="account-refresh" id="account-refresh" type="button">Обновить сверку</button>
           <div class="small-meta" id="count-label">Загрузка…</div>
         </div>
 
@@ -2078,10 +2092,13 @@
             <div class="user-editor-actions"><button class="btn dark admin-small-btn" id="user-save" type="button">Сохранить</button><button class="btn soft admin-small-btn" id="user-editor-cancel" type="button">Отмена</button></div>
           </div>
 
+          <p class="es-users-sort-note">Сортировать по дате или статусу — нажмите заголовок. Повторное нажатие меняет порядок. Контакт можно нажать, чтобы скопировать.</p>
+          <p id="users-copy-message" class="admin-message" role="status" aria-live="polite"></p>
+          <div class="es-users-mobile-sort"><label for="users-sort-mobile">Сортировка</label><select id="users-sort-mobile"><option value="">По Нику</option><option value="status:asc">Статус: ожидающие первыми</option><option value="status:desc">Статус: отключённые первыми</option><option value="account_created_at:desc">Регистрация: новые первыми</option><option value="account_created_at:asc">Регистрация: старые первыми</option><option value="last_sign_in_at:desc">Вход: недавние первыми</option><option value="last_sign_in_at:asc">Вход: давние первыми</option></select></div>
           <div class="admin-table-scroll">
             <table class="admin-table users-table">
-              <thead><tr><th>Ник</th><th>Имя</th><th>Телефон</th><th>Email</th><th>Статус</th><th>Регистрация</th><th>Последний вход</th><th>Каналы</th><th>Действия</th></tr></thead>
-              <tbody id="users-body"><tr><td colspan="9" class="admin-empty">Нажмите «Обновить», чтобы загрузить пользователей.</td></tr></tbody>
+              <thead><tr><th>Клиент</th><th>Контакты</th><th aria-sort="none"><button type="button" class="es-users-sort" data-users-sort="status">Статус <span aria-hidden="true">↕</span></button></th><th aria-sort="none"><button type="button" class="es-users-sort" data-users-sort="account_created_at">Регистрация <span aria-hidden="true">↕</span></button></th><th aria-sort="none"><button type="button" class="es-users-sort" data-users-sort="last_sign_in_at">Последний вход <span aria-hidden="true">↕</span></button></th><th><span class="es-users-action-title">Управление</span></th></tr></thead>
+              <tbody id="users-body"><tr><td colspan="6" class="admin-empty">Нажмите «Обновить», чтобы загрузить пользователей.</td></tr></tbody>
             </table>
           </div>
           <p class="user-dates-note">Даты и время — по Москве. Регистрация — создание кабинета, самостоятельно или администратором. Последний вход — последняя успешная авторизация, в том числе по ссылке из письма. Обновите список, чтобы увидеть свежие данные.</p>
@@ -2144,6 +2161,7 @@
 </div>
     </section>
   </main>
+  <dialog id="user-management" class="es-user-management" aria-labelledby="user-management-title"><div class="es-user-management-head"><div><div class="eyebrow">EUROPA SALE · клиент</div><h2 id="user-management-title"></h2></div><button type="button" id="user-management-close" class="mini-action" aria-label="Закрыть управление клиентом" autofocus>×</button></div><div id="user-management-content"></div></dialog>
 
   <footer class="footer">
     <div class="container footer-inner">
@@ -2567,8 +2585,6 @@ function setAccountOrdersBusy(busy){
   const parcelsButton=document.getElementById('parcels-refresh');
   if(parcelsButton){parcelsButton.disabled=busy;parcelsButton.textContent=busy?'Обновляем…':'Обновить данные';}
   renderMyParcels();
-  const button=document.getElementById('account-refresh');
-  if(button){button.disabled=busy;button.textContent=busy?'Обновляем…':'Обновить сверку';}
   document.getElementById('view-account')?.setAttribute('aria-busy',String(busy));
 }
 
@@ -2632,6 +2648,8 @@ async function loadMyOrders(force=false){
       accountLoadedForUserId=rows.length?loadKey:null;
       accountLoadedAt=rows.length?Date.now():0;
       const client=data.client || {};
+      accountTgPrefs=client;
+      if(!accountTgBusy)void accountTgAction('status');
       const displayName=client.login || client.name || session.user.email || 'клиента';
       const nameEl=document.getElementById('account-name');
       if(nameEl) nameEl.textContent=displayName;
@@ -2671,7 +2689,7 @@ async function loadMyOrders(force=false){
   return request.promise;
 }
 
-document.getElementById('account-refresh')?.addEventListener('click',()=>{loadMyOrders(true);});
+
 
 function updateReconciliationTabs(){
   paymentScope();
@@ -2824,7 +2842,10 @@ async function submitPaymentReport(event){
  setAdminMessage('payment-message',data.result.already_pending?'У вас уже есть сообщение, ожидающее проверки. Закройте окно, чтобы посмотреть его.':'Сообщение сохранено. Администратор проверит оплату. Баланс сверки пока не изменён.');
  paymentBusy=false;paymentSubmitted=true;
  document.getElementById('payment-submit').disabled=true;document.getElementById('payment-submit').textContent='Сообщение отправлено';document.getElementById('payment-open').disabled=true;
- setAdminMessage('my-payment-message','Вы сообщили об оплате. Сообщение ожидает проверки администратором.');
+ setAdminMessage('my-payment-message','Сообщение об оплате отправлено. Администратор проверит поступление. Баланс изменится после учёта оплаты в сверке.');
+ const dialog=document.getElementById('payment-dialog');
+ if(dialog.open&&typeof dialog.close==='function')dialog.close();else dialog.removeAttribute('open');
+ document.getElementById('payment-open').focus();
  // Status loading has its own revision and never keeps the submit button busy.
  void loadMyPaymentReports();
  }catch(error){if(generation===paymentGeneration){paymentFormBusy(false);setAdminMessage('payment-message',error.message+' При сбое связи повторите с теми же данными.','error');}}
@@ -3056,6 +3077,61 @@ document.getElementById('profile-notifications-save')?.addEventListener('click',
   finally{btn.disabled=false;btn.textContent=old;}
 });
 
+let accountTgRevision=0,accountTgBusy=false,accountTgRequest=null,accountTgConnected=false,accountTgPrefs=null;
+function accountTgMessage(text){document.getElementById('account-tg-message').textContent=text;}
+function resetAccountTelegram(){
+ accountTgRevision++;accountTgBusy=false;accountTgRequest=null;accountTgConnected=false;accountTgPrefs=null;
+ document.getElementById('account-tg-block').hidden=true;
+ document.getElementById('account-tg-connect').hidden=false;document.getElementById('account-tg-connect').textContent='Подключить Telegram →';
+ for(const id of ['account-tg-connect','account-tg-check','account-tg-confirm'])document.getElementById(id).disabled=false;
+ document.getElementById('account-tg-open').hidden=true;document.getElementById('account-tg-open').href='https://t.me';
+ document.getElementById('account-tg-confirm').hidden=true;document.getElementById('account-tg-check').hidden=true;
+ accountTgMessage('');document.getElementById('account-tg-status').textContent='';
+}
+function accountTgRender(data){
+ accountTgConnected=data.connected===true;accountTgRequest=data.pending?.request_id||null;
+ const prefs=accountTgPrefs,enabled=prefs?.social_notifications===true&&prefs?.messenger_preferences?.telegram===true;
+ const status=document.getElementById('account-tg-status');
+ status.textContent=accountTgRequest?'Подтвердите свой аккаунт: '+(data.pending.display_name||'Пользователь Telegram'):accountTgConnected?(enabled?'✓ Telegram подключён · уведомления включены':'✓ Telegram подключён'):'Telegram пока не подключён';
+ document.getElementById('account-tg-connect').hidden=accountTgConnected&&enabled&&!accountTgRequest;
+ document.getElementById('account-tg-connect').textContent=accountTgConnected?'Включить уведомления →':'Подключить Telegram →';
+ document.getElementById('account-tg-confirm').hidden=!accountTgRequest;
+ document.getElementById('account-tg-check').hidden=!data.expires_at;
+ if(!data.expires_at){document.getElementById('account-tg-open').hidden=true;document.getElementById('account-tg-open').href='https://t.me';}
+}
+async function accountTgAction(action){
+ if(accountTgBusy||!currentSession?.access_token||isAdminSession)return;
+ const token=currentSession.access_token,revision=++accountTgRevision;
+ accountTgBusy=true;document.getElementById('account-tg-block').hidden=false;
+ const ids=['account-tg-connect','account-tg-check','account-tg-confirm'];ids.forEach(id=>document.getElementById(id).disabled=true);
+ if(action!=='status')accountTgMessage('Подключаем…');
+ try{
+  const data=await tgInvoke(action,action==='confirm'?{request_id:accountTgRequest}:{});
+  if(revision!==accountTgRevision||token!==currentSession?.access_token||isAdminSession)return;
+  if(action==='confirm'){
+   if(data.connected!==true)throw Error('Подключение ещё не подтверждено. Проверьте аккаунт и повторите.');
+   // The existing confirm RPC turns on Telegram and social notifications atomically.
+   accountTgPrefs={...(accountTgPrefs||{}),social_notifications:true,messenger_preferences:{...(accountTgPrefs?.messenger_preferences||{}),telegram:true}};
+   profileClientCache=null;
+  }
+  accountTgRender(data);
+  if(action==='start'){
+   const link=new URL(data.link);
+   if(link.protocol!=='https:'||link.hostname!=='t.me'||link.username||link.password)throw Error('Не удалось получить ссылку бота.');
+   const open=document.getElementById('account-tg-open');open.href=link.href;open.hidden=false;
+   document.getElementById('account-tg-check').hidden=false;
+   accountTgMessage('Откройте бота, нажмите «Начать», вернитесь сюда и нажмите «Проверить подключение». Затем подтвердите свой аккаунт. Ссылка действует 10 минут.');
+   open.focus();
+  }else if(action==='confirm')accountTgMessage('Telegram подключён. Уведомления включены. Настройки можно изменить в профиле.');
+  else if(!data.pending&&!data.connected&&data.expires_at)accountTgMessage('После нажатия «Начать» в боте вернитесь сюда и проверьте подключение.');
+  else if(!data.pending)accountTgMessage('');
+ }catch(error){if(revision===accountTgRevision&&token===currentSession?.access_token&&!isAdminSession)accountTgMessage(error?.message||'Не удалось проверить Telegram. Попробуйте ещё раз.');}
+ finally{if(revision===accountTgRevision){accountTgBusy=false;ids.forEach(id=>document.getElementById(id).disabled=false);}}
+}
+document.getElementById('account-tg-connect').addEventListener('click',()=>{void accountTgAction('start');});
+document.getElementById('account-tg-check').addEventListener('click',()=>{void accountTgAction('status');});
+document.getElementById('account-tg-confirm').addEventListener('click',()=>{if(accountTgRequest)void accountTgAction('confirm');});
+
 // Telegram connection state is authoritative on the server; no account IDs or secrets in HTML.
 let tgRequestId=null;
 let tgGeneration=0;
@@ -3068,6 +3144,7 @@ async function tgInvoke(action,extra={}){
  return data;
 }
 function resetTgConnection(){
+ resetAccountTelegram();
  tgGeneration++;tgRequestId=null;
  document.getElementById('tg-open-bot').hidden=true;
  document.getElementById('tg-open-bot').href='https://t.me';
@@ -3361,6 +3438,8 @@ function updateAdminNavigation(){
 }
 
 function clearAdminState(){
+ if(!currentSession)resetAccountTelegram();
+  closeUserManagement();
   resetPaymentsAndLedger();
   resetAdminRegistration();
   resetAdminParcels();
@@ -3473,6 +3552,7 @@ async function route(){
   if(key==='account'){
     updateAccountHeader();
     showView(key);
+    void accountTgAction('status');
     await loadMyOrders();
     return;
   }
@@ -4229,6 +4309,7 @@ function adminStatusLabel(status){
 }
 
 function setAdminTab(tab){
+  if(tab!=='users')closeUserManagement();
   if(tab!=='users') resetAdminRegistration();
   const allowed=['sverka','parcels','debtors','payments','mailing','users','editorial'];
   currentAdminTab=allowed.includes(tab)?tab:'sverka';
@@ -4533,36 +4614,83 @@ function userLastLoginDate(user){
  return user.last_sign_in_at?userDateHtml(user.last_sign_in_at):'<span class="user-date-empty">Ещё не входил</span>';
 }
 
-function renderUsers(){
-  const body=document.getElementById('users-body');
-  if(!body) return;
-  const q=String(document.getElementById('users-search')?.value||'').trim().toLowerCase();
-  const list=adminUsers.filter(u=>[u.login,u.name,u.phone,u.email].join(' ').toLowerCase().includes(q));
-  if(!list.length){ body.innerHTML='<tr><td colspan="9" class="admin-empty">Пользователи не найдены.</td></tr>'; return; }
-  body.innerHTML=list.map(u=>`<tr>
-    <td>${ledgerLink(u.client_id,u.login)}</td>
-    <td>${escapeHtml(u.name||'—')}</td>
-    <td>${escapeHtml(u.phone||'—')}</td>
-    <td>${escapeHtml(u.email||'—')}</td>
-    <td>${adminStatusLabel(u.status)}${u.invitation_state==='error'?'<small class="payment-flag">Письмо не отправлено</small>':u.invitation_state==='preparing'?'<small class="payment-flag">Отправка письма не подтверждена</small>':''}</td>
-    <td class="user-date">${userRegistrationDate(u)}</td>
-    <td class="user-date">${userLastLoginDate(u)}</td>
-    <td>${adminChannelsHtml(u)}</td>
-    <td><div class="user-actions">
-      ${!u.auth_user_id&&u.status!=='registered'&&!u.is_disabled?`<button class="mini-action" data-user-register="${u.client_id}">Зарегистрировать</button>`:''}
-      ${u.status==='registered'?`<button type="button" class="mini-action registration-notice" data-registration-notice="${u.client_id}">Письмо для смены пароля</button>`:''}<button class="mini-action" data-user-edit="${u.client_id}">Изменить</button>
-      <button class="mini-action" data-user-toggle="${u.client_id}" data-disabled="${u.is_disabled?'1':'0'}">${u.is_disabled?'Включить':'Отключить'}</button>
-      ${u.auth_user_id&&u.email?`<button class="mini-action" data-user-reset="${u.client_id}">Сбросить пароль</button>`:''}
-      <button class="mini-action danger" data-user-delete="${u.client_id}">Удалить окончательно</button>
-    </div></td>
-  </tr>`).join('');
-
-  body.querySelectorAll('[data-user-register]').forEach(btn=>btn.addEventListener('click',()=>openAdminRegistration(Number(btn.dataset.userRegister))));
-  body.querySelectorAll('[data-user-edit]').forEach(btn=>btn.addEventListener('click',()=>openUserEditor(Number(btn.dataset.userEdit))));
-  body.querySelectorAll('[data-user-toggle]').forEach(btn=>btn.addEventListener('click',()=>toggleUserDisabled(Number(btn.dataset.userToggle),btn.dataset.disabled!=='1')));
-  body.querySelectorAll('[data-user-reset]').forEach(btn=>btn.addEventListener('click',()=>sendUserReset(Number(btn.dataset.userReset))));
-  body.querySelectorAll('[data-user-delete]').forEach(btn=>btn.addEventListener('click',()=>deleteUserPermanently(Number(btn.dataset.userDelete))));
+let userSort={key:null,direction:'desc'};
+let managedUserId=null;
+function sortedAdminUsers(users){
+ const key=userSort.key;if(!key)return [...users].sort((a,b)=>String(a.login||'').localeCompare(String(b.login||''),'ru'));
+ const sign=userSort.direction==='asc'?1:-1;
+ const ranks={pending:0,awaiting_confirmation:1,registered:2,disabled:3};
+ const value=u=>key==='status'?(ranks[u.status]??0):(u[key]&&Number.isFinite(Date.parse(u[key]))?Date.parse(u[key]):null);
+ return [...users].sort((a,b)=>{
+  const x=value(a),y=value(b);
+  if(x===null&&y!==null)return 1;if(y===null&&x!==null)return -1;
+  const delta=x===null&&y===null?0:(x-y)*sign;
+  return delta||String(a.login||'').localeCompare(String(b.login||''),'ru')||Number(a.client_id)-Number(b.client_id);
+ });
 }
+function updateUserSortHeaders(){
+ document.getElementById('users-sort-mobile').value=userSort.key?userSort.key+':'+userSort.direction:'';
+ document.querySelectorAll('[data-users-sort]').forEach(button=>{
+  const active=userSort.key===button.dataset.usersSort;
+  button.closest('th').setAttribute('aria-sort',active?(userSort.direction==='asc'?'ascending':'descending'):'none');
+  button.querySelector('span').textContent=active?(userSort.direction==='asc'?'↑':'↓'):'↕';
+ });
+}
+function userContactButton(value,label){
+ return value?`<button type="button" class="es-contact-copy" data-user-copy="${escapeHtml(value)}" aria-label="Скопировать ${label}: ${escapeHtml(value)}">${escapeHtml(value)}</button>`:'<span class="es-contact-empty">Не указан</span>';
+}
+function closeUserManagement(){const dialog=document.getElementById('user-management');if(dialog.open)dialog.close();managedUserId=null;document.getElementById('user-management-content').replaceChildren();}
+function renderUserManagement(){
+ if(!isAdminSession){closeUserManagement();return;}
+ const u=adminUsers.find(row=>Number(row.client_id)===managedUserId);if(!u){closeUserManagement();return;}
+ const id=Number(u.client_id),notRegistered=!u.auth_user_id&&u.status!=='registered'&&!u.is_disabled;
+ document.getElementById('user-management-title').textContent=u.login||'Клиент';
+ document.getElementById('user-management-content').innerHTML=`<section class="es-user-panel-section"><h3>Данные клиента</h3><p class="es-user-name">${escapeHtml(u.name||'Имя не указано')}</p><div class="es-user-contacts">${userContactButton(u.phone,'телефон')}${userContactButton(u.email,'email')}</div><button type="button" class="mini-action" data-user-panel-action="edit">Изменить данные</button><p>${ledgerLink(u.client_id,'Открыть персональную сверку →')}</p></section>
+ <section class="es-user-panel-section"><h3>Личный кабинет</h3>${adminStatusLabel(u.status)}<dl class="es-user-dates"><div><dt>Регистрация</dt><dd>${userRegistrationDate(u)}</dd></div><div><dt>Последний вход</dt><dd>${userLastLoginDate(u)}</dd></div></dl></section>
+ <section class="es-user-panel-section"><h3>Уведомления</h3>${adminChannelsHtml(u)}<p class="es-user-panel-note">Привязка Telegram и разрешения каналов проверяются перед отправкой. MAX и WhatsApp — ручная отправка.</p><button type="button" class="mini-action" data-user-panel-action="edit">Настроить уведомления</button></section>
+ <section class="es-user-panel-section"><h3>Доступ</h3><div class="es-user-panel-actions">${notRegistered?'<button type="button" class="mini-action" data-user-panel-action="register">Зарегистрировать клиента</button>':''}${u.status==='registered'?`<button type="button" class="mini-action registration-notice" data-registration-notice="${id}">Письмо для смены пароля</button>`:''}<button type="button" class="mini-action" data-user-panel-action="toggle">${u.is_disabled?'Включить кабинет':'Отключить кабинет'}</button></div></section>
+ <section class="es-user-panel-section es-user-danger"><h3>Удаление</h3><p class="es-user-panel-note">Аккаунт и контакты будут удалены. Позиции сверок сохраняются.</p><button type="button" class="mini-action danger" data-user-panel-action="delete">Удалить клиента</button></section>`;
+}
+function openUserManagement(id){
+ if(!isAdminSession||!adminUsers.some(u=>Number(u.client_id)===id))return;
+ managedUserId=id;renderUserManagement();const dialog=document.getElementById('user-management');if(!dialog.open)dialog.showModal();
+}
+function renderUsers(){
+ const body=document.getElementById('users-body');if(!body)return;
+ const q=String(document.getElementById('users-search')?.value||'').trim().toLowerCase();
+ const list=sortedAdminUsers(adminUsers.filter(u=>[u.login,u.name,u.phone,u.email].join(' ').toLowerCase().includes(q)));
+ updateUserSortHeaders();
+ body.innerHTML=list.length?list.map(u=>`<tr><td class="es-users-client" data-label="Клиент">${ledgerLink(u.client_id,u.login)}<small>${escapeHtml(u.name||'Имя не указано')}</small></td>
+ <td class="es-users-contacts" data-label="Контакты">${userContactButton(u.phone,'телефон')}${userContactButton(u.email,'email')}</td>
+ <td data-label="Статус">${adminStatusLabel(u.status)}${u.invitation_state==='error'?'<small class="payment-flag">Письмо не отправлено</small>':u.invitation_state==='preparing'?'<small class="payment-flag">Отправка письма не подтверждена</small>':''}</td>
+ <td class="user-date" data-label="Регистрация">${userRegistrationDate(u)}</td><td class="user-date" data-label="Последний вход">${userLastLoginDate(u)}</td>
+ <td class="es-users-manage"><button type="button" class="mini-action" data-user-manage="${Number(u.client_id)}">Управление →</button></td></tr>`).join(''):'<tr><td colspan="6" class="admin-empty">Пользователи не найдены.</td></tr>';
+ if(managedUserId!==null)renderUserManagement();
+}
+document.querySelectorAll('[data-users-sort]').forEach(button=>button.addEventListener('click',()=>{
+ const key=button.dataset.usersSort;if(!['status','account_created_at','last_sign_in_at'].includes(key))return;
+ userSort={key,direction:userSort.key===key?(userSort.direction==='asc'?'desc':'asc'):(key==='status'?'asc':'desc')};renderUsers();
+}));
+document.getElementById('users-sort-mobile').addEventListener('change',event=>{const [key,direction]=event.target.value.split(':');userSort={key:key||null,direction:direction||'asc'};renderUsers();});
+document.getElementById('users-body').addEventListener('click',event=>{const button=event.target.closest('[data-user-manage]');if(button)openUserManagement(Number(button.dataset.userManage));});
+document.getElementById('user-management-close').addEventListener('click',closeUserManagement);
+document.getElementById('user-management').addEventListener('close',()=>{managedUserId=null;document.getElementById('user-management-content').replaceChildren();});
+document.getElementById('user-management').addEventListener('click',event=>{
+ const action=event.target.closest('[data-user-panel-action]');
+ if(event.target.closest('[data-registration-notice],[data-ledger-nick]')){closeUserManagement();return;}
+ if(!action||!isAdminSession||managedUserId===null)return;
+ const id=managedUserId,u=adminUsers.find(row=>Number(row.client_id)===id);if(!u)return;
+ closeUserManagement();
+ if(action.dataset.userPanelAction==='edit')openUserEditor(id);
+ else if(action.dataset.userPanelAction==='register')openAdminRegistration(id);
+ else if(action.dataset.userPanelAction==='toggle')void toggleUserDisabled(id,!u.is_disabled);
+ else if(action.dataset.userPanelAction==='delete')void deleteUserPermanently(id);
+});
+document.addEventListener('click',async event=>{
+ const button=event.target.closest('[data-user-copy]');if(!button||!isAdminSession)return;
+ try{await navigator.clipboard.writeText(button.dataset.userCopy);if(isAdminSession)setAdminMessage('users-copy-message','Скопировано.','info');}
+ catch{if(isAdminSession)setAdminMessage('users-copy-message','Не удалось скопировать. Выделите контакт и скопируйте вручную.','warn');}
+});
 
 async function loadAdminUsers(force=false){
   if(adminLoaded.users&&!force){renderUsers();return;}
