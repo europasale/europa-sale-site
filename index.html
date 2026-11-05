@@ -1166,6 +1166,12 @@
  .es-account-tg{border:1px solid var(--line);background:#fffaf8;padding:24px 28px;margin:24px 0;display:grid;grid-template-columns:1fr auto;gap:16px 32px;align-items:center}
  .es-account-tg[hidden],.es-account-tg [hidden]{display:none!important}.es-account-tg h3{font-size:19px;font-weight:500;margin:0 0 10px}.es-account-tg p{font-size:14px;line-height:1.65;color:var(--muted);margin:0}.es-account-tg-status{font-size:13px;line-height:1.6;margin-top:12px}.es-account-tg-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end;max-width:400px}.es-account-tg-actions .btn{font-size:13px;padding:14px 18px}.es-account-tg-settings{font-size:12px;color:var(--muted);width:100%;text-align:right;text-underline-offset:4px}.es-account-tg .es-account-tg-message{grid-column:1/-1;font-size:13px}.es-account-tg-message:empty{display:none}
  @media(max-width:760px){.es-account-tg{grid-template-columns:1fr;padding:22px}.es-account-tg-actions{justify-content:flex-start;max-width:none}.es-account-tg-actions .btn{width:100%;text-align:center}.es-account-tg-settings{text-align:left}}
+
+ .es-tg-reminder{box-sizing:border-box;width:min(520px,calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto;border:1px solid var(--line);padding:44px;background:#fffaf8;color:#252220}
+ .es-tg-reminder::backdrop{background:rgba(30,25,24,.34)}.es-tg-reminder-close{position:absolute;right:18px;top:14px;border:0;background:none;font:inherit;font-size:28px;cursor:pointer;padding:8px;line-height:1}
+ .es-tg-reminder .eyebrow{font-size:10px;margin-right:12px}.es-tg-reminder h2{font-size:40px;line-height:1.12;letter-spacing:-.045em;font-weight:400;margin:28px 0 20px}.es-tg-reminder p{font-size:15px;line-height:1.75;color:var(--muted);margin:0}
+ .es-tg-reminder-actions{display:flex;align-items:center;gap:24px;margin-top:30px;flex-wrap:wrap}.es-tg-reminder-actions .btn{font-size:12px;padding:17px 22px}.es-tg-reminder-later{font:inherit;font-size:14px;border:0;background:none;color:var(--muted);text-decoration:underline;text-underline-offset:5px;cursor:pointer;padding:12px 0}
+ @media(max-width:540px){.es-tg-reminder{padding:36px 26px}.es-tg-reminder h2{font-size:35px}.es-tg-reminder-actions .btn{width:100%}.es-tg-reminder-actions{justify-content:center;gap:8px}}
 </style>
 </head>
 <body>
@@ -2161,6 +2167,13 @@
 </div>
     </section>
   </main>
+  <dialog id="tg-reminder" class="es-tg-reminder" aria-labelledby="tg-reminder-title" aria-describedby="tg-reminder-description">
+    <button type="button" id="tg-reminder-close" class="es-tg-reminder-close" aria-label="Напомнить позже">×</button>
+    <div class="eyebrow">EUROPA SALE · личный кабинет</div>
+    <h2 id="tg-reminder-title">Ваши заказы —<br>на связи</h2>
+    <p id="tg-reminder-description">Подключите Telegram, чтобы узнавать о прибытии посылок и выкупленных заказах в личных сообщениях.</p>
+    <div class="es-tg-reminder-actions"><button type="button" class="btn dark" id="tg-reminder-connect">Подключить Telegram →</button><button type="button" class="es-tg-reminder-later" id="tg-reminder-later" autofocus>Позже</button></div>
+  </dialog>
   <dialog id="user-management" class="es-user-management" aria-labelledby="user-management-title"><div class="es-user-management-head"><div><div class="eyebrow">EUROPA SALE · клиент</div><h2 id="user-management-title"></h2></div><button type="button" id="user-management-close" class="mini-action" aria-label="Закрыть управление клиентом" autofocus>×</button></div><div id="user-management-content"></div></dialog>
 
   <footer class="footer">
@@ -2748,7 +2761,7 @@ function setAccountSection(section){
   const active=button.dataset.accountSection===accountSection;
   button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active));
  });
- if(parcels)renderMyParcels();
+ if(parcels){tgPromptClose(false);renderMyParcels();}
 }
 function resetMyParcels(){
  parcelStatus='bought';parcelNumberFilter='';parcelLoadError='';
@@ -3077,9 +3090,48 @@ document.getElementById('profile-notifications-save')?.addEventListener('click',
   finally{btn.disabled=false;btn.textContent=old;}
 });
 
+// A reminder is a suggestion only. It never enables a channel or starts the bot automatically.
+const tgPromptSeen=new Set(),tgPromptSnoozed=new Map();
+let tgPromptUser=null;
+function tgPromptClose(snooze=false){
+ const dialog=document.getElementById('tg-reminder');
+ if(snooze&&tgPromptUser&&tgPromptUser===currentSession?.user?.id){
+  const until=Date.now()+7*24*60*60*1000;tgPromptSnoozed.set(tgPromptUser,until);
+  try{localStorage.setItem('es:tg-reminder:v1:'+tgPromptUser,String(until));}catch{/* In-memory fallback when browser storage is unavailable. */}
+ }
+ tgPromptUser=null;if(dialog.open)dialog.close();
+}
+function maybeShowTgPrompt(data){
+ const id=currentSession?.user?.id,prefs=accountTgPrefs;
+ const connected=data.connected===true;
+ const enabled=prefs?.social_notifications===true&&prefs?.messenger_preferences?.telegram===true;
+ if(connected&&enabled){tgPromptClose(false);return;}
+ if(!id||isAdminSession||!prefs||(location.hash||'#home')!=='#account'||accountSection!=='reconciliation'||!document.getElementById('view-account').classList.contains('active'))return;
+ if(data.pending||data.expires_at||tgPromptSeen.has(id)||document.querySelector('dialog[open]'))return;
+ // Missing preferences are not interpreted as an opt-out. Wait for authoritative data.
+ if(connected&&(typeof prefs.social_notifications!=='boolean'||typeof prefs.messenger_preferences?.telegram!=='boolean'))return;
+ let until=tgPromptSnoozed.get(id)||0;
+ try{const saved=Number(localStorage.getItem('es:tg-reminder:v1:'+id));if(Number.isFinite(saved))until=Math.max(until,saved);}catch{}
+ if(until>Date.now())return;
+ const dialog=document.getElementById('tg-reminder');
+ if(typeof dialog.showModal!=='function')return;
+ tgPromptUser=id;tgPromptSeen.add(id);dialog.showModal();
+}
+document.getElementById('tg-reminder-later').addEventListener('click',()=>tgPromptClose(true));
+document.getElementById('tg-reminder-close').addEventListener('click',()=>tgPromptClose(true));
+document.getElementById('tg-reminder').addEventListener('cancel',event=>{event.preventDefault();tgPromptClose(true);});
+document.getElementById('tg-reminder-connect').addEventListener('click',()=>{
+ const valid=tgPromptUser&&tgPromptUser===currentSession?.user?.id&&!isAdminSession;
+ tgPromptClose(valid);if(!valid)return;
+ document.getElementById('account-tg-block').scrollIntoView({behavior:'smooth',block:'center'});
+ void accountTgAction(accountTgRequest?'status':'start');
+});
+for(const name of ['hashchange','popstate','es:navigate'])window.addEventListener(name,()=>{if((location.hash||'#home')!=='#account')tgPromptClose(false);});
+
 let accountTgRevision=0,accountTgBusy=false,accountTgRequest=null,accountTgConnected=false,accountTgPrefs=null;
 function accountTgMessage(text){document.getElementById('account-tg-message').textContent=text;}
 function resetAccountTelegram(){
+ tgPromptClose(false);
  accountTgRevision++;accountTgBusy=false;accountTgRequest=null;accountTgConnected=false;accountTgPrefs=null;
  document.getElementById('account-tg-block').hidden=true;
  document.getElementById('account-tg-connect').hidden=false;document.getElementById('account-tg-connect').textContent='Подключить Telegram →';
@@ -3098,6 +3150,7 @@ function accountTgRender(data){
  document.getElementById('account-tg-confirm').hidden=!accountTgRequest;
  document.getElementById('account-tg-check').hidden=!data.expires_at;
  if(!data.expires_at){document.getElementById('account-tg-open').hidden=true;document.getElementById('account-tg-open').href='https://t.me';}
+ maybeShowTgPrompt(data);
 }
 async function accountTgAction(action){
  if(accountTgBusy||!currentSession?.access_token||isAdminSession)return;
