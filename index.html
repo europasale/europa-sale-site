@@ -2368,6 +2368,14 @@ function formatRub(value){
   }).format(numberValue(value));
 }
 
+// Round only the final positive amount due; keep exact order rows and payment reports.
+function amountDueRub(value){
+ const amount=numberValue(value);
+ // Canonical cents prevent binary summation noise from adding an extra rouble.
+ return amount>0?Math.ceil(Number(amount.toFixed(2))):amount;
+}
+function formatAmountDue(value){return formatRub(amountDueRub(value));}
+
 function formatDate(value){
   if(!value) return '—';
   const s=String(value);
@@ -2689,7 +2697,7 @@ async function loadMyOrders(force=false){
       const displayName=client.login || client.name || session.user.email || 'клиента';
       const nameEl=document.getElementById('account-name');
       if(nameEl) nameEl.textContent=displayName;
-      if(balance) balance.textContent=`${formatRub(data.total_rub || 0)} ₽`;
+      if(balance) balance.textContent=`${formatAmountDue(data.total_rub || 0)} ₽`;
       if(note){
         note.textContent=kind==='old'
           ? (rows.length?'Ваша старая сверка EUROPA SALE.':'В старой сверке нет позиций.')
@@ -2832,11 +2840,11 @@ document.getElementById('parcels-refresh').addEventListener('click',()=>{void lo
 
 
 // Payment reports never edit financial rows or the displayed reconciliation balance.
-let ledgerTarget=null,ledgerRows=[],ledgerGeneration=0;
+let ledgerTarget=null,ledgerRows=[],ledgerGeneration=0,ledgerRequest=null,ledgerLoading=false,ledgerError='';
 let paymentGeneration=0,paymentStatusGeneration=0,paymentBusy=false,paymentSubmitted=false,paymentRequestId='',paymentPayloadKey='',myPaymentReports=[];
 let adminPaymentGeneration=0,adminPaymentPage=0,adminPaymentTotal=0,adminPaymentRows=[],adminPaymentFlags=new Set(),adminPaymentBusy=false;
 const paymentLabels={pending:'Клиент сообщил об оплате · ожидает проверки',confirmed:'Оплата подтверждена администратором',rejected:'Оплата не подтверждена'};
-function closeLedger(){ledgerGeneration++;ledgerTarget=null;ledgerRows=[];const d=document.getElementById('ledger-dialog');if(d.open&&d.close)d.close();else d.removeAttribute('open');for(const id of ['ledger-content','ledger-total'])document.getElementById(id).replaceChildren();document.getElementById('ledger-title').textContent='Сверка клиента';document.getElementById('ledger-search').value='';setAdminMessage('ledger-message','');}
+function closeLedger(){ledgerGeneration++;if(ledgerRequest)ledgerRequest.controller.abort();ledgerRequest=null;ledgerLoading=false;ledgerError='';document.getElementById('ledger-refresh').disabled=false;ledgerTarget=null;ledgerRows=[];const d=document.getElementById('ledger-dialog');if(d.open&&d.close)d.close();else d.removeAttribute('open');for(const id of ['ledger-content','ledger-total'])document.getElementById(id).replaceChildren();document.getElementById('ledger-title').textContent='Сверка клиента';document.getElementById('ledger-search').value='';setAdminMessage('ledger-message','');}
 function closePaymentForm(){paymentGeneration++;paymentRequestId='';paymentPayloadKey='';paymentBusy=false;paymentSubmitted=false;const d=document.getElementById('payment-dialog');if(d.open&&d.close)d.close();else d.removeAttribute('open');for(const id of ['payment-amount','payment-date','payment-comment'])document.getElementById(id).value='';paymentFormBusy(false);setAdminMessage('payment-message','');}
 function resetPaymentsAndLedger(){selectedPayments.clear();updatePaymentSelection();paymentStatusGeneration++;closeLedger();closePaymentForm();myPaymentReports=[];adminPaymentRows=[];adminPaymentFlags.clear();adminPaymentGeneration++;adminPaymentPage=0;adminPaymentBusy=false;document.getElementById('my-payment-history').replaceChildren();document.getElementById('payments-list').replaceChildren();document.getElementById('payment-open').disabled=false;document.getElementById('payment-count').textContent='';for(const id of ['payments-prev','payments-next','payments-refresh','payments-filter','payments-search'])document.getElementById(id).disabled=false;setAdminMessage('my-payment-message','');setAdminMessage('payments-message','');}
 async function paymentApi(action,payload={}){const token=currentSession?.access_token;if(!token)throw new Error('Войдите в личный кабинет.');const {data,error}=await supabaseClient.functions.invoke('payment-reports',{body:{action,...payload},headers:{Authorization:`Bearer ${token}`}});if(token!==currentSession?.access_token)throw new Error('Сессия изменилась.');if(error)throw new Error(await readFunctionError(error));if(!data?.success)throw new Error(data?.error||'Не удалось обработать запрос.');return data;}
@@ -2844,15 +2852,37 @@ function ledgerLink(id,nick){return `<button type="button" class="ledger-nick" d
 function paymentFlag(id){return adminPaymentFlags.has(Number(id))?'<small class="payment-flag">Сообщил(а) об оплате · проверить</small>':'';}
 async function openAdminLedger(id,nick){if(!isAdminSession)return;closeLedger();ledgerTarget={client_id:id||null,login:nick||''};document.getElementById('ledger-kind').value='current';document.getElementById('ledger-title').textContent='Сверка · '+nick;const d=document.getElementById('ledger-dialog');if(d.showModal)d.showModal();else d.setAttribute('open','');await loadAdminLedger();}
 async function loadAdminLedger(){
- if(!isAdminSession||!ledgerTarget)return;const generation=++ledgerGeneration,token=currentSession?.access_token;const target={...ledgerTarget},kind=document.getElementById('ledger-kind').value;
- ledgerRows=[];renderAdminLedger();setAdminMessage('ledger-message','Загружаем сверку выбранного клиента…');
- try{const data=await paymentApi('admin_ledger',{...target,reconciliation_kind:kind});if(generation!==ledgerGeneration||token!==currentSession?.access_token||!isAdminSession)return;
- ledgerRows=sortReconciliationNewestFirst(data.orders.map(order=>({...normalizeOrder(order),comment:String(order.comments||'')})));document.getElementById('ledger-title').textContent='Сверка · '+data.client.login;
- document.getElementById('ledger-total').textContent=`Итог ${kind==='old'?'старой':'актуальной'} сверки: ${formatRub(data.total_rub)} ₽ · строк: ${ledgerRows.length}`;
- renderAdminLedger();setAdminMessage('ledger-message','Все строки сверки: товары, оплаты, доставка и корректировки. Сообщения об оплате сами этот итог не меняют.');
- }catch(error){if(generation===ledgerGeneration)setAdminMessage('ledger-message',error.message,'error');}
+ if(!isAdminSession||!ledgerTarget||!currentSession?.access_token)return;
+ const token=currentSession.access_token,target={...ledgerTarget},kind=document.getElementById('ledger-kind').value;
+ const key=JSON.stringify([token,target.client_id,target.login,kind]);
+ if(ledgerRequest?.key===key)return ledgerRequest.promise;
+ if(ledgerRequest)ledgerRequest.controller.abort();
+ const generation=++ledgerGeneration,controller=new AbortController(),request={key,controller,promise:null};ledgerRequest=request;
+ const active=()=>generation===ledgerGeneration&&token===currentSession?.access_token&&isAdminSession;
+ ledgerRows=[];ledgerError='';ledgerLoading=true;document.getElementById('ledger-total').textContent='';document.getElementById('ledger-refresh').disabled=true;
+ renderAdminLedger();setAdminMessage('ledger-message','Загружаем сверку выбранного клиента…','info');
+ request.promise=(async()=>{
+  let timer;
+  try{
+   const timeout=new Promise((_,reject)=>{timer=setTimeout(()=>{reject(Error('Сервер не ответил за 20 секунд.'));controller.abort();},20000);});
+   const pending=supabaseClient.functions.invoke('payment-reports',{body:{action:'admin_ledger',...target,reconciliation_kind:kind},headers:{Authorization:`Bearer ${token}`},signal:controller.signal});
+   const {data,error}=await Promise.race([pending,timeout]);
+   if(!active())return;if(error)throw Error(await readFunctionError(error));
+   if(!active())return;if(!data?.success||!Array.isArray(data.orders))throw Error(data?.error||'Не удалось получить строки сверки.');
+   ledgerRows=sortReconciliationNewestFirst(data.orders.map(order=>({...normalizeOrder(order),comment:String(order.comments||'')})));
+   document.getElementById('ledger-title').textContent='Сверка · '+data.client.login;
+   document.getElementById('ledger-total').textContent=`Итог ${kind==='old'?'старой':'актуальной'} сверки: ${formatRub(data.total_rub)} ₽ · строк: ${ledgerRows.length}`;
+   setAdminMessage('ledger-message',ledgerRows.length?'Все строки сверки: товары, оплаты, доставка и корректировки. Сообщения об оплате сами этот итог не меняют.':'В выбранной сверке у клиента нет строк.','info');
+  }catch(error){if(active()){ledgerError=error?.message||'Не удалось загрузить сверку.';setAdminMessage('ledger-message',ledgerError,'error');}}
+  finally{clearTimeout(timer);if(active()){ledgerLoading=false;document.getElementById('ledger-refresh').disabled=false;renderAdminLedger();}if(ledgerRequest===request)ledgerRequest=null;}
+ })();
+ return request.promise;
 }
+
 function renderAdminLedger(){
+ const content=document.getElementById('ledger-content');
+ if(ledgerLoading){content.innerHTML='<p class="admin-note" role="status">Загружаем позиции выбранного клиента…</p>';return;}
+ if(ledgerError){content.innerHTML='<p class="admin-note" role="alert">'+escapeHtml(ledgerError)+' Нажмите «Обновить», чтобы повторить.</p>';return;}
  const q=document.getElementById('ledger-search').value.trim().toLowerCase();const filtered=ledgerRows.filter(r=>[r.model,r.link,r.size,r.parcel,r.comment].join(' ').toLowerCase().includes(q));
  document.getElementById('ledger-content').innerHTML=filtered.length?`<table class="ledger-table" aria-label="Детализация сверки клиента"><thead><tr><th>Товар / операция</th><th>Размер / цвет</th><th>Цена €</th><th>Орг %</th><th>Курс</th><th>Итого ₽</th><th>Дата</th><th>Посылка</th></tr></thead><tbody>${filtered.map(r=>`<tr><td><strong>${escapeHtml(r.model||'Операция')}</strong>${/^https?:\/\//i.test(r.link)?`<br><a href="${escapeHtml(r.link)}" target="_blank" rel="noopener noreferrer">Товар ↗</a>`:''}${r.comment?`<small>${escapeHtml(r.comment)}</small>`:''}</td><td>${escapeHtml(r.size)}</td><td>${formatNumber(r.price,2)}</td><td>${formatNumber(r.org,2)}</td><td>${formatNumber(r.rate,2)}</td><td>${formatRub(r.total)}</td><td>${escapeHtml(formatDate(r.date))}</td><td>${escapeHtml(r.parcel||'—')}</td></tr>`).join('')}</tbody></table>`:'<p class="admin-note">Строки не найдены.</p>';
 }
@@ -2867,7 +2897,7 @@ async function loadMyPaymentReports(){
 }
 function paymentFormBusy(busy){paymentBusy=busy;for(const id of ['payment-submit','payment-amount','payment-date','payment-comment'])document.getElementById(id).disabled=busy;document.getElementById('payment-submit').textContent=busy?'Отправляем…':'Я оплатил(а) — сообщить';}
 function moscowToday(){const parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Moscow',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());const v=Object.fromEntries(parts.map(p=>[p.type,p.value]));return `${v.year}-${v.month}-${v.day}`;}
-function openPaymentForm(){if(!currentSession?.user?.id||isAdminSession||currentReconciliationKind!=='current')return;if(myPaymentReports.some(r=>r.status==='pending'))return;closePaymentForm();const balance=rows.reduce((s,r)=>s+Number(r.total||0),0);document.getElementById('payment-amount').value=balance>0?balance.toFixed(2):'';document.getElementById('payment-date').value=moscowToday();document.getElementById('payment-date').max=moscowToday();const d=document.getElementById('payment-dialog');if(d.showModal)d.showModal();else d.setAttribute('open','');}
+function openPaymentForm(){if(!currentSession?.user?.id||isAdminSession||currentReconciliationKind!=='current')return;if(myPaymentReports.some(r=>r.status==='pending'))return;closePaymentForm();const balance=rows.reduce((s,r)=>s+Number(r.total||0),0);document.getElementById('payment-amount').value=balance>0?String(amountDueRub(balance)):'';document.getElementById('payment-date').value=moscowToday();document.getElementById('payment-date').max=moscowToday();const d=document.getElementById('payment-dialog');if(d.showModal)d.showModal();else d.setAttribute('open','');}
 async function submitPaymentReport(event){
  event.preventDefault();if(paymentBusy||paymentSubmitted||isAdminSession||!currentSession?.user?.id||!document.getElementById('payment-form').reportValidity())return;
  const payload={amount:Number(document.getElementById('payment-amount').value),paid_date:document.getElementById('payment-date').value,comment:document.getElementById('payment-comment').value.trim()};
@@ -4430,7 +4460,7 @@ function renderDebtors(){
       <td>${escapeHtml(d.phone||'—')}</td>
       <td>${escapeHtml(d.email||'—')}</td>
       <td>${adminChannelsHtml(d)}</td>
-      <td class="num"><strong>${formatRub(d.balance||0)}</strong></td>
+      <td class="num"><strong>${formatAmountDue(d.balance||0)}</strong></td>
     </tr>`;
   }).join('');
   body.querySelectorAll('[data-debtor-id]').forEach(cb=>cb.addEventListener('change',()=>{
@@ -4461,7 +4491,7 @@ async function loadAdminDebtors(force=false){
     const data=await invokeAdminData('debtors');
     adminDebtors=Array.isArray(data.debtors)?data.debtors:[];
     document.getElementById('debtors-count').textContent=new Intl.NumberFormat('ru-RU').format(Number(data.debtors_count||0));
-    document.getElementById('debtors-total').textContent=`${formatRub(data.total_debt||0)} ₽`;
+    document.getElementById('debtors-total').textContent=`${formatRub(adminDebtors.reduce((sum,row)=>sum+amountDueRub(row.balance||0),0))} ₽`;
     adminLoaded.debtors=true;
     renderDebtors();
     updateSelectedDebtorsUI();
