@@ -2380,6 +2380,32 @@ function preparePasswordView(){
  else if(!canSet)setResetMessage(authReady?'Откройте действующую ссылку из письма. Если она устарела, запросите новое письмо.':'Проверяем ссылку…',authReady?'error':'info');
 }
 
+// Keep ordinary navigation independent of Auth URL processing.
+const esNavigationHashes=new Set(['home','login','register','account','profile','admin','editorial','how-to-order','stores','about','faq','calculator','order-conditions','brands','where-we-buy','european-shops','closed-sales','es-catalogue-panel']);
+function esOrdinaryHash(hash){return esNavigationHashes.has(String(hash||'').slice(1));}
+const esEntryNavigation=(()=>{
+ let hash=location.hash;
+ try{if(!hash&&performance.getEntriesByType('navigation')[0]?.type==='reload')hash=sessionStorage.getItem('es:last-route:v1')||'';}catch(_){}
+ return {hash:esOrdinaryHash(hash)?hash:'',path:location.pathname,search:location.search,changed:false};
+})();
+for(const event of ['hashchange','popstate','es:navigate'])window.addEventListener(event,()=>{esEntryNavigation.changed=true;});
+function esRestoreEntryNavigation(){
+ if(!esPasswordFlow&&!esEntryNavigation.changed&&!location.hash&&esEntryNavigation.hash&&location.pathname===esEntryNavigation.path&&location.search===esEntryNavigation.search&&!new URLSearchParams(location.search).has('confirm_registration')){
+  history.replaceState(history.state,'',location.pathname+location.search+esEntryNavigation.hash);
+ }
+}
+function esRememberRoute(){try{if(esOrdinaryHash(location.hash))sessionStorage.setItem('es:last-route:v1',location.hash);}catch(_){} }
+function esReadWorkspace(area){try{return JSON.parse(sessionStorage.getItem('es:workspace:v1:'+currentSession.user.id+':'+area)||'{}')||{};}catch(_){return {};}}
+function esSaveWorkspace(area,value){if(!currentSession?.user?.id)return;try{sessionStorage.setItem('es:workspace:v1:'+currentSession.user.id+':'+area,JSON.stringify(value));}catch(_){} }
+function esSaveAccountWorkspace(){esSaveWorkspace('account',{section:accountSection,kind:currentReconciliationKind,status:parcelStatus});}
+function esRestoreAccountWorkspace(){
+ const saved=esReadWorkspace('account');
+ currentReconciliationKind=saved.kind==='old'?'old':'current';
+ parcelStatus=saved.status==='ready'?'ready':'bought';
+ updateReconciliationTabs();
+ setAccountSection(saved.section==='parcels'?'parcels':'reconciliation');
+}
+
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
   auth: {
     persistSession: true,
@@ -2813,6 +2839,7 @@ document.querySelectorAll('[data-reconciliation]').forEach(btn=>{
     const kind=btn.dataset.reconciliation==='old' ? 'old' : 'current';
     if(kind===currentReconciliationKind) return;
     currentReconciliationKind=kind;
+    esSaveAccountWorkspace();
     accountLoadedForUserId=null;
     rows=[];
     mobilePage=1;
@@ -2848,8 +2875,9 @@ function groupMyParcels(items){
  }
  return {bought,ready,groups};
 }
-function setAccountSection(section){
+function setAccountSection(section,remember=true){
  accountSection=section==='parcels'?'parcels':'reconciliation';
+ if(remember)esSaveAccountWorkspace();
  const parcels=accountSection==='parcels';
  document.getElementById('account-reconciliation-panel').hidden=parcels;
  document.getElementById('account-parcels-panel').hidden=!parcels;
@@ -2864,7 +2892,7 @@ function resetMyParcels(){
  parcelStatus='bought';parcelNumberFilter='';parcelLoadError='';
  const list=document.getElementById('my-parcels-list');if(list)list.replaceChildren();
  const filter=document.getElementById('parcel-number-filter');if(filter){filter.replaceChildren();filter.value='';}
- setAccountSection('reconciliation');
+ setAccountSection('reconciliation',false);
 }
 function parcelItemHtml(item){
  const link=/^https?:\/\//i.test(item.link)?`<a href="${escapeHtml(item.link)}" target="_blank" rel="noopener noreferrer">Товар в магазине ↗</a>`:'';
@@ -2900,7 +2928,7 @@ function renderMyParcels(){
  }
 }
 document.querySelectorAll('[data-account-section]').forEach(button=>button.addEventListener('click',()=>setAccountSection(button.dataset.accountSection)));
-document.querySelectorAll('[data-parcel-status]').forEach(button=>button.addEventListener('click',()=>{parcelStatus=button.dataset.parcelStatus==='ready'?'ready':'bought';renderMyParcels();}));
+document.querySelectorAll('[data-parcel-status]').forEach(button=>button.addEventListener('click',()=>{parcelStatus=button.dataset.parcelStatus==='ready'?'ready':'bought';esSaveAccountWorkspace();renderMyParcels();}));
 document.getElementById('parcel-number-filter').addEventListener('change',event=>{parcelNumberFilter=event.target.value;renderMyParcels();});
 document.getElementById('parcels-refresh').addEventListener('click',()=>{void loadMyOrders(true);});
 
@@ -3528,6 +3556,7 @@ function showView(view){
   document.body.classList.toggle('account-mode',view==='account'||view==='profile');
   const target=document.getElementById('view-'+view);
   document.querySelectorAll('.view').forEach(el=>el.classList.toggle('active',el===target));
+  esRememberRoute();
   const routeHash=location.hash||'#home';
   const section=view==='home'?esApplyPublicRoute(routeHash):null;
   if(view!=='home'){
@@ -3699,6 +3728,8 @@ async function route(){
       location.hash='account';
       return;
     }
+    const saved=esReadWorkspace('admin');
+    if(['sverka','parcels','debtors','payments','mailing','users','editorial'].includes(saved.tab))currentAdminTab=saved.tab;
     showView('admin');
     await loadAdminDashboard();
     return;
@@ -3722,6 +3753,7 @@ async function route(){
   }
 
   if(key==='account'){
+    esRestoreAccountWorkspace();
     updateAccountHeader();
     showView(key);
     void accountTgAction('status');
@@ -4088,6 +4120,7 @@ async function initAuth(){
   const {data}=await supabaseClient.auth.getSession();
   currentSession=data.session;
   authReady=true;
+  esRestoreEntryNavigation();
   await route();
 }
 
@@ -4485,6 +4518,7 @@ function setAdminTab(tab){
   if(tab!=='users') resetAdminRegistration();
   const allowed=['sverka','parcels','debtors','payments','mailing','users','editorial'];
   currentAdminTab=allowed.includes(tab)?tab:'sverka';
+  esSaveWorkspace('admin',{tab:currentAdminTab});
   document.querySelectorAll('[data-admin-tab]').forEach(btn=>btn.classList.toggle('active',btn.dataset.adminTab===currentAdminTab));
   document.querySelectorAll('[data-admin-view]').forEach(el=>el.classList.toggle('active',el.dataset.adminView===currentAdminTab));
   if(currentAdminTab==='editorial') window.dispatchEvent(new Event('es:editorial-admin-open'));
