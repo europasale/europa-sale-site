@@ -2,6 +2,14 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
+  <script>document.documentElement.classList.add('es-route-pending');</script>
+  <style>
+    .es-route-pending .view{display:none!important}
+    .es-route-pending main{min-height:70vh}
+    .es-route-pending footer{visibility:hidden}
+    .es-route-loader{display:none}
+    .es-route-pending .es-route-loader{display:block;padding:15vh 24px;text-align:center;color:#79716c;font:14px/1.5 Arial,sans-serif;letter-spacing:.02em}
+  </style>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="referrer" content="no-referrer" />
   <meta name="theme-color" content="#f8f3f1" />
@@ -1272,6 +1280,7 @@
 </style>
 </head>
 <body>
+  <div class="es-route-loader" role="status" aria-live="polite">Открываем страницу…</div>
 <div class="shell">
   <header class="topbar es-tabbed-header">
     <div class="topbar-inner">
@@ -3562,6 +3571,7 @@ function showView(view){
   if(view!=='home'){
     document.querySelectorAll('[data-es-main-nav]').forEach(el=>el.removeAttribute('aria-current'));
   }
+  if(target)document.documentElement.classList.remove('es-route-pending');
   // Reveal the chosen page before scrolling. Ignore frames from older clicks.
   window.requestAnimationFrame(()=>{
     if(scrollRevision!==esViewScrollRevision || (location.hash||'#home')!==routeHash || !target?.classList.contains('active')) return;
@@ -3702,7 +3712,7 @@ async function route(){
   }
 
   if(!authReady){
-    showView(['login','register','reset-password','confirm-registration'].includes(key)?key:'home');
+    if(['login','register','reset-password','confirm-registration'].includes(key))showView(key);
     if(key==='reset-password')preparePasswordView();
     return;
   }
@@ -3730,8 +3740,9 @@ async function route(){
     }
     const saved=esReadWorkspace('admin');
     if(['sverka','parcels','debtors','payments','mailing','users','editorial'].includes(saved.tab))currentAdminTab=saved.tab;
+    const dashboardReady=loadAdminDashboard();
     showView('admin');
-    await loadAdminDashboard();
+    await dashboardReady;
     return;
   }
 
@@ -4117,8 +4128,10 @@ supabaseClient.auth.onAuthStateChange((event,session)=>{
 });
 
 async function initAuth(){
-  const {data}=await supabaseClient.auth.getSession();
-  currentSession=data.session;
+  let data;
+  try{({data}=await supabaseClient.auth.getSession());}
+  catch(error){console.error('Session restore failed:',error);data={session:null};}
+  currentSession=data?.session||null;
   authReady=true;
   esRestoreEntryNavigation();
   await route();
